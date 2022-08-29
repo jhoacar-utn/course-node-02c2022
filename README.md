@@ -133,163 +133,38 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 3 (Introduccion a PHP)</h1></summary>
+  <summary><h1>Clase 3 (Introduccion a Node)</h1></summary>
 
   <details>
-    <summary><h2>¿Que es PHP? - Historia</h2></summary>
+    <summary><h2>¿Que es NodeJS? - ¿Para que me puede servir?</h2></summary>
 
-  * Paginas web dinamicas desde 1995
-  </details>
-
-  <details>
-    <summary><h2>Servidores para PHP</h2></summary>
-
-  * Apache
-  * Nginx
-  * Lighttpd
-  * ...
-  </details>
-
-  <details>
-    <summary><h2>Conectores de PHP al servidor</h2></summary>
-
-  * mod_php
-  * CGI
-  * FastCGI
-  * FPM
   
-  ## [mod_php vs CGI vs FastCGI vs FPM](https://blog.ahierro.es/php-mod_php-vs-cgi-vs-fastcgi-vs-fpm/)
-  </details>
-
-  <details>
-    <summary><h2>Configuracion con Docker</h2></summary>
-
-  * LAMP (Linux-Apache-MySQL-PHP) Docker Services - ([configuration](https://gist.github.com/Beyarz/674b24d03614fde205a38f449800857a))
-
-    **`docker-compose.yaml`**
-
-    ```YAML
-    version: "3" # Nosotros especificamos la version del docker-compose
-    services: # Declaramos los servicios
-        # Llamamos un servicio, como www, pero puede llevar cualquier nombre
-        # Lo importante esque este nombre sera el nombre usado en la red interna de docker
-        www: 
-            build: . # Le decimos que construya una imagen que usara este contenedor
-            restart: always # Si algo falla al crearse el contenedor, se vuelve a reiniciar
-            image: course:1.0.0 # Luego de construida la imagen que le ponga el nombre de course en la version 1.0
-            container_name: course # Este sera el nombre del contenedor, viene siendo el uso de --name
-            ports: # Le especificamos la configuracion de los puertos del host y el contenedor
-                - "8000:80" # La sintaxis es "puerto-host":"puerto-contenedor", entonces veremos la pagina en localhost:8000
-            volumes: # Le especificamos que debe montar un directorio en el contenedor para visualizarlo en el host
-                - ./:/var/www/html/ # Le decimos que sea la carpeta actual con './' y que la ingrese en '/var/www/html' 
-            links: # Aca se estaria vinculando el contenedor de la base de datos en este
-                - mysql:mysql # A grandes rasgos, copia la direccion ip del contenedor de mysql en el /etc/hosts/
-            depends_on: # Le bloqueamos la inicializacion hasta que el contenedor de base de datos este arriba
-                - mysql
-        mysql: # Llamamos a este servicio que tendra acceso en la red interna de docker atraves de este nombre
-            image: mysql:8.0.16 # Le especificamos una version de la imagen de mysql ya que es una buena practica
-            command: --default-authentication-plugin=mysql_native_password # Con este comando garantizamos las credenciales para iniciar sesion
-            container_name: mysql # Este sera el nombre del contenedor, viene siendo el uso de --name
-            ports: # Habilitamos los puertos que se exponen en el host y los vinculamos con el del contenedor
-                - "3306:3306" # Por defecto el puerto para mysql es 3306
-            volumes: # Conectamos un volumen con la carpeta que maneja toda la informacion de la base de datos
-                - volumen_mysql:/var/lib/mysql # Este volumen no es un directorio sino uno que se ha creado directamente docker, mas abajo se comenta
-            environment: # Le pasamos las variables de entorno o variables de configuracion al contenedor
-                MYSQL_DATABASE: course # Le especificamos que tiene que crear una base de datos llamada 'course'
-                MYSQL_USER: user # Le especificamos que tiene que crear un usuario llamado user
-                MYSQL_PASSWORD: user # Le especificamos su contraseña a esta base de datos
-                MYSQL_ROOT_PASSWORD: root # Le especificamos la contraseña del super usuario root que sera 'root'
-
-        phpmyadmin: # Llamamos a este servicio para poder mostrar y gestionar la base de datos de una manera mas amigable
-            image: phpmyadmin/phpmyadmin:4.8 # Le especificamos una version por buenas practicas
-            container_name: phpmyadmin # Este sera el nombre del contenedor, viene siendo el uso de --name
-            links: # Vinculamos la base de datos a este contenedor
-                - mysql:mysql # Directamente asigna la ip del contenedor por nombre 'mysql' en el /etc/hosts de este contenedor
-            ports: # Habilitamos los puertos por el cual este gestor de base de datos sera controlado
-                - 8080:80 # Por lo tanto podremos manejar la base de datos accediendo al localhost:8080
-            environment: # Le pasamos las variables de configuracion
-                PMA_ARBITRARY: 1 # Con este parametro le permitimos disponibilidad de yo escoger luego las credenciales
-            depends_on:
-                - mysql
-    # Esta seccion es importante que es para montar un volumen directamente con docker y que no sea una carpeta de mi sistema
-    # Esto es importante ya que si no lo hacemos con volumenes de docker sino volumenes usando directorios como './mi-carpeta' no functionaria
-    # Puede funcionar si se estaria usando un sistema operativo de linux que soporta sistemas de archivos ext4 y no ntfs como es en el caso de windows
-    volumes:
-        volumen_mysql:
-            external: false
-    ```
-
-    **`Dockerfile`**
-
-    ```Dockerfile
-    # Le especificamos que imagen sera la creada, que usaremos la de php en la version 8.1 con 
-    # servidor de apache
-    FROM php:8.1-apache
-
-    # Dejamos un archivo de configuracion por defecto
-    COPY apache.conf /etc/apache2/sites-available/000-default.conf
-
-    # Le agregamos un php.ini para cargar configuraciones personalizadas para PHP
-    COPY php.ini /usr/local/etc/php/custom-php.ini
-    ```
-
-    **`apache.conf`**
-
-    ```xml
-    <VirtualHost *:80>
-        DocumentRoot /var/www/html
-
-        <Directory /var/www/html>
-            Options +Indexes +FollowSymLinks
-            AllowOverride All
-            Require all granted
-        </Directory>
-    </VirtualHost>
-    ```
-
-    **`php.ini`**
-
-    ```php.ini
-    max_input_time = 60
-    memory_limit = 128M
-    post_max_size = 8M
-    file_uploads = On
-    upload_max_filesize = 2M
-    max_file_uploads = 20
-    ```
+  * Motor V8 (Chrome's V8 JavaScript engine)
+  * Problemas de concurrencia
+  * Adaptabilidad en frontend y backend
 
   </details>
 
   <details>
-    <summary><h2>Versionado de PHP</h2></summary>
+    <summary><h2>Instalacion de NodeJS</h2></summary>
 
-  * Versiones aconsejadas `>=7.4` ([versionado semantico](https://fperez217.medium.com/qu%C3%A9-es-versionamiento-sem%C3%A1ntico-bf495b9eb028) - [video](https://www.youtube.com/watch?v=hwlOuZvaDIA) - [Packagist Semver Checker](https://semver.madewithlove.com/?package=madewithlove%2Fhtaccess-cli&constraint=dev-main&stability=stable))
+  * [https://nodejs.org/es/download](https://nodejs.org/es/download/)
+  </details>
+
+  <details>
+    <summary><h2>Uso de NodeJS</h2></summary>
+
+  * Mi primer `Hola Mundo`
+
+  </details>
+
+  <details>
+    <summary><h2>Eventos y Callbacks</h2></summary>
+
+  * Practica con `require('events')` [Documentacion](https://www.w3schools.com/nodejs/nodejs_events.asp)
+  * Emitiendo un evento especifico llamado `mostrar_fecha` con la fecha actual y mostrarlo por consola cada 1 segundo.
+  * Levantando mi primer servidor [HTTP](https://www.w3schools.com/nodejs/nodejs_http.asp) y mostrando `Primer mensaje del backend`
     
-  </details>
-
-  <details>
-    <summary><h2>Uso de PHP</h2></summary>
-
-  * Codigo PHP - Etiqueta `<?php `
-  * Mostrando toda la informacion sobre la configuracion de php - `<?php phpinfo();`
-  * Variables predefinidas
-    * **Superglobals** — Superglobals son variables internas que están disponibles siempre en todos los ámbitos:
-      * `$GLOBALS` — Hace referencia a todas las variables disponibles en el ámbito global
-      * `$_SERVER` — Información del entorno del servidor y de ejecución
-      * `$_GET` — Variables HTTP GET
-      * `$_POST` — Variables POST de HTTP
-      * `$_FILES` — Variables de subida de ficheros HTTP
-      * `$_REQUEST` — Variables HTTP Request
-      * `$_SESSION` — Variables de sesión
-      * `$_ENV` — Variables de entorno
-      * `$_COOKIE` — Cookies HTTP
-    * `$php_errormsg` — El mensaje del error anterior
-    * `$http_response_header` — Encabezados de respuesta HTTP
-    * `$argc` — El número de argumentos pasados a un script
-    * `$argv` — Array de argumentos pasados a un script
-  * Mostrando la informacion de las variables con `echo`,`print_r` y `var_dump`
-  * Declaracion de variables
-
   </details>
 
 </details>
@@ -305,7 +180,6 @@
   * `else`
   * `operador ternario`
   * `switch`
-  * [match](https://www.php.net/manual/es/control-structures.match.php) `(php>=8.0.0)`
   </details>
   <details>
     <summary><h2>Declaracion de ciclos</h2></summary>
@@ -313,7 +187,8 @@
   * `while`
   * `do-while`
   * `for`
-  * `foreach`
+  * `for in`
+  * `for of`
   * Directivas de control de ciclos
     * `continue`
     * `break`
@@ -324,7 +199,7 @@
 
   * Comentarios de una linea
   * Comentarios multilinea
-  * Comentarios para documentacion ([PHPDocs Basics](https://phpstan.org/writing-php-code/phpdocs-basics))
+  * Comentarios para documentacion ([JSDocs Basics](https://jsdoc.app/about-getting-started.html))
   </details>
   <details>
     <summary><h2>Practica de variables, condicionales y ciclos</h2></summary>
@@ -334,7 +209,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 5 (Funciones en PHP)</h1></summary>
+  <summary><h1>Clase 5 (Funciones en Javascript)</h1></summary>
 
   <details>
     <summary><h2>Semantica de funciones</h2></summary>
@@ -366,14 +241,14 @@
     <summary><h2>Funciones anonimas</h2></summary>
 
   * Callbacks - Uso de callbacks para manipulacion de arrays
-    * Uso de `array_map`, `array_filter` y `array_reduce`
+    * Uso de `.map()`, `.filter()` y `.reduce()`
   * Clousures
   </details>
 
   <details>
     <summary><h2>Modularizacion de codigo</h2></summary>
 
-  * Uso de `include`, `include_once`,`require` y `require_once`
+  * Uso de `require`, `export` y `import`
   </details>
 
   <details>
@@ -384,10 +259,10 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 6 (Introduccion a POO con PHP)</h1></summary>  
+  <summary><h1>Clase 6 (Asincronismo y Promesas en Javascript)</h1></summary>  
 
   <details>
-    <summary><h2>¿Que es POO? ¿Para que me puede servir?</h2></summary>
+    <summary><h2>¿Que es el Asincronismo? ¿Para que me puede servir?</h2></summary>
 
   * Caracteristicas de POO
     * Cohesión
