@@ -2,6 +2,39 @@
 
 ![UTN BA Centro de e-Learning](https://www.frba.utn.edu.ar/wp-content/uploads/2016/08/logo-utn.ba-horizontal-e1471367724904.jpg)
 
+### Repositorio con el codigo del curso de cada estudiante
+
+## [Link de Zoom](https://centrodeelearning.zoom.us/j/98298358252?pwd=YjRIaWhZbk1UaWl3aXdpd09xdmlPQT09)
+## [Telegram](https://t.me/+-9ijDnYqGv5mMzRh)
+
+# Consignas para el repositorio
+
+### El estudiante debe tener permiso como colaborador a este repositorio, el cual debera clonarlo en su repositorio local:  
+<h3 align="center" style="color:#f6a700">git clone https://github.com/jhoacar-utn/course-node-02c2022.git</h3>
+
+### Ya con el repositorio clonado en local, debera crear una rama con su nombre y apellido separados por el caracter `_`, ejemplo:
+
+* El estudiante con nombre Jhoan Carrero debera crear una rama `jhoan_carrero`
+<br>Para ello debera ejecutar: `git checkout -b jhoan_carrero`
+<br>Esto creara la rama y tambien se posicionara en ella
+
+### El estudiante debe crear una carpeta con el mismo nombre que creo la rama
+
+* Puede hacerlo con el mouse o escribiendo el comando: `mkdir jhoan_carrero`
+
+### Se debe tener la siguiente estructura de carpetas:
+   
+    jhoan_carrero
+      └── lessons (Se guardaran acá los apuntes del curso)
+            ├── lesson_1       
+            ├── lesson_2 ( Se organizaran por clase )
+            └── ...
+      └── project ( Se guardara acá el progreso de la aplicación )
+            ├── server
+            └── client
+      └── practices (Se guardara aca las practicas que se realicen)
+
+
 <hr>
 <details>
 
@@ -11,6 +44,12 @@
     <summary><h2>Lenguajes de Programacion (Compilados e Interpretados)</h2></summary>
 
 * Metafora: Recetas de Cocina
+  </details>
+
+  <details>
+      <summary><h2>Instalacion de Git</h2></summary>
+    
+  * [Git y Git Bash](https://git-scm.com/downloads)
   </details>
 
   <details>
@@ -37,10 +76,24 @@
   </details>
 
   <details>
+    <summary><h2>Editor de codigo</h2></summary>
+
+    * [Instalacion de VsCode](https://code.visualstudio.com/download)
+  </details>
+
+
+  <details>
     <summary><h2>Instalacion de Docker</h2></summary>
 
   * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
   * Windows o Mac `virtualizacion del sistema operativo`
+  </details>
+
+  <details>
+    <summary><h2>Instalacion de Servidores de Base de datos</h2></summary>
+
+  * [MySQL](https://dev.mysql.com/downloads/windows/installer/8.0.html)
+  * [MongoDB](https://www.mongodb.com/cloud/atlas/register)
   </details>
 
   <details>
@@ -71,6 +124,8 @@
 
   <details>
     <summary><h2>Trabajo Practico de Nivelacion</h2></summary>
+  
+  * [Trabajo Practico 1](./tasks/lesson_1/index.html)
   </details>
 
 
@@ -252,6 +307,13 @@
   </details>
 
   <details>
+    <summary><h2>Uso de <strong>this</strong></h2></summary>
+
+  * Como funciona `this` en Javascript
+  * Diferencias entre arrow functions `()=>{}` y functions `function(){}`
+  </details>
+
+  <details>
     <summary><h2>Practica de funciones usando array callbacks</h2></summary>
   </details>
 
@@ -259,84 +321,142 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 6 (Asincronismo y Promesas en Javascript)</h1></summary>  
+  <summary><h1>Clase 6 (Asincronismo, Promesas y Excepciones en Javascript)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es el Asincronismo? ¿Para que me puede servir?</h2></summary>
-
-  * Caracteristicas de POO
-    * Cohesión
-    * Acoplamiento
-    * Encapsulamiento.
-    * Herencia
-    * Abstracción
-    * Polimorfismo
   </details>
 
   <details>
-    <summary><h2>Sintaxis de clases en PHP</h2></summary>
+    <summary><h2>setTimeout</h2></summary>
 
-  * Ejemplo de clase base
-    * Atributos
-    * Metodos y [Metodos magicos](https://www.php.net/manual/es/language.oop5.magic.php)
-  * Ejemplo de Cohesion de clase base (reduccion de complejidad en clases)
-  * Ejemplo de Acoplamiento de clase base (El bajo acoplamiento es frecuentemente una señal de un sistema bien estructurado y de un buen diseño de software)
-  * Ejemplo de Encapsulamiento de clase base (ocultamiento del estado)
-    * ![Encapsulamiento](https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/03_Encapsulamiento.jpg/450px-03_Encapsulamiento.jpg)
+  * setTimeout(()=>{console.log("Ejecutado luego de 1 segundo")},1000)
   </details>
+
+  <details>
+    <summary><h2>setInterval</h2></summary>
+
+  * setInterval(()=>{console.log("Ejecutando cada 1 segundo")},1000)
+  </details>
+
+  <details>
+    <summary><h2>callbacks</h2></summary>
+
+  * [Callbacks hells](http://callbackhell.com/)
+  </details>
+
+  <details>
+    <summary><h2>Promises</h2></summary>
+  
+  * new Promise((resolve,reject)=>{
+      resolve("Resuelta la promesa");
+      reject("Se rechaza la promesa")
+  })
+  </details>
+
+  <details>
+    <summary><h2>async/await</h2></summary>
+  
+  * async functions
+  * await statements
+  </details>
+
+  <details>
+    <summary><h2>Manejo de excepciones</h2></summary>
+  
+  * Bloques try/catch
+  * Bloque finally
+  * Sentencia throw
+    * Clase Error - `throw new Error('ocurrio algo')`
+  </details>
+
 </details>
 
 <hr>
 <details>
-  <summary><h1>Clase 7 (Herencia y Abstraccion)</h1></summary>  
+  <summary><h1>Clase 7 (Introduccion a Express)</h1></summary>  
 
   <details>
-    <summary><h2>¿Que es la Herencia? ¿Que es la Abstraccion?</h2></summary>
+    <summary><h2>¿Que es Express? ¿Para que me puede servir? </h2></summary>
 
-  * Abstraccion
-    * Uso de la abstraccion para atributos entre clases
-      * atributos y funciones `public`,`private` y `protected`
-    * Metodos y variables estaticas
-      * Constantes estaticas - `const`
-      * Variables estaticas - `static`
-        * Uso de `::class`
-      * Metodos estaticos - `static function`
-  * Herencia simple
-    * Uso de `extends` entre clases
-  * Herencia "multiple"
-    * Uso de `traits` con `use`
+  * Framework para desarrollo web
+  * Flexibilidad de Trabajo
   </details>
 
   <details>
-    <summary><h2>Practica sobre herencia simple y herencia multiple</h2></summary>
+    <summary><h2>Instalacion de Express ( npm )</h2></summary>
+
+  * `npm install express`
+  * Gestor de Paquetes `package.json`
   </details>
+
+  <details>
+    <summary><h2>Enrutamiento</h2></summary>
+
+  * Express Router
+  * Verbos HTTP y Cabeceras
+    * Verbos: GET, POST, DELETE, PUT, ...
+    * Cabeceras: Content-Type, Server, User-Agent, ...
+  * Modularizacion de Rutas
+  * Crear endpoint `GET: lessons/lesson_1` donde la respuesta debera ser el primer TP del curso.
+  </details>
+
+  <details>
+    <summary><h2>Middlewares (Software que se pone en medio)</h2></summary>
+  
+  * Autenticar un usuario
+  * Proteger las rutas con los usuarios autenticados
+  </details>
+
+  <details>
+    <summary><h2>Express Validator</h2></summary>
+  
+  * Validacion de Campos del usuario
+  * https://express-validator.github.io/docs/
+  </details>
+
 </details>
 
 <hr>
 <details>
-  <summary><h1>Clase 8 (Polimorfismo)</h1></summary>  
+  <summary><h1>Clase 8 (Patron de Diseño MVC)</h1></summary>  
 
   <details>
-    <summary><h2>¿Que es el Polimorfismo?</h2></summary>
+    <summary><h2>¿Que es el Patron MVC?</h2></summary>
     
-  * Poli: muchas - morfismo: formas
-  * Reutilizacion de codigo
+  * Explicacion sencilla basada en arquitectura de videojuegos
+  * Concepto de Rutas
+  * Concepto de Controlador
+  * Concepto de Modelo
+  * Concepto de Vista
   </details>
 
   <details>
-    <summary><h2>¿Que son las interfaces?</h2></summary>
+    <summary><h2>Modelo</h2></summary>
 
-  * Uso de `interface` para definir contratos a cumplir entre clases
+  * Uso de `sequelize` para sql - [sequelize](https://sequelize.org/docs/v6/getting-started/)
+    * Conexion
+    * Tablas
+    * Columnas
+    * Filas
+  * Uso de `mongoose` para mongodb - [mongoose](https://mongoosejs.com/docs/)
+    * Conexion
+    * Colecciones
+    * Indices
+    * Documentos
   </details>
 
   <details>
-    <summary><h2>Clases abstractas</h2></summary>
+    <summary><h2>Vista</h2></summary>
 
-  * Uso de `abstract` para definir clases abstractas que poseen atributos con metodos abstractos que definen un contrato a cumplir
+  * Uso de plantillas
+    * [handlebars](https://handlebarsjs.com/installation/)
+    * [ejs](https://ejs.co/#install)
+  * Uso de JSON
   </details>
 
   <details>
-    <summary><h2>Practica sobre polimorfismo con vectores polimorficos</h2></summary>
+    <summary><h2>Practica sobre modelo mvc con rutas</h2></summary>
   </details>
 </details>
 
@@ -346,1020 +466,348 @@
 
 * Repaso sobre servidores
 * Resolucion de problemas con docker
-* Resolucion de problemas con PHP
-* Repaso sobre Programacion Orientada a Objetos
-* Herencia, Abstraccion y Polimorfismo
+* Resolucion de problemas con Express
+* Repaso sobre el patron de diseño MVC
+* Repaso sobre Sequelize y sobre mongoose
   
 </details>
 
 <hr>
 <details>
-  <summary><h1>Clase 10 (Namespace, Control de Excepciones y Autoloading)</h1></summary>  
+  <summary><h1>Clase 10 (Configuracion de Proyecto del Servidor)</h1></summary>  
 
   <details>
-    <summary><h2>¿Que es el namespacing?</h2></summary>
+    <summary><h2>Organizacion de directorios</h2></summary>
 
-  * Uso de `namespace` para definir un espacio de nombres
+    server
+      └── boot (Se guardara toda la configuracion de arranque)
+      └── config (Se guardaran acá la configuracion del proyecto)
+      └── controllers (Se guardara acá los controladores de la aplicación )
+      └── models (Se guardara acá los modelos de la aplicación )
+      └── routes (Se guardara aca las rutas que seran accedidas por el cliente)
+      └── .env (Archivo con la informacion para la configuracion de la aplicacion)
+      └── .gitignore (Archivo con las carpetas o archivos que ignorara git)
+      └── index.js (Sera el codigo necesario para arrancar todo) 
+      └── package.json (Sera el archivo con los paquetes del proyecto) 
+
+  * Alias en las carpetas
+    * https://arunmichaeldsouza.com/blog/aliasing-module-paths-in-node-js
+    * https://smellycode.com/require-with-aliases/
+
   </details>
 
-   <details>
-    <summary><h2>¿Como se controlan los errores?</h2></summary>
+  <details>
+    <summary><h2>Configuracion de entorno de desarrollo</h2></summary>
 
-  * [Tipos de errores](https://cybmeta.com/tipos-de-errores-en-php)
-    * Errores fatales: detienen el flujo de la aplicacion
-
-      ```php
-      <?php
-      $objeto;
-      # La declaracion de esta variable ha sido interpretada y se le ha asignado un valor nulo
-      # Esto quiere decir que $objeto === null, por lo tanto sera un excepcion critica invocar
-      # un metodo llamado 'obtenerNombre' en algo que esta vacio
-      echo $objeto->obtenerNombre();
-      ?>
-      ```
-
-    * Errores de warning: no detienen el flujo de la aplicacion, pero se mostrara un mensaje de advertencia
-
-      ```php
-      <?php
-      $numerador = 5;
-      $denominador = 0;
-      # La division por cero aunque seria tratada en otros lenguajes como una excepcion
-      # Aca se trabaja como un warning y se imprimira la palabra 'INF' como resultado
-      echo $numerador/$denominador;
-      ?>
-      ```
-
-    * Errores de Notice: son los errores mas bajos o de menor prioridad y por defecto no se muestran pero podria darse el caso de que se activen
-
-      ```php
-      <?php
-      $name = "Manolo";
-      //$nombre es una variable que no ha sido definida antes de su uso. Su valor es NULL.
-      echo 'Tu nombre es ' . $nombre;
-      ?>
-      ```
-
-  * Uso del `throw` para arrojar nuevos errores, ejemplo: `throw new Error('nuevo error');`
-  * Uso del `try` y `catch` para poder manejar estos errores sin detener el flujo de la aplicacion
-  * Uso del `finally` para ejecutar codigo que se requiera siempre
-
-    ```php
-      try {
-        $numerador = 5;
-        $denominador = 0;
-        if ($numerador/$denominador === INF) {
-            throw new Error('<br>Estas diviendo por cero y no se puede<br>');
-        }
-        echo $numerador/$denominador;
-      } catch (\Throwable $error) {
-          echo $error->getMessage();
-      } finally {
-          echo "<br>Se ha realizado la division<br>";
+  * Linter [ESLint + Prettier](https://blog.bitsrc.io/how-to-set-up-node-js-application-with-eslint-and-prettier-b1b7994db69f)
+    * `npm install eslint eslint-config-prettier prettier –-save-dev`
+    * In file `.eslintrc.json`
+    
+    ```json
+    {
+      "root": true,
+      "parserOptions": {
+          "ecmaVersion": 12,
+          "sourceType": "module"
+      },
+      "extends": ["eslint:recommended", "prettier"],
+      "env": { 
+          "es2021": true,
+          "node": true
+      },
+      "rules": {
+          "no-console": "error"
       }
-    ```
-  </details>
-
-   <details>
-    <summary><h2>¿Que es el autoloading?</h2></summary>
-
-  * Estandares para el autoloading
-    * [PSR-4](https://www.php-fig.org/psr/psr-4/)
-  </details>
-
-   <details>
-    <summary><h2>Manejador de Codigo para PHP - <a href="https://medium.com/@deboj88/difference-between-pear-pecl-and-composer-6426223c55ff">PEAR, PECL and Composer</a></h2></summary>
-
-  * PECL: (PHP Extension Community Library)
-  * Composer: (PHP Package Manager)
-  * PEAR: (PHP Package Manager - Deprecated)
-  </details>
-
-   <details>
-    <summary><h2>Composer</h2></summary>
-
-  * Instalacion de composer en host - [descargar](https://getcomposer.org/download/)
-  * Instalacion de composer en docker - modificando `Dockerfile` con `COPY --from=composer:2.3 /usr/bin/composer /usr/bin/composer`
-  * Iniciar un proyecto con `composer init`
-  * Estructura de un proyecto con composer
-  * Uso del archivo `.gitignore`
-  </details>
-
-   <details>
-    <summary><h2>Practica para hacer uso de autoloading con `use` para las clases o funciones</h2></summary>
-  </details>
-
-</details>
-
-<hr>
-<details>
-  <summary><h1>Clase 11 (Configuracion de Proyecto con Composer)</h1></summary>  
-
-  <details>
-    <summary><h2>Atributos de composer.json</h2></summary>
-
-  * Autoload - Define el estandar a autocargar las clases
-    * autoload - Indice como seran cargadas las clases en produccion
-    * autoload-dev - Indica como seran cargadas las clases en el desarrollo, usada en el testing
-      * PSR-4 - Indica que `namespace` sera el buscado y la carpeta donde se encuentra el codigo
-  * Require - Define las distintas dependencias del proyecto
-    * require - Indica aquellas librerias que seran cargadas en un entorno de produccion usando [versionado semantico](https://fperez217.medium.com/qu%C3%A9-es-versionamiento-sem%C3%A1ntico-bf495b9eb028) - [video](https://www.youtube.com/watch?v=hwlOuZvaDIA) - [Packagist Semver Checker](https://semver.madewithlove.com/?package=madewithlove%2Fhtaccess-cli&constraint=dev-main&stability=stable)
-    * require-dev - Indica aquellas librerias que seran cargadas en un entorno de desarrollo, por ejemplo, `phpunit`
-  * Scripts - Indica aquellos scripts que seran ejecutados directamente desde composer
-    * `post-update-cmd` - Ocurre despues del comando de `composer update`
-    * Se pueden customizar los distintos scripts a ejecutar en el proyecto
-  </details>
-
-  <details>
-    <summary><h2>Agregando dependencias al proyecto</h2></summary>
-
-  * Dependencia para manejar [peticiones HTTP](https://symfony.com/doc/current/components/http_foundation.html) - `composer require symfony/http-foundation`
-  * Dependencia para manejar [testing](https://phpunit.de/getting-started/phpunit-9.html) en la app - `composer require --dev phpunit`
-  </details>
-
-  <details>
-    <summary><h2>Practica para manejar peticiones por HTTP y realizando testing con script `composer test`</h2></summary>
-  </details>
-</details>
-
-
-<hr>
-<details>
-  <summary><h1>Clase 12 (Configuracion del entorno de desarrollo)</h1></summary>  
-
-  <details>
-    <summary><h2>¿Que es un linter? ¿Para que me puede servir?</h2></summary>
-
-  * [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) (estandar actual)
-
-    * `composer require --dev friendsofphp/php-cs-fixer`
-    * `.php-cs-fixer.php`
-
-    ```php
-    <?php
-
-    use PhpCsFixer\Config;
-    use PhpCsFixer\Finder;
-
-    $rules = [
-        '@PSR12' => true,
-        'array_syntax' => ['syntax' => 'short'],
-        'binary_operator_spaces' => [
-            'default' => 'single_space',
-            'operators' => ['=>' => null]
-        ],
-        'blank_line_after_namespace' => true,
-        'blank_line_after_opening_tag' => true,
-        'blank_line_before_statement' => [
-            'statements' => ['return']
-        ],
-        'braces' => true,
-        'cast_spaces' => true,
-        'class_attributes_separation' => [
-            'elements' => [
-              'method' => 'one',
-              'trait_import' => 'none'
-            ]
-        ],
-        'class_definition' => true,
-        'concat_space' => [
-            'spacing' => 'one'
-        ],
-        'declare_equal_normalize' => true,
-        'elseif' => true,
-        'encoding' => true,
-        'full_opening_tag' => true,
-        'fully_qualified_strict_types' => true,
-        'function_declaration' => true,
-        'function_typehint_space' => true,
-        'heredoc_to_nowdoc' => true,
-        'include' => true,
-        'increment_style' => ['style' => 'post'],
-        'indentation_type' => true,
-        'linebreak_after_opening_tag' => true,
-        'line_ending' => true,
-        'lowercase_cast' => true,
-        'constant_case' => true,
-        'lowercase_keywords' => true,
-        'lowercase_static_reference' => true,    
-        'magic_method_casing' => true,
-        'magic_constant_casing' => true,
-        'method_argument_space' => true,
-        'native_function_casing' => true,
-        'no_alias_functions' => true,
-        'no_extra_blank_lines' => [
-            'tokens' => [
-                'extra',
-                'throw',
-                'use'
-            ]
-        ],
-        'no_blank_lines_after_class_opening' => true,
-        'no_blank_lines_after_phpdoc' => true,
-        'no_closing_tag' => true,
-        'no_empty_phpdoc' => true,
-        'no_empty_statement' => true,
-        'no_leading_import_slash' => true,
-        'no_leading_namespace_whitespace' => true,
-        'no_mixed_echo_print' => [
-            'use' => 'echo'
-        ],
-        'no_multiline_whitespace_around_double_arrow' => true,
-        'multiline_whitespace_before_semicolons' => [
-            'strategy' => 'no_multi_line'
-        ],
-        'no_short_bool_cast' => true,
-        'no_singleline_whitespace_before_semicolons' => true,
-        'no_spaces_after_function_name' => true,
-        'no_spaces_around_offset' => true,
-        'no_spaces_inside_parenthesis' => true,
-        'no_trailing_comma_in_list_call' => true,
-        'no_trailing_comma_in_singleline_array' => true,
-        'no_trailing_whitespace' => true,
-        'no_trailing_whitespace_in_comment' => true,
-        'no_unneeded_control_parentheses' => true,
-        'no_unreachable_default_argument_value' => true,
-        'no_useless_return' => true,
-        'no_whitespace_before_comma_in_array' => true,
-        'no_whitespace_in_blank_line' => true,
-        'normalize_index_brace' => true,
-        'not_operator_with_successor_space' => false,
-        'object_operator_without_whitespace' => true,
-        'ordered_imports' => ['sort_algorithm' => 'alpha'],
-        'phpdoc_indent' => true,
-        'general_phpdoc_tag_rename' => true,
-        'phpdoc_inline_tag_normalizer' => true,
-        'phpdoc_tag_type' => true,
-        'phpdoc_no_access' => true,
-        'phpdoc_no_package' => true,
-        'phpdoc_no_useless_inheritdoc' => true,
-        'phpdoc_scalar' => true,
-        'phpdoc_single_line_var_spacing' => true,
-        'phpdoc_summary' => true,
-        'phpdoc_to_comment' => true,
-        'phpdoc_trim' => true,
-        'phpdoc_types' => true,
-        'phpdoc_var_without_name' => true,
-        'psr_autoloading' => true,
-        'self_accessor' => true,
-        'short_scalar_cast' => true,
-        'simplified_null_return' => false,
-        'single_blank_line_at_eof' => true,
-        'single_blank_line_before_namespace' => true,
-        'single_class_element_per_statement' => true,
-        'single_import_per_statement' => true,
-        'single_line_after_imports' => true,
-        'single_line_comment_style' => [
-            'comment_types' => ['hash']
-        ],
-        'single_quote' => true,
-        'space_after_semicolon' => true,
-        'standardize_not_equals' => true,
-        'switch_case_semicolon_to_colon' => true,
-        'switch_case_space' => true,
-        'ternary_operator_spaces' => true,
-        'trailing_comma_in_multiline' => true,
-        'trim_array_spaces' => true,
-        'unary_operator_spaces' => true,
-        'visibility_required' => [
-            'elements' => ['method', 'property']
-        ],
-        'whitespace_after_comma_in_array' => true,
-        'no_unused_imports' => true,
-    ];
-
-
-    $finder = Finder::create()
-        ->in([
-            __DIR__ . '/src',
-            __DIR__ . '/tests',
-        ])
-        ->name('*.php')
-        ->ignoreDotFiles(true)
-        ->ignoreVCS(true);
-
-    $config = new Config();
-    return $config->setFinder($finder)
-        ->setRules($rules)
-        ->setRiskyAllowed(true)
-        ->setUsingCache(true);
+    }
     ```
 
-    * `composer.json`
+    * In file `.prettierrc.json`
 
     ```json
-      ...,
-      {
-        "scripts":{
-            ...
-            "lint": "php-cs-fixer fix -vvv --show-progress=dots",
-            ...
+    {
+      "trailingComma": "es5",
+      "tabWidth": 4,
+      "semi": false,
+      "singleQuote": true
+    }
+    ``` 
 
-        }
+    * In file `package.json`
+
+    ```json
+    {
+      ...
+      "scripts": {
+          ...
+         "format:check": "prettier --check .",
+         "format:write": "prettier --write .",
+         "lint:check": "eslint .",
+         "lint:fix": "eslint --fix ."
       }
+      ...
+    }
+    ``` 
+
+  * Testing - [Jest](https://dev.to/lukekyl/testing-your-express-js-backend-server-3ae6)
+    * `npm install jest --save-dev`
+    * `npm install supertest --save-dev`
+    * `npm install cross-env --save-dev`
+    * In file `package.json`
+
+    ```json
+    {
+      ...
+      "scripts": {
+        ...
+        "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
+        "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
+        "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
+        "migrate": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+      },
+      "jest": {
+        "testEnvironment": "node",
+        "coveragePathIgnorePatterns": ["/node_modules/"]
+      }
+    }
     ```
-
-    * `.gitignore`
-
-    ```.gitignore
-    ...
-    .php-cs-fixer.cache
-    ...
-    ```
-
   </details>
 
   <details>
-    <summary><h2>Analizador de codigo</h2></summary>
+    <summary><h2>Preparacion de documentacion para API</h2></summary>
 
-  * [PHPStan](https://phpstan.org/)
+  * [Swagger](https://medium.com/@italo.ravina/a%C3%B1adir-documentaci%C3%B3n-con-swagger-a-un-api-creada-en-express-5c4c5c3cb19e)
+    * `npm i swagger-jsdoc swagger-ui-express`
 
-    * `composer require --dev phpstan/phpstan`
-    * `phpstan.neon`
+  </details>
+</details>
 
-    ```neon
-    parameters:
-    
-      level: 9
+<hr>
+<details>
+  <summary><h1>Clase 11 (Introduccion a API)</h1></summary>  
+
+  <details>
+    <summary><h2>¿Que es una API?</h2></summary>
+
+  * API (Interface de la Aplicacion)
+  * REST (Transferencia de Estado Representacional)
+    * Respuesta de endpoints (URI y Verbo) mediante uso de JSON
+  * Cabeceras de respuesta
+      * `Content-Type: application/json` vs `Content-Type: text/html;`
+  </details>
   
-      paths:
-          - src
-          - tests
-          
-      inferPrivatePropertyTypeFromConstructor: true
-      checkMissingIterableValueType: false
-    ```
-    * `composer.json`
+   <details>
+    <summary><h2>Registro hacia una API</h2></summary>
+  
+  * Modelo de Usuario
+  * Formulario de registro
+    * Contraseñas encriptadas
+    * Uso de `bcrypt` - `npm install bcrypt`  
+  </details>
 
-    ```json
-      ...,
-      {
-        "scripts":{
-            ...
-            "analyse": "phpstan analyse -c phpstan.neon",
-            ...
+   <details>
+    <summary><h2>Autenticacion hacia una API</h2></summary>
 
-        }
-      }
-    ```
-
-
+  * JWT (JSON Web Tokens)
+    * `npm install jsonwebtoken`
+    * Busqueda en la base de datos
+    * Validacion de sesion
+    * Proteccion de rutas (Middlewares, Cors)
   </details>
 
   <details>
-    <summary><h2>Test unitarios con PHPUnit</h2></summary>
-
-  * [PHPUnit](https://phpunit.de/getting-started/phpunit-9.html) (mas usado)
-
-    * `composer require --dev phpunit/phpunit`
-    * `composer.json`
-
-    ```json
-      ...,
-      {
-        "scripts":{
-            ...
-            "test": "phpunit tests",
-            ...
-
-        }
-      }
-    ```
-
-
+    <summary><h2>Instalacion de Thunder Client en VSCode</h2></summary>
   </details>
 
-  <details>
-    <summary><h2>Generador de documentacion de codigo PHP</h2></summary>
-
-  * Necesario trabajar con PHPDocs
-  * [PHPDoc](https://www.phpdoc.org/) (recomandable usarlo con docker)
-
-    ```docker
-    # La variable PWD contiene la ruta actual, podria usarse ${PWD} o el comando $(pwd)
-    docker run --rm -v ${PWD}:/data phpdoc/phpdoc:3 --config phpdoc.xml
-    ```
-
-    * `phpdoc.xml`
-    
-    ```xml
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <phpdocumentor
-            configVersion="3"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xmlns="https://www.phpdoc.org"
-    >
-        <title>Documentacion de mi proyecto</title>
-        <paths>
-            <output>docs</output>
-        </paths>
-
-    </phpdocumentor>
-    ```
-
-    * `.gitignore`
-    
-    ```.gitignore
-    ...
-    .phpdoc
-    ....
-    ```
-
-  </details>
 </details>
+
 
 <hr>
 <details>
-  <summary><h1>Clase 13 (Wrappers de PHP)</h1></summary>  
+  <summary><h1>Clase 12 (Manejo del storage en el servidor)</h1></summary>  
 
   <details>
-    <summary><h2>¿Que es un wrapper?</h2></summary>
-
-  * [Protocolos y Envolturas](https://www.php.net/manual/es/wrappers.php)
-  </details>
-
-  <details>
-    <summary><h2>Wrapper <a href="https://www.php.net/manual/es/wrappers.php.php">php://</a></h2></summary>
-
-  * `php://input` - Flujo de entrada de solo lectura con el contenido del usuario en el caso de peticiones `POST`
-  * `php://output` - Flujo de solo escritura que permite escribir en el buffer (memoria ram) de salida tal como lo hacen `print` y `echo`.
-  * `php://temp` - Flujo de lectura y escritura pero almacenara los datos en memoria (disco solido o rigido), util para guardar archivos temporales como imagenes o archivos que envia el usuario, la ubicacion de la carpeta donde se guardan temporalmente se puede saber invocando la funcion `sys_get_temp_dir()`
-    * Importante: `php://memory` y `php://temp` no son reutilizabes, esto es, despues de que los flujos hayan sido cerrados, no hay forma de hacer referencia a ellos de nuevo
-
-     ```php
-     <?php
-     file_put_contents('php://memory', 'PHP');
-     echo file_get_contents('php://memory'); // no imprime nada
-     ```
-  </details>
-
-  <details>
-    <summary><h2>Practica para extraer imagen del usuario usando un formulario</h2></summary>
+    <summary><h2>Formulario para subir archivos</h2></summary>
 
   ```html
   <html>
-    <style>
-      form{
-          margin: 100px;
-          border: 1px solid black;
-          border-radius: 10px;
-      }
-      div {
-          margin:10px;
-          padding: 10px;
-          text-align: center;
-      }
-      input[type="file"] {
-          display: none;
-      }
-  
-      label,
-      input[type="submit"] {
-          border: 1px solid black;
-          padding: 10px;
-          border-radius: 10px;
-          cursor: pointer;
-      }
-    </style>
-    <body>
-        <form method="post" action="/upload.php" enctype="multipart/form-data">
-            <div>Formulario de Ejemplo</div>
-            <div>
-                <label for="boton">Escoga el archivo</label>
-                <input id="boton" type="file" name="archivo" />
-            </div>
-            <div><input type="submit" value="Subir archivo"></div>
-        </form>
-    </body>
+  <style>
+    form{
+        margin: 100px;
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+    div {
+        margin:10px;
+        padding: 10px;
+        text-align: center;
+    }
+    input[type="file"] {
+        display: none;
+    }
+
+    label,
+    input[type="submit"] {
+        border: 1px solid black;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+  </style>
+  <body>
+      <form method="post" action="/api/upload" enctype="multipart/form-data">
+          <div>Formulario de Ejemplo</div>
+          <div>
+              <label for="boton">Escoga el archivo</label>
+              <input id="boton" type="file" name="archivo" />
+          </div>
+          <div><input type="submit" value="Subir archivo"></div>
+      </form>
+  </body>
   </html>
   ```
-
-  </details>
-
-</details>
-
-<hr>
-
-<details>
-  <summary><h1>Clase 14 (Enrutamiento dinamico)</h1></summary>  
-
-  <details>
-    <summary><h2>¿Que es enrutamiento dinamico?</h2></summary>
-
-  * Habilitar enrutamiento dinamico en `apache` con archivo `.htaccess`
-    * Creando archivo `.htaccess` para activar sobreescritura de directivas:
-
-      ```yml
-      # Habilitamos el dynamic routing con una Fallback
-      # Esto hara match con aquellas rutas que no se han definido y seran mostradas usando el index.php
-      FallbackResource index.php
-      ```
-      
   </details>
 
   <details>
-    <summary><h2>Introduccion a API REST</h2></summary>
+    <summary><h2>Middleware de Almacenamiento</h2></summary>
 
-  * ¿Que es una API REST?
-    * API (Interface de la Aplicacion)
-    * REST (Transferencia de Estado Representacional)
-      * Respuesta de endpoints (URI y Verbo) mediante uso de JSON
-    * Cabeceras de respuesta
-      * `Content-Type: application/json` vs `Content-Type: text/html;`
+  * [Multer](http://expressjs.com/en/resources/middleware/multer.html)
+    * `npm install --save multer` 
+
   </details>
 
   <details>
-    <summary><h2>Practica para crear enrutamiento dinamico usando peticiones `GET` y `POST`</h2></summary>
+    <summary><h2>Control de Tipos de datos</h2></summary>
 
-  * Concepto de Controlador en las rutas
-  </details>
+  * Desde el frontend
+    
+    ```html
+    <input type="file" name="song" accept="audio/*"/>
+    ```
   
+  * Desde el backend
+
+    ```javascript
+    const storage = multer.diskStorage({ //multers disk storage settings
+        destination: function (req, file, cb) {
+            cb(null, './public/uploads/')
+        },
+        filename: function (req, file, cb) {
+            const datetimestamp = Date.now();
+            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+        }
+    });
+
+    const upload = multer({ //multer settings
+        storage: storage,
+        fileFilter: function (req, file, callback) {
+            const ext = path.extname(file.originalname);
+            if(ext !== '.mp3' && ext !== '.wav') {
+                return callback(new Error('Only audio are allowed'))
+            }
+            callback(null, true)
+        },
+        limits:{
+            fileSize: 1024 * 1024
+        }
+    }).single('song');
+    ```
+
+  </details>
+
 </details>
 
 <hr>
 <details>
-  <summary><h1>Clase 15 (Introduccion a MVC)</h1></summary>
+  <summary><h1>Clase 13 (Introduccion a Typescript)</h1></summary>  
 
   <details>
-    <summary><h2>¿Que es MVC?</h2></summary>
+    <summary><h2>¿Que es Typescript?</h2></summary>
 
-  * Explicacion sencilla basada en arquitectura de videojuegos
-  * Concepto de Rutas
-  * Concepto de Controlador
-  * Concepto de Modelo
-  * Concepto de Vista
-
+  * [Transpilador de JavaScript](https://www.typescriptlang.org/)
   </details>
 
-  <details>
-    <summary><h2>¿Que es un ORM? ¿Que es un ODM? <a href="https://es.acervolima.com/diferencia-entre-rdbms-y-oodbms/">Diferencias</a></h2></summary>
 
-  * [ORM](https://www2.deloitte.com/es/es/pages/technology/articles/que-es-orm.html) (Object Relational Mapper - Mapeador de Relaciones de Objetos)
-    * [Eloquent](https://github.com/illuminate/database), [Doctrine](https://www.doctrine-project.org/projects/doctrine-orm/en/2.11/tutorials/getting-started.html), ...
-      * RDBMS (Relational DataBase Management System - Sistema Gestor de Base de Datos Relaciones)
-        * MySQL
-        * PostgreSQL
-        * SQL Server
-        * Oracle
-        * Microsoft Access
-        * ...
-  * ODM (Object Documents Mapper - Mapeador de Documentos de Objetos)
-    * [Doctrine](https://github.com/doctrine/mongodb-odm), [Eloquent (driver)](https://github.com/jenssegers/laravel-mongodb)
-      * [OODBMS](https://www.acens.com/wp-content/images/2014/02/bbdd-nosql-wp-acens.pdf) (Object Oriented DataBase Management System - Sistema Gestor de Base de Datos Orientada a Objetos)
-        * MongoDB
-        * DynamoDB
-        * Cassandra
-        * Redis
-        * CouchDB
-  </details>
   <details>
-    <summary><h2>Introduccion a Eloquent ORM</h2></summary>
-
-  * Extensiones necesarias 
-    * pdo_mysql
+    <summary><h2>Configuracion de Typescript</h2></summary>
     
-    ```Dockerfile
-    # Usando el parametro -j le decimos la velocidad de instalacion y que sera de
-    # acuerdo a la cantidad de numero de procesamiento que tenga que sera $(nproc)
-    # Instalamos entonces las extensiones mysqli, pdo y pdo_mysql para poder comunicarnos
-    # con la base de datos de MySQL
-    RUN docker-php-ext-install -j$(nproc) \
-            mysqli \
-            pdo \
-            pdo_mysql \
-    ```
-  * `docker-compose up -d --build`
-    * Volvemos a levantar todos los contenedores pero con la nueva imagen actualizada
-  * `composer require illuminate/database`
-  * Creacion del primer modelo para una lista de tareas
-
-    ```php
-    <?php
-
-    /**
-     * Cargamos el autoloader de composer que se encuentra en la carpeta 'vendor'
-    */
-    require_once __DIR__.'/../vendor/autoload.php';
-
-    /**
-     * Cargamos la clase Manager como Capsule
-    */
-    use Illuminate\Database\Capsule\Manager as Capsule;
-
-    /**
-     * Creamos una instancia del Manager
-    */
-    $capsule = new Capsule;
-
-    /**
-     * Añadimos la informacion para la conexio a la base de datos local
-     * El host es 'mysql' debido a que si es como tiene comunicacion con el otro contenedor
-     * Usamos las credenciales que le habiamos asignado
-    */
-    $capsule->addConnection([
-        'driver' => 'mysql',
-        'host' => 'mysql',
-        'database' => 'course',
-        'username' => 'user',
-        'password' => 'user',
-        'charset' => 'utf8',
-        'collation' => 'utf8_unicode_ci',
-        'prefix' => '',
-    ]);
-
-    /**
-     * Esto asegura que todos los metodos estaticos de conexio a modelos
-     * Sean ejecutados directamente en esta 'capsula' de base de datos
-    */
-    $capsule->setAsGlobal();
-
-    /**
-     * Arrancamos a Eloquent para que se conecte a la base de datos
-    */
-    $capsule->bootEloquent();
-
-    /**
-     * Creamos una tabla llamada 'users' que contendra los campos
-     * @var int id (incremental)
-     * @var string email (unico en la tabla)
-     * @var string todo (una lista de tareas)
-     * @var timestamps agrega dos columnas 'created_at' y 'updated_at' en la tabla 
-    */
-    Capsule::schema()->create('users', function ($table) {
-      $table->increments('id');
-      $table->string('email')->unique();
-      $table->string('todo');
-      $table->timestamps();
-    });
-
-    /**
-     * Clase usada para representar los datos del usuario
-    */
-    class User extends Illuminate\Database\Eloquent\Model {
-      /**
-       * La tabla que sera asociada al modelo
-       * @var string
-      */
-      protected $table = 'users';
-    }
-
-    /**
-     * Creamos una nueva instancia de nuestro modelo para poder asignarle datos
-    */
-    $user = new User();
-    /**
-     *  Le asignamos el valor a los atributos del modelo 
-    */
-    $user->email = "ejemplo@ejemplo.com";
-    $user->todo = "sacar a pasear al perro";
-    /** 
-     * Procedemos a guardar esa informacion
-    */
-    $user->save();
-
-    /**
-     * Luego de guardados los datos procedemos a traerlos con el metodo all();
-     * Procedemos posteriormente a mostrarlos por pantalla
-    */
-    $users = User::all();
-
-    foreach($users as $user)
-    {
-      echo "$user->email - $user->todo <br>";
-    }
-    ```
-
+  * [Via NPM](https://www.typescriptlang.org/download):
+    * `npm install typescript --save-dev`
+    * `npx tsc --init`
   </details>
 
   <details>
-    <summary><h2>¿Que son las migraciones?</h2></summary>
+    <summary><h2>Tipado Estatico</a></h2></summary>
 
-  * Crear tablas
-  * Modificar tablas
-  * Regresar tablas
+  * `number`
+  * `string`
+  * `class`
+  * `interface`
+  * `type` - [diferencia entre interface](https://stackoverflow.com/questions/37233735/interfaces-vs-types-in-typescript)
   </details>
+
+  <details>
+    <summary><h2>Practica con typescript</h2></summary>
+  </details>
+
 </details>
 
 <hr>
+
 <details>
-  <summary><h1>Clase 16 (Modelos)</h1></summary>
-  <details>
-      <summary><h2>Modelo para usuario</h2></summary>
-
-  * 
-    ```php
-    <?php
-
-    use Illuminate\Database\Capsule\Manager as Capsule;
-
-    Capsule::schema()->create('users', function ($table) {
-      $table->increments('id');
-      $table->string('email')->unique();
-      $table->timestamps();
-    });
-    ```
-
-  * 
-    ```php
-    <?php
-
-    use Illuminate\Database\Eloquent\Model;
-    /**
-     * Clase usada para representar los datos del usuario
-    */
-    class User extends Model {
-      /**
-       * La tabla que sera asociada al modelo
-       * @var string
-      */
-      protected $table = 'users';
-
-      /**
-       * Accedemos a las lista de tareas de este usuario
-       * por medio de una relacion de Uno a Muchos - (One to Many)
-       * lo que hacemos aca es devolver una instancia del modelo Todo
-       * pero que coincidan el 'user_id' con el 'id' del usuario
-       * @return array{Todo}
-       * 
-      */
-      public function todos()
-      {
-        return $this->hasMany(Todo::class, 'user_id', 'id');
-      }
-    }
-    ```
-
-  </details>
-
-  <details>
-      <summary><h2>Modelo para tareas y su relacion</h2></summary>
-
-  * 
-    ```php
-    <?php
-
-    use Illuminate\Database\Capsule\Manager as Capsule;
-
-    Capsule::schema()->create('todos', function ($table) {
-      /**
-       * Crea una columna incremental para un identificador unico de la tarea
-      */
-      $table->id();
-      /**
-       * Crea una relacion mediante una llave foranea llamada 'user_id'
-       * Asi de esta manera estamos conectando esta tabla con la tabla 'users'
-       * Le decimos que cuando se elimine el usuario tambien se eliminara este dato
-      */
-      $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-      /**
-       * Esta propiedad de un texto le decimos un maximo de caracteres a insertar
-       * y que ademas puede tener datos o no, es decir, es nullable
-      */
-      $table->string('text', 100)->nullable();
-      $table->timestamps();
-    });
-    ```
-
-  * 
-    ```php
-    <?php
-
-    use Illuminate\Database\Eloquent\Model;
-    /**
-     * Clase usada para representar las tareas por hacer del usuario
-     * Los modelos son declarados en SINGULAR
-    */
-    class Todo extends Model {
-      /**
-       * La tabla que sera asociada al modelo
-       * @var string
-      */
-      protected $table = 'todos';
-      /**
-       * Accedemos al usuario por medio de una relacion de Uno a Muchos - (One to Many)
-       * pero en este caso en el sentido contrario que seria de pertenencia
-       * @return User
-      */
-      public function user()
-      {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-      }
-    }
-    ```
-  </details>
-
-   <details>
-      <summary><h2>Practica CRUD para una lista de tareas</h2></summary>
-    
-  * CRUD - Create, Read, Update and Delete (Crear, Leer, Actualizar y Eliminar)
-    </details>
-</details>
-
-<hr>
-<details>
-  <summary><h1>Clase 17 (Clase de Repaso y Consultas)</h1></summary>
+  <summary><h1>Clase 14 (Clase de Repaso y Consultas)</h1></summary>  
 
   * Inconvenientes con Docker y MySQL
-  * Dudas sobre Eloquent ORM
+  * Dudas sobre `express`
+  * Dudas sobre `mongoose` (ODM)
+  * Dudas sobre `Sequelize` (ORM)
+  * Dudas sobre `multer`
+  * Dudas sobre `typescript`
   * Realizacion de mini proyecto usando CRUD para una lista de tareas
-
-</details>
-
-<hr>
-<details>
-  <summary><h1>Clase 18 (Seguridad en Aplicaciones)</h1></summary>
-
   
-  <details>
-      <summary><h2>¿Como hacer un registro de usuarios?</h2></summary>
+</details>
 
-  * Formulario de Registro con correo y contraseña
-  * Estandar de encriptacion de contraseñas
-    * Bcrypt
-      * [password_hash()](https://www.php.net/manual/es/function.password-hash.php)
-      * [password_verify()](https://www.php.net/manual/es/function.password-verify.php)
+<hr>
+<details>
+  <summary><h1>Clase 15 (Introduccion a React)</h1></summary>
+
+  <details>
+    <summary><h2>¿Que es React?</h2></summary>
+
+  * Creacion de Proyecto de react
+    * [create-react-app](https://create-react-app.dev/docs/getting-started) - `npx create-react-app miapp`
+    * [ViteJS](https://carlosazaustre.es/react-vite)
+
   </details>
 
   <details>
-    <summary><h2>¿Como hacer un login de usuarios?</h2></summary>
-   
-   * Formulario de Login con correo y contraseña
-   * Estandar de verificacion por token
-    * [JWT](https://jwt.io/) (Json Web Token)
-      * [Librerias](https://jwt.io/libraries?language=PHP)
-        * `composer require firebase/php-jwt`
+    <summary><h2>¿Que es un Componente?</h2></summary>
 
-        ```php
-        use Firebase\JWT\JWT;
-        use Firebase\JWT\Key;
-
-        $key = 'ejemplo de clave ultra secreta';
-        $payload = [
-            'name' => 'pedro perez',
-            'email' => 'ejemplo@ejemplo.com',
-        ];
-
-        /**
-        * IMPORTANT:
-        * You must specify supported algorithms for your application. See
-        * https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40
-        * for a list of spec-compliant algorithms.
-        */
-        $jwt = JWT::encode($payload, $key, 'HS256');
-        $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
-
-        print_r($decoded);
-
-        /*
-        NOTE: This will now be an object instead of an associative array. To get
-        an associative array, you will need to cast it as such:
-        */
-
-        $decoded_array = (array) $decoded;
-
-        /**
-        * You can add a leeway to account for when there is a clock skew times between
-        * the signing and verifying servers. It is recommended that this leeway should
-        * not be bigger than a few minutes.
-        *
-        * Source: http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#nbfDef
-        */
-        JWT::$leeway = 60; // $leeway in seconds
-        $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
-        ```
-
-      * Uso de cabeceras para asignar el token de sesion iniciada
-        * Por cookies:
-          * [setcookie()](https://www.php.net/manual/es/function.setcookie.php)  
-        * Por cabecera personalizada:
-          * [header()](https://www.php.net/manual/es/function.header.php)
-
-          ```php
-          <?php
-          header('X-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...');
-          ```
-
-   </details>
+  * Componente por clase
+  * Propiedades de un componente (props)
+  * Estado de un componente (state)
+  </details>
 
   <details>
-    <summary><h2>¿Como validar credenciales validas?</h2></summary>
-  
+    <summary><h2>Ciclo de vida de un componente</h2></summary>
 
-  * Luego de ser enviado el formulario de login, podriamos asignarle una **cookie de sesion**
-  * Esta **cookie** contendra el **JWT** que le permite el acceso a todos los recursos de la app
-    * Uso de la variable `$_COOKIE` para obtener el token, extraer la informacion que se ha firmado y asi buscarla en la base de datos y tener los datos del usuario
-    * Para hacer [redireccionamiento](https://stackoverflow.com/questions/768431/how-do-i-make-a-redirect-in-php) podriamos hacer uso de la cabecera `Location`
+  * [Funciones controladoras](https://platzi.com/blog/ciclo-de-vida-de-un-componente-de-reactjs/)
+    * constructor(props)
+    * componentWillMount()
+    * render()
+    * componentDidMount()
+    * componentWillUnmount()
+  </details>
 
+  <details>
+    <summary><h2>Practica de contador</h2></summary>
   </details>
 
 </details>
 
 <hr>
 <details>
-  <summary><h1>Clase 19 (Vinculacion de Registro, Login y Todos)</h1></summary> 
-   
-  <details>
-    <summary><h2>Incorporacion de Frameworks de diseño</h2></summary>
-    
-  * [PicoCSS](https://picocss.com/)
-  * [Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/download/)
-  * [Materialize](https://materializecss.com/getting-started.html)
-  </details>
+  <summary><h1>Clase 16 (Conexion de Frontend con Backend)</h1></summary>
 
-  <details>
-    <summary><h2>Incorporacion de Imagenes</h2></summary>
-    
-  * Manejo de subida de archivos
-  </details>
-
-  <details>
-    <summary><h2>Manejo de cierre de sesión</h2></summary>
-    
-  * Invalidar o borrar la cookie de sesion
-  </details>
-</details>
-
-<hr>
-<details>
-  <summary><h1>Clase 20 (Transformacion a API REST)</h1></summary> 
-   
-  <details>
-    <summary><h2>Registro en una API REST</h2></summary>
-  
-  * Uso de versionado en las rutas
-    * `/api/v2.5/auth/register`
-  * Request body con informacion a registrar
-    
-    ```json
-    {"email": "ejemplo@ejemplo.com", "password": "ejemplo"}
-    ```
-
-  * Response body con la informacion registrada 
-    
-    ```json
-    {"message": "usuario registado satisfactoriamente"}
-    ```
-  </details>
-
-  <details>
-    <summary><h2>Inicio de sesion en una API REST</h2></summary>
-
-  * Uso de versionado en las rutas
-    * `/api/v2.5/auth/register`
-  * Request body con informacion para hacer login
-    
-    ```json
-    {"email": "ejemplo@ejemplo.com", "password": "ejemplo"}
-    ```
-
-  * Response body con la informacion del logueo 
-    
-    ```json
-    {"message": "usuario logueado satisfactoriamente", "body": {"token":"jsonwebtoken"}}
-    ```
-
-  </details>
-
-  <details>
-    <summary><h2>Consumo de recursos de la API REST</h2></summary>
-
-  * Al consumir un recurso, por ejemplo `/api/v2.5/movies`, necesitamos mandar nuestras credenciales haciendo el uso del token del login
-  * Enviando el `jsonwebtoken` del login
-    * Viajando como uri params
-
-      ```json
-      /api/v2.5/movies?apikey=mitoken
-      ```
-
-    * Viajando como body request
-
-      ```json
-      {
-        ...,
-        "token":"mitoken",
-        ...
-      }
-      ```
-
-    * Viajando como cookie headers
-
-      ```
-      Cookie: JWT=mitoken
-      ```
-
-    * Viajando como baerer token headers
-
-      ```
-      Authorization: Bearer mitoken
-      ```
-  </details>
-
-</details>
-
-<hr>
-<details>
-  <summary><h1>Clase 21 (Consumo de API REST)</h1></summary> 
-   
   <details>
     <summary><h2>Uso de fetch con Javascript</h2></summary>
 
@@ -1401,8 +849,115 @@
   </details>
 
   <details>
-    <summary><h2>Practica de consumo de API REST con Javascript Vanilla</h2></summary>
+      <summary><h2>Peticiones asincronas desde el cliente</h2></summary>
+
+  * Creacion de Servicios
+  * Peticiones por `GET` y por `POST`
   </details>
+
+  <details>
+      <summary><h2>Practica para renderizado de una API</h2></summary>
+  </details>
+
+</details>
+
+<hr>
+<details>
+  <summary><h1>Clase 17 (Componentes de Funciones)</h1></summary>
+
+  <details>
+  <summary><h1>React Hooks</h1></summary>  
+
+  * useState
+  * useRef
+  * useEffect
+  * useContext
+  * useReducer
+  * customHooks
+  </details>
+
+  <details>
+  <summary><h1>useState</h1></summary>  
+
+  * Declarar estados que cambiaran en el componente
+  </details>
+
+  <details>
+  <summary><h1>useRef</h1></summary>  
+
+  * Engancha un componente del dom
+  </details>
+
+  <details>
+  <summary><h1>useEffect</h1></summary>  
+
+  * Ejecuta sentencias de codigo apartir de cambios en algunas variables
+  </details>
+
+</details>
+
+<hr>
+<details>
+  <summary><h1>Clase 18 (React Hooks)</h1></summary>
+
+  <details>
+  <summary><h1>useContext</h1></summary>  
+
+  * Forma de declarar variables globales
+  </details>
+
+  <details>
+  <summary><h1>useReducer</h1></summary>  
+
+  * Control del estado apartir de funciones reductoras (funciones puras)
+  </details>
+
+</details>
+
+<hr>
+<details>
+  <summary><h1>Clase 19 (React Design)</h1></summary>
+
+  <details>
+    <summary><h2>Incorporacion de Frameworks de diseño</h2></summary>
+    
+  * [PicoCSS](https://picocss.com/)
+  * [Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/download/)
+  * [Materialize](https://materializecss.com/getting-started.html)
+  </details>
+
+  <details>
+    <summary><h2>Material UI</h2></summary>
+    
+  * [Usage](https://mui.com/material-ui/getting-started/usage/)
+  </details>
+
+
+</details>
+
+<hr>
+<details>
+  <summary><h1>Clase 20 (React Router)</h1></summary> 
+   
+
+  <details>
+    <summary><h2>Incorporacion de Imagenes</h2></summary>
+    
+  * Manejo de subida de archivos
+  </details>
+
+  <details>
+    <summary><h2>Manejo de cierre de sesión</h2></summary>
+    
+  * Invalidar o borrar la cookie de sesion
+  </details>
+</details>
+
+<hr>
+<details>
+  <summary><h1>Clase 21 (Almacenamiento en el Navegador)</h1></summary> 
+   
+ 
 
 </details>
 
@@ -1410,33 +965,7 @@
 <details>
   <summary><h1>Clase 22 (Despliegue con Heroku)</h1></summary> 
    
-  <details>
-    <summary><h2>Configurando Base de Datos</h2></summary>
-
-  * Base de datos gratuita
-    * [PostgreSQL](https://devcenter.heroku.com/articles/heroku-postgresql#connecting-to-heroku-postgres)
-      * [connection](https://devcenter.heroku.com/articles/connecting-heroku-postgres#connecting-with-laravel)
-  </details>
-
-  <details>
-    <summary><h2>Configurando Aplicacion</h2></summary>
-
-  * Uso de [composer](https://devcenter.heroku.com/articles/getting-started-with-php#declare-app-dependencies)
-  * Uso de [Procfile](https://devcenter.heroku.com/articles/getting-started-with-php#define-a-procfile)
-  * Uso de logs en el [php://stderr](https://www.php.net/manual/en/features.commandline.io-streams.php)
-    
-    ```php
-    <?php
-    file_put_contents("php://stderr", "Ha ocurrido un error");
-    ```
-  </details>
-
-  <details>
-    <summary><h2>Realizando despliegue</h2></summary>
-
-  * Control de errores con [heroku cli](https://devcenter.heroku.com/articles/heroku-cli#get-started-with-the-heroku-cli)
-  * Configurando variables de entorno
-  </details>
+ 
 </details>
 
 <hr>
