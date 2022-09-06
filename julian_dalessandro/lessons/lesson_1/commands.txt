@@ -1,0 +1,6 @@
+git clone -> este comando se usa para clonar el repo desde internet y descargarlo a la pc
+ctrl + L -> este shortcut es usado para limpiar la pantalla de la consola
+ls -> comando para mostrar todos los archivos de la carpeta
+code "carpeta" -> comando para abrir una carpeta en Visual Studio Code
+
+Usando la tecla TAB, autocompletara los archivos o los comandos
