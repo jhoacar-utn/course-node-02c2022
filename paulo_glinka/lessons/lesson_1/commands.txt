@@ -1,0 +1,6 @@
+git clone -> Este comando es usado para clonar un repo desde internet y traerlo y cargarlo desde internet
+ctl + L Este shortcout en usado para limpiar la consola
+ls -> este comando es para listar en la carpeta actual los archivos o directorios presentes
+code carpeta -> este comando es para abrir dicha carpeta con visual studio code
+
+usando la tecla TAB, autocompletara los archivos o los comando 
