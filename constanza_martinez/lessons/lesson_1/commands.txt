@@ -1,0 +1,7 @@
+git clone -> Este comando es usado para clonar un repo desde internet y descargarlo en la pc
+ctrl + l -> Este shortcut es usado para limpiar la pantalla
+ls -> Este comando es para listar en la carpeta actual los archivos o directorios presentes
+code carpeta -> Este comando es para abrir dicha carpeta en VSC
+
+
+Usando la tecla tab autocompletará los archivos o comandos
