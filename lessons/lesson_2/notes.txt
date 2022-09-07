@@ -1,7 +1,7 @@
 
 -------------------------------- Sockets -------------------------------------
 
-Los puertos son los servicios que en lenguaje tecnico es conocido como sockets
+En los puertos corren los servicios que en lenguaje tecnico es conocido como sockets
 --------------------------------------------------------------------------------
 
 -------------------------------- Netcat --------------------------------------
