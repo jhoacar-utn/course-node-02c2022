@@ -1,0 +1,29 @@
+
+-------------------------------- Sockets -------------------------------------
+
+Los puertos son los servicios que en lenguaje tecnico es conocido como sockets
+--------------------------------------------------------------------------------
+
+-------------------------------- Netcat --------------------------------------
+
+Netcat es una herramienta de red que permite  a través de intérprete de 
+comandos y con una sintaxis sencilla abrir puertos TCP/UDP en un HOST,
+asociar una shell a un puerto en concreto y forzar conexiones UDP/TCP.
+
+Para levantar un servicio (puerto) con netcat utilizando docker lo hacemos
+ejecutando un contenedor:
+
+Creamos el contenedor e interactuamos con el:
+
+    docker run -it --rm --network=host --name=ncs alpine sh
+
+Instalamos el paquete de netcat en esta "maquina virtual" (contenedor)
+
+    apk update && apk add netcat-openbsd
+
+Para enviar informacion valida al navegador se debe enviar algo como:
+
+    echo -e "HTTP/1.1 200 OK\nContent-Type: text/html\n\n<h1>Hola Mundo</h1>" | nc -l 1111;
+
+--------------------------------------------------------------------------------
+
