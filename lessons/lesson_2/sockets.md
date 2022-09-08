@@ -22,12 +22,11 @@
     docker run -it --rm --network=host gophernet/netcat -vl -p 8888
     ```
 
-        - El comando run arrancara desde cero un contenedor 
-            con una imagen `gophernet/netcat` usando los parametros `-vl -p 8888` para netcat
-
-            * `-it` es para que sea interactivo, es decir, no se cierre
-            * `--rm` es para que luego de ejecutado se elimine el contenedor
-            * `--network=host` es para especificar que la red sea la misma que la maquina
+    - El comando run arrancara desde cero un contenedor 
+        con una imagen `gophernet/netcat` usando los parametros `-vl -p 8888` para netcat
+        * `-it` es para que sea interactivo, es decir, no se cierre
+        * `--rm` es para que luego de ejecutado se elimine el contenedor
+        * `--network=host` es para especificar que la red sea la misma que la maquina
 
 - Conectamos un cliente para el chat hacia el servidor en otra terminal
 
