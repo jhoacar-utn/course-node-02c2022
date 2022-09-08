@@ -7,7 +7,7 @@ function ordenar([...lst]){
   return lst.sort(function(a, b){return a - b})
 }
 
-//generador de la lista, que guarda la asoscion con la lista original
+//generador de la lista para hacer luego la comparación
 function generarLstComp (lst1, lst2){
   let resultado=[]
   for (n in lst1){
@@ -17,12 +17,13 @@ function generarLstComp (lst1, lst2){
 };
 
 //funcion que reordena los mejores multiplicadores con las monedas
-function moverMultFinal (original, mejorConv){ 
+function moverMultFinal (original, [... mejorConv]){
   return original.map((n)=>{ 
-    for(i of mejorConv){
-      if (n===i[0]){
-        return i[1]
+    for(i in mejorConv){
+      if (n===mejorConv[i][0]){
+        return mejorConv.splice(i,1)[0][1];
         }
+        
     }});
   }
 
@@ -39,13 +40,13 @@ botonC.addEventListener("click", () => {
              selectorMult4= document.querySelector("#multiplier_4").value];
       
       //obteniendo la mejor combinación y asociando  ambos en un array de arrays
-      let lstGanadara= (generarLstComp(ordenar(coin), ordenar(mult)));
+      let lstGanadora= (generarLstComp(ordenar(coin), ordenar(mult)));
 
       //moviendo los multiplicadores segun el orden original de las monedas
-      let lstOrdenada = moverMultFinal(coin, lstGanadara);
+      let lstOrdenada = moverMultFinal(coin, lstGanadora);
 
       //"Puntaje" final!
-      let resultadoFinal= lstGanadara.map(n =>{return n[0]*n[1] }).reduce((a,b)=>a+b);
+      let resultadoFinal= lstGanadora.map(n =>{return n[0]*n[1] }).reduce((a,b)=>a+b);
 
       document.querySelector("#response_total").value=resultadoFinal
 
