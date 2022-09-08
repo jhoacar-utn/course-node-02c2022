@@ -18,7 +18,9 @@
 
 - Comenzamos un servidor de chat en una terminal
 
-    - ```docker run -it --rm --network=host gophernet/netcat -vl -p 8888```
+    ```
+    docker run -it --rm --network=host gophernet/netcat -vl -p 8888
+    ```
 
         - El comando run arrancara desde cero un contenedor 
             con una imagen `gophernet/netcat` usando los parametros `-vl -p 8888` para netcat
@@ -29,7 +31,10 @@
 
 - Conectamos un cliente para el chat hacia el servidor en otra terminal
 
-    - ```docker run -it --rm --network=host gophernet/netcat localhost 8888```
+    
+    ```
+    docker run -it --rm --network=host gophernet/netcat localhost 8888
+    ```
 
 <hr>
 
@@ -40,7 +45,9 @@
 
 - Creamos el contenedor e interactuamos con el:
 
-    ```docker run -it --rm --network=host gophernet/netcat -vl -p 8888```
+    ```
+    docker run -it --rm --network=host gophernet/netcat -vl -p 8888
+    ```
 
 - Vamos hacia él en un navegador y recibiremos un mensaje, que sera la peticion, algo parecido a:
 
