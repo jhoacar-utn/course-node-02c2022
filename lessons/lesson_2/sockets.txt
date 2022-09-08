@@ -1,4 +1,3 @@
-
 -------------------------------- Sockets -------------------------------------
 
 En los puertos corren los servicios que en lenguaje tecnico es conocido como sockets
