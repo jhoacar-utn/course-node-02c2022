@@ -86,6 +86,7 @@
     <summary><h2>Instalacion de Docker</h2></summary>
 
   * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+   * [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-manual)
   * Windows o Mac `virtualizacion del sistema operativo`
   </details>
 
