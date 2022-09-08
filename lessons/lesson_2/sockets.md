@@ -46,7 +46,7 @@
 - Creamos el contenedor e interactuamos con el:
 
     ```
-    docker run -it --rm --network=host gophernet/netcat -vl -p 8888
+    docker run -it --rm -p 8888:8888 gophernet/netcat -vl -p 8888
     ```
 
 - Vamos hacia él en un navegador y recibiremos un mensaje, que sera la peticion, algo parecido a:
