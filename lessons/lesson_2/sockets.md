@@ -14,16 +14,17 @@
 
 # Sala de chat
 
-- https://hub.docker.com/r/gophernet/netcat
-
 - Comenzamos un servidor de chat en una terminal
 
     ```
-    docker run -it --rm -p 8888:8888 gophernet/netcat -vl -p 8888
+    docker run -it --rm -p 8888:8888 alpine nc -v -l -p 8888
     ```
 
-    - El comando run arrancara desde cero un contenedor 
-        con una imagen `gophernet/netcat` usando los parametros `-vl -p 8888` para netcat
+    - El comando `docker run` arrancara desde cero un contenedor 
+        con una imagen `alpine` (imagen de linux muy liviana) usando el comando de 
+        netcat (`nc`) con los parametros `-v -l` que se usaria para `verbose` 
+        que significa mostrar informacion demas y `listen` que se quede escuchando, 
+        asi como el `-p 8888` para `port` especificandole el puerto.
         * `-it` es para que sea interactivo, es decir, no se cierre
         * `--rm` es para que luego de ejecutado se elimine el contenedor
         * `-p 8888:8888` es para hacer mostrar el puerto del host con el contenedor 
@@ -33,7 +34,7 @@
 
     
     ```
-    docker run -it --rm --network=host gophernet/netcat localhost 8888
+    docker run -it --rm --network=host alpine nc localhost 8888
     ```
 
 <hr>
@@ -46,7 +47,7 @@
 - Creamos el contenedor e interactuamos con el:
 
     ```
-    docker run -it --rm -p 8888:8888 gophernet/netcat -vl -p 8888
+    docker run -it --rm -p 8888:8888 alpine nc -vl -p 8888
     ```
 
 - Vamos hacia él en un navegador y recibiremos un mensaje, que sera la peticion, algo parecido a:
