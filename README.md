@@ -38,7 +38,7 @@
 <hr>
 <details>
 
-  <summary><h1>Clase 1 (Nivelacion)</h1></summary>
+  <summary><h1><a href="lessons/lesson_1">Clase 1</a> (Nivelacion)</h1></summary>
 
   <details>
     <summary><h2>Lenguajes de Programacion (Compilados e Interpretados)</h2></summary>
@@ -134,7 +134,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 2 (Introduccion a Docker)</h1></summary>
+  <summary><h1><a href="lessons/lesson_2">Clase 2</a> (Introduccion a Docker)</h1></summary>
 
   <details>
     <summary><h2>¿Que es Docker? ¿Para que me puede servir? </h2></summary>
