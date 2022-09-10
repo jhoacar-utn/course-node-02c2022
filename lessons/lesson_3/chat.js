@@ -53,7 +53,7 @@ const printPrefixWithMessage = function () {
 
 const writeMessageInSocket = function (socket) {
 
-    // Sin esto, nosotros solo obtendriamos una vez la letra enter es presionada
+    // Sin esto, nosotros solo obtendriamos el texto una vez la letra enter es presionada
     process.stdin.setRawMode(true);
 
     // Regresa el stdin al proceso padre 
