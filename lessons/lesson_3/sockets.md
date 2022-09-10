@@ -108,10 +108,26 @@ server.listen(PORT);
 console.log(`\nEl servidor ha iniciado y se encuentra en escucha del puerto ${PORT}!\n`);
 ```
 
-### Para ejecutarlo lo podemos realizar con el comando 
-```
-node lessons/lesson_3/chat.js
-```
+### Para ejecutarlo lo podemos realizar con los siguientes comandos:
+
+- Sin docker: **cmd** , **powershell** o **git bash**
+    ```
+    node lessons/lesson_3/chat.js
+    ```
+- Con docker:
+    - **cmd**
+    
+    ```
+    docker run --rm -it -v %cd%:/course --network=host node:alpine node course/lessons/lesson_3/chat.js
+    ```
+
+    - **powershell**
+
+    ```
+    docker run --rm -it -v $pwd:/course --network=host node:alpine node course/lessons/lesson_3/chat.js
+    ```
+
+    - **git bash** The are bugs when we use paths
 
 ## Conectamos un cliente para el chat hacia el servidor en otra terminal
 
