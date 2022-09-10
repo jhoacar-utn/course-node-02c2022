@@ -44,17 +44,26 @@
 * Uso de `eventos`
     ```javascript
     const controladorDeEventos = {
-        eventos: {
-            click: function (callback) {
-                callback("Se ha dado click")
-            },
-            keypress: function (callback) {
-                callback("Se ha presionado una tecla")
-            }
+        eventos: {},
+        registrar: function (name, callback) {
+            this.eventos[name] = callback;
+            console.log("Eventos registrados: ", this.eventos);
         },
-        emitir: function (name, callback) {
+        emitir: function (name) {
+
             const evento = this.eventos[name];
-            typeof evento === "function" && evento(callback)
+
+            if (typeof evento !== "function") {
+                console.log("El evento registrado no es una funcion");
+                return;
+            }
+
+            if (name === "click") {
+                evento("Se ha dado click")
+            }
+            if (name === "keypress") {
+                evento("Se ha presionado una tecla")
+            }
         }
     };
 
@@ -63,8 +72,10 @@
         console.log(resultado);
     }
 
-    controladorDeEventos.emitir('click', mostrar)
-    controladorDeEventos.emitir('keypress', mostrar)
+    controladorDeEventos.registrar('click', mostrar) // 'on'
+    controladorDeEventos.registrar('keypress', mostrar) // 'on'
+
+    controladorDeEventos.emitir('click') // 'emit'
     ```
     
 * [Sockets usando NodeJS](./sockets.md)
