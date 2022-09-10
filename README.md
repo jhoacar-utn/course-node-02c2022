@@ -205,6 +205,8 @@
     <summary><h2>Instalacion de NodeJS</h2></summary>
 
   * [https://nodejs.org/es/download](https://nodejs.org/es/download/)
+  * [Uso de NVM](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows)
+  * [Instalacion de NVM](https://github.com/coreybutler/nvm-windows/releases)
   </details>
 
   <details>
