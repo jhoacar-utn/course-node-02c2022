@@ -108,6 +108,10 @@ server.listen(PORT);
 console.log(`\nEl servidor ha iniciado y se encuentra en escucha del puerto ${PORT}!\n`);
 ```
 
+### Para ejecutarlo lo podemos realizar con el comando 
+```
+node lessons/lesson_3/chat.js
+```
 
 ## Conectamos un cliente para el chat hacia el servidor en otra terminal
 
@@ -229,6 +233,10 @@ server.listen(PORT);
 console.log(`\nEl servidor ha iniciado y se encuentra en escucha del puerto ${PORT}!\n`);
 ```
 
+### Para ejecutarlo lo podemos realizar con el comando 
+```
+node lessons/lesson_3/chat_web.js
+```
 
 <hr>
 
@@ -311,6 +319,10 @@ server.listen(PORT);
 console.log(`\nEl servidor ha iniciado y se encuentra en escucha del puerto ${PORT}!\n`);
 ```
 
+### Para ejecutarlo lo podemos realizar con el comando 
+```
+node lessons/lesson_3/server_web.js
+```
 
 ## El sencillo ejemplo anterior solo mostro un mensaje que no cambiara cuando se conecte a el, para hacerlo un poco mas dinamico, la idea sera compartir el contenido de los archivos que se encuentren en una determinada carpeta y mandarselo al navegador, para ello podemos hacer lo siguiente:
 
@@ -424,6 +436,11 @@ const server = http.createServer(function (req, res) {
 */
 server.listen(PORT);
 console.log(`\nEl servidor ha iniciado y se encuentra en escucha del puerto ${PORT}!\n`);
+```
+
+### Para ejecutarlo lo podemos realizar con el comando 
+```
+node lessons/lesson_3/server_files.js
 ```
 
 ## Para detener el proceso lo hacemos presionando la tecla `Ctrl + C`
