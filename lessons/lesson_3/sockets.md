@@ -76,16 +76,24 @@ const server = require('net').createServer(function (socket) {
          */
         console.log("\tInformacion recibida por el cliente: \n")
         console.log("\t\t" + data.toString());
+    });
 
+    /**
+     * Nos conectaremos al 'stdin' que es conocido como el 'standard input'
+     * que traducido seria la entrada estandar, esto nos facilita la opcion
+     * de poder leer la informacion tipeada por teclado y luego ejecutar
+     * la logica correspondiente con ella, en este caso usando un evento
+     * llamado 'data' con una callback para procesarla
+     */
+    process.stdin.on('data', function (data) {
         /**
          * Para que el cliente visualice la informacion de la respuesta
          * la escribimos directamente en el socket de conexion que tenemos,
          * para ello usamos su metodo llamado .write() y le pasamos el string
          * que deseamos enviarle
-         */
-        console.log("\tEnviando un mensaje de regreso: \n");
-        socket.write("Hola desde el servidor!!\n");
-
+        */
+        console.log("\n\tEscribiendo el mensaje al cliente: \n");
+        socket.write(data);
     });
 
 });
