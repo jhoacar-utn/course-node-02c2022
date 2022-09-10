@@ -127,7 +127,7 @@ console.log(`\nEl servidor ha iniciado y se encuentra en escucha del puerto ${PO
     docker run --rm -it -v $pwd:/course --network=host node:alpine node course/lessons/lesson_3/chat.js
     ```
 
-    - **git bash** The are bugs when we use paths
+    - **git bash** Hay bugs cuando se usan las rutas
 
 ## Conectamos un cliente para el chat hacia el servidor en otra terminal
 
