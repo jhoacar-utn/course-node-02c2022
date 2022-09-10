@@ -8,7 +8,12 @@ const fs = require('fs'); // Modulo para procesar archivos en el sistema (fs - f
  * Definimos la configuracion con variables
 */
 const PORT = 8888;
-const FOLDER = __dirname;
+/**
+ * La variable __dirname es una variable global que se encuentra
+ * en cada ejecucion que se realice con nodejs que contiene
+ * el directorio actual de este archivo, que seria 'lesson_3'
+ */
+const FOLDER = __dirname; 
 
 /** 
  * Creamos el servidor con el modulo o libreria de 'http'
