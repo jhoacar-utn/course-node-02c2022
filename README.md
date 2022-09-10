@@ -189,7 +189,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 3 (Introduccion a Node)</h1></summary>
+  <summary><h1><a href="lessons/lesson_3">Clase 3</a> (Introduccion a Node)</h1></summary>
 
   <details>
     <summary><h2>¿Que es NodeJS? - ¿Para que me puede servir?</h2></summary>
