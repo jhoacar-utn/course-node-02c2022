@@ -176,7 +176,7 @@ const server = require('net').createServer(function (socket) {
      * un simple mensaje por consola 
      */
     socket.on('end', () => {
-        console.log(BRIGHT + FG_RED + `\n[-]El cliente por conexion ${clientName} se ha desconectado` + RESET);
+        console.log(BRIGHT + FG_RED + `\n\n[-] El cliente por conexion ${clientName} se ha desconectado` + RESET);
     });
 });
 
@@ -186,5 +186,5 @@ const server = require('net').createServer(function (socket) {
  * usamos el metodo .listen() y le especificamos
  * el numero de puerto a escuchar
 */
-server.listen(PORT);
+server.listen(PORT,'0.0.0.0');
 console.log(BRIGHT + FG_YELLOW + `\n[+] El servidor ha iniciado y se encuentra en escucha del puerto ${PORT}!\n` + RESET);
