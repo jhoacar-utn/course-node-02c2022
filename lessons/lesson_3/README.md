@@ -16,6 +16,7 @@
             * `process.stdout` objeto para manipular los datos de salida
             * `process.stderr` objeto para manipular los errores
             * `process.env` objeto para obtener las variables de entorno
+            * `process.argv` array para obtener los argumentos de entrada por consola
             * `...`
         * `module` objeto necesario para trabajar con modulos y librerias
             * `module.require` o `require` funcion que ejecuta un archivo y devuelve su resultado exportado
