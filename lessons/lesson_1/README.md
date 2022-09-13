@@ -1,0 +1,7 @@
+# Contenidos vistos en clase:
+
+* `git clone` - Este comando es usado para clonar un repo desde internet y descargarlo a la pc
+* `Ctrl + L` - Este shortcout es usado para limpiar la consola, limpiar la pantalla
+* `ls` - Este comando es para listar en la carpeta actual los archivos o directorios presentes
+* `code carpeta` - Este comando es para abrir dicha carpeta con visual studio code
+* Usando la tecla `TAB`, autocompletara los archivos o los comandos
