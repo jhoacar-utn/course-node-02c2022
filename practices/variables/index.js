@@ -20,7 +20,8 @@ let otraVariable = "un nombre";
 const unaConstante = "un valor";
 
 otraVariable = "otro nombre";
-unaConstante = "otro valor";
+
+console.log(otraVariable)
 
 
 
