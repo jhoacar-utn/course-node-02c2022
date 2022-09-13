@@ -4,3 +4,4 @@ ls -> Este comando es para listar en la carpeta actual los archivos o directorio
 code NombreDeCarpeta -> Este comando es para abrir dicha carpeta con visual studio code.
 Tab -> tecla que sirve para autocompletar nombres.
 git add -> Comando para
+Cuando escribimos "code ." nos referimos a que queremos abrir la carpeta actual.
