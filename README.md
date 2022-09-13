@@ -38,7 +38,7 @@
 <hr>
 <details>
 
-  <summary><h1>Clase 1 (Nivelacion)</h1></summary>
+  <summary><h1><a href="lessons/lesson_1">Clase 1</a> (Nivelacion)</h1></summary>
 
   <details>
     <summary><h2>Lenguajes de Programacion (Compilados e Interpretados)</h2></summary>
@@ -86,6 +86,7 @@
     <summary><h2>Instalacion de Docker</h2></summary>
 
   * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+   * [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-manual)
   * Windows o Mac `virtualizacion del sistema operativo`
   </details>
 
@@ -133,7 +134,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 2 (Introduccion a Docker)</h1></summary>
+  <summary><h1><a href="lessons/lesson_2">Clase 2</a> (Introduccion a Docker)</h1></summary>
 
   <details>
     <summary><h2>¿Que es Docker? ¿Para que me puede servir? </h2></summary>
@@ -188,7 +189,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 3 (Introduccion a Node)</h1></summary>
+  <summary><h1><a href="lessons/lesson_3">Clase 3</a> (Introduccion a Node)</h1></summary>
 
   <details>
     <summary><h2>¿Que es NodeJS? - ¿Para que me puede servir?</h2></summary>
@@ -204,6 +205,8 @@
     <summary><h2>Instalacion de NodeJS</h2></summary>
 
   * [https://nodejs.org/es/download](https://nodejs.org/es/download/)
+  * [Uso de NVM](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows)
+  * [Instalacion de NVM](https://github.com/coreybutler/nvm-windows/releases)
   </details>
 
   <details>
