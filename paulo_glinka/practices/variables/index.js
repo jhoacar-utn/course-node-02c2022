@@ -22,8 +22,8 @@ const unaConstante = " Un valor";
 
 otraVariable = "otro nombre";
 
-
-
 console.log (otraVariable)
+
+
 
 
