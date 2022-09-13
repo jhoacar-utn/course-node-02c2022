@@ -1,7 +1,70 @@
 /** 
  * Definimos la configuracion con variables
 */
-const PORT = 8888;
+
+/**
+ * Configuracion del puerto por linea de comandos
+ */
+const USER_ROOT_ID = 0;
+const MIN_PORT_FOR_NORMAL_USER = 1024;
+const MIN_PORT_FOR_ROOT_USER = 2;
+const MAX_PORT_AVAILABLE = Math.pow(2, 16) - 1; // 65.535
+const DEFAULT_PORT = 8888;
+
+/**
+ * Funcion que comprueba que no sea un usuario administrador o root
+ * basandose en su id (`uid`)
+ * @return int
+ */
+const isNormalUser = function () {
+    return process.getuid() != USER_ROOT_ID;
+}
+/**
+ * Funcion que devuelve el puerto para crear el servidor
+ * - Si por linea de comandos se le pasa el numero de puerto sera procesado
+ *      - Si al procesar el puerto resulta ser que es mas grande del maximo
+ *          disponible (65535) lanzara un excepcion
+ *      - Si al procesar el puerto resulta ser que el usuario no tiene acceso para
+ *          abrirlo directamente se lanzara un excepción con el mensaje correspondiente
+ *      - Si al procesar el puerto resulta ser que es un usuario privilegiado
+ *          pero aun asi no puede abrir el puerto correspondiente entonces se lanzara
+ *          una excepcion
+ * - Si no se ha pasado el puerto o directamente no es un numero se devolvera
+ * un puerto por defecto, que sera `DEFAULT_PORT` (8888)
+ * @throw Error
+ * @return int
+ */
+const extractPortFromArgv = function () {
+
+    /**
+     * Extramos el puerto por la linea de comandos
+     * las primeras dos posiciones corresponden a informacion
+     * del entorno, que seria:
+     * - Primera posicion (process.argv[0]): la ruta donde se ejecuta node
+     * - Segunda posicion (process.argv[1]): la ruta del archivo que se esta ejecutando
+     * - Las demas posiciones seran los argumentos del comando
+     */
+    const port = process.argv[2];
+
+    if (isNaN(port)) {
+        return DEFAULT_PORT;
+    }
+
+    if (port > MAX_PORT_AVAILABLE) {
+        throw new Error(`Maximum port available is ${MAX_PORT_AVAILABLE}`)
+    }
+    if (port < MIN_PORT_FOR_NORMAL_USER && isNormalUser()) {
+        throw new Error(`Minimum port for normal user is ${MIN_PORT_FOR_NORMAL_USER}`)
+    }
+    if (port < MIN_PORT_FOR_ROOT_USER && !isNormalUser()) {
+        throw new Error(`Minimum port for root user is ${MIN_PORT_FOR_ROOT_USER}`)
+    }
+
+    return port;
+}
+
+const PORT = extractPortFromArgv();
+
 /**
  * Colores que se mostraran por consola
  * https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
@@ -176,7 +239,7 @@ const server = require('net').createServer(function (socket) {
      * un simple mensaje por consola 
      */
     socket.on('end', () => {
-        console.log(BRIGHT + FG_RED + `\n[-]El cliente por conexion ${clientName} se ha desconectado` + RESET);
+        console.log(BRIGHT + FG_RED + `\n\n[-] El cliente por conexion ${clientName} se ha desconectado` + RESET);
     });
 });
 
@@ -186,5 +249,5 @@ const server = require('net').createServer(function (socket) {
  * usamos el metodo .listen() y le especificamos
  * el numero de puerto a escuchar
 */
-server.listen(PORT);
+server.listen(PORT, '0.0.0.0');
 console.log(BRIGHT + FG_YELLOW + `\n[+] El servidor ha iniciado y se encuentra en escucha del puerto ${PORT}!\n` + RESET);
