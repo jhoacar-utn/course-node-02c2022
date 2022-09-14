@@ -4,7 +4,7 @@ comentario de varias
 lineas */ 
 
 /**
- * esta variable es declaradda golabalmete, usar var es una mala practica
+ * esta variable es declarada golabalmete, usar var es una mala practica
  */
 var miVariable; 
 
