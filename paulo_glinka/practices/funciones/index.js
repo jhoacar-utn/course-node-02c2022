@@ -15,5 +15,5 @@ const suma = function(a,b){
     return a + b;
 
 }
-console.log((1,2))
+console.log(suma(1,2))
     
