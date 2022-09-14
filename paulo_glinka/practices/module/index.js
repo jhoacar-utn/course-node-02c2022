@@ -1,3 +1,7 @@
-require("./modulo_a")
+let variableA = require("./modulo_a.js")
 
-require("./modulo_b")
+let variableB = require("./modulo_b.js")
+
+
+console.log(variableA)
+console.log(variableB)
