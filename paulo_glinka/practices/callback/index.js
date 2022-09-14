@@ -3,8 +3,9 @@
  * 
  */
 function mostrar (a,b,callback){
+    
     const resultado = callback(a,b)
-    console.log()
+    console.log(resultado)
 }
 
 function suma(a,b){
@@ -16,4 +17,5 @@ function multiplicacion (a,b){
 }
 
 mostrar(1,2, suma)
+
 mostrar (5,4, multiplicacion)
