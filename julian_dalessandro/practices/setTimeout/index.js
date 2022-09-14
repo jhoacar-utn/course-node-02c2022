@@ -1,20 +1,7 @@
-/**
- * Una callback es una funcion que se recibe por parametro y se invoca dentro de otra funcion
- */
-
-function mostrar(a, b, callback){
-
-    const resultado = callback(a, b);
-    console.log(resultado);
+function mostrarMensaje(){
+    console.log("Segundo mensaje");
 }
 
-function suma(a, b){
-    return a + b;
-}
+setTimeout(mostrarMensaje, 1000); //El tiempo se medira en milisegundos
 
-function multiplicacion(a, b){
-    return a * b;
-}
-
-mostrar(1, 2, suma);
-mostrar(5, 4, multiplicacion);
+console.log("Primer mensaje");
