@@ -110,30 +110,15 @@ console.log(`\nEl servidor ha iniciado y se encuentra en escucha del puerto ${PO
 
 ### Para ejecutarlo lo podemos realizar con los siguientes comandos:
 
-- Sin docker: **cmd** , **powershell** o **git bash**
-    ```
-    node lessons/lesson_3/chat.js
-    ```
-- Con docker:
-    - **cmd**
-    
-    ```
-    docker run --rm -it -v %cd%:/course --network=host node:alpine node course/lessons/lesson_3/chat.js
-    ```
-
-    - **powershell**
-
-    ```
-    docker run --rm -it -v $pwd:/course --network=host node:alpine node course/lessons/lesson_3/chat.js
-    ```
-
-    - **git bash** Hay bugs cuando se usan las rutas
+```
+node lessons/lesson_3/chat.js
+```
 
 ## Conectamos un cliente para el chat hacia el servidor en otra terminal
 
     
 ```
-docker run -it --rm --network=host alpine nc localhost 8888
+docker run -it --rm --add-host=mi_pc:host-gateway alpine nc mi_pc 8888
 ```
 
 <hr>
