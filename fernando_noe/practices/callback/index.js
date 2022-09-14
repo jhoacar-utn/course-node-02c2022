@@ -1,5 +1,6 @@
 /**
- * Una callback es una funcion que se recibe por parámetro y se invoca dentro de otra funcion
+ * - Una callback es una funcion que se recibe por parámetro y se invoca dentro de otra funcion
+ * - La funcion "mostrar" recibe los dos primeros parámetros y se los pasa a la funcion que se pase por tercer parámetro
  */
 
 function mostrar(a,b,callback){
