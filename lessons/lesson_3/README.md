@@ -47,7 +47,7 @@
                     * `v8`	Para acceder a la informacion del motor v8 (the JavaScript engine)
                     * `vm`	Para compilar Javascript en una maquina virtual
                     * `zlib` Para comprimir o descomprimir archivos
-            * `module.export` objeto que sera el valor devuelto en el archivo que se esta ejecutando
+            * `module.exports` objeto que sera el valor devuelto en el archivo que se esta ejecutando
         * `__filename` string con el valor del archivo en el cual se esta ejecutando
         * `__dirname` string con el valor de la carpeta en la cual se esta ejecutando el archivo
             * [documentacion](https://remarkablemark.org/blog/2017/04/12/nodejs-module-dirname-filename/)
@@ -73,42 +73,3 @@
     mostrar(sumar,1,2);
     mostrar(multiplicar,5,3);
     ```
-
-* Uso de `eventos`
-    ```javascript
-    const controladorDeEventos = {
-        eventos: {},
-        registrar: function (name, callback) {
-            this.eventos[name] = callback;
-            console.log("Eventos registrados: ", this.eventos);
-        },
-        emitir: function (name) {
-
-            const evento = this.eventos[name];
-
-            if (typeof evento !== "function") {
-                console.log("El evento registrado no es una funcion");
-                return;
-            }
-
-            if (name === "click") {
-                evento("Se ha dado click")
-            }
-            if (name === "keypress") {
-                evento("Se ha presionado una tecla")
-            }
-        }
-    };
-
-
-    const mostrar = function (resultado) {
-        console.log(resultado);
-    }
-
-    controladorDeEventos.registrar('click', mostrar) // 'on'
-    controladorDeEventos.registrar('keypress', mostrar) // 'on'
-
-    controladorDeEventos.emitir('click') // 'emit'
-    ```
-    
-* [Sockets usando NodeJS](./sockets.md)

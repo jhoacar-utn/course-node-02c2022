@@ -21,119 +21,116 @@
 ## Para realizar esta dinamica pero usando un lenguaje de programacion como seria el caso de `NodeJS` directamente podemos usar el siguiente codigo
 
 ```javascript
-/** 
- * Definimos la configuracion con variables
-*/
-const PORT = 8888;
+/**
+ * Procedemos a requerir el modulo para crear un socket
+ */
+const net = require("net")
 
+/**
+ * En este modulo de "net" existen funcionalidades para red,
+ * en nuestro caso utilizaremos una que sera para crear 
+ * un servidor y que dicho servidor sea para recibir conexiones
+ * - La funcion 'createServer' recibe un parametro,
+ *  que sera la callback que se ejecutara cuando se
+ *  reciba la conexion de un cliente, y se le pasara a 
+ *  dicha callback como primer argumento la informacion
+ *  de la conexion (socket).
+ * 
+ */
+const server = net.createServer(handleConnectionServer);
 
-/** 
- * Creamos el servidor con el modulo o libreria de 'net'
- *  - Al usar esta funcion 'createServer' necesitamos trabajar la logica de lo que
- *      hara el programa cuando reciba una conexion
-*/
-const server = require('net').createServer(function (socket) {
+/**
+ * Esta sera la callback que usaremos cuando el servidor
+ * reciba una conexion, y toda la informacion sera manipulada
+ * en la variable del primer parametro
+ * @param {*} socket 
+ */
+function handleConnectionServer(socket) {
 
-    /**
-     * Esta funcion recibe como parametro el socket de la conexion
-     * por lo tanto lo declaramos con la variable 'socket'
-     */
-    console.log("Cliente conectado\n");
-    /**
-     * Esta variable 'socket' tendra metodos y atributos, los cuales
-     * me ayudaran a extraer la informacion y procesar la conexion
-     * Tales atributos pueden ser como la direccion remota de conexion
-     * al igual que el puerto
-     */
-    const clientName = `${socket.remoteAddress}:${socket.remotePort}`;
-    console.log(`Su informacion de conexion es: ${clientName}\n`);
-
-    /**
-     * Algo que es comun cuando trabajamos con javascript es programar
-     * con programacion orientada a eventos, esto quiere decir, que
-     * cuando ocurra una accion o un acontecimiento se debera disparar o
-     * ejecutar cierta logica
-     * 
-     * Aca podemos ver que bajo el evento 'data' que puede verse su correlacion
-     * con javascript del navegador como seria con el uso de:
-     * 
-     * - document.addEventListener('click',callback)
-     * 
-     * Pues cuando se ejecute el evento 'data', sera el evento relacionado con 
-     * la informacion que ha enviado el cliente conectado, por lo que en la
-     * callback que le pase por parametro tendra que ejecutarse dicha logica
-     * correspondiente
-     */
-    socket.on('data', function (data) {
-
-        /**
-         * Esta funcion recibe como parametro la data que se ha
-         * enviado atraves del socket, por lo tanto lo declaramos
-         * con la variable 'data', esta variable al ser recibida
-         * la podremos mostrar en la consola directamente, con el
-         * uso del metodo .toString() nos aseguramos que se muestre
-         * como cadenas de texto
-         */
-        console.log("\tInformacion recibida por el cliente: \n")
-        console.log("\t\t" + data.toString());
-    });
+    console.log("Conexion con un cliente establecida")
 
     /**
-     * Nos conectaremos al 'stdin' que es conocido como el 'standard input'
-     * que traducido seria la entrada estandar, esto nos facilita la opcion
-     * de poder leer la informacion tipeada por teclado y luego ejecutar
-     * la logica correspondiente con ella, en este caso usando un evento
-     * llamado 'data' con una callback para procesarla
+     * Para procesar la informacion que se recibe de un cliente
+     * se realiza a traves de eventos, especificamente el evento
+     * llamado "data" sera invocado cuando esto ocurra, entonces
+     * lo que haremos sera invocar una callback que recibira por
+     * primer parametro dicha data
      */
-    process.stdin.on('data', function (data) {
-        /**
-         * Para que el cliente visualice la informacion de la respuesta
-         * la escribimos directamente en el socket de conexion que tenemos,
-         * para ello usamos su metodo llamado .write() y le pasamos el string
-         * que deseamos enviarle
-        */
-        console.log("\n\tEscribiendo el mensaje al cliente: \n");
-        socket.write(data);
-    });
+    socket.on("data", handleIncomingData);
+    /**
+     * Asi como existe el evento "data" para informacion entrante
+     * al socket, tambien existe un evento llamado "end" que se
+     * invoca cuando la conexion del cliente se ha terminado
+     */
+    socket.on("end", handleClientDisconnected);
+}
+/**
+ * Esta funcion sera invocada cuando el cliente proceda a cerrar la conexion
+ */
+function handleClientDisconnected() {
+    console.log("Cliente desconectado")
+}
+/**
+ * Esta funcion sera invocada cuando se reciba informacion directamente
+ * desde el cliente con el evento "data", y por lo tanto se recibira
+ * por primer parametro, esta data que envia
+ * @param {*} data 
+ */
+function handleIncomingData(data) {
+    /**
+     * Al mostrar por consola la data que envia el usuario, la debemos
+     * transformar a cadena de texto con toString(), ya que es procesada
+     * como bytes
+     */
+    console.log("Datos del cliente: ",data.toString())
+    /**
+     * Llegado a este punto es importante a ver comprendido muy bien la
+     * diferencia entre una arrow function y una funcion normal, y es
+     * porque podemos hacer uso de la variable "this", esto es para
+     * aprovecharnos del contexto en que se encuentra esta funcion
+     * y por ejemplo invocar un metodo que se encuentra presente como
+     * es el caso de .write() que nos permite escribir informacion hacia el
+     * cliente
+     */
+    this.write("Hola desde el servidor")
+    /**
+     * Asi como existe .write() tambien existen otros metodos, tales como
+     * - .end() Finaliza la escritura hacia el cliente
+     * - .destroy() Finaliza la conexion con el cliente
+     */
+    this.end()
+    this.destroy()
+}
 
-});
+/**
+ * Cuando ya se encuentre definida toda la configuracion del servidor
+ * con las conexiones, procedemos entonces a levantarlo usando el metodo
+ * .listen() y especificandole el numero de puerto al cual queremos escuchar
+ * y ademas podriamos especificarle como segundo parametro una callback,
+ * la cual se ejecutara cuando ya el servidor se encuentre en funcionamiento
+ */
+server.listen(8888, handleStartServer);
 
-/** 
- * Posterior a crear el servidor debemos indicarle
- * que se quede escuchando en un puerto, para ello
- * usamos el metodo .listen() y le especificamos
- * el numero de puerto a escuchar
-*/
-server.listen(PORT);
-console.log(`\nEl servidor ha iniciado y se encuentra en escucha del puerto ${PORT}!\n`);
+/**
+ * Funcion que sera ejecutada cuando ya el servidor se encuentre en funcionamiento
+ */
+function handleStartServer() {
+    console.log("El servidor ha arrancado")
+}
+
 ```
 
 ### Para ejecutarlo lo podemos realizar con los siguientes comandos:
 
-- Sin docker: **cmd** , **powershell** o **git bash**
-    ```
-    node lessons/lesson_3/chat.js
-    ```
-- Con docker:
-    - **cmd**
-    
-    ```
-    docker run --rm -it -v %cd%:/course --network=host node:alpine node course/lessons/lesson_3/chat.js
-    ```
-
-    - **powershell**
-
-    ```
-    docker run --rm -it -v $pwd:/course --network=host node:alpine node course/lessons/lesson_3/chat.js
-    ```
-
-    - **git bash** Hay bugs cuando se usan las rutas
+```
+node lessons/lesson_3/server.js
+```
 
 ## Conectamos un cliente para el chat hacia el servidor en otra terminal
 
     
 ```
-docker run -it --rm --network=host alpine nc localhost 8888
+docker run -it --rm --add-host=mi_pc:host-gateway alpine nc mi_pc 8888
 ```
 
 <hr>
