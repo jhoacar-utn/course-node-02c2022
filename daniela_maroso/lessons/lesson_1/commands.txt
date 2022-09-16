@@ -2,6 +2,12 @@ git clone -> Este comando es usado para clonar un repo desde internet y descarga
 ctrl + l -> Este shortcout limpia la consola 
 ls -> Este comando es para listar en la carpeta actual los archivos o directorios presentes
 code carpeta -> Este comando es para abrir esa carpeta con VSC
+La tecla TAB, autocompletara los archivos o los comandos
 
-Usando la tecla TAB, autocompletara los archivos o los comandos
+GIT 
+push -> sube archivos
+pull -> baja archivos
+add -> agrega archivos
+commit -> los registra (la pegatina!)
+init -> para iniciar un proyecto (no lo usamos aca porque el proyecto ya estaba creado)
 
