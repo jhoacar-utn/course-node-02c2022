@@ -19,10 +19,7 @@ const estudiante = {
  * cambiar los atributos usando el '='
  */
 estudiante.nombre = "Juan"
-estudiante.ubicacion = {
-    pais: "Argentina",
-    ciudad: "Chaco"
-}
+estudiante.ubicacion.ciudad = "Chaco"
 /**
  * Podemos añadirle mas propiedades si nosotros queremos
  */
