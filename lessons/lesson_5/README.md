@@ -10,8 +10,8 @@
     * `do while`
 * Uso de arrays
     * `.length` variable que contiene la dimension del array
-    * `.push()` metodo comunmente usado para agregar elementos al array (<span style="color:orange">cambia el vector</span>)
-    * `.sort()` metodo para ordenar arrays (<span style="color:orange">cambia el vector</span>) usando una callback, con los siguientes requisitos
+    * `.push()` metodo comunmente usado para agregar elementos al array (`cambia el vector`)
+    * `.sort()` metodo para ordenar arrays (`cambia el vector`) usando una callback, con los siguientes requisitos
         * Esta callback recibe dos parametros (`a` y `b`), que seran dos elementos del array a comparar
         * Si la callback devuelve un resultado `> 0` entonces, ordena `a` despues de `b`
         * Si la callback devuelve un resultado `< 0` entonces, ordena `a` antes de `b`
