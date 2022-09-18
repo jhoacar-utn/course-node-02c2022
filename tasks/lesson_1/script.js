@@ -4,8 +4,8 @@ let botonC = document.querySelector("#calculate");
 
 //ordena los multiplicadores y rompe el paso por referencia
 function ordenar([...lst]){
-  return lst.sort(function(a, b){return a - b})
-}
+  return lst.sort((a, b)=>a - b)
+};
 
 //generador de la lista para hacer luego la comparación
 function generarLstComp (lst1, lst2){
@@ -16,16 +16,15 @@ function generarLstComp (lst1, lst2){
   return resultado;
 };
 
-//funcion que reordena los mejores multiplicadores con las monedas
-function moverMultFinal (original, [... mejorConv]){
+//funcion que reordena los mejores multiplicadores con las monedas y paso por valor
+//ya que también hay que utilizar el array mejorComb para sacar el puntaje final
+function moverMultFinal (original, [... mejorComb]){
   return original.map((n)=>{ 
-    for(i in mejorConv){
-      if (n===mejorConv[i][0]){
-        return mejorConv.splice(i,1)[0][1];
-        }
-        
-    }});
-  }
+    for(i in mejorComb){
+      if ( n === mejorComb[i][0] ){
+        return mejorComb.splice(i,1)[0][1];
+        }}})
+};
 
 botonC.addEventListener("click", () => {
       //tomando los valores
@@ -48,10 +47,10 @@ botonC.addEventListener("click", () => {
       //"Puntaje" final!
       let resultadoFinal= lstGanadora.map(n =>{return n[0]*n[1] }).reduce((a,b)=>a+b);
 
-      document.querySelector("#response_total").value=resultadoFinal
+      document.querySelector("#response_total").value=resultadoFinal;
 
       document.querySelector("#response_1").value=Number(lstOrdenada[0]);
       document.querySelector("#response_2").value=Number(lstOrdenada[1]);
       document.querySelector("#response_3").value=Number(lstOrdenada[2]);
       document.querySelector("#response_4").value=Number(lstOrdenada[3]);
-})
+});
