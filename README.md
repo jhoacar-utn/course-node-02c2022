@@ -228,46 +228,9 @@
 </details>
 
 <hr>
+
 <details>
-  <summary><h1>Clase 4 (Condicionales y Bucles)</h1></summary>
-
-  <details>
-    <summary><h2>Declaracion de condicionales</h2></summary>
-
-  * `if`
-  * `else`
-  * `operador ternario`
-  * `switch`
-  </details>
-  <details>
-    <summary><h2>Declaracion de ciclos</h2></summary>
-
-  * `while`
-  * `do-while`
-  * `for`
-  * `for in`
-  * `for of`
-  * Directivas de control de ciclos
-    * `continue`
-    * `break`
-    * `return`
-  </details>
-  <details>
-    <summary><h2>Comentarios de codigo</h2></summary>
-
-  * Comentarios de una linea
-  * Comentarios multilinea
-  * Comentarios para documentacion ([JSDocs Basics](https://jsdoc.app/about-getting-started.html))
-  </details>
-  <details>
-    <summary><h2>Practica de variables, condicionales y ciclos</h2></summary>
-  </details>
-
-</details>
-
-<hr>
-<details>
-  <summary><h1>Clase 5 (Funciones en Javascript)</h1></summary>
+  <summary><h1><a href="lessons/lesson_4">Clase 4</a> (Funciones en Javascript)</h1></summary>
 
   <details>
     <summary><h2>Semantica de funciones</h2></summary>
@@ -321,6 +284,45 @@
   </details>
 
 </details>
+
+<hr>
+<details>
+  <summary><h1><a href="lessons/lesson_5">Clase 5</a> (Condicionales y Bucles)</h1></summary>
+
+  <details>
+    <summary><h2>Declaracion de condicionales</h2></summary>
+
+  * `if`
+  * `else`
+  * `operador ternario`
+  * `switch`
+  </details>
+  <details>
+    <summary><h2>Declaracion de ciclos</h2></summary>
+
+  * `while`
+  * `do-while`
+  * `for`
+  * `for in`
+  * `for of`
+  * Directivas de control de ciclos
+    * `continue`
+    * `break`
+    * `return`
+  </details>
+  <details>
+    <summary><h2>Comentarios de codigo</h2></summary>
+
+  * Comentarios de una linea
+  * Comentarios multilinea
+  * Comentarios para documentacion ([JSDocs Basics](https://jsdoc.app/about-getting-started.html))
+  </details>
+  <details>
+    <summary><h2>Practica de variables, condicionales y ciclos</h2></summary>
+  </details>
+
+</details>
+
 
 <hr>
 <details>
