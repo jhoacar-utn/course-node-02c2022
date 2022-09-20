@@ -35,3 +35,17 @@ while(juego.state === "Jugando"){
     console.log("Estoy jugando")
     juego.state="Terminado"    
 }
+
+// https://developer.mozilla.org/es/docs/Web/JavaScript/EventLoop
+/**
+ * setTimeout(()=>juego.state = "Terminado",1000)
+ * while(juego.state === "Jugando"){
+ *   console.log("Estoy jugando")
+ *   juego.state="Terminado"    
+ *  }
+ * 
+ * - Este codigo genera un bucle infinito que no se detiene
+ * debido a una cola de prioridades que tiene javascript
+ * que no ejecutara la callback del setTimeout hasta que se termine
+ * el bucle
+ */
