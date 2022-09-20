@@ -10,9 +10,7 @@ const http = require("http")
  */
 function handleConnection(request, response){
     console.log("Conexion establecida")
-
-    response.write("Hola desde el servidor")
-    response.end()
+    response.end("<h1>Hola desde el servidor</h1>")
 }
 
 const server = http.createServer(handleConnection);
