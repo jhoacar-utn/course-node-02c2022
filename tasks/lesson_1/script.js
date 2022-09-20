@@ -1,22 +1,61 @@
-// alert("Se debe crear la logica en el archivo script.js");
+const MAX_NUMBER = 4
+const COIN_ID = "coin_"
+const MULTIPLIER_ID = "multiplier_"
+const RESPONSE_ID = "response_"
+const TOTAL_ID = "response_total"
+const BUTTON_ID = "calculate"
 
-    let coin1 = document.getElementById(coin_1).value;
-    let coin2 = document.getElementById(coin_2).value;
-    let coin3 = document.getElementById(coin_3).value;
-    let coin4 = document.getElementById(coin_4).value;
-    
-    let multiply1 = document.getElementById(multiplier_1).value;
-    let multiply2 = document.getElementById(multiplier_2).value;
-    let multiply3 = document.getElementById(multiplier_3).value;
-    let multiply4 = document.getElementById(multiplier_4).value;
-    
-    let multiplication1 = coin1 * multiply1;
-    let multiplication2 = coin2 * multiply2;
-    let multiplication3 = coin3 * multiply3;
-    let multiplication4 = coin4 * multiply4;
+/**
+ * Funcion encargada de extraer la informacion
+ * del DOM para las monedas y los multiplicadores
+ * @return object
+ */
+function getDataFromDOM() {
 
-    console.log(multiplication1);
+    const coins = []
+    const multipliers = []
 
-    let showResult = document.getElementById(calculate);
+    for (let number = 1; number <= MAX_NUMBER; number++) {
 
-    showResult.addEventListener('click', )
+        const coin = document.getElementById(`${COIN_ID}${number}`)
+        const multiplier = document.getElementById(`${MULTIPLIER_ID}${number}`)
+
+
+        coin && !isNaN(parseInt(coin.value)) && coins.push(coin.value)
+        multiplier && !isNaN(parseInt(multiplier.value)) && multipliers.push(multiplier.value)
+    }
+
+    return {
+        coins,
+        multipliers
+    }
+}
+
+function setSolutionInDOM() {
+
+    const { coins, multipliers } = getDataFromDOM()
+
+    if (coins.length !== multipliers.length)
+        return alert("La cantidad de monedas debe ser igual a la cantidad de multiplicadores")
+
+    const solution = getCorrectMultipliers(coins, multipliers)
+    const total = getTotalFromCoinsAndMultiplier(coins, solution)
+
+    for (let number = 1; number <= MAX_NUMBER; number++) {
+
+        const response = document.getElementById(`${RESPONSE_ID}${number}`)
+
+        if (response) {
+            response.value = solution[number - 1]
+        }
+    }
+
+    const totalElement = document.getElementById(TOTAL_ID)
+    if (totalElement) {
+        totalElement.value = total
+    }
+}
+
+
+document.getElementById(BUTTON_ID)?.addEventListener("click", setSolutionInDOM)
+
