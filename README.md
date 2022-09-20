@@ -287,7 +287,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 5 (Condicionales y Bucles)</h1></summary>
+  <summary><h1><a href="lessons/lesson_5">Clase 5</a> (Condicionales y Bucles)</h1></summary>
 
   <details>
     <summary><h2>Declaracion de condicionales</h2></summary>
