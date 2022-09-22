@@ -72,3 +72,24 @@ switch(persona.cash){
  }
 
  persona.age >= MAX_AGE_MOVIE ? goToTheMovie(): console.log("No puedes ingresar a ver la pelicula")
+
+ /**
+ * Operadores de union
+ * && (AND)
+ * || (OR)
+ */
+
+if(persona.age >= MAX_AGE_MOVIE && persona.access){
+    console.log("Esta persona tiene mas privilegios")
+}
+else if(persona.age >= MAX_AGE_MOVIE || persona.access){
+    console.log("Esta persona almenos puede entrar a la discoteca")
+}
+
+
+const name = persona.name || "Pedro" // undefined (Uso del OR)
+const hasCash = persona.cash && "La persona tiene cash" // Ya esta definido
+
+console.log(name)
+console.log(hasCash)
+
