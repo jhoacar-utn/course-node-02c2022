@@ -1,0 +1,41 @@
+/**
+ * Los condicionales son bloques de codigo
+ * que se ejecutaran apartir de una sentencia verdadera o falsa (condicion)
+ * 
+ * - La sintaxis para los bloques son:
+ *  - if, else, else if, switch, operador ternario
+ * 
+ * - Los operadores de union usados para los condicionales son:
+ *  - && (AND)
+ *  - || (OR)
+ * 
+ * - Los operadores de comparacion son:
+ * 
+ *  - > mayor que
+ *  - >= mayor igual que
+ *  - < menor que
+ *  - <= menor igual que
+ *  - == igual (no estricto) - 18 == "18" -> TRUE
+ *  - === igual (estricto, evalua el tipo de dato) - 18 === "18" -> FALSE
+ *  - != desigual o diferente (no estricto)
+ *  - !== desigual o diferente (estricto, evalua el tipo de dato)
+ */
+
+function goToTheMovie(){
+    console.log("Estoy viendo la pelicula")
+}
+
+const MAX_AGE_MOVIE = 18 
+
+const persona = {
+    age: "18",
+    access: true
+}
+
+if (persona.age >= MAX_AGE_MOVIE){
+    goToTheMovie();
+} else if(persona.acces){
+    console.log(" Es V.I.P")
+}else{
+    console.log("No tiene acceso para ver la pelicula")
+}
