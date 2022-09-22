@@ -57,3 +57,18 @@ switch(persona.cash){
         console.log("puedes comprar manzanas y Bananas");
         break;
     }
+
+    /**
+ * El operador ternario
+ * - Uso de condicionales de una manera mas corta, menos lineas de codigo
+ * 
+ * condicion ? true_logic : false_logic
+ */
+
+ if(persona.age >= MAX_AGE_MOVIE){
+    goToTheMovie()
+ } else{
+    console.log("no puedes ingresar a ver la pelicula")
+ }
+
+ persona.age >= MAX_AGE_MOVIE ? goToTheMovie(): console.log("No puedes ingresar a ver la pelicula")
