@@ -39,3 +39,21 @@ if (persona.age >= MAX_AGE_MOVIE){
 }else{
     console.log("No tiene acceso para ver la pelicula")
 }
+/**
+ * Caso de switch
+ * - Funciona con el uso de 'case' 'break', 'default'
+ */
+
+persona.cash = 12
+
+switch(persona.cash){ 
+    case 5:
+        console.log("puedo comprar manzanas");
+        break;
+    case 6: 
+        console.log(" puedo comprar bananas");
+        break;
+    default:
+        console.log("puedes comprar manzanas y Bananas");
+        break;
+    }
