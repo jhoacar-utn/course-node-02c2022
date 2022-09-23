@@ -90,9 +90,66 @@
         * Sincrona ( no detiene el flujo del programa )
             * `.then()` metodo para controlar cuando es resuelta
             * `.catch()` usada cuando es rechazada
+                ```javascript
+                const promise = new Promise(handlePromise)
+
+                console.log(promise)
+
+                promise
+                    .then((result) => { console.log(result) })
+                    .catch( error => console.log(error) )
+
+                function handlePromise(resolve, reject) {
+
+                    setTimeout(() => {
+                        resolve("Ya han transcurrido un segundo")
+                    }, 1000)
+
+                    reject("Se rechaza la promesa")
+                }
+                ```
         * Asincrona ( detiene el flujo del programa )
             * `async` y `await` para esperar la ejecucion de la promesa
             * `try` y `catch` para controlar los errores
+                ```javascript
+                function sleep(miliseconds) {
+                    return new Promise(function (resolve, reject) {
+                        setTimeout(resolve, miliseconds)
+                    })
+                }
+
+                async function main() {
+
+                    /**
+                    * Uso de .then() y .catch()
+                    */
+                    console.log("\n[+] Ejecutando codigo sincrono")
+
+                    sleep(1000)
+                        .then(() => console.log("\n\tHa pasado un segundo (sincronamente)"))
+                        .catch(error => console.log(error))
+
+                    console.log("\n[+] Terminada la ejecucion del codigo sincrono")
+
+                    /**
+                    * Uso de async y await (si se usa 'await', si o si la funcion debe ser 'async')
+                    * - Nota: todas las funciones 'async' devuelven promesas
+                    */
+
+                    console.log("\n[+] Ejecutando codigo asincrono")
+                    
+                    try {
+                        await sleep(5000)
+                        console.log("\n\tHan pasado cinco segundos (asincronamente)")
+                    } catch (error) {
+                        console.log(error)
+                    }
+
+                    console.log("\n[+] Terminada la ejecucion del codigo asincrono")
+                }
+
+                main()
+                ```
 * Uso de `npm` (node package manager)
     * `npm install paquete@version` o `npm i paquete@version` 
         * Si no es especificada la version, se instalara la ultima
