@@ -71,7 +71,7 @@ function getIndexesFromArray(arrayA, arrayB) {
     const indexes = [];
 
     for (let i = 0; i < arrayB.length; i++) {
-        index = copyA.indexOf(arrayB[i]);
+        let index = copyA.indexOf(arrayB[i]);
         indexes.push(index)
         // Lo borramos directamente del array para evitar repetidos
         delete copyA[index] 
