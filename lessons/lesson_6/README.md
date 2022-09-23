@@ -153,6 +153,8 @@
 * Uso de `npm` (node package manager)
     * `npm install paquete@version` o `npm i paquete@version` 
         * Si no es especificada la version, se instalara la ultima
+        * Estas versiones estan organizadas semanticamente
+            * [versionado semantico](https://fperez217.medium.com/qu%C3%A9-es-versionamiento-sem%C3%A1ntico-bf495b9eb028) - [video](https://www.youtube.com/watch?v=hwlOuZvaDIA) - [Packagist Semver Checker](https://semver.madewithlove.com/?package=madewithlove%2Fhtaccess-cli&constraint=dev-main&stability=stable)
 * Uso de `fetch`
     * Realiza peticiones asincronas en internet
     * Nativo del navegador
