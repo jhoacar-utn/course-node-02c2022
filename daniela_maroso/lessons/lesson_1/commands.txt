@@ -3,11 +3,44 @@ ctrl + l -> Este shortcout limpia la consola
 ls -> Este comando es para listar en la carpeta actual los archivos o directorios presentes
 code carpeta -> Este comando es para abrir esa carpeta con VSC
 La tecla TAB, autocompletara los archivos o los comandos
+para la consola de powershell: crtl+c para salir del comando y cls para limpiar pantalla
+
+Ir a la carpeta del proyecto, boton derecho, abrir con GitBash y dar al comando code . esto hace se se abra en VSC la carpeta en la que estamos
 
 GIT 
 push -> sube archivos
 pull -> baja archivos
 add -> agrega archivos
-commit -> los registra (la pegatina!)
+commit -> los registra (la pegatina!), parche, mensaje, etc. 
 init -> para iniciar un proyecto (no lo usamos aca porque el proyecto ya estaba creado)
 
+Lenguajes:
+         Compilados:    pasa por una etapa de empaquetado para que la compu lo pueda interpretar. mas rapido y eficientes.
+         interpretados: no tienen la etapa de compilado. Se lee el codigo en tiempo real, linea por linea. son mas lentos 
+                        pero se pueden correjir en tiempo real al ir mostrando errores. Como python o JS.
+
+
+Protocolos de Comunicacion y Servicio:     esta es la base del backend!!!
+                                      IP: Ubicacion en la red, puede ser local, puede ser la web, etc (a donde esta la gilada que quiero mandar.)
+                                      Puerto: servicio (que es lo que quiero transmitir, cominucar, enviar, etc.)
+
+   como se envia la info   TCP: protocolo de control de transmision: lento pero garantiza que la info llegue. ej: pag web 
+                           UDP: protocolo de datagrama de usuario: rapido pero quien sabe si llega, solo me encargo de mandar. ej: videollamada. 
+
+   HTTP: protocolo de tranferencia de hipertexto: Cabecera: cookies, tokens, info de navegacion (metadatos)
+                                               Verbos: get, post, put, etc. (acciones para manupular el servidor)
+                                               Body:  datos que quiero mandar.
+
+   DNS: servicios de nombre de dominio: traduce de nombres a IPs. ej: lo de doy a la compu un nombre: github.com y el DNS ya sabe cual es su IP 
+
+   
+   DOCKER: sirve para crear maquinas virtuales y contenedores (el contenedor va muuucho mas rapido)
+          Imagen:      el sistema operativo simulado
+          Contenedor:  la imagen siendo ejecutada 
+          El comando docker run arrancara desde cero un contenedor con una imagen alpine (imagen de linux muy liviana) usando el comando de netcat (nc) con los parametros -v -l que se usaria para verbose que significa mostrar informacion demas y listen que se quede escuchando, asi como el -p 8888 para port especificandole el puerto.
+          -it es para que sea interactivo, es decir, no se cierre
+          --rm es para que luego de ejecutado se elimine el contenedor
+           -p 8888:8888 es para hacer mostrar el puerto del host con el contenedor
+          --network=host es para especificar que la red sea la misma que la maquina
+
+          
