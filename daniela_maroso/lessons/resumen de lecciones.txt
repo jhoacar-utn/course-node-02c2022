@@ -1,3 +1,4 @@
+================================CLASE 1===========================================
 git clone -> Este comando es usado para clonar un repo desde internet y descargarlo a la pc
 ctrl + l -> Este shortcout limpia la consola 
 ls -> Este comando es para listar en la carpeta actual los archivos o directorios presentes
@@ -33,14 +34,32 @@ Protocolos de Comunicacion y Servicio:     esta es la base del backend!!!
 
    DNS: servicios de nombre de dominio: traduce de nombres a IPs. ej: lo de doy a la compu un nombre: github.com y el DNS ya sabe cual es su IP 
 
-   
+========================================CLASE 2=========================================
+
    DOCKER: sirve para crear maquinas virtuales y contenedores (el contenedor va muuucho mas rapido)
           Imagen:      el sistema operativo simulado
           Contenedor:  la imagen siendo ejecutada 
-          El comando docker run arrancara desde cero un contenedor con una imagen alpine (imagen de linux muy liviana) usando el comando de netcat (nc) con los parametros -v -l que se usaria para verbose que significa mostrar informacion demas y listen que se quede escuchando, asi como el -p 8888 para port especificandole el puerto.
+          
+          El comando docker run arrancara desde cero un contenedor con una imagen alpine (imagen de linux muy liviana) 
+          usando el comando de netcat (nc) con los parametros -v -l que se usaria para verbose que significa mostrar informacion demas y
+          listen que se quede escuchando, asi como el -p 8888 para port especificandole el puerto.
           -it es para que sea interactivo, es decir, no se cierre
           --rm es para que luego de ejecutado se elimine el contenedor
            -p 8888:8888 es para hacer mostrar el puerto del host con el contenedor
           --network=host es para especificar que la red sea la misma que la maquina
 
-          
+========================================CLASE 3===============================================          
+NODE JS: permite interpretar codigo JS, pero no en un navegador, sino en una computadora.lo hace a traves de un motor V8. 
+        
+         ventaja: si mi pagina tiene mucha concurrencia: Si estás recibiendo una gran cantidad de datos concurrentes, tu base de datos puede ahogarse.
+                  Node.js maneja fácilmente las conexiones simultáneas, puedes empujar la base de datos escrita a un lado 
+                  y tratar con ella más tarde, para proceder como que si esta hubiera sido exitosa.
+                  Construcción rápida y escalable de aplicaciones de red, debido a que es capaz de manejar 
+                  un gran número de conexiones simultáneas con alto rendimiento, lo que equivale a una alta escalabilidad. 
+                  Ademas se adapta tanto al back como al front
+                  ej: chats, contadores de likes, etc. 
+                 
+                  NO quieres usar Node.js para operaciones intensivas de CPU
+
+
+                  
