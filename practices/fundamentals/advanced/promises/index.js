@@ -7,6 +7,14 @@
  *  - Pending (pendiente)-> por defecto
  *  - Fullfield (completado, resuelto o exitoso)
  *  - Rejected (rechazado)
+ *
+ * Para controlar las promesas necesitamos invocar dos funciones:
+ *  - .then() 
+ *       - esta funcion recibe una callback que se ejecutara
+ *          cuando la promesa se halla resuelto
+ * - .catch()
+ *      - esta funcion recibe una callback que se ejecutara
+ *          cuando la promesa se halla rechazado
  */
 const promise = new Promise(handlePromise)
 
