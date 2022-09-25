@@ -41,3 +41,16 @@ switch(persona.cash){
     default:
         console.log("puede comprar mandarinas y tomates");
 }
+
+/*Uso de Operador Ternario*/
+
+persona.age >= MAX_AGE_DISCO ? goToDisco() : console.log("No tienes la edad permitidaa");
+
+/*Operadores Lógicos*/
+
+if(persona.age >= MAX_AGE_DISCO && persona.access){
+    console.log("Esta persona es mayor y es VIP");
+}
+if(persona.age >= MAX_AGE_DISCO || persona.access){
+    console.log("Esta persona puede acceder pero no tiene todo los privilegios");
+}
