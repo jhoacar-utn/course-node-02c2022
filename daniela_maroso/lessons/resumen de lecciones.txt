@@ -28,9 +28,9 @@ Protocolos de Comunicacion y Servicio:     esta es la base del backend!!!
    como se envia la info   TCP: protocolo de control de transmision: lento pero garantiza que la info llegue. ej: pag web 
                            UDP: protocolo de datagrama de usuario: rapido pero quien sabe si llega, solo me encargo de mandar. ej: videollamada. 
 
-   HTTP: protocolo de tranferencia de hipertexto: Cabecera: cookies, tokens, info de navegacion (metadatos)
-                                               Verbos: get, post, put, etc. (acciones para manupular el servidor)
-                                               Body:  datos que quiero mandar.
+   HTTP: protocolo de tranferencia de hipertexto:  Cabecera: cookies, tokens, info de navegacion (metadatos)
+                                                   Verbos: get, post, put, etc. (acciones para manupular el servidor)
+                                                   Body:  datos que quiero mandar.
 
    DNS: servicios de nombre de dominio: traduce de nombres a IPs. ej: lo de doy a la compu un nombre: github.com y el DNS ya sabe cual es su IP 
 
@@ -49,7 +49,8 @@ Protocolos de Comunicacion y Servicio:     esta es la base del backend!!!
           --network=host es para especificar que la red sea la misma que la maquina
 
 ========================================CLASE 3===============================================          
-NODE JS: permite interpretar codigo JS, pero no en un navegador, sino en una computadora.lo hace a traves de un motor V8. 
+
+NODE JS: permite interpretar codigo JS, pero no en un navegador, sino en una computadora. Lo hace a traves del motor V8 de Google. 
         
          ventaja: si mi pagina tiene mucha concurrencia: Si estás recibiendo una gran cantidad de datos concurrentes, tu base de datos puede ahogarse.
                   Node.js maneja fácilmente las conexiones simultáneas, puedes empujar la base de datos escrita a un lado 
@@ -60,6 +61,12 @@ NODE JS: permite interpretar codigo JS, pero no en un navegador, sino en una com
                   ej: chats, contadores de likes, etc. 
                  
                   NO quieres usar Node.js para operaciones intensivas de CPU
+
+¿Cual es la diferencia entre trabajar con node.js en consola vs el navegador?
+
+Cuando se ejecuta codigo JS en el navegador tengo acceso a un documento HTML, es decir tengo acceso al DOM. Puedo trabajar con las etiquetas,
+botones, y todo lo que tenga que ver con lo visual y por lo tanto manipularlas. 
+En cambio en consola no hay etiquetas HTML, solo exiten modulos para interactura con el sistema operativo y no en base a etiquetas de HTML. 
 
 
                   
