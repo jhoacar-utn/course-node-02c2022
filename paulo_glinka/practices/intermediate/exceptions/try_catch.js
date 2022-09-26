@@ -1,9 +1,9 @@
 function division (numerador, denominador){
     if(isNaN(parseInt(numerador))){
-        throw new error ("el numerador debe ser un numero")
+        throw new Error ("el numerador debe ser un numero")
     }
     if(isNaN(parseInt(denominador))){
-        throw new error ("el denominador debe ser un numero")
+        throw new Error ("el denominador debe ser un numero")
     }
     if (denominador == 0 ){
         /**
@@ -18,11 +18,11 @@ function division (numerador, denominador){
 }
 // try -> intentar
 try {
-    division("hola","mundo")
-} catch (error) { // si ocurre un error utilizamos el catch -> agarrar 
+    division("hola","mundo")    
+} catch (error) { // Si ocurre un error, utilizamos el 'catch' -> agarrar
     console.log(error.message)
 }
 
-
+console.log("Estoy contiuando el flujo del programa")
 
 
