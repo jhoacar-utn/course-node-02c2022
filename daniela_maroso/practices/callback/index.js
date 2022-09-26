@@ -2,6 +2,8 @@
 /** Una callback es una funcion que se recibe por parametros y se invoca adentro de otra funcion
  *  Su traduccion seria "llamada de vuelta" (call-back)
  * 
+ * Es una funcion que depende de otra 
+ * 
  * La funcion mostrar recibe los dos primeros parametros y se los pasa a la funcion que se pase un por tercer parametro
  * La funcion callback del tercer parametro recibe tambien un string con informacion en el tercer parametro */
 

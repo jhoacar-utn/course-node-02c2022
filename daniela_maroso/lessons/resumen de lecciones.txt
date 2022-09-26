@@ -68,5 +68,7 @@ Cuando se ejecuta codigo JS en el navegador tengo acceso a un documento HTML, es
 botones, y todo lo que tenga que ver con lo visual y por lo tanto manipularlas. 
 En cambio en consola no hay etiquetas HTML, solo exiten modulos para interactura con el sistema operativo y no en base a etiquetas de HTML. 
 
+=======================================CLASE 4 ====================================================
+
 
                   
