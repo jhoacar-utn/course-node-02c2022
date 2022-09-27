@@ -326,7 +326,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 6 (Asincronismo, Promesas y Excepciones en Javascript)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_6">Clase 6</a> (Asincronismo, Promesas y Excepciones en Javascript)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es el Asincronismo? ¿Para que me puede servir?</h2></summary>
@@ -379,7 +379,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 7 (Introduccion a Express)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_7">Clase 7</a> (Introduccion a Express)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es Express? ¿Para que me puede servir? </h2></summary>
