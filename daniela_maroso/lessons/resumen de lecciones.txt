@@ -70,5 +70,23 @@ En cambio en consola no hay etiquetas HTML, solo exiten modulos para interactura
 
 =======================================CLASE 4 ====================================================
 
+OBJETOS: es un tipo de dato que tiene propiedades asociadas a el.  
+         Basicamente todo lo que no es un undefined , null , boolean , number o string es un objeto. 
+         Un objeto se inicia con {}      
+         ej: 
+         var myCar = {
+                 make: 'Ford',
+                 model: 'Mustang',
+                 year: 1969
+                         };   
+                        
+ARRAYS: Es un tipo de objetos que se utilizan cuando almacenamos múltiples valores de una sola variable, 
+        mientras que un objeto puede contener múltiples variables con sus valores. Se inicia con []
 
-                  
+Diferencias entre funciones normales (function) y funciones flecha (arrow =>):
+
+no son muy diferentes en cuanto a su funcionalidad. Pero, en las funciones flecha, this no hace referencia 
+a la instancia del objeto en el que se define, sino que hace referencia al ámbito al que this hace referencia externamente. 
+Esto significa que las funciones flecha no son la mejor opción a la hora definir un método de un objeto, 
+ya que querrás tener acceso al objeto dentro de al función. 
+
