@@ -79,9 +79,14 @@ OBJETOS: es un tipo de dato que tiene propiedades asociadas a el.
                  model: 'Mustang',
                  year: 1969
                          };   
+
+        La gracia es que puedo agregar mas objetos o propiedades a este objeto, se pueden modificar, manipular, etc.                  
                         
-ARRAYS: Es un tipo de objetos que se utilizan cuando almacenamos múltiples valores de una sola variable, 
+ARRAYS: o Vectores, es un tipo de objetos que se utilizan cuando almacenamos múltiples valores de una sola variable, 
         mientras que un objeto puede contener múltiples variables con sus valores. Se inicia con []
+        ej: [pablo, marcela, rodrigo, juana,] mi array es de personas.
+        ej: [  0  ,    1   ,    2   ,    3  ]  segun posicion, comienzan del cero. 
+
 
 Diferencias entre funciones normales (function) y funciones flecha (arrow =>):
 
@@ -90,3 +95,19 @@ a la instancia del objeto en el que se define, sino que hace referencia al ámbi
 Esto significa que las funciones flecha no son la mejor opción a la hora definir un método de un objeto, 
 ya que querrás tener acceso al objeto dentro de al función. 
 
+Variable this: se usa en fn no anonimas, (en las anonimas this se encuentra vacia), pero en caso de una fn definida, la variable
+               puede acceder a los datos o variablels dentro de la fn o definidos previamente. 
+
+
+EVENTOS: relacionan una callback a un string.
+         En el front:
+         Son la manera para controlar las acciones de los visitantes y definir un comportamiento de la página cuando se produzcan. 
+         Cuando un usuario visita una página web e interactúa con ella se producen los eventos y con js podemos definir qué queremos 
+         que ocurra cuando se produzcan los eventos. 
+         ej: cuando se emita un evento tipo "click" se ejecute un evento tipo "mostar".  
+        En el back:
+        Se usan para crear los servidores. 
+        ej: fn (req, res) 
+
+
+======================================CLASE 5 =====================================================
