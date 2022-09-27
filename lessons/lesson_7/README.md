@@ -9,7 +9,21 @@
         * `package-lock.json` (Configuracion final del proyecto con dependencias finales instaladas)
     * Scripts para la ejecucion con `node`
         * Uso de `npm start` o `npm run start`
+            ```json
+            {
+                "scripts":{
+                    "start": "node ."
+                }
+            }
+            ```
         * Uso de `npm test` o `npm run test`
+            ```json
+            {
+                "scripts":{
+                    "test": "jest"
+                }
+            }
+            ```
 * Instalacion de `express` usando `npm` (`npm install express` o `npm i express`)
     * Uso de dos ficheros para la creacion del servidor
         * `server.js` - Configuracion del servidor
@@ -33,6 +47,16 @@
             })
             ```
 
+    * Instalacion de `nodemon` (`npm i -D nodemon`)
+        * `package.json`
+            ```json
+            {
+                "scripts":{
+                    "dev": "nodemon"
+                }
+            }
+            ```
+        * Para ejecutarlo se realizaria usando `npm run dev`
     * Configuracion de rutas
         * Uso de `.get()`, `.post()`, `.put()`, `.delete()` y otros verbos de `HTTP`
         * Uso de `.use()` para que haga match con todos los verbos
@@ -137,6 +161,35 @@
              */
             function mensaje(request,response,next){
                 response.send(`<h1>Bienvenido ${request.query.nombre}</h1>`)
+            }
+
+            module.exports = app
+            ```
+    
+    * Uso de `express-validator` para validar la informacion del usuario
+        
+        * `npm i express-validator` ([express-validator](https://express-validator.github.io))
+            
+            ```javascript
+            const express = require("express")
+            const { query, validationResult } = require("express-validator")
+
+            const app = express()
+
+            app.use(express.urlencoded({ extended: false }))
+            app.use(express.json())
+
+            app.get("/usuario",query("name").notEmpty(),message)
+
+            function message(req,res){
+
+                const errors = validationResult(req)
+    
+                if (!errors.isEmpty()) {
+                    return res.send("<h1>Se debe proporcionar un nombre</h1>")
+                }
+
+                res.send(`<h1>Bienvenido ${req.query.name}</h1>`)
             }
 
             module.exports = app
