@@ -40,6 +40,20 @@
                 * Primer parametro sera la ruta donde se invocara
                 * Segundo y resto de parametros seran callbacks que reciben tres parametros
                     * El primero sera la `request` o la peticion del usuario
+                        * La informacion enviada por el usuario puede ser extraida por tres maneras
+                            * Por parametro en la **URL** (`/user/:id/`)
+                                * `request.params` 
+                            * Por parametros en la **QUERY DE LA URL** (`/user/?id=124` o `/user?id=124`)
+                                * Es necesario usar un middleware para ello
+                                    ```javascript
+                                    app.use(express.urlencoded({ extended: false}))
+                                    ```
+                                * `request.query`
+                            * Por cuerpo de la peticion (para peticiones `POST` o `PUT`)
+                                * Es necesario usar un middleware para ello
+                                    ```javascript
+                                    app.use(express.json())
+                                    ```
                     * El segundo sera la `response` o el objeto para la respuesta al usuario
                     * El tercero sera una funcion llamada `next` que se invocara para seguir el flujo de callbacks que se encuentren en la funcion principal (`use`,`get`,...)
 
@@ -50,11 +64,53 @@
 
             const app = express()
 
-            app.get("/",handleRootRequest)
+            app.use(express.urlencoded({ extended: false }))
+            app.use(express.json())
 
-            function handleRootRequest(req,res,next){
-                res.send("Hola desde el servidor")
-            }
+            /**
+            * Request principal mediante el verbo GET
+            * - Ejemplo de peticion:
+            *      
+            *      GET http://localhost:8888/?prueba=hola
+            * 
+            */
+            app.get("/", (req, res, next) => {
+                res.json({
+                    "QUERY": req.query
+                })
+            })
+
+            /**
+            * Request especifica mediante el verbo POST para enviar informacion
+            * - Ejemplo de peticion
+            * 
+            *      POST http://localhost:8888
+            *      Content-Type: application/json
+            * 
+            *      {"mensaje":"hola mundo"}
+            */
+            app.post("/", (req, res, next) => {
+                res.json({
+                    "BODY": req.body
+                })
+            })
+
+            /**
+            * Request especifica mediante el verbo GET usando una navegacion dinamica
+            * - Ejemplo de peticion
+            *  
+            *      POST http://localhost:8888/una-cosa/otra-cosa?mensaje=hola mundo
+            *      Content-Type: application/json
+            *
+            *      {"prueba":"hecha la prueba"}
+            */
+            app.post("/:opcional?/:algo", (req, res, next) => {
+                res.json({
+                    "PARAMS": req.params,
+                    "QUERY": req.query,
+                    "BODY": req.body,
+                })
+            })
 
             module.exports = app
             ```
@@ -125,4 +181,9 @@
                             "test": "cross-env NODE_ENV=test jest"
                         }
                     }
+                    ```
+                * Para acceder a esta variable de entorno llamada `NODE_ENV` en nuestro codigo
+                lo hacemos con el uso de `process.env`, ejemplo:
+                    ```javascript
+                    console.log(process.env.NODE_ENV)
                     ```

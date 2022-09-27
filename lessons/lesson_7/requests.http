@@ -1,0 +1,16 @@
+GET http://localhost:8888/?mensaje=hola
+
+###
+
+POST http://localhost:8888
+Content-Type: application/json
+
+{"mensaje":"hola mundo"}
+
+###
+
+POST http://localhost:8888/una-cosa/otra-cosa?mensaje=aca en la query
+Content-Type: application/json
+
+{"mensaje":"hola mundo"}
+
