@@ -9,7 +9,21 @@
         * `package-lock.json` (Configuracion final del proyecto con dependencias finales instaladas)
     * Scripts para la ejecucion con `node`
         * Uso de `npm start` o `npm run start`
+            ```json
+            {
+                "scripts":{
+                    "start": "node ."
+                }
+            }
+            ```
         * Uso de `npm test` o `npm run test`
+            ```json
+            {
+                "scripts":{
+                    "test": "jest"
+                }
+            }
+            ```
 * Instalacion de `express` usando `npm` (`npm install express` o `npm i express`)
     * Uso de dos ficheros para la creacion del servidor
         * `server.js` - Configuracion del servidor
@@ -33,6 +47,16 @@
             })
             ```
 
+    * Instalacion de `nodemon` (`npm i -D nodemon`)
+        * `package.json`
+            ```json
+            {
+                "scripts":{
+                    "dev": "nodemon"
+                }
+            }
+            ```
+        * Para ejecutarlo se realizaria usando `npm run dev`
     * Configuracion de rutas
         * Uso de `.get()`, `.post()`, `.put()`, `.delete()` y otros verbos de `HTTP`
         * Uso de `.use()` para que haga match con todos los verbos
@@ -40,6 +64,20 @@
                 * Primer parametro sera la ruta donde se invocara
                 * Segundo y resto de parametros seran callbacks que reciben tres parametros
                     * El primero sera la `request` o la peticion del usuario
+                        * La informacion enviada por el usuario puede ser extraida por tres maneras
+                            * Por parametro en la **URL** (`/user/:id/`)
+                                * `request.params` 
+                            * Por parametros en la **QUERY DE LA URL** (`/user/?id=124` o `/user?id=124`)
+                                * Es necesario usar un middleware para ello
+                                    ```javascript
+                                    app.use(express.urlencoded({ extended: false}))
+                                    ```
+                                * `request.query`
+                            * Por cuerpo de la peticion (para peticiones `POST` o `PUT`)
+                                * Es necesario usar un middleware para ello
+                                    ```javascript
+                                    app.use(express.json())
+                                    ```
                     * El segundo sera la `response` o el objeto para la respuesta al usuario
                     * El tercero sera una funcion llamada `next` que se invocara para seguir el flujo de callbacks que se encuentren en la funcion principal (`use`,`get`,...)
 
@@ -50,10 +88,108 @@
 
             const app = express()
 
-            app.get("/",handleRootRequest)
+            app.use(express.urlencoded({ extended: false }))
+            app.use(express.json())
 
-            function handleRootRequest(req,res,next){
-                res.send("Hola desde el servidor")
+            /**
+            * Request principal mediante el verbo GET
+            * - Ejemplo de peticion:
+            *      
+            *      GET http://localhost:8888/?prueba=hola
+            * 
+            */
+            app.get("/", (req, res, next) => {
+                res.json({
+                    "QUERY": req.query
+                })
+            })
+
+            /**
+            * Request especifica mediante el verbo POST para enviar informacion
+            * - Ejemplo de peticion
+            * 
+            *      POST http://localhost:8888
+            *      Content-Type: application/json
+            * 
+            *      {"mensaje":"hola mundo"}
+            */
+            app.post("/", (req, res, next) => {
+                res.json({
+                    "BODY": req.body
+                })
+            })
+
+            /**
+            * Request especifica mediante el verbo GET usando una navegacion dinamica
+            * - Ejemplo de peticion
+            *  
+            *      POST http://localhost:8888/una-cosa/otra-cosa?mensaje=hola mundo
+            *      Content-Type: application/json
+            *
+            *      {"prueba":"hecha la prueba"}
+            */
+            app.post("/:opcional?/:algo", (req, res, next) => {
+                res.json({
+                    "PARAMS": req.params,
+                    "QUERY": req.query,
+                    "BODY": req.body,
+                })
+            })
+
+            /**
+             * Ejemplo de uso de un middleware (codigo que se pone en medio)
+             * para permitir o no el paso de una ruta
+             */
+            app.get("/usuario",validacion,mensaje)
+
+            /** 
+             * Funcion que cumple la funcion de middleware
+             * Se pondra en medio para verificar la informacion antes del resultado final
+            */
+            function validacion(request,response,next){
+                
+                if(request.query.nombre){ 
+                    // Si ha permitido un 'nombre' en la url, puede continuar
+                    return next()
+                }else{
+                    return response.send("<h1>Necesita tener un nombre para esta ruta</h1>")
+                }
+            }
+            /**
+             * Funcion que cumple la funcion de controlador
+             * Mostrara el resultado final
+             */
+            function mensaje(request,response,next){
+                response.send(`<h1>Bienvenido ${request.query.nombre}</h1>`)
+            }
+
+            module.exports = app
+            ```
+    
+    * Uso de `express-validator` para validar la informacion del usuario
+        
+        * `npm i express-validator` ([express-validator](https://express-validator.github.io))
+            
+            ```javascript
+            const express = require("express")
+            const { query, validationResult } = require("express-validator")
+
+            const app = express()
+
+            app.use(express.urlencoded({ extended: false }))
+            app.use(express.json())
+
+            app.get("/usuario",query("name").notEmpty(),message)
+
+            function message(req,res){
+
+                const errors = validationResult(req)
+    
+                if (!errors.isEmpty()) {
+                    return res.send("<h1>Se debe proporcionar un nombre</h1>")
+                }
+
+                res.send(`<h1>Bienvenido ${req.query.name}</h1>`)
             }
 
             module.exports = app
@@ -125,4 +261,9 @@
                             "test": "cross-env NODE_ENV=test jest"
                         }
                     }
+                    ```
+                * Para acceder a esta variable de entorno llamada `NODE_ENV` en nuestro codigo
+                lo hacemos con el uso de `process.env`, ejemplo:
+                    ```javascript
+                    console.log(process.env.NODE_ENV)
                     ```
