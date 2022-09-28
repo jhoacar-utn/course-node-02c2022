@@ -334,20 +334,26 @@
         const fs = require("fs")
         const app = express()
 
-        function Modelo(data){
+        function Modelo(data) {
             /**
-             * Guardamos la variable que nos viene en la creacion de nuestro objeto (contexto o entorno)
+            * Guardamos la variable que nos viene en la creacion de nuestro objeto (contexto o entorno)
+            * Y le añadimos un salto de linea para que sea linea por linea
             */
-            this.datos = data
+            this.datos = data + "\n"
             /**
-             * Esta funcion guardara los datos en la maquina en un archivo llamado 'data.txt'
+            * Esta funcion guardara los datos en la maquina en un archivo llamado 'data.txt'
             */
-            this.guardar = ()=>{
-                fs.writeFile("data.txt", this.datos)
+            this.guardar = () => {
+                fs.appendFile('data.txt', this.datos, (error) => {
+                    if (error)
+                        console.log("Ha ocurrido un error: ", error.message)
+                    else
+                        console.log('Guardado satisfactoriamente: ', this.datos);
+                });
             }
         }
-        
-        function controlador(request,response,next){
+
+        function controlador(request, response, next) {
             const nombre = request.query.name || "desconocido"
 
             // Vamos a contruir un nuevo modelo para guardar nuestra informacion
