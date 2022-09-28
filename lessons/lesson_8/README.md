@@ -400,67 +400,70 @@
     * Para levantar los servicios (sockets) de base de datos en nuestra maquina local, lo haremos usando `Docker` con el comando `docker-compose up -d` para ejecutar el archivo de `docker-compose.yml` que aparece en la raiz del repositorio
         
         * `docker-compose.yml`
-            ```yml
-            version: '3'
 
-            services:
+        ```yml
+        version: '3'
 
-            mysql:
-                image: mysql:5.7.39
-                container_name: mysql
-                restart: always
-                command: --default-authentication-plugin=mysql_native_password
-                ports:
-                - 3306:3306
-                environment:
-                MYSQL_ROOT_PASSWORD: root
-                MYSQL_DATABASE: utn
-                MYSQL_USER: utn
-                MYSQL_PASSWORD: utn
-                volumes:
-                - mysql_utn:/var/lib/mysql
-                
-            phpmyadmin:
-                image: phpmyadmin/phpmyadmin:5.2.0
-                container_name: phpmyadmin
-                restart: always
-                ports:
-                - 8080:80
-                environment:
-                PMA_HOST: mysql
-                PMA_PORT: 3306
-                depends_on:
-                - mysql
+        services:
 
-            mongo:
-                image: mongo:4.4-focal
-                container_name: mongo
-                restart: always
-                ports: 
-                - 27017:27017
-                environment:
-                MONGO_INITDB_ROOT_USERNAME: root
-                MONGO_INITDB_ROOT_PASSWORD: root
-                volumes:
-                - mongo_utn:/data/db
-
-            mongo_express:
-                image: mongo-express:1.0.0-alpha.4
-                container_name: mongo_express
-                restart: always
-                ports:
-                - 8081:8081
-                environment:
-                ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
-                depends_on:
-                - mongo
-
+        mysql:
+            image: mysql:5.7.39
+            container_name: mysql
+            restart: always
+            command: --default-authentication-plugin=mysql_native_password
+            ports:
+            - 3306:3306
+            environment:
+            MYSQL_ROOT_PASSWORD: root
             volumes:
-            mongo_utn:
-                external: false 
-            mysql_utn:
-                external: false 
-            ```
+            - mysql_utn:/var/lib/mysql
+            # Este volumen es para darle un archivo a ejecutar al iniciar este servicio
+            - ./docker/mysql:/docker-entrypoint-initdb.d:ro
+            
+        phpmyadmin:
+            image: phpmyadmin/phpmyadmin:5.2.0
+            container_name: phpmyadmin
+            restart: always
+            ports:
+            - 8080:80
+            environment:
+            PMA_HOST: mysql
+            PMA_PORT: 3306
+            depends_on:
+            - mysql
+
+        mongo:
+            image: mongo:4.4-focal
+            container_name: mongo
+            restart: always
+            ports: 
+            - 27017:27017
+            environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+            volumes:
+            - mongo_utn:/data/db
+            # Este volumen es para darle un archivo a ejecutar al iniciar este servicio
+            - ./docker/mongo:/docker-entrypoint-initdb.d:ro 
+
+        mongo_express:
+            image: mongo-express:1.0.0-alpha.4
+            container_name: mongo_express
+            restart: always
+            ports:
+            - 8081:8081
+            environment:
+            ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017
+            depends_on:
+            - mongo
+
+        volumes:
+        mongo_utn:
+            external: false 
+        mysql_utn:
+            external: false 
+        ```
+
     * Ejecutado el comando `docker-compose up -d` vamos a poder visualizar dos servicios para ver nuestros gestores de base de datos, en nuestro caso, tendremos dos, `MySQL` y `MongoDB`
         * Para visualizar nuestro `MySQL` iremos a nuestro `PHPMyAdmin` que se encuentra en [http://localhost:8080](http://localhost:8080)
             * Una vez en el navegador usaremos el usuario `utn` y contraseña `utn` para navegar en las bases de datos
