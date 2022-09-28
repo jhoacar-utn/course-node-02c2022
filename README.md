@@ -504,7 +504,7 @@
   <details>
     <summary><h2>Configuracion de entorno de desarrollo</h2></summary>
 
-  * Linter [ESLint + Prettier](https://blog.bitsrc.io/how-to-set-up-node-js-application-with-eslint-and-prettier-b1b7994db69f)
+  * Linter - [ESLint](https://dev.to/drsimplegraffiti/eslint-configuration-for-node-project-275l) [ESLint + Prettier](https://blog.bitsrc.io/how-to-set-up-node-js-application-with-eslint-and-prettier-b1b7994db69f)
     * `npm install eslint eslint-config-prettier prettier –-save-dev`
     * In file `.eslintrc.json`
     
