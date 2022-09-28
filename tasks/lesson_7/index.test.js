@@ -8,7 +8,7 @@ describe("Operaciones aritmeticas", () => {
             expect(sum(1, 2)).toBe(3)
         })
 
-        test.skip("Deberia poder sumar los numeros con su valor numerico y no como cadena de texto", () => {
+        test("Deberia poder sumar los numeros con su valor numerico y no como cadena de texto", () => {
             expect(sum("1", "2")).toBe(3);
         })
 
