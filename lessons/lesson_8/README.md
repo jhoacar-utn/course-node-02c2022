@@ -98,11 +98,26 @@
 
                 const app = express()
 
+                /**
+                 * Si no usamos esta linea de codigo no tendremos acceso
+                 * a la request.body cuando sea enviado un formulario
+                 * con el 'Content-Type: application/x-www-form-urlencoded'
+                */
+                app.use(express.urlencoded({ extended: false}))
+
                 /** 
                  * Si no usamos esta linea de codigo no tendremos acceso
                  * a la request.body cuando sea enviado un JSON
+                 * con el 'Content-Type: application/json'
                 */
                 app.use(express.json())
+
+                /**
+                 * Para el ultimo caso de 'Content-Type: multipart/form-data'
+                 * Tendremos que usar de una libreria para que procese estos formularios
+                 * ya que contendran archivos, esto lo trabajaremos mas adelante
+                 * usando el paquete de 'multer'
+                 */
 
                 /**
                  * Al trabajar con el cuerpo de la peticion (body request)
@@ -127,8 +142,8 @@
                  *          - {"nombre":"jhoan","apellido":"carrero"}
                  *
                  * Existe otra forma de enviar datos
-                 * Seria usando el Content-Type: multipart/form-data
-                 * Pero este tipo de formato es usado para enviar formulario con 'archivos',
+                 * Seria usando el 'Content-Type: multipart/form-data'
+                 * Pero este tipo de formato es usado para enviar formularios con 'archivos',
                  * Es otro formato y no es de gran relevancia aprenderlo, ya que por defecto
                  * todos los navegadores saben como estructurar estos datos para enviarlos
                  */
