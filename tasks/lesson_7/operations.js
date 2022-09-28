@@ -1,6 +1,6 @@
 const sum = function (...nums) {
 
-    const total = 0
+    let total = 0
 
     nums.map(number => total += number)
 
