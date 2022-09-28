@@ -18,9 +18,15 @@ app.get("/", (request,response,next)=>{
  *          de la carpeta que se va a servir, pero debe ser
  *          como una ruta absoluta en el directorio
  * 
+ * - La variable __dirname nos ayudara a utilizar una ruta absoluta
+ * 
+ * Por otro lado para integrarlo en una aplicacion de express
+ * debemos hacer uso de .use(), no funcionara con verbos, como .get()
+ * .post(), ...
  */
-const folderLesson1 = __dirname+"/lesson_1"
-app.get("/tasks/lesson_1",express.static(folderLesson1))
+const folderLesson1 = __dirname+"/lesson_1" 
+
+app.use("/tasks/lesson_1",express.static(folderLesson1))
 
 
 module.exports = app
