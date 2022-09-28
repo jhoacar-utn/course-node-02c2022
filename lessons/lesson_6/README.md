@@ -1,4 +1,4 @@
-# Contenidos vistos en clase:
+# Contenidos de la clase:
 
 * Manejo de excepciones
     * Uso de `try` y `catch` (para controlar los errores)

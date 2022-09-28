@@ -1,4 +1,4 @@
-# Contenidos vistos en clase:
+# Contenidos de la clase:
 
 * variables y constantes
     * uso de `var` para variables globales, no recomendado
