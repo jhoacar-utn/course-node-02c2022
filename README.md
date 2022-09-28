@@ -424,7 +424,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 8 (Patron de Diseño MVC)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_8">Clase 8</a> (Patron de Diseño MVC)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es el Patron MVC?</h2></summary>
