@@ -6,11 +6,16 @@ const axios = require("axios")
 
 const url = "http://localhost:8888"
 
-test("Deberia existir un servicio por el puerto 8888",async()=>{
-    try{
-        const response = await axios.get(url)
-    }catch(error){
-        console.log(error)
-    }
+describe("Testing sobre el puerto 8888 usando promesas", () => {
+
+    test("then/catch - Deberia existir un servicio por el puerto 8888", () => {
+        return expect(axios.get(url)).resolves.not.toBe(null);
+    })
+
+    test("async/await - Deberia existir un servicio por el puerto 8888", async () => {
+        await expect(axios.get(url)).resolves.not.toBe(null);
+    })
+
 })
+
 
