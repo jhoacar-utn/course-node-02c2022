@@ -5,8 +5,12 @@ const app = express();
 const form = require('./form')
 
 /**
- * Usando el 'barrel export' para obtener los paquetes
- * en una sola importacion
+ * Si usamos la funcion 'require' hacia una carpeta
+ * en este caso 'requests', buscara por defecto un archivo
+ * llamado 'index.js' y aprovechando que este archivo
+ * exportara todo el contenido de la carpeta, lo haremos
+ * usando el 'barrel export' para obtener los paquetes
+ * en una sola importacion mediante el 'destructuring'
  */
 const { params, query, body } = require('./requests')
 

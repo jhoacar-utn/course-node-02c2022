@@ -1,8 +1,6 @@
 const request = require('supertest');
 
-const params = require('./requests/params');
-const query = require('./requests/query');
-const body = require('./requests/body');
+const { params, query, body } = require("./requests");
 
 describe('Testing sobre la request', () => {
   

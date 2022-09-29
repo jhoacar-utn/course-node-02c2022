@@ -3,15 +3,18 @@
  * y es comunmente usado para permitir las
  * exportaciones individuales de cada archivo
  * 
- * Asi de esta manera se puede hacer de dos formas:
+ * Asi de esta manera se puede importar mas comodamente:
+ * 
+ *             usando una importacion especifica
  * 
  * - const params = require("./request/params");
  *                  
- *              o usando el destructuring
+ *              usando el destructuring
  * 
  * - const { params } = require("./request");
  * 
- *    o usando el destructuring con un nombre cualquiera
+ *              o usando el destructuring 
+ *              con un nombre cualquiera
  * 
  * - const { params: parametros } = require("./request");
  */
