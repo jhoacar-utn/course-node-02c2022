@@ -1,0 +1,27 @@
+### Request del usuario (usando un json)
+POST http://localhost:8888/usuario
+Content-Type: application/json
+
+{"nombre":"pedro", "apellido": "perez"}
+
+### Request del usuario (usando un formulario)
+POST http://localhost:8888/usuario
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 27
+
+nombre=pedro&apellido=perez
+
+### Request del usuario (usando un formulario - con un archivo)
+POST http://localhost:8888/usuario
+Content-Type: multipart/form-data; boundary=--------------------------568790206976467115569828
+Content-Length: 278
+
+----------------------------568790206976467115569828
+Content-Disposition: form-data; name="nombre"
+
+pedro
+----------------------------568790206976467115569828
+Content-Disposition: form-data; name="apellido"
+
+perez
+----------------------------568790206976467115569828--

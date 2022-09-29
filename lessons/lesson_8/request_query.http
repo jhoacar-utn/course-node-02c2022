@@ -1,0 +1,6 @@
+### Request del usuario
+GET http://localhost:8888/usuario
+### Request del usuario con nombre
+GET http://localhost:8888/usuario/?nombre=pedro
+### Request del usuario con nombre y apellido
+GET http://localhost:8888/usuario?nombre=pedro&apellido=perez
