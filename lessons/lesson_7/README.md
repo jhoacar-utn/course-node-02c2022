@@ -1,4 +1,4 @@
-# Contenidos vistos en clase:
+# Contenidos de la clase:
 
 * Uso de `npm` (Node Package Manager - Manejador de Paquetes de Node)
     * Instalacion de paquetes (`npm install package@version` o `npm i package@version`)
@@ -73,7 +73,7 @@
                                     app.use(express.urlencoded({ extended: false}))
                                     ```
                                 * `request.query`
-                            * Por cuerpo de la peticion (para peticiones `POST` o `PUT`)
+                            * Por cuerpo de la peticion (para peticiones `POST`)
                                 * Es necesario usar un middleware para ello
                                     ```javascript
                                     app.use(express.json())

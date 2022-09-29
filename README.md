@@ -424,7 +424,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 8 (Patron de Diseño MVC)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_8">Clase 8</a> (Patron de Diseño MVC)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es el Patron MVC?</h2></summary>
@@ -504,7 +504,7 @@
   <details>
     <summary><h2>Configuracion de entorno de desarrollo</h2></summary>
 
-  * Linter [ESLint + Prettier](https://blog.bitsrc.io/how-to-set-up-node-js-application-with-eslint-and-prettier-b1b7994db69f)
+  * Linter - [ESLint](https://dev.to/drsimplegraffiti/eslint-configuration-for-node-project-275l) [ESLint + Prettier](https://blog.bitsrc.io/how-to-set-up-node-js-application-with-eslint-and-prettier-b1b7994db69f)
     * `npm install eslint eslint-config-prettier prettier –-save-dev`
     * In file `.eslintrc.json`
     
