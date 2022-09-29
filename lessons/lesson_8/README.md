@@ -412,56 +412,56 @@
             restart: always
             command: --default-authentication-plugin=mysql_native_password
             ports:
-            - 3306:3306
+                - 3306:3306
             environment:
-            MYSQL_ROOT_PASSWORD: root
+                MYSQL_ROOT_PASSWORD: root
             volumes:
-            - mysql_utn:/var/lib/mysql
-            # Este volumen es para darle un archivo a ejecutar al iniciar este servicio
-            - ./docker/mysql:/docker-entrypoint-initdb.d:ro
+                - mysql_utn:/var/lib/mysql
+                # Este volumen es para darle un archivo a ejecutar al iniciar este servicio
+                - ./docker/mysql:/docker-entrypoint-initdb.d:ro
             
         phpmyadmin:
             image: phpmyadmin/phpmyadmin:5.2.0
             container_name: phpmyadmin
             restart: always
             ports:
-            - 8080:80
+                - 8080:80
             environment:
-            PMA_HOST: mysql
-            PMA_PORT: 3306
+                PMA_HOST: mysql
+                PMA_PORT: 3306
             depends_on:
-            - mysql
+                - mysql
 
         mongo:
             image: mongo:4.4-focal
             container_name: mongo
             restart: always
             ports: 
-            - 27017:27017
+                - 27017:27017
             environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: root
+                MONGO_INITDB_ROOT_USERNAME: root
+                MONGO_INITDB_ROOT_PASSWORD: root
             volumes:
-            - mongo_utn:/data/db
-            # Este volumen es para darle un archivo a ejecutar al iniciar este servicio
-            - ./docker/mongo:/docker-entrypoint-initdb.d:ro 
+                - mongo_utn:/data/db
+                # Este volumen es para darle un archivo a ejecutar al iniciar este servicio
+                - ./docker/mongo:/docker-entrypoint-initdb.d:ro 
 
         mongo_express:
             image: mongo-express:1.0.0-alpha.4
             container_name: mongo_express
             restart: always
             ports:
-            - 8081:8081
+                - 8081:8081
             environment:
-            ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017
+                ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017
             depends_on:
-            - mongo
+                - mongo
 
         volumes:
-        mongo_utn:
-            external: false 
-        mysql_utn:
-            external: false 
+            mongo_utn:
+                external: false 
+            mysql_utn:
+                external: false 
         ```
 
     * Ejecutado el comando `docker-compose up -d` vamos a poder visualizar dos servicios para ver nuestros gestores de base de datos, en nuestro caso, tendremos dos, `MySQL` y `MongoDB`
