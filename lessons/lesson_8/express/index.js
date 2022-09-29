@@ -2,8 +2,6 @@ const express = require("express")
 
 const app = express();
 
-const form = require('./form')
-
 /**
  * Si usamos la funcion 'require' hacia una carpeta
  * en este caso 'requests', buscara por defecto un archivo
@@ -46,8 +44,12 @@ const next = require("./next");
 // app.use(next);
 
 /**
- * Uso de un formulario de ejemplo
+ * Uso de un formulario de ejemplo,
+ * usando una aplicacion y especificandole
+ * una ruta especifica donde sera usada
  */
+const form = require('./form')
+
 app.use('/formulario',form);
 
 /**
