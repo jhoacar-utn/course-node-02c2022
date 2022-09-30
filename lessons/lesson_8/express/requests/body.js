@@ -10,7 +10,7 @@ const app = express();
  * de controlar alguna ruta, porque simplemente, sera informacion
  * Ejemplo:
  *
- * ( Como si fuera un JSON )
+ * ( Como si fuera un JSON - Javascript Object Notation )
  *
  *          - POST http://localhost:8888/usuario
  *          - Content-Type: application/json
