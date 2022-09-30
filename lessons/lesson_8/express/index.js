@@ -27,7 +27,7 @@ const next = require("./next");
 /**
  * Uso de requests
  */
-// app.use(params);
+app.use(params);
 // app.use(query);
 // app.use(body);
 
