@@ -1,4 +1,4 @@
-# Contenidos vistos en clase:
+# Contenidos de la clase:
 
 * Diferencia entre arrow functions (`()=>{}`) y funciones comunes (`function(){}`)
 * Uso de `eventos`
