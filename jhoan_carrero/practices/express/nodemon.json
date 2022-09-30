@@ -1,0 +1,11 @@
+{
+    "verbose": "true",
+    "ignore": [
+        "node_modules"
+    ],
+    "watch": [
+        "**/*.js",
+        "package-lock.json"
+    ],
+    "exec": "node --trace-warnings --experimental-specifier-resolution=node index.js"
+}
