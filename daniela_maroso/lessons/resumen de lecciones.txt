@@ -105,11 +105,31 @@ EVENTOS: relacionan una callback a un string.
          Cuando un usuario visita una página web e interactúa con ella se producen los eventos y con js podemos definir qué queremos 
          que ocurra cuando se produzcan los eventos. 
          ej: cuando se emita un evento tipo "click" se ejecute un evento tipo "mostar".  
-        En el back:
-        Se usan para crear los servidores. 
-        ej: fn (req, res) 
+         En el back:
+         Se usan para crear los servidores. 
+         ej: fn (req, res) 
 
 
 ======================================CLASE 5 =====================================================
 
 Como arreglar un MERGING en git. 
+
+CONDICIONALES: 
+ 
+  Los condicionales son bloques de codigo que se ejecutaran apartir de una sentencia verdadera o falsa (condicion)
+  
+  - La sintaxis para los bloques son: if, else, else if, switch, operador ternario
+ 
+  - Los operadores de union usados para los condicionales son: && (AND) y  || (OR)
+  
+  - Los operadores de comparacion son:
+  
+    > mayor que
+    >= mayor igual que
+    < menor que
+    <= menor igual que
+    == igual (no estricto) - 18 == "18" -> TRUE
+    === igual (estricto, evalua el tipo de dato) - 18 === "18" -> FALSE el primero es un nro y el segundo dato un string
+    != desigual o diferente (no estricto)
+    !== desigual o diferente (estricto, evalua el tipo de dato)
+ 
