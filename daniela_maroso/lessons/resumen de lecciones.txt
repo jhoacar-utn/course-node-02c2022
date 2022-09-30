@@ -133,3 +133,5 @@ CONDICIONALES:
     != desigual o diferente (no estricto)
     !== desigual o diferente (estricto, evalua el tipo de dato)
  
+loops y map-functions. 
+
