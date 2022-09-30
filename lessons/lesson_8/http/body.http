@@ -1,0 +1,40 @@
+##################################################################
+### Request del usuario (usando un Texto Plano)
+##################################################################
+POST http://localhost:8888/usuario
+Content-Type: text/plain
+
+nombre=pedro
+apellido=perez
+
+##################################################################
+### Request del usuario (usando un JSON)
+##################################################################
+POST http://localhost:8888/usuario
+Content-Type: application/json
+
+{"nombre":"pedro", "apellido": "perez"}
+
+##################################################################
+### Request del usuario (usando un Formulario)
+##################################################################
+POST http://localhost:8888/usuario
+Content-Type: application/x-www-form-urlencoded
+
+nombre=pedro&apellido=perez
+
+##################################################################
+### Request del usuario (usando un Formulario - usado con archivos)
+##################################################################
+POST http://localhost:8888/usuario
+Content-Type: multipart/form-data; boundary=EstaEsUnaDivision
+
+--EstaEsUnaDivision
+Content-Disposition: form-data; name="nombre"
+
+pedro
+--EstaEsUnaDivision
+Content-Disposition: form-data; name="apellido"
+
+perez
+--EstaEsUnaDivision--
