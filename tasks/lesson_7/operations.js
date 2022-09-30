@@ -1,8 +1,14 @@
 const sum = function (...nums) {
 
-    const total = 0
+    let total = 0
 
-    nums.map(number => total += number)
+    nums.map(number => {
+        
+        if(isNaN(parseInt(number)))
+            throw new Error("Los parametros deben ser numeros")
+        
+        total += parseFloat(number)
+    })
 
     return total
 }
