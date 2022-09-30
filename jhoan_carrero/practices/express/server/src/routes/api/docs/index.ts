@@ -2,7 +2,7 @@ import swaggerJSDoc, { Options } from 'swagger-jsdoc';
 import { serve, setup } from 'swagger-ui-express';
 import { Router } from 'express';
 import { resolve, join } from 'path';
-import { getAllFiles } from '../../../utils/file';
+import { getAllFiles } from '@utils/file';
 
 const router = Router();
 

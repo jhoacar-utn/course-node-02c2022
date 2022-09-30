@@ -1,0 +1,48 @@
+{
+  "exclude": [
+    "dist",
+    "test",
+    "client"
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true
+  },
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "rootDir": "src",
+    "moduleResolution": "node",
+    "checkJs": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "baseUrl": "src",
+    "paths": {
+      "@routes": [
+        "routes",
+      ],
+      "@controllers": [
+        "controllers/*"
+      ],
+      "@models": [
+        "models"
+      ],
+      "@views": [
+        "views"
+      ],
+      "@middlewares": [
+        "middlewares"
+      ],
+      "@boot": [
+        "boot"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+    }
+  }
+}
