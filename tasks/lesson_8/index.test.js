@@ -1,9 +1,10 @@
+/* global describe, test, expect */
+/* eslint import/no-unresolved: "off" */
 const request = require('supertest');
 
-const app = require("./server");
+const app = require('./server');
 
 describe('Testing sobre la request', () => {
-  
   describe('Testing sobre la ruta /params usando request.params', () => {
     test('GET /params - deberia ser 404 Not Found', async () => {
       await request(app)
@@ -15,12 +16,12 @@ describe('Testing sobre la request', () => {
       await request(app)
         .get('/params/primero/opcional')
         .expect(200)
-        .expect((response)=>{
-            expect(response.body).toEqual({
-                first:"primero",
-                second:"opcional"
-            })
-        })
+        .expect((response) => {
+          expect(response.body).toEqual({
+            first: 'primero',
+            second: 'opcional',
+          });
+        });
     });
 
     test.skip('GET /params/:first/:second?/ - deberia devolver un JSON con el contenido de "req.params"', async () => {
@@ -28,9 +29,9 @@ describe('Testing sobre la request', () => {
         .get('/params/primero')
         .expect(200)
         .expect((response) => {
-            expect(response.body).toEqual({
-                first:"primero",
-            })
+          expect(response.body).toEqual({
+            first: 'primero',
+          });
         });
     });
   });
@@ -47,24 +48,22 @@ describe('Testing sobre la request', () => {
         .get('/query?nombre=pedro')
         .expect(200)
         .expect((response) => {
-            expect(response.body).toEqual({
-                nombre:"pedro",
-            })
+          expect(response.body).toEqual({
+            nombre: 'pedro',
+          });
         });
     });
   });
 
   describe('Testing sobre la ruta /body', () => {
-    
     test.skip('POST /body - debe ser 200 OK', async () => {
-        await request(app)
-          .post('/body')
-          .expect(200);
-      });
-  })
+      await request(app)
+        .post('/body')
+        .expect(200);
+    });
+  });
 
   describe('Testing sobre la ruta /body usando request.body (application/json)', () => {
-
     test.skip('POST /body - deberia devolver un JSON con el contenido de "req.body"', async () => {
       await request(app)
         .post('/body')
@@ -73,17 +72,14 @@ describe('Testing sobre la request', () => {
         })
         .expect(200)
         .expect((response) => {
-            expect(response.body).toEqual({
-                nombre:"pedro",
-            })
+          expect(response.body).toEqual({
+            nombre: 'pedro',
+          });
         });
     });
-
-    
   });
 
   describe('Testing sobre la ruta /body usando request.body (application/x-www-form-urlencoded)', () => {
-
     test.skip('POST /body - deberia devolver un JSON con el contenido de "req.body"', async () => {
       await request(app)
         .post('/body')
@@ -94,26 +90,23 @@ describe('Testing sobre la request', () => {
         .expect(200)
         .expect((response) => {
           expect(response.body).toEqual({
-            nombre: 'pedro'
-          })
+            nombre: 'pedro',
+          });
         });
     });
-
   });
 
   describe('Testing sobre la ruta /body usando request.body (multipart/form-data)', () => {
-    
     test.skip('POST /body - deberia devolver un JSON con el contenido de "req.body"', async () => {
       await request(app)
         .post('/body')
-        .field('nombre','pedro')
+        .field('nombre', 'pedro')
         .expect(200)
         .expect((response) => {
-            expect(response.body).toEqual({
-                nombre: 'pedro'
-              })
+          expect(response.body).toEqual({
+            nombre: 'pedro',
+          });
         });
     });
-
   });
 });

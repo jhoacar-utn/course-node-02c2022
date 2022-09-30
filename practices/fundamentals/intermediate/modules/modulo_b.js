@@ -1,6 +1,5 @@
+const variableB = 'variable B';
 
-let variableB = "variable B";
+console.log('Estoy en el modulo B');
 
-console.log("Estoy en el modulo B")
-
-module.exports = variableB
+module.exports = variableB;

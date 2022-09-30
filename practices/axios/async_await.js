@@ -1,16 +1,16 @@
-const axios = require("axios")
+/* eslint import/no-unresolved: "off" */
+const axios = require('axios');
 
-const url = "https://google.com"
+const url = 'https://google.com';
 
 const makeRequest = async () => {
-    
-    const response = await axios.get(url)
+  const response = await axios.get(url);
 
-    console.log("Se ha realizado la peticion y tambien procesado la data")
+  console.log('Se ha realizado la peticion y tambien procesado la data');
 
-    const text = response.data
+  const text = response.data;
 
-    console.log(text)
-}
+  console.log(text);
+};
 
-makeRequest()
+makeRequest();

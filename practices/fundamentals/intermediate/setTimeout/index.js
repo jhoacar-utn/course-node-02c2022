@@ -1,9 +1,8 @@
-
-function mostrarMensaje(){
-    console.log("Segundo mensaje")
+function mostrarMensaje() {
+  console.log('Segundo mensaje');
 }
 
+// El tiempo se medira en milisegundos, entonces 1000 sera un segundo
+setTimeout(mostrarMensaje, 1000);
 
-setTimeout(mostrarMensaje,1000) // El tiempo se medira en milisegundos, entonces 1000 sera un segundo
-
-console.log("Primer Mensaje")
+console.log('Primer Mensaje');

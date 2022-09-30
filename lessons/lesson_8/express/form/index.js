@@ -1,7 +1,8 @@
+/* eslint import/no-unresolved: "off" */
 const express = require('express');
 
-const app = express()
+const app = express();
 
-app.use(express.static(__dirname))
+app.use(express.static(__dirname));
 
 module.exports = app;

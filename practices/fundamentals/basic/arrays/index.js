@@ -4,17 +4,17 @@
  */
 
 const materias = [
-    "Programacion", // La primera posicion de un vector (array) es la 0 
-    "Dibujo",
-    "Deporte"
+  'Programacion', // La primera posicion de un vector (array) es la 0
+  'Dibujo',
+  'Deporte',
 ];
 
 const estudiante = {
-    nombre : "Juan",
-    materias: materias 
-}
+  nombre: 'Juan',
+  materias,
+};
 
-console.log(estudiante)
+console.log(estudiante);
 
 // Para mostrar la tercer materia que tiene el estudiante se hace:
-console.log(estudiante.materias[2])
+console.log(estudiante.materias[2]);
