@@ -111,3 +111,5 @@ EVENTOS: relacionan una callback a un string.
 
 
 ======================================CLASE 5 =====================================================
+
+Como arreglar un MERGING en git. 
