@@ -1,9 +1,10 @@
 import { Router, static as Static } from 'express';
-import { resolve, join } from 'path';
+import { resolve, join /* , dirname */ } from 'path';
+// import { fileURLToPath } from 'url';
 
 const router = Router();
 
-const client = resolve(join(__dirname, '../../../../client/dist'));
+const client = resolve(join(__dirname/* dirname(fileURLToPath(import.meta.url) */), '../../../../client/dist');
 
 router.use(Static(client));
 

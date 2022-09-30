@@ -1,3 +1,4 @@
+import { handleRegister } from '@src/controllers/user';
 import { Router } from 'express';
 
 const router = Router();
@@ -5,23 +6,49 @@ const router = Router();
 /**
  * @swagger
  * /api/user:
- *  get:
- *      summary: Get user
+ *  post:
+ *      summary: Register new user
  *      tags:
- *          - Usuario
- *      description: Show an html
+ *          - User
+ *      description: Register a new model of user
  *      produces:
- *          - text/html
+ *          - application/json
  *      parameters:
- *          - in: path
- *            name: id
- *            description: ID of advertsiment
+ *          - in: body
+ *            name: name
+ *            required: true
+ *            description: Name of the user
+ *            schema:
+ *              type: string
+ *              example: example
+ *          - in: body
+ *            name: email
+ *            required: true
+ *            description: Email of the user
+ *            schema:
+ *              type: email
+ *              example: example@example.com
+ *          - in: body
+ *            name: password
+ *            required: true
+ *            description: Password of the user
+ *            schema:
+ *              type: string
+ *              example: example
+ *          - in: body
+ *            name: confirmPassword
+ *            required: true
+ *            description: Confirmation password of the user
+ *            schema:
+ *              type: string
+ *              example: example
  *      responses:
- *          200:
- *              description: Advertisement by ID
+ *          201:
+ *              description: User registered succesfully
  *              schema:
- *              type: json
+ *                  type: json
+ *                  example: {"message":"User registered succesfully"}
  */
-router.get('/', (req, res) => { res.send('<h1>User</h1>'); });
+router.post('/', handleRegister);
 
 export default router;
