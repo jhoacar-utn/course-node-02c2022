@@ -1,4 +1,4 @@
-# Contenidos vistos en clase:
+# Contenidos de la clase:
 
 * `git clone` - Este comando es usado para clonar un repo desde internet y descargarlo a la pc
 * `Ctrl + L` - Este shortcout es usado para limpiar la consola, limpiar la pantalla
