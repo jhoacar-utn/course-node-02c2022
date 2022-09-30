@@ -1,29 +1,19 @@
-/* eslint-disable no-underscore-dangle */
-import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerJSDoc, { Options } from 'swagger-jsdoc';
 import { serve, setup } from 'swagger-ui-express';
 import { Router } from 'express';
-import path, { resolve } from 'path';
-import { fileURLToPath } from 'url';
+import { resolve, join } from 'path';
 import { getAllFiles } from '../../../utils/file';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const router = Router();
-/**
- * @return {Array}
- */
-const getFilesFromApi = () => {
-  const pathRoutes = resolve(`${__dirname}/../`);
+
+const getFilesFromApi = (): string[] => {
+  const pathRoutes = resolve(join(__dirname, '/../'));
 
   return getAllFiles(pathRoutes)
     .filter((file) => !file.includes(__dirname));
 };
 
-/**
- * @type {swaggerJSDoc.Options}
- */
-const swaggerOptions = {
+const swaggerOptions: Options = {
   swaggerDefinition: {
     info: {
       title: 'Titulo',
@@ -34,7 +24,10 @@ const swaggerOptions = {
         url: 'https://github.com/jhoacar',
       },
       description: 'Descripcion',
-      license: 'Licencia',
+      license: {
+        name: 'Nombre',
+        url: 'url',
+      },
       termsOfService: 'Terminos del servicio',
     },
     basePath: '/',
