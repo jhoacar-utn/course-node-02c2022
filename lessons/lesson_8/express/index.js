@@ -41,7 +41,7 @@ app.use('/json',json);
 /**
  * Uso de next
  */
-// app.use(next);
+app.use("/next",next);
 
 /**
  * Uso de un formulario de ejemplo,
