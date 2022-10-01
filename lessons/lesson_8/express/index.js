@@ -27,16 +27,16 @@ const next = require("./next");
 /**
  * Uso de requests
  */
-app.use(params);
-app.use(query);
-app.use(body);
+app.use('/params',params);
+app.use('/query',query);
+app.use('/body',body);
 
 /**
  * Uso de responses
  */
-app.use(send);
-app.use(sendFile);
-app.use(json);
+app.use('/send',send);
+app.use('/archivo',sendFile);
+app.use('/json',json);
 
 /**
  * Uso de next
@@ -53,15 +53,15 @@ const form = require('./form')
 app.use('/formulario',form);
 
 /**
+ * JSDoc
  * Uso de una callback para manejar peticiones no encontradas
- * @param {RequestHandler} req 
- * @param {Response} res 
- * @return
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
  */
-const handleNotFound = (req,res)=>{
+const handleNotFound = (req,res, next)=>{ 
     res.status(404).send('<h1>Not Found</h1>')
 }
-
 
 /**
  * Uso de la callback para manejar las peticiones no encontradas
