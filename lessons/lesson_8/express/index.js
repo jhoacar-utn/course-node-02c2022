@@ -27,16 +27,16 @@ const next = require("./next");
 /**
  * Uso de requests
  */
-// app.use(params);
-// app.use(query);
+app.use(params);
+app.use(query);
 app.use(body);
 
 /**
  * Uso de responses
  */
-// app.use(send);
-// app.use(sendFile);
-// app.use(json);
+app.use(send);
+app.use(sendFile);
+app.use(json);
 
 /**
  * Uso de next
