@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
  * de controlar alguna ruta, porque simplemente, sera informacion
  * extra que podemos interpretar
  * Ejemplo:
- *          - GET http://localhost:8888/usuario/?nombre=jhoan&apellido=carrero
+ *          - GET http://localhost:8888/usuario/?nombre=jhoan&apellido=carrero&hola=mundo
  *
  *          - GET http://localhost:8888/usuario?nombre=jhoan&apellido=carrero
  */
