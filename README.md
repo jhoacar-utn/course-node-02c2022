@@ -467,7 +467,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 9 (Clase de Repaso y Consultas)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_9">Clase 9</a> (Clase de Repaso y Consultas)</h1></summary>  
 
 * Repaso sobre servidores
 * Resolucion de problemas con docker
