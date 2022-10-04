@@ -38,7 +38,7 @@
 <hr>
 <details>
 
-  <summary><h1>Clase 1 (Nivelacion)</h1></summary>
+  <summary><h1><a href="lessons/lesson_1">Clase 1</a> (Nivelacion)</h1></summary>
 
   <details>
     <summary><h2>Lenguajes de Programacion (Compilados e Interpretados)</h2></summary>
@@ -134,7 +134,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 2 (Introduccion a Docker)</h1></summary>
+  <summary><h1><a href="lessons/lesson_2">Clase 2</a> (Introduccion a Docker)</h1></summary>
 
   <details>
     <summary><h2>¿Que es Docker? ¿Para que me puede servir? </h2></summary>
@@ -189,7 +189,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 3 (Introduccion a Node)</h1></summary>
+  <summary><h1><a href="lessons/lesson_3">Clase 3</a> (Introduccion a Node)</h1></summary>
 
   <details>
     <summary><h2>¿Que es NodeJS? - ¿Para que me puede servir?</h2></summary>
@@ -205,6 +205,8 @@
     <summary><h2>Instalacion de NodeJS</h2></summary>
 
   * [https://nodejs.org/es/download](https://nodejs.org/es/download/)
+  * [Uso de NVM](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows)
+  * [Instalacion de NVM](https://github.com/coreybutler/nvm-windows/releases)
   </details>
 
   <details>
@@ -226,46 +228,9 @@
 </details>
 
 <hr>
+
 <details>
-  <summary><h1>Clase 4 (Condicionales y Bucles)</h1></summary>
-
-  <details>
-    <summary><h2>Declaracion de condicionales</h2></summary>
-
-  * `if`
-  * `else`
-  * `operador ternario`
-  * `switch`
-  </details>
-  <details>
-    <summary><h2>Declaracion de ciclos</h2></summary>
-
-  * `while`
-  * `do-while`
-  * `for`
-  * `for in`
-  * `for of`
-  * Directivas de control de ciclos
-    * `continue`
-    * `break`
-    * `return`
-  </details>
-  <details>
-    <summary><h2>Comentarios de codigo</h2></summary>
-
-  * Comentarios de una linea
-  * Comentarios multilinea
-  * Comentarios para documentacion ([JSDocs Basics](https://jsdoc.app/about-getting-started.html))
-  </details>
-  <details>
-    <summary><h2>Practica de variables, condicionales y ciclos</h2></summary>
-  </details>
-
-</details>
-
-<hr>
-<details>
-  <summary><h1>Clase 5 (Funciones en Javascript)</h1></summary>
+  <summary><h1><a href="lessons/lesson_4">Clase 4</a> (Funciones en Javascript)</h1></summary>
 
   <details>
     <summary><h2>Semantica de funciones</h2></summary>
@@ -322,7 +287,46 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 6 (Asincronismo, Promesas y Excepciones en Javascript)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_5">Clase 5</a> (Condicionales y Bucles)</h1></summary>
+
+  <details>
+    <summary><h2>Declaracion de condicionales</h2></summary>
+
+  * `if`
+  * `else`
+  * `operador ternario`
+  * `switch`
+  </details>
+  <details>
+    <summary><h2>Declaracion de ciclos</h2></summary>
+
+  * `while`
+  * `do-while`
+  * `for`
+  * `for in`
+  * `for of`
+  * Directivas de control de ciclos
+    * `continue`
+    * `break`
+    * `return`
+  </details>
+  <details>
+    <summary><h2>Comentarios de codigo</h2></summary>
+
+  * Comentarios de una linea
+  * Comentarios multilinea
+  * Comentarios para documentacion ([JSDocs Basics](https://jsdoc.app/about-getting-started.html))
+  </details>
+  <details>
+    <summary><h2>Practica de variables, condicionales y ciclos</h2></summary>
+  </details>
+
+</details>
+
+
+<hr>
+<details>
+  <summary><h1><a href="lessons/lesson_6">Clase 6</a> (Asincronismo, Promesas y Excepciones en Javascript)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es el Asincronismo? ¿Para que me puede servir?</h2></summary>
@@ -375,7 +379,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 7 (Introduccion a Express)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_7">Clase 7</a> (Introduccion a Express)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es Express? ¿Para que me puede servir? </h2></summary>
@@ -420,7 +424,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 8 (Patron de Diseño MVC)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_8">Clase 8</a> (Patron de Diseño MVC)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es el Patron MVC?</h2></summary>
@@ -463,7 +467,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 9 (Clase de Repaso y Consultas)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_9">Clase 9</a> (Clase de Repaso y Consultas)</h1></summary>  
 
 * Repaso sobre servidores
 * Resolucion de problemas con docker
@@ -500,7 +504,7 @@
   <details>
     <summary><h2>Configuracion de entorno de desarrollo</h2></summary>
 
-  * Linter [ESLint + Prettier](https://blog.bitsrc.io/how-to-set-up-node-js-application-with-eslint-and-prettier-b1b7994db69f)
+  * Linter - [ESLint](https://dev.to/drsimplegraffiti/eslint-configuration-for-node-project-275l) [ESLint + Prettier](https://blog.bitsrc.io/how-to-set-up-node-js-application-with-eslint-and-prettier-b1b7994db69f)
     * `npm install eslint eslint-config-prettier prettier –-save-dev`
     * In file `.eslintrc.json`
     
