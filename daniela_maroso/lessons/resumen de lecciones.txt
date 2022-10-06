@@ -112,7 +112,7 @@ EVENTOS: relacionan una callback a un string.
 
 ======================================CLASE 5 =====================================================
 
-Como arreglar un MERGING en git. 
+Como arreglar un MERGING en git. (ver clase)
 
 CONDICIONALES: 
  
@@ -133,5 +133,59 @@ CONDICIONALES:
     != desigual o diferente (no estricto)
     !== desigual o diferente (estricto, evalua el tipo de dato)
  
-loops y map-functions. 
+loops y map-functions. (clase)
+
+====================================CLASE 6 =========================================================
+
+Asincronismo:  En algunos casos necesitamos ejecutar codigo no secuencial, este proceso puede producirse en paralelo al resto del 
+               codigo. 
+               ej: un proceso que lleve tiempo como traer datos de una base de datos o de internet. Este proceso puede tomar tiempo
+                   si esta hecho de forma secuencial, el resto de mi codigo no puede seguir funcionando. 
+              
+Conectamos la compu al telefono: Creamos el servidor en la compu, configuramos el firewall de la compu para que nuestro cel pueda 
+                                acceder, copiamos la IP de la compu con el servidor en el telefono (buscador) y deberia aparecer
+                                nuestro codigo. (Hola desde el servidor).         
+                                Recordamos el concepto que para establecer una conexion necesito una IP y un servidor (e internet)
+
+excepciones: 
+            throw: lo agregas cuando, dentro de una funcion, aparece una anomalia y evita que la funcion siga corriendo. 
+            try_catch: para evitar que el programa se detenga usamos este comando. 
+
+Clases: Las clases un tipo de funcion especial cuya sintaxis es más clara y simple para crear objetos y lidiar con la herencia en js. 
+        se les asocia el metodo constructor que las crea o las inicializa. 
+
+        ej: class Rectangulo {
+                constructor(alto, ancho) {
+                     this.alto = alto;
+                     this.ancho = ancho;
+                         }
+                       }
+
+Spread Operator: Se utiliza para la obtencion de todas las propiedades o valores de un objeto
+                 Puede usarse con funciones, objetos y arrays. 
+
+Hay varias formas de crear OBJETOS. Las mas comunes son: la tradicional vista en la clase 4 y a partir de una funcion (classes/function.js)
+
+PROMESAS: Son procesos asincronos que puede salir bien o mal. 
+          Una promesa tiene tres estados:
+                                       Pending (pendiente)-> por defecto
+                                       Fullfield (completado, resuelto o exitoso)
+                                       Rejected (rechazado)
+ 
+         Para controlar las promesas necesitamos invocar dos funciones:
+
+                           .then()    - esta funcion recibe una callback que se ejecutara cuando la promesa se halla resuelto
+                           .catch()    - esta funcion recibe una callback que se ejecutar cuando la promesa se halla rechazado
+
+
+
+
+
+
+
+
+
+
+
+
 
