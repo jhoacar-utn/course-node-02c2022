@@ -175,9 +175,20 @@ PROMESAS: Son procesos asincronos que puede salir bien o mal.
          Para controlar las promesas necesitamos invocar dos funciones:
 
                            .then()    - esta funcion recibe una callback que se ejecutara cuando la promesa se halla resuelto
-                           .catch()    - esta funcion recibe una callback que se ejecutar cuando la promesa se halla rechazado
+                           .catch()   - esta funcion recibe una callback que se ejecutar cuando la promesa se halla rechazado
+
+        FETCH: es método global que proporciona una forma fácil y lógica de obtener recursos de forma asíncrona por la red.
+
+              Async_await: espera a que llegue la respues de la promesa que se hizo anteriormente. 
+                          ej: codigo se esjecuta, fetch (sacame algo de internet), fn async, await a que me hagas el fetch antes de seguir ejecutando 
+                              el codigo.  
+
+        la diferencia entre Then_Catch y Async_Await: 
+                                                      la primera, nadie la controla, el codigo se ejecuta nomas. 
+                                                      la otra no puede seguir sino se resuelve la promesa. 
 
 
+======================================CLASE 7 ========================================
 
 
 
