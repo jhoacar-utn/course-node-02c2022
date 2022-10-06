@@ -10,7 +10,7 @@ function division(numerador,denominador){
     if(denominador == 0){
        
          // throw significa lanzar, y lanzara un nuevo objeto el cual tendra un mensaje con la causa del error //
-         
+
         throw new Error("No se puede dividir por cero")
     }
     return numerador/denominador
@@ -25,3 +25,6 @@ console.log(division(0,2))
 console.log(division(2,0))
 
 console.log(division(0,0))
+
+
+//warda q este no funciona en consola// 
