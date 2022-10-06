@@ -26,3 +26,5 @@
  
      reject("Se rechaza la promesa")
  }
+
+ 
