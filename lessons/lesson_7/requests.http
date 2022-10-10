@@ -1,0 +1,24 @@
+### Ejemplo de "Query String" por la URL 
+GET http://localhost:8888/?mensaje=hola
+
+### Ejemplo de "Request Body" de peticion POST
+
+POST http://localhost:8888
+Content-Type: application/json
+
+{"mensaje":"hola mundo"}
+
+### Ejemplo de "Request Body" con "Query String" y "Dynamic URL" por peticion POST 
+
+POST http://localhost:8888/una-cosa/otra-cosa?mensaje=aca en la query
+Content-Type: application/json
+
+{"mensaje":"hola mundo"}
+
+
+### Ejemplo para "Middleware" que controla cuando exista un nombre en la "Query String"
+
+GET http://localhost:8888/usuario
+
+###
+GET http://localhost:8888/usuario?nombre=jose

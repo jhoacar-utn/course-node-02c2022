@@ -4,6 +4,7 @@
 
 ### Repositorio con el codigo del curso de cada estudiante
 
+## [Proyecto Final](project/Final_Project.pdf)
 ## [Link de Zoom](https://centrodeelearning.zoom.us/j/98298358252?pwd=YjRIaWhZbk1UaWl3aXdpd09xdmlPQT09)
 ## [Telegram](https://t.me/+-9ijDnYqGv5mMzRh)
 
@@ -326,7 +327,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 6 (Asincronismo, Promesas y Excepciones en Javascript)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_6">Clase 6</a> (Asincronismo, Promesas y Excepciones en Javascript)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es el Asincronismo? ¿Para que me puede servir?</h2></summary>
@@ -379,7 +380,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 7 (Introduccion a Express)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_7">Clase 7</a> (Introduccion a Express)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es Express? ¿Para que me puede servir? </h2></summary>
@@ -424,7 +425,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 8 (Patron de Diseño MVC)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_8">Clase 8</a> (Patron de Diseño MVC)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es el Patron MVC?</h2></summary>
@@ -467,7 +468,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 9 (Clase de Repaso y Consultas)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_9">Clase 9</a> (Clase de Repaso y Consultas)</h1></summary>  
 
 * Repaso sobre servidores
 * Resolucion de problemas con docker
@@ -504,7 +505,7 @@
   <details>
     <summary><h2>Configuracion de entorno de desarrollo</h2></summary>
 
-  * Linter [ESLint + Prettier](https://blog.bitsrc.io/how-to-set-up-node-js-application-with-eslint-and-prettier-b1b7994db69f)
+  * Linter - [ESLint](https://dev.to/drsimplegraffiti/eslint-configuration-for-node-project-275l) [ESLint + Prettier](https://blog.bitsrc.io/how-to-set-up-node-js-application-with-eslint-and-prettier-b1b7994db69f)
     * `npm install eslint eslint-config-prettier prettier –-save-dev`
     * In file `.eslintrc.json`
     

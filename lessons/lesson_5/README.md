@@ -1,4 +1,4 @@
-# Contenidos vistos en clase:
+# Contenidos de la clase:
 
 * Uso de condicionales 
     * `if`, `else if` y `else`
