@@ -39,7 +39,7 @@
         const express = require("express")
         const app = express()
         
-        function middleware(request,response,next){
+        function middleware(!request,response,next){
             if(request.query.name){
                 return response.send("<h1>Se necesita un nombre en la query de la URL</h1>")
             }
