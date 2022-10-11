@@ -1,0 +1,5 @@
+{
+    "lint-staged": {
+      "**/*.{js,jsx}": "eslint --fix"
+    }
+  }

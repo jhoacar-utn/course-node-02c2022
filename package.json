@@ -11,29 +11,7 @@
         "eslint-plugin-jsx-a11y": "^6.6.1",
         "eslint-plugin-react": "^7.31.10",
         "eslint-plugin-react-hooks": "^4.6.0",
-        "husky": "^8.0.1"
-    },
-    "eslintConfig": {
-        "env": {
-            "browser": true,
-            "commonjs": true,
-            "es2021": true,
-            "node": true
-        },
-        "extends": [
-            "plugin:react/recommended",
-            "airbnb"
-        ],
-        "overrides": [],
-        "parserOptions": {
-            "ecmaVersion": "latest"
-        },
-        "plugins": [
-            "react"
-        ],
-        "rules": {}
-    },
-    "hooks": {
-        "pre-commit": "npm run lint:fix -- ."
+        "husky": "^8.0.1",
+        "lint-staged": "^13.0.3"
     }
 }
