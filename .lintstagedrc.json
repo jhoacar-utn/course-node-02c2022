@@ -1,5 +1,3 @@
 {
-    "lint-staged": {
-        "**/*.{js,jsx}": "eslint --fix"
-    }
+    "**/*.{js,jsx}": "eslint --fix"
 }
