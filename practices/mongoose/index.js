@@ -16,14 +16,22 @@ async function main() {
 
     const User = mongoose.model('User', userSchema);
 
-    const pedro = new User({
+    // const pedro = new User({
+    //     name: "pedro",
+    //     password: "pedro123",
+    //     email: "pedro@gmail.com",
+    //     age: 20
+    // });
+
+    // await pedro.save();
+
+
+    await User.create({
         name: "pedro",
         password: "pedro123",
         email: "pedro@gmail.com",
         age: 20
-    });
-
-    await pedro.save();
+    })
 
     console.log("La informacion de pedro ha sido guardada");
 }
