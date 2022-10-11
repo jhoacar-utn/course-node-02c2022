@@ -1,4 +1,6 @@
-/* eslint no-unused-vars: "off" */
+/* eslint-disable no-console */
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
 // comentario de una linea
 /*
     Esto es un comentario

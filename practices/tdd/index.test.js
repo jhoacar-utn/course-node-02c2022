@@ -1,5 +1,5 @@
-/* global describe, test, expect */
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable no-undef */
+/* eslint-disable import/no-unresolved */
 /**
  * Test de ejemplo para verificar que el socket por el puerto 8888
  * se encuentre habilitado

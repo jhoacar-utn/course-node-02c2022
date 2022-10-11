@@ -1,4 +1,5 @@
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
 /**
  * El patron MVC o modelo-vista-controlador
  * consta en la separacion de la logica en archivos

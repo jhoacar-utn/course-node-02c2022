@@ -1,4 +1,5 @@
-/* eslint func-names: "off" */
+/* eslint-disable func-names */
+/* eslint-disable no-console */
 /**
  * Podriamos relacionar la programacion asincrona a partir de eventos,
  * como aquellas funciones que se ejecutaran luego de una accion

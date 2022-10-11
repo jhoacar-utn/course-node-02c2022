@@ -1,4 +1,5 @@
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
 const axios = require('axios');
 
 const url = 'https://google.com';

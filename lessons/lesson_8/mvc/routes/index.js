@@ -1,4 +1,4 @@
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable import/no-unresolved */
 const { Router } = require('express');
 const { welcomeMiddleware } = require('../middlewares');
 const { welcomeController } = require('../controllers');

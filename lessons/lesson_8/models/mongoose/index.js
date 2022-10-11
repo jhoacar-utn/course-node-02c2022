@@ -1,4 +1,6 @@
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
 const mongoose = require('mongoose');
 
 const uri = 'mongodb://utn:utn@localhost:27017/utn';
@@ -32,7 +34,6 @@ async function getData() {
     resultado.map((documento) => {
       console.log("\nMostrando el contenido del campo 'mensaje'");
       console.log(`\n\t${documento.mensaje}`);
-      return documento;
     });
 
     process.exit(0); // Detenemos el programa

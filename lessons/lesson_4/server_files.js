@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Procedemos a crear las importaciones necesarias para el programa
  */

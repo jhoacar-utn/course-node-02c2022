@@ -1,5 +1,7 @@
-/* eslint import/no-unresolved: "off" */
-/* eslint no-unused-vars: "off" */
+/* eslint-disable no-console */
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
 const express = require('express');
 
 const app = express();
@@ -29,21 +31,21 @@ const next = require('./next');
 /**
  * Uso de requests
  */
-// app.use(params);
-// app.use(query);
-// app.use(body);
+app.use('/params', params);
+app.use('/query', query);
+app.use('/body', body);
 
 /**
  * Uso de responses
  */
-// app.use(send);
-// app.use(sendFile);
-// app.use(json);
+app.use('/send', send);
+app.use('/archivo', sendFile);
+app.use('/json', json);
 
 /**
  * Uso de next
  */
-// app.use(next);
+app.use('/next', next);
 
 /**
  * Uso de un formulario de ejemplo,
@@ -55,12 +57,13 @@ const form = require('./form');
 app.use('/formulario', form);
 
 /**
+ * JSDoc
  * Uso de una callback para manejar peticiones no encontradas
- * @param {RequestHandler} req
+ * @param {Request} req
  * @param {Response} res
- * @return
+ * @param {NextFunction} next
  */
-const handleNotFound = (req, res) => {
+const handleNotFound = (req, res, next) => {
   res.status(404).send('<h1>Not Found</h1>');
 };
 

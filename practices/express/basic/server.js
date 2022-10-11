@@ -1,5 +1,5 @@
-/* eslint import/no-unresolved: "off" */
-/* eslint no-unused-vars: "off" */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
 const express = require('express');
 
 const app = express();
@@ -29,5 +29,14 @@ app.get('/', (request, response, next) => {
 const folderLesson1 = `${__dirname}/lesson_1`;
 
 app.use('/tasks/lesson_1', express.static(folderLesson1));
+
+/**
+ * De esta manera estaria usando
+ *  TODOS LOS VERBOS porque es .use()
+ *  TODAS LAS RUTAS  porque no se la especificando
+ */
+app.use((request, response, next) => {
+  response.send('<h1>Esto funcionara para cualquier ruta y cualquier verbo</h1>');
+});
 
 module.exports = app;

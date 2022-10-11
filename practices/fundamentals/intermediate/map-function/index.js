@@ -1,4 +1,6 @@
-/* eslint no-unused-vars: "off" */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 /**
  * Las variables que son definidas como vectores
  * tienen metodos predefinidos, entre ellos:
@@ -33,7 +35,6 @@ notas.map((nota) => {
   if (nota > maxNota) {
     maxNota = nota;
   }
-  return nota;
 });
 
 console.log(maxNota);

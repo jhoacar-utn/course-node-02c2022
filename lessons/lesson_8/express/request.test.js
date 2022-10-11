@@ -1,5 +1,5 @@
-/* global describe, test, expect */
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-undef */
 const request = require('supertest');
 
 const { params, query, body } = require('./requests');

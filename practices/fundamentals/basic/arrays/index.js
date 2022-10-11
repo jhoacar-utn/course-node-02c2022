@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Los vectores son una forma particular de trabajar con objetos
  * donde la clave son asignadas directamente con un numero entero

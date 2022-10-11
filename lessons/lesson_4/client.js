@@ -1,4 +1,6 @@
-/* eslint no-use-before-define: "off" */
+/* eslint-disable no-console */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-unused-vars */
 /**
  * Procedemos a requerir el modulo para crear un socket
  */

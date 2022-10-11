@@ -1,4 +1,6 @@
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable no-console */
+/* eslint-disable max-len */
+/* eslint-disable import/no-unresolved */
 const express = require('express');
 
 const app = express();
@@ -11,7 +13,7 @@ const app = express();
  * de controlar alguna ruta, porque simplemente, sera informacion
  * Ejemplo:
  *
- * ( Como si fuera un JSON )
+ * ( Como si fuera un JSON - Javascript Object Notation )
  *
  *          - POST http://localhost:8888/usuario
  *          - Content-Type: application/json
@@ -34,19 +36,19 @@ const app = express();
  * todos los navegadores saben como estructurar estos datos para enviarlos
  * https://www.w3.org/Protocols/rfc1341/7_2_Multipart.html
  *
- *  - POST http://localhost:8888/usuario
- *  - Content-Type: multipart/form-data; boundary=--------------------------568790206976467115569828
- *  - Content-Length: 278
- *  -
- *  - ----------------------------568790206976467115569828
- *  - Content-Disposition: form-data; name="nombre"
- *  -
- *  - pedro
- *  - ----------------------------568790206976467115569828
- *  - Content-Disposition: form-data; name="apellido"
- *  -
- *  - perez
- *  - ----------------------------568790206976467115569828--
+ *          - POST http://localhost:8888/usuario
+ *          - Content-Type: multipart/form-data; boundary=--------------------------568790206976467115569828
+ *          - Content-Length: 278
+ *          -
+ *          - ----------------------------568790206976467115569828
+ *          - Content-Disposition: form-data; name="nombre"
+ *          -
+ *          - pedro
+ *          - ----------------------------568790206976467115569828
+ *          - Content-Disposition: form-data; name="apellido"
+ *          -
+ *          - perez
+ *          - ----------------------------568790206976467115569828--
  */
 
 /**

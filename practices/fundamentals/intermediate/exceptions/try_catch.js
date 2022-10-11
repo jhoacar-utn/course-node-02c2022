@@ -1,10 +1,12 @@
-/* eslint radix: "off" */
-/* eslint eqeqeq: "off" */
+/* eslint-disable no-console */
+/* eslint-disable eqeqeq */
+/* eslint-disable radix */
+/* eslint-disable no-restricted-globals */
 function division(numerador, denominador) {
-  if (Number.isNaN(parseInt(numerador))) {
+  if (isNaN(parseInt(numerador))) {
     throw new Error('El numerador debe ser un numero');
   }
-  if (Number.isNaN(parseInt(denominador))) {
+  if (isNaN(parseInt(denominador))) {
     throw new Error('El denominador debe ser un numero');
   }
 

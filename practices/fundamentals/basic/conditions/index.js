@@ -1,4 +1,5 @@
-/* eslint no-unused-expressions: "off" */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-console */
 /**
  * Los condicionales son bloques de codigo
  * que se ejecutaran apartir de una sentencia verdadera o falsa (condicion)

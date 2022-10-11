@@ -1,3 +1,7 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable func-names */
 /**
  * Definimos la configuracion con variables
 */
@@ -16,7 +20,9 @@ const DEFAULT_PORT = 8888;
  * basandose en su id (`uid`)
  * @return int
  */
-const isNormalUser = () => process.getuid() !== USER_ROOT_ID;
+const isNormalUser = function () {
+  return process.getuid() !== USER_ROOT_ID;
+};
 /**
  * Funcion que devuelve el puerto para crear el servidor
  * - Si por linea de comandos se le pasa el numero de puerto sera procesado
@@ -32,7 +38,7 @@ const isNormalUser = () => process.getuid() !== USER_ROOT_ID;
  * @throw Error
  * @return int
  */
-const extractPortFromArgv = () => {
+const extractPortFromArgv = function () {
   /**
      * Extramos el puerto por la linea de comandos
      * las primeras dos posiciones corresponden a informacion
@@ -43,7 +49,7 @@ const extractPortFromArgv = () => {
      */
   const port = process.argv[2];
 
-  if (Number.isNaN(port)) {
+  if (isNaN(port)) {
     return DEFAULT_PORT;
   }
 
@@ -68,29 +74,29 @@ const PORT = extractPortFromArgv();
  */
 const RESET = '\x1b[0m';
 const BRIGHT = '\x1b[1m';
-// const DIM = '\x1b[2m';
-// const UNDERSCORE = '\x1b[4m';
-// const BLINK = '\x1b[5m';
-// const REVERSE = '\x1b[7m';
-// const HIDDEN = '\x1b[8m';
+const DIM = '\x1b[2m';
+const UNDERSCORE = '\x1b[4m';
+const BLINK = '\x1b[5m';
+const REVERSE = '\x1b[7m';
+const HIDDEN = '\x1b[8m';
 
-// const FG_BLACK = '\x1b[30m';
+const FG_BLACK = '\x1b[30m';
 const FG_RED = '\x1b[31m';
 const FG_GREEN = '\x1b[32m';
 const FG_YELLOW = '\x1b[33m';
 const FG_BLUE = '\x1b[34m';
-// const FG_MAGENTA = '\x1b[35m';
+const FG_MAGENTA = '\x1b[35m';
 const FG_CYAN = '\x1b[36m';
 const FG_WHITE = '\x1b[37m';
 
-// const BG_BLACK = '\x1b[40m';
-// const BG_RED = '\x1b[41m';
-// const BG_GREEN = '\x1b[42m';
-// const BG_YELLOW = '\x1b[43m';
-// const BG_BLUE = '\x1b[44m';
-// const BG_MAGENTA = '\x1b[45m';
-// const BG_CYAN = '\x1b[46m';
-// const BG_WHITE = '\x1b[47m';
+const BG_BLACK = '\x1b[40m';
+const BG_RED = '\x1b[41m';
+const BG_GREEN = '\x1b[42m';
+const BG_YELLOW = '\x1b[43m';
+const BG_BLUE = '\x1b[44m';
+const BG_MAGENTA = '\x1b[45m';
+const BG_CYAN = '\x1b[46m';
+const BG_WHITE = '\x1b[47m';
 
 /**
  * Codificacion de las teclas en UTF-8
@@ -103,13 +109,15 @@ const BACKSPACE = '\u007F';
 
 let message = '';
 
-const getPrefixInMessage = () => `${FG_BLUE}[+] Escribiendo el mensaje al cliente: ${RESET}`;
+const getPrefixInMessage = function () {
+  return `${FG_BLUE}[+] Escribiendo el mensaje al cliente: ${RESET}`;
+};
 
-const printPrefixWithMessage = () => {
+const printPrefixWithMessage = function () {
   process.stdout.write(getPrefixInMessage() + message);
 };
 
-const writeMessageInSocket = (socket) => {
+const writeMessageInSocket = function (socket) {
   // Sin esto, nosotros solo obtendriamos el texto una vez la letra enter es presionada
   process.stdin.setRawMode(true);
 

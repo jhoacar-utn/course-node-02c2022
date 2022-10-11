@@ -1,5 +1,4 @@
-/* global describe, test, expect */
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable no-undef */
 const { sum } = require('./operations');
 
 describe('Operaciones aritmeticas', () => {

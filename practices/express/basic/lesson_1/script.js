@@ -1,9 +1,10 @@
-/* global getCorrectMultipliers, getTotalFromCoinsAndMultiplier */
-/* eslint radix: "off" */
-/* eslint no-plusplus: "off" */
-/* eslint no-unused-expressions: "off" */
-/* eslint no-alert: "off" */
-
+/* eslint-disable no-alert */
+/* eslint-disable no-undef */
+/* eslint-disable consistent-return */
+/* eslint-disable radix */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-plusplus */
 const MAX_NUMBER_BOXES = 4;
 const COIN_ID = 'coin_';
 const MULTIPLIER_ID = 'multiplier_';
@@ -34,8 +35,8 @@ function getDataFromDOM() {
          * parseInt("18") == 18
          * parseInt("hola") == NaN (Not A Number)
          */
-    coin && !Number.isNaN(parseInt(coin.value)) && coins.push(coin.value);
-    multiplier && !Number.isNaN(parseInt(multiplier.value)) && multipliers.push(multiplier.value);
+    coin && !isNaN(parseInt(coin.value)) && coins.push(coin.value);
+    multiplier && !isNaN(parseInt(multiplier.value)) && multipliers.push(multiplier.value);
   }
 
   return {
@@ -71,7 +72,6 @@ function setSolutionInDOM() {
   if (totalElement) {
     totalElement.value = total;
   }
-  return true;
 }
 
 document.getElementById(BUTTON_ID)?.addEventListener('click', setSolutionInDOM);

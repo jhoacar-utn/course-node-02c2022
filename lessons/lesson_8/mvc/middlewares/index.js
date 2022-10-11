@@ -1,5 +1,6 @@
-/* eslint import/no-unresolved: "off" */
-/* eslint no-unused-vars: "off" */
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
 const { Request, Response, NextFunction } = require('express');
 /**
  * Funcion encargada de agregar un saludo al objeto de request

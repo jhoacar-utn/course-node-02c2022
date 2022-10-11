@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const otroNombre = require('./modulo_a');
 
 const variableB = require('./modulo_b');

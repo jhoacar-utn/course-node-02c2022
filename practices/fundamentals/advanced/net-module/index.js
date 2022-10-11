@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const net = require('net');
 
 function handleIncomingData(data) {

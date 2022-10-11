@@ -1,6 +1,5 @@
-/* eslint import/no-unresolved: "off" */
-/* eslint no-unused-vars: "off" */
-
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
 const { Request, Response, NextFunction } = require('express');
 const path = require('path');
 const Modelo = require('../models');

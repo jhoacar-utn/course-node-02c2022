@@ -1,6 +1,4 @@
-/* global db */
-/* eslint no-global-assign: "off" */
-
+/* eslint-disable no-undef */
 /**
  * Este archivo sera ejecutado cuando el contenedor
  * se vaya a levantar desde cero y creara la siguiente configuracion

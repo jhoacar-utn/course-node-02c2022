@@ -1,4 +1,4 @@
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable import/no-unresolved */
 const app = require('express')();
 
 app.get('/', (req, res) => {

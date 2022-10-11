@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Definimos la configuracion con variables
 */

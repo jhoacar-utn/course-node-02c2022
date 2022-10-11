@@ -1,4 +1,5 @@
-/* eslint no-plusplus: "off" */
+/* eslint-disable no-console */
+/* eslint-disable no-plusplus */
 /**
  * Los bucles son sentencias de codigo que se repetiran en cantidades definidas
  * o indefinidas

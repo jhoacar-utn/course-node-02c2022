@@ -1,4 +1,5 @@
-/* eslint func-names: "off" */
+/* eslint-disable func-names */
+/* eslint-disable no-console */
 /**
  * const nombre=[{nombre:....}] // Es un array con un objeto en la primera posicion
  * objeto = {propiedades} // Declaracion de un objeto

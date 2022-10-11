@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 function Estudiante(name, email, password) {
   this.name = name;
   this.email = email;
@@ -20,5 +22,3 @@ console.log(pedro);
 pedro.study();
 
 const juan = new Estudiante('juan');
-console.log(juan);
-juan.study();

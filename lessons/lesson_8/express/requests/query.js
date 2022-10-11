@@ -1,4 +1,5 @@
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
 const express = require('express');
 
 const app = express();
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
  * de controlar alguna ruta, porque simplemente, sera informacion
  * extra que podemos interpretar
  * Ejemplo:
- *          - GET http://localhost:8888/usuario/?nombre=jhoan&apellido=carrero
+ *          - GET http://localhost:8888/usuario/?nombre=jhoan&apellido=carrero&hola=mundo
  *
  *          - GET http://localhost:8888/usuario?nombre=jhoan&apellido=carrero
  */

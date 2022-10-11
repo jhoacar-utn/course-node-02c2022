@@ -1,4 +1,5 @@
-/* eslint no-unused-vars: "off" */
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 function sleep(miliseconds) {
   return new Promise((resolve, reject) => {
     setTimeout(resolve, miliseconds);

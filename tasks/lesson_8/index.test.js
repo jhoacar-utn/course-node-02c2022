@@ -1,5 +1,5 @@
-/* global describe, test, expect */
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable no-undef */
+/* eslint-disable import/no-unresolved */
 const request = require('supertest');
 
 const app = require('./server');

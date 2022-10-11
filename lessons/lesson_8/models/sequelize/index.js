@@ -1,4 +1,6 @@
-/* eslint import/no-unresolved: "off" */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
 const { Sequelize, DataTypes } = require('sequelize');
 
 const uri = 'mysql://utn:utn@localhost:3306/utn';
@@ -38,7 +40,6 @@ async function getData() {
     resultado.map((fila) => {
       console.log("\nMostrando el contenido de la columna 'mensaje'");
       console.log(`\n\t${fila.mensaje}`);
-      return fila;
     });
 
     // Detenemos el programa con 0 errores

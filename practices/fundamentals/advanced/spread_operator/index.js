@@ -1,4 +1,5 @@
-/* eslint no-plusplus: "off" */
+/* eslint-disable no-console */
+/* eslint-disable no-plusplus */
 /**
  * El Spread Operator, se utiliza basicamente
  * para la obtencion de todas las propiedades o valores

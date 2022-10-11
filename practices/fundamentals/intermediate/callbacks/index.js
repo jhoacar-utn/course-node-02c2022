@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable max-len */
 /**
  * Una callback es una funcion que se recibe por parametro y se invoca adentro de otra funcion
  * - Su traduccion seria "llamada de vuelta" (call-back)

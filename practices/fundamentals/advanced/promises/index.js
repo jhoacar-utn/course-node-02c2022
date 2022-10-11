@@ -1,4 +1,5 @@
-/* eslint no-use-before-define: "off" */
+/* eslint-disable no-console */
+/* eslint-disable no-use-before-define */
 /**
  * Una promesa es conocida como aquella logica
  * ejecutada paralelamente o alejada de la ejecucion

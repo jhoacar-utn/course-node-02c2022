@@ -1,5 +1,6 @@
-/* eslint import/no-unresolved: "off" */
-/* eslint no-use-before-define: "off" */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+/* eslint-disable import/no-unresolved */
 const express = require('express');
 
 const app = express();
@@ -14,7 +15,10 @@ app.get('/usuario', validacion, mensaje);
 
 /**
  * Funcion que cumple la funcion de middleware (software intermedio)
-* Se pondra en medio para verificar la informacion antes del resultado final
+ * Se pondra en medio para verificar la informacion antes del resultado final
+ * @param {Request} request
+ * @param {Response} response
+ * @param {NextFunction} next
 */
 function validacion(request, response, next) {
   if (request.query.nombre) {
@@ -25,9 +29,9 @@ function validacion(request, response, next) {
 }
 /**
  * Funcion que cumple la funcion de controlador
-* Mostrara el resultado final
+ * Mostrara el resultado final
 */
-function mensaje(request, response) {
+function mensaje(request, response, next) {
   response.send(`<h1>Bienvenido ${request.query.nombre}</h1>`);
 }
 

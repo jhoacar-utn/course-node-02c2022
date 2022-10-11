@@ -1,5 +1,6 @@
-/* eslint no-unused-vars: "off" */
-/* eslint func-names: "off" */
+/* eslint-disable func-names */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 /*
     ()=>{} -> Es una funcion anonima
 */
@@ -27,6 +28,6 @@ console.log(suma(1, 2));
  * Pero el caso de que no sea una variable y sea una funcion comun, no importara
  * donde se defina ya que se aplicara un 'hoisting' y no dara errores
  */
-function sumar(a, b) {
+function suma2(a, b) {
   return a + b;
 }
