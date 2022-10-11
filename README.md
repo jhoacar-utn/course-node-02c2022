@@ -4,6 +4,7 @@
 
 ### Repositorio con el codigo del curso de cada estudiante
 
+## [Proyecto Final](project/Final_Project.pdf)
 ## [Link de Zoom](https://centrodeelearning.zoom.us/j/98298358252?pwd=YjRIaWhZbk1UaWl3aXdpd09xdmlPQT09)
 ## [Telegram](https://t.me/+-9ijDnYqGv5mMzRh)
 
@@ -467,7 +468,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 9 (Clase de Repaso y Consultas)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_9">Clase 9</a> (Clase de Repaso y Consultas)</h1></summary>  
 
 * Repaso sobre servidores
 * Resolucion de problemas con docker
@@ -479,7 +480,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 10 (Configuracion de Proyecto del Servidor)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_10">Clase 10</a> (Configuracion de Proyecto del Servidor)</h1></summary>  
 
   <details>
     <summary><h2>Organizacion de directorios</h2></summary>

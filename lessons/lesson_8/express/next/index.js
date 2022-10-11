@@ -12,7 +12,10 @@ app.get("/usuario",validacion,mensaje)
 
 /** 
  * Funcion que cumple la funcion de middleware (software intermedio)
-* Se pondra en medio para verificar la informacion antes del resultado final
+ * Se pondra en medio para verificar la informacion antes del resultado final
+ * @param {Request} request
+ * @param {Response} response
+ * @param {NextFunction} next
 */
 function validacion(request,response,next){
     
@@ -25,7 +28,7 @@ function validacion(request,response,next){
 }
 /**
  * Funcion que cumple la funcion de controlador
-* Mostrara el resultado final
+ * Mostrara el resultado final
 */
 function mensaje(request,response,next){
     response.send(`<h1>Bienvenido ${request.query.nombre}</h1>`)
