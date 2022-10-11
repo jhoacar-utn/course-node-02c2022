@@ -39,8 +39,8 @@
         const express = require("express")
         const app = express()
         
-        function middleware(!request,response,next){
-            if(request.query.name){
+        function middleware(request,response,next){
+            if(!request.query.name){
                 return response.send("<h1>Se necesita un nombre en la query de la URL</h1>")
             }
             return next() // Con el uso de la funcion next() podemos manipular el flujo de las funciones que se invoquen en la funcion .use() o .get() o cualquiera que se haya definido
