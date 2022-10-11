@@ -14,9 +14,9 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
+            **${{ github.actor }}** ha subido un nuevo cambio!
+            **mensaje**: ${{ github.event.commits[0].message }}
 
-            Repository: ${{ github.repository }}
+            **repositorio**: ${{ github.repository }}
 
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            Puedes verlo acá: https://github.com/${{ github.repository }}/commit/${{github.sha}}
