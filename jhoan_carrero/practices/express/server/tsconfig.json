@@ -10,7 +10,7 @@
   },
   "compilerOptions": {
     "target": "es2016",
-    "module": "commonjs",
+    "module": "CommonJS",
     "rootDir": "src",
     "moduleResolution": "node",
     "checkJs": true,
@@ -21,27 +21,40 @@
     "noImplicitAny": true,
     "skipLibCheck": true,
     "baseUrl": "src",
+    "resolveJsonModule": true,
     "paths": {
+      "@src/*":[
+        "./*"
+      ],
+      "@routes/*": [
+        "routes/*",
+      ],
       "@routes": [
         "routes",
       ],
-      "@controllers": [
+      "@controllers/*": [
         "controllers/*"
+      ],
+      "@models/*": [
+        "models/*"
       ],
       "@models": [
         "models"
       ],
-      "@views": [
-        "views"
+      "@views/*": [
+        "views/*"
       ],
-      "@middlewares": [
-        "middlewares"
+      "@middlewares/*": [
+        "middlewares/*"
       ],
-      "@boot": [
-        "boot"
+      "@boot/*": [
+        "boot/*"
       ],
       "@utils/*": [
         "utils/*"
+      ],
+      "@config/*": [
+        "config/*"
       ],
     }
   }

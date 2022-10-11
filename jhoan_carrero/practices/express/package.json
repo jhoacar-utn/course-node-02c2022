@@ -2,6 +2,21 @@
   "name": "fullstack-project",
   "version": "1.0.0",
   "description": "This is a project using typescript",
+  "contributors": [
+    {
+      "name": "Jhoan Carrero",
+      "email": "carrerojhoan@gmail.com",
+      "url": "https://github.com/jhoacar"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "Licencia",
+      "type": "tipo",
+      "url": "https://github.com/jhoacar"
+    }
+  ],
+  
   "scripts": {
     "postinstall": "concurrently npm:install:*",
     "install:server": "cd server && npm install",

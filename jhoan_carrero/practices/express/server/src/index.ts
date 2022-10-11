@@ -1,10 +1,11 @@
 import 'dotenv/config';
 // import open from 'open';
-import app from './boot/server';
+import app from '@boot/server';
+import { initialization } from '@boot/database';
+import { port } from '@config/server';
 
-const PORT = process.env.PORT || 8888;
-
-app.listen(PORT, () => {
-  // open(`http://localhost:${PORT}`);
-  console.log(`Server on http://localhost:${PORT}`);
+app.listen(port, () => {
+  initialization();
+  // open(`http://localhost:${port}`);
+  console.log(`Server on http://localhost:${port}`);
 });
