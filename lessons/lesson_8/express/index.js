@@ -1,4 +1,8 @@
-const express = require("express")
+/* eslint-disable no-console */
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
+const express = require('express');
 
 const app = express();
 
@@ -10,16 +14,16 @@ const app = express();
  * usando el 'barrel export' para obtener los paquetes
  * en una sola importacion mediante el 'destructuring'
  */
-const { params, query, body } = require('./requests')
-const { send, sendFile, json } = require("./responses");
-const next = require("./next");
+const { params, query, body } = require('./requests');
+const { send, sendFile, json } = require('./responses');
+const next = require('./next');
 
 /**
  * Al trabajar con express podemos hacer algo muy curioso
  * que es componer aplicaciones de express entre si,
  * esto quiere decir que podemos añadir una aplicacion
  * con el metodo .use()
- * 
+ *
  * Asi como especificarle tambien la ruta donde esta aplicacion
  * podra tener acceso
  */
@@ -27,30 +31,30 @@ const next = require("./next");
 /**
  * Uso de requests
  */
-app.use('/params',params);
-app.use('/query',query);
-app.use('/body',body);
+app.use('/params', params);
+app.use('/query', query);
+app.use('/body', body);
 
 /**
  * Uso de responses
  */
-app.use('/send',send);
-app.use('/archivo',sendFile);
-app.use('/json',json);
+app.use('/send', send);
+app.use('/archivo', sendFile);
+app.use('/json', json);
 
 /**
  * Uso de next
  */
-app.use("/next",next);
+app.use('/next', next);
 
 /**
  * Uso de un formulario de ejemplo,
  * usando una aplicacion y especificandole
  * una ruta especifica donde sera usada
  */
-const form = require('./form')
+const form = require('./form');
 
-app.use('/formulario',form);
+app.use('/formulario', form);
 
 /**
  * JSDoc
@@ -59,15 +63,15 @@ app.use('/formulario',form);
  * @param {Response} res
  * @param {NextFunction} next
  */
-const handleNotFound = (req,res, next)=>{ 
-    res.status(404).send('<h1>Not Found</h1>')
-}
+const handleNotFound = (req, res, next) => {
+  res.status(404).send('<h1>Not Found</h1>');
+};
 
 /**
  * Uso de la callback para manejar las peticiones no encontradas
  */
-app.use(handleNotFound)
+app.use(handleNotFound);
 
 const port = 8888;
 
-app.listen(port, ()=>console.log(`Servidor escuchando en http://localhost:${port}`) );
+app.listen(port, () => console.log(`Servidor escuchando en http://localhost:${port}`));

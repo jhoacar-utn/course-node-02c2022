@@ -1,6 +1,6 @@
+/* eslint-disable no-console */
+const variableA = 'variable A';
 
-let variableA = "variable A";
+console.log('Estoy en el modulo A');
 
-console.log("Estoy en el modulo A")
-
-module.exports = variableA
+module.exports = variableA;

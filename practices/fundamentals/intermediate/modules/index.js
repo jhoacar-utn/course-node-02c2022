@@ -1,8 +1,8 @@
+/* eslint-disable no-console */
+const otroNombre = require('./modulo_a');
 
-let otroNombre = require("./modulo_a")
+const variableB = require('./modulo_b');
 
-let variableB = require("./modulo_b")
+console.log(otroNombre);
 
-console.log(otroNombre)
-
-console.log(variableB)
+console.log(variableB);

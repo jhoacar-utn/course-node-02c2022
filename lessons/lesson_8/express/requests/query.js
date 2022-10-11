@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
 const express = require('express');
 
 const app = express();
@@ -26,7 +28,7 @@ app.get('/usuario', (request, response) => {
    */
   const { nombre, apellido, ...restoDeParametros } = query;
 
-  console.log("Usted ha enviado estos parametros demas: ", restoDeParametros)
+  console.log('Usted ha enviado estos parametros demas: ', restoDeParametros);
 
   response.send(`<h1>Hola ${nombre || 'desconocido'} ${apellido || ''}</h1>`);
 });
