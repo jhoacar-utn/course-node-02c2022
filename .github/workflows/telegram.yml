@@ -15,7 +15,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: html
           message: |
-            <b>${{ github.actor }}</b> ha subido un nuevo cambio \xF0\x9F\x98\x81!
+            <b>${{ github.actor }}</b> ha subido un nuevo cambio 😁!
             <b>mensaje</b>: ${{ github.event.commits[0].message }}
 
             <b>repositorio</b>: ${{ github.repository }}
