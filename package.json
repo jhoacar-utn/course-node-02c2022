@@ -1,7 +1,8 @@
 {
     "scripts": {
         "lint": "npx eslint",
-        "lint:fix": "npx eslint --fix"
+        "lint:fix": "npx eslint --fix",
+        "prepare": "husky install"
     },
     "devDependencies": {
         "eslint": "^8.25.0",
@@ -9,7 +10,8 @@
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-jsx-a11y": "^6.6.1",
         "eslint-plugin-react": "^7.31.10",
-        "eslint-plugin-react-hooks": "^4.6.0"
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "husky": "^8.0.1"
     },
     "eslintConfig": {
         "env": {
@@ -30,5 +32,10 @@
             "react"
         ],
         "rules": {}
+    },
+    "husky":{
+        "hooks":{
+            "pre-commit": "npm run lint:fix -- ."
+        }
     }
 }
