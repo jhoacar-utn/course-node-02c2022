@@ -13,10 +13,11 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: html
           message: |
-            **${{ github.actor }}** ha subido un nuevo cambio!
-            **mensaje**: ${{ github.event.commits[0].message }}
+            <b>${{ github.actor }}</b> ha subido un nuevo cambio \xF0\x9F\x98\x81!
+            <b>mensaje</b>: ${{ github.event.commits[0].message }}
 
-            **repositorio**: ${{ github.repository }}
+            <b>repositorio</b>: ${{ github.repository }}
 
             Puedes verlo acá: https://github.com/${{ github.repository }}/commit/${{github.sha}}
