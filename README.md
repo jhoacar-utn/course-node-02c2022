@@ -480,7 +480,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 10 (Configuracion de Proyecto del Servidor)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_10">Clase 10</a> (Configuracion de Proyecto del Servidor)</h1></summary>  
 
   <details>
     <summary><h2>Organizacion de directorios</h2></summary>

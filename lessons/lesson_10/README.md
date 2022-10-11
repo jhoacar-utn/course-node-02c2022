@@ -75,3 +75,21 @@
             });
 
             ```
+
+* Uso de variables de entorno
+    * Acceso a las variables de entorno con `process.env`
+    * Uso del paquete `dotenv` para cargar las variables desde un archivo `.env`
+
+        * Instalacion
+        
+            ```bash
+            npm i dotenv
+            ```
+        * Uso
+
+            ```javascript
+            require("dotenv").config()
+            ```
+
+* Basica ToDo app [https://github.com/jhoacar/text-2-speech-todo-app](https://github.com/jhoacar/text-2-speech-todo-app)
+    * [https://txt2speech-todo-app-production.up.railway.app](https://txt2speech-todo-app-production.up.railway.app)
