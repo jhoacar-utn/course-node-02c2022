@@ -4,9 +4,11 @@ const {
     handleGetTodo,
     handlePostTodo,
     handlePutTodo,
-    handleDeleteTodo } = require("./controller");
+    handleDeleteTodo } = require("./controllers");
 
 const app = express();
+
+app.use(express.json());
 
 app.get("/to-do", handleGetTodo);
 app.post("/to-do", handlePostTodo);
