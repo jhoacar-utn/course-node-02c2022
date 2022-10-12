@@ -1,9 +1,13 @@
-module.exports.handleGetTodo = (request,response)=>{
-    response.send("Get Todo");
+const ToDo = require("./model");
+
+module.exports.handleGetTodo = async (request,response)=>{
+    const toDos = await ToDo.find();
+    response.send(toDos);
 };
 
-module.exports.handlePostTodo = (request,response)=>{
-    response.send("Post Todo");
+module.exports.handlePostTodo = async (request,response)=>{
+    const toDo = await ToDo.create(request.body);
+    response.send(toDo);
 };
 
 module.exports.handlePutTodo = (request,response)=>{
