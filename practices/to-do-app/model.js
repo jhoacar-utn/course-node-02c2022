@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const uri = "mongodb://utn:utn@localhost:27017/utn";
+const uri = process.env.DB_URI;
+
+console.log(uri);
 
 async function main() {
     await mongoose.connect(uri);
