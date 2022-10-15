@@ -11,7 +11,8 @@ Content-Type: application/json
 
 {
     "title": "Ejemplo",
-    "text": "Esto es una tarea de ejemplo"
+    "text": "Esto es una tarea de ejemplo",
+    "importance": 4
 }
 
 ### Actualizar una tarea
@@ -21,7 +22,8 @@ Content-Type: application/json
 
 {
     "title": "Otro Ejemplo",
-    "text": "Esto es una tarea del otro ejemplo"
+    "text": "Esto es una tarea del otro ejemplo",
+    "importance": 1
 }
 
 ### Eliminar la tarea
