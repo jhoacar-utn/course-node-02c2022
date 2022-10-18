@@ -2,7 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
-router.use("/api/v1",require("./api"));
-router.use("/",require("./web"));
+const { priority } = require("../../../controllers/priority")
+
+router.post("/:id",priority);
 
 module.exports = router;
