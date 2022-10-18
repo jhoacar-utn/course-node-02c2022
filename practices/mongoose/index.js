@@ -37,6 +37,7 @@ async function main() {
 }
 
 main()
-    .catch((error) => {
-        console.log("Un error ha ocurrido: ", error.message)
-    })
+//     .catch((error) => {
+//         console.log("Un error ha ocurrido: ", error.message)
+//     })
+
