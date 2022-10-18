@@ -1,32 +1,14 @@
-### Operaciones CRUD -> Create, Read, Update, Delete
+### Operaciones para Lista de Tareas
 
 ### Obtener todas las lista de tareas
-GET /to-do
+GET /api/v1/to-do?start=0&limit=3
 Host: localhost:4040
 
-### Crear una tarea
-POST /to-do
+### Obtener una tarea especifica
+GET /api/v1/to-do/alskdjalsdj
 Host: localhost:4040
-Content-Type: application/json
 
-{
-    "title": "Ejemplo",
-    "text": "Esto es una tarea de ejemplo",
-    "importance": 4
-}
-
-### Actualizar una tarea
-PUT /to-do/?title=Ejemplo
-Host: localhost:4040
-Content-Type: application/json
-
-{
-    "title": "Otro Ejemplo",
-    "text": "Esto es una tarea del otro ejemplo",
-    "importance": 1
-}
-
-### Eliminar la tarea
-DELETE /to-do?title=Otro Ejemplo
+### Aumentar la prioridad de una tarea
+POST /api/v1/priority/alskdjalsdj
 Host: localhost:4040
 
