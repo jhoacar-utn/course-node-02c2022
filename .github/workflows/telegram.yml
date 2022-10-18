@@ -15,9 +15,10 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: html
           message: |
-            <b>${{ github.actor }}</b> ha subido un nuevo cambio 😁!
-            <b>mensaje</b>: ${{ github.event.commits[0].message }}
+            <strong>${{ github.actor }}</strong> HA SUBIDO UN NUEVO CAMBIO 😁!
 
-            <b>repositorio</b>: ${{ github.repository }}
+            <strong>MENSAJE</strong>: ${{ github.event.commits[0].message }}
 
-            Puedes verlo acá: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            <strong>REPOSITORIO</strong>: ${{ github.repository }}
+
+            - Puedes verlo acá: https://github.com/${{ github.repository }}/commit/${{github.sha}}

@@ -589,7 +589,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 11 (Introduccion a API)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_11">Clase 11</a> (Introduccion a API)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es una API?</h2></summary>
@@ -629,7 +629,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 12 (Manejo del storage en el servidor)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_12">Clase 12</a> (Manejo del storage en el servidor)</h1></summary>  
 
   <details>
     <summary><h2>Formulario para subir archivos</h2></summary>
