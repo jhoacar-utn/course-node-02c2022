@@ -9,8 +9,8 @@ module.exports.priority = async function (req, res) {
     try {
 
         const toDo = await ToDo.findByIdAndUpdate(id, {
-            priority: {
-                $inc: 1
+            $inc:{
+                priority:1
             }
         })
 
