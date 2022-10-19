@@ -12,3 +12,23 @@ Host: localhost:4040
 POST /api/v1/priority/634f3926685f771866810ce7
 Host: localhost:4040
 
+### Registrar un usuario
+POST /api/v1/users
+Host: localhost:4040
+Content-Type: application/json
+
+{
+    "name": "pedro perez",
+    "email": "pedro@gmail.com",
+    "password": "pedro123"
+}
+
+### Autenticacion de un usuario
+POST /api/v1/auth
+Host: localhost:4040
+Content-Type: application/json
+
+{
+    "email": "pedro@gmail.com",
+    "password": "pedro123"
+}
