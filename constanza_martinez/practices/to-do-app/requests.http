@@ -1,0 +1,34 @@
+### Operaciones para Lista de Tareas
+
+### Obtener todas las lista de tareas
+GET /api/v1/to-do?start=0&limit=3
+Host: localhost:4040
+
+### Obtener una tarea especifica
+GET /api/v1/to-do/634f3926685f771866810ce7
+Host: localhost:4040
+
+### Aumentar la prioridad de una tarea
+POST /api/v1/priority/634f3926685f771866810ce7
+Host: localhost:4040
+
+### Registrar un usuario
+POST /api/v1/users
+Host: localhost:4040
+Content-Type: application/json
+
+{
+    "name": "pedro perez",
+    "email": "pedro@gmail.com",
+    "password": "pedro123"
+}
+
+### Autenticacion de un usuario
+POST /api/v1/auth
+Host: localhost:4040
+Content-Type: application/json
+
+{
+    "email": "pedro@gmail.com",
+    "password": "pedro123"
+}
