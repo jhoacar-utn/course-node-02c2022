@@ -1,3 +1,3 @@
 const path = require("path");
 
-module.exports = path.resolve(__dirname+"/../../client");
+module.exports = path.resolve(__dirname+"/../../client/static");
