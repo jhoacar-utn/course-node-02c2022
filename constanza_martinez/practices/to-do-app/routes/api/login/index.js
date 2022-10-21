@@ -2,6 +2,10 @@ const express = require ('express');
 
 const router = express.Router();
 
-const { login } = require ('../../../controllers/login')
+const { create } = require ('../../../controllers/login')
 
-router.get('/login', login);
+const { validateRegistration } = require ('../../../middlewares/login');
+
+router.post('/login', validateRegistration, create);
+
+module.exports = router;

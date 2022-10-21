@@ -1,22 +1,54 @@
-const login = require ('../models/login.js');
 const { body, validationResult } = require('express-validator');
 
-app.post(
-  '/login',
-  body('name').isString(),
-  body('email').isEmail(),
-  // password debe tener al menos 5 caracteres
-  body('password').isLength({ min: 5 }),
-  (req, res) => {
-    // Finds the validation errors in this request and wraps them in an object with handy functions
+module.exports.validateRegistration = (req, res, next) => {
+  
+  const result = validateRequest(req);
+
+  if (result?.errors) {
+
+    return res.status(400).json ({
+
+      errors: result.errors
+
+    })
+  }
+
+  return next();
+}
+
+/**
+* Funcion encargada de validar la request y asegurarse que la informacion venga correctamente
+* Devuelve un objeto con el campo '.errors', con los errores que existan
+* En otro caso devolvera un 'null'
+* Esta funcion esta implementa usando express-validator.
+*/
+
+function validateRequest(req){
+
+  const rules = [
+
+        body('name').isLength({ min: 1}),
+
+        body('email').isEmail(),
+
+        body('password').isLength({ min: 5}),
+
+    ]
+
+    rules.map( (middlewareFunction) => {
+      
+      middlewareFunction(req);
+    
+    })
+    
     const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-  login.create({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-    }).then(login => res.json(login));
-  },
-);
+
+    if (!errors.isEmpty() ) {
+      return {
+        errors: errors.array()
+      }
+    } 
+    return {
+      errors: null
+    };
+}
