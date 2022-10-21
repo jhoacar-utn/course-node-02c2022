@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "start": "node src",
+    "dev": "nodemon src"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
