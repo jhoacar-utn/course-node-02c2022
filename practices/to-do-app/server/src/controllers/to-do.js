@@ -46,7 +46,7 @@ module.exports.index = async (req, res) => {
         })
 
     } catch (error) {
-        res.json({
+        res.status(500).json({
             errors: [
                 {
                     message: error.message
