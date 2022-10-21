@@ -1,14 +1,8 @@
 {
-  "scripts": {
-    "start": "node .",
-    "dev": "nodemon"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "mongoose": "^6.6.5"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  }
+    "scripts": {
+        "start":"npm run start:server",
+        "start:server": "cd server && npm start",
+        "prepare": "npm run install:server",
+        "install:server": "cd server && npm install"
+    }
 }
