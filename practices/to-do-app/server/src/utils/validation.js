@@ -7,12 +7,32 @@ const { validationResult } = require("express-validator");
  * otherwise return errors=null
  * @param {Middleware[]} rules 
  * @param {Request} request 
+ * @param {Response} response
  */
-module.exports.validate = (rules, request) => {
+module.exports.validate = async (rules, request) => {
 
-    rules.map((middleware) => {
-        middleware(request, {}, () => { });
-    })
+    /**
+     * -> Primera solucion
+     * Utilizar la funcion .map, navegar por cada callback
+     * ejecutarla y decirle que se espere a obtener el resultado
+     * Luego utilizando el metodo Promise.all() para decirle
+     * que tambien se espere a todas las promesas que se encuentren
+     * en el array
+     */
+    // const promises = rules.map(async (middleware) => {
+    //     await middleware(request,{}, () => { });
+    // });
+    // /**
+    //  * Aca controlamos que se esperen todas al mismo tiempo
+    //  */
+    // await Promise.all(promises);
+
+    /**
+     * -> Segunda solucion
+     */
+    for (let i = 0; i < rules.length; i++) {
+        await rules[i](request, {}, () => { });
+    }
 
     const errors = validationResult(request);
 
