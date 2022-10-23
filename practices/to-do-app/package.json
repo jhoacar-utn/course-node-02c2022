@@ -1,0 +1,10 @@
+{
+    "scripts": {
+        "start":"npm run start:server",
+        "start:server": "cd server && npm start",
+        "dev": "npm run dev:server",
+        "dev:server": "cd server && npm run dev",
+        "prepare": "npm run install:server",
+        "install:server": "cd server && npm install"
+    }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Sacar la basura",
+    "text": "Sacarla antes de las 9 de la noche",
+    "priority": 1
+  },
+  {
+    "title": "Practicar javascript",
+    "text": "Practicar los fundamentos del lenguaje javascript como callbacks y promesas",
+    "priority": 2
+  },
+  {
+    "title": "Practicar express",
+    "text": "Practiar el uso de controladores y middlewares en express, usando .use() o los verbos HTTP",
+    "priority": 3
+  },
+  {
+    "title": "Practicar mongoose",
+    "text": "Practicar conexion a mongodb usando modelos para operaciones CRUD, asi como metodos para ordenar y delimitar",
+    "priority": 3
+  }
+]
