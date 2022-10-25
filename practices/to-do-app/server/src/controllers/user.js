@@ -25,10 +25,17 @@ module.exports.create = async (req, res, next) => {
         })
     }
 }
-
+/**
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ * @param {NextFunction} next 
+ * @returns 
+ */
 module.exports.index = async (req, res, next) => {
 
     try {
+        console.log(req.headers);
         const users = await User.find();
 
         return res.json({
