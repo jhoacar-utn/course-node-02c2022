@@ -5,6 +5,8 @@ const { notfound } = require("../../controllers/error");
 const router = express.Router();
 
 router.use(express.json());
+router.use(express.urlencoded({ extended: false }));
+
 router.use(cors())
 
 router.use("/to-do", require("./to-do"));

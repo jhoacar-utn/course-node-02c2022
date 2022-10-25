@@ -5,7 +5,7 @@ const { validate } = require("../utils/validation");
  * @param {Request} request
  * @param {Response} response 
  */
-const validateRequest = async (request, response) => {
+const validateRequest = async (request) => {
     /**
      * El uso de express-validator nos devuelve un middleware
      */
@@ -14,7 +14,7 @@ const validateRequest = async (request, response) => {
         body('password').isLength({ min: 5 }),
     ]
 
-    return await validate(rules, request, response);
+    return await validate(rules, request);
 
 }
 
@@ -26,7 +26,7 @@ const validateRequest = async (request, response) => {
  */
 module.exports.validateLogin = async (req, res, next) => {
 
-    const result = await validateRequest(req, res);
+    const result = await validateRequest(req);
 
     if (result.errors) {
         return res.status(400).json({
