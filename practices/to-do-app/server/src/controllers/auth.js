@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const { compare } = require("../utils/encrypt");
 /**
  * This function create an authorization validating
  * email and password
@@ -20,7 +21,9 @@ module.exports.create = async (req, res) => {
             })
         }
 
-        if (user.password !== password) {
+        const isSamePassword = await compare(password, user.password)
+        
+        if (!isSamePassword) {
             return res.status(400).json({
                 errors: [{
                     message: "password is incorrect"

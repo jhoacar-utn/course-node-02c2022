@@ -1,4 +1,5 @@
 const { body } = require("express-validator");
+const { encrypt } = require("../utils/encrypt");
 const { validate } = require("../utils/validation");
 /**
  * This function validate the request for register an user
@@ -24,7 +25,7 @@ const validateRequest = async (request) => {
  * @param {Response} res 
  * @param {NextFunction} next 
  */
-module.exports.validateRegister = async(req, res, next) => {
+module.exports.validateRegister = async (req, res, next) => {
 
     const result = await validateRequest(req);
 
@@ -33,6 +34,17 @@ module.exports.validateRegister = async(req, res, next) => {
             errors: result.errors
         })
     }
+    return next();
+}
+
+module.exports.encryptPassword = async (req, res, next) => {
+
+    const { password } = req.body;
+
+    if (password) {
+        req.body.password = await encrypt(password);
+    }
+
     return next();
 }
 
