@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌐 Peticiones</title>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <h1>Peticiones</h1>
+    <div>
+      <h2>Lista de Tareas</h2>
+      <div>
+        <input id="start" type="number" value="0" placeholder="inicio de la lista" />
+        <input
+          id="limit"
+          value="10"
+          type="number"
+          placeholder="cantidad maxima de lista"
+        />
+        <button id="listToDoButton">Obtener lista de tareas</button>
+      </div>
+      <div style="margin-top: 1rem" id="listToDo">Lista Vacia</div>
+    </div>
+    <div>
+      <h2>Tarea</h2>
+      <div>
+        <input id="toDoIdGet" type="text" placeholder="id de tarea a obtener" />
+        <button id="toDoGetButton">Obtener Tarea</button>
+      </div>
+      <div style="margin-top: 1rem" id="toDoGet">No hay Tarea cargada</div>
+    </div>
+    <div>
+      <h2>Priorizar Tarea</h2>
+      <div>
+        <input
+          id="toDoIdPost"
+          type="text"
+          placeholder="id de tarea a priorizar"
+        />
+        <button id="toDoPostButton">Priorizar Tarea</button>
+      </div>
+      <div style="margin-top: 1rem" id="toDoPost">No hay tarea priorizada</div>
+    </div>
+  </body>
+</html>

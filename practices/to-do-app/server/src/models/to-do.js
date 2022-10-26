@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const toDoSchema = new mongoose.Schema({
     title: String,
     text: String,
-    importance: Number,
+    priority: Number,
 });
 
 const ToDo = mongoose.model('Todo', toDoSchema);
