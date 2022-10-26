@@ -35,7 +35,6 @@ module.exports.create = async (req, res, next) => {
 module.exports.index = async (req, res, next) => {
 
     try {
-        console.log(req.headers);
         const users = await User.find();
 
         return res.json({
