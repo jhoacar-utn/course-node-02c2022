@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const { compare } = require("../utils/encrypt");
 const { Request, Response } = require("express");
+const { getToken } = require("../utils/jwt");
 /**
  * This function create an authorization validating
  * email and password
@@ -22,6 +23,19 @@ module.exports.create = async (req, res) => {
             })
         }
 
+        /**
+         * Esto no es un objeto plano:
+         *  - const user = new User();
+         * 
+         * Esto si es un objeto plano:
+         *  - const user = {
+         *              name: "pedro",
+         *              email: "pedro@gmail.com"
+         *    }
+         * 
+        */
+
+
         const isSamePassword = await compare(password, user.password)
 
         if (!isSamePassword) {
@@ -32,7 +46,13 @@ module.exports.create = async (req, res) => {
             })
         }
 
-        const token = "mitoken";
+        /**
+         * Al utilizar el spread operator
+         * podemos conseguir la transformacion de un objeto
+         * creado como una instancia de una clase, a un objeto
+         * plano, que es lo que requiere directamente JsonWebToken
+         */
+        const token = getToken({ ...user });
 
         /**
          * Las cookies es una cabecera especial
@@ -52,7 +72,7 @@ module.exports.create = async (req, res) => {
          * 
          * Es decir, las cookies, SIEMPRE son enviadas al servidor
          */
-        res.setHeader('Set-Cookie','token=' + token)
+        res.setHeader('Set-Cookie', 'token=' + token)
 
         return res.json({
             result: {

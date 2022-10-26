@@ -1,6 +1,7 @@
 const { body } = require("express-validator");
 const { validate } = require("../utils/validation");
 const { Request, Response } = require("express");
+const { getData } = require("../utils/jwt");
 /**
  * This function validate the request for register an user
  * @param {Request} request
@@ -47,33 +48,49 @@ module.exports.validateLogin = async (req, res, next) => {
  */
 module.exports.validateToken = async (req, res, next) => {
 
-    if (!req.headers.cookie) {
-        return res.status(401).json({
+    try {
+
+
+        if (!req.headers.cookie) {
+            return res.status(401).json({
+                errors: [
+                    {
+                        message: "Cookie header must be sent"
+                    }
+                ]
+            })
+        }
+        /**
+         * Para extraer el token, realizamos un .split() 
+         * con el separador de '=' y obtenemos la ultima posicion
+         * de este array con el metodo .pop() 
+         * 
+         * Si quisiera obtener el primero, usariamos el .shift()
+         */
+        const token = req.headers.cookie?.split('=')?.pop()
+
+
+        const user = getData(token);
+
+        if (!user) {
+            return res.status(401).json({
+                errors: [
+                    {
+                        message: "Invalid token"
+                    }
+                ]
+            })
+        }
+
+        next();
+
+    } catch (error) {
+        res.status(500).json({
             errors: [
                 {
-                    message: "Cookie header must be sent"
+                    message: error.message
                 }
             ]
         })
     }
-    /**
-     * Para extraer el token, realizamos un .split() 
-     * con el separador de '=' y obtenemos la ultima posicion
-     * de este array con el metodo .pop() 
-     * 
-     * Si quisiera obtener el primero, usariamos el .shift()
-     */
-    const token = req.headers.cookie?.split('=')?.pop()
-
-    if (token !== "mitoken") {
-        return res.status(401).json({
-            errors: [
-                {
-                    message: "Token must be 'mitoken'"
-                }
-            ]
-        })
-    }
-
-    next();
 }
