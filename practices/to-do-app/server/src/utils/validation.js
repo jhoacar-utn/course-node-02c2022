@@ -7,7 +7,6 @@ const { validationResult } = require("express-validator");
  * otherwise return errors=null
  * @param {Middleware[]} rules 
  * @param {Request} request 
- * @param {Response} response
  */
 module.exports.validate = async (rules, request) => {
 
