@@ -52,7 +52,7 @@ module.exports.create = async (req, res) => {
          * creado como una instancia de una clase, a un objeto
          * plano, que es lo que requiere directamente JsonWebToken
          */
-        const token = getToken({ ...user });
+        const token = getToken(user.toObject());
 
         /**
          * Las cookies es una cabecera especial

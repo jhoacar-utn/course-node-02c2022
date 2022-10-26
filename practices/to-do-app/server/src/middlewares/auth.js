@@ -82,6 +82,8 @@ module.exports.validateToken = async (req, res, next) => {
             })
         }
 
+        console.log(user);
+
         next();
 
     } catch (error) {
