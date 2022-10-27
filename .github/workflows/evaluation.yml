@@ -31,7 +31,7 @@ jobs:
       - name: Install Dependecies
         run: npm ci
       - name: Evaluation Project
-        run: TIMEOUT_VALIDATION=0 npm run evaluate
+        run: TIMEOUT_VALIDATION=0 #npm run evaluate
 
   integration:
     needs:
