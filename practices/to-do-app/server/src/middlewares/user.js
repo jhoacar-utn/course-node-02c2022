@@ -1,10 +1,11 @@
 const { body } = require("express-validator");
+const { encrypt } = require("../utils/encrypt");
 const { validate } = require("../utils/validation");
 /**
  * This function validate the request for register an user
  * @param {Request} request 
  */
-const validateRequest = async (request, response) => {
+const validateRequest = async (request) => {
     /**
      * El uso de express-validator nos devuelve un middleware
      */
@@ -14,7 +15,7 @@ const validateRequest = async (request, response) => {
         body('password').isLength({ min: 5 }),
     ]
 
-    return await validate(rules, request, response);
+    return await validate(rules, request);
 
 }
 
@@ -24,15 +25,26 @@ const validateRequest = async (request, response) => {
  * @param {Response} res 
  * @param {NextFunction} next 
  */
-module.exports.validateRegister = async(req, res, next) => {
+module.exports.validateRegister = async (req, res, next) => {
 
-    const result = await validateRequest(req, res);
+    const result = await validateRequest(req);
 
     if (result.errors) {
         return res.status(400).json({
             errors: result.errors
         })
     }
+    return next();
+}
+
+module.exports.encryptPassword = async (req, res, next) => {
+
+    const { password } = req.body;
+
+    if (password) {
+        req.body.password = await encrypt(password);
+    }
+
     return next();
 }
 
