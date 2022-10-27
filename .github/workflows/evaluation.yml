@@ -38,7 +38,7 @@ jobs:
       - lint
       - evaluation
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
-      - name: Merge with master
-        run: |
-          echo "Merge with master"
+      - uses: hmarr/auto-approve-action@v3
