@@ -31,7 +31,7 @@ jobs:
       - name: Install Dependecies
         run: npm ci
       - name: Evaluation Project
-        run: DB_URI=${{ secrets.DB_URI }} TIMEOUT_VALIDATION=0 #npm run evaluate
+        run: DB_URI=${{ secrets.DB_URI }} TIMEOUT_VALIDATION=0 npm run evaluate
 
   integration:
     needs:
