@@ -8,9 +8,9 @@ const { execSync } = require('child_process');
 const { ROOT_PATH, PORT } = require('./config.cjs');
 const { handleTestServer } = require('./utils/server.cjs');
 const startConnection = require('./utils/net/client.cjs');
-const { getCurrentBranch } = require('./utils/git.cjs');
+const { extractStudentFolder } = require('./utils/file.cjs');
 
-const STUDENT_PATH = join(ROOT_PATH, getCurrentBranch());
+const STUDENT_PATH = join(ROOT_PATH, extractStudentFolder());
 const PROJECT_PATH = join(STUDENT_PATH, 'project');
 const CLIENT_PATH = join(PROJECT_PATH, 'client');
 const SERVER_PATH = join(PROJECT_PATH, 'server');

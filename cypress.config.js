@@ -9,14 +9,14 @@ import config from './project/test/config.cjs';
 import { startServer } from './project/test/utils/server.cjs';
 import { killProcess } from './project/test/utils/shell/index.cjs';
 import sleep from './project/test/utils/sleep.cjs';
-import { getCurrentBranch } from './project/test/utils/git.cjs';
 import { showSpinner } from './project/test/utils/spinner.cjs';
+import { extractStudentFolder } from './project/test/utils/file.cjs';
 
 const {
   ROOT_PATH, TIMEOUT_SERVER, PORT, DB_URI, PID_FILE,
 } = config;
 
-const STUDENT_PATH = join(ROOT_PATH, getCurrentBranch());
+const STUDENT_PATH = join(ROOT_PATH, extractStudentFolder());
 const PROJECT_PATH = join(STUDENT_PATH, 'project');
 const CLIENT_PATH = join(PROJECT_PATH, 'client');
 const SERVER_PATH = join(PROJECT_PATH, 'server');

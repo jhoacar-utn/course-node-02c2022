@@ -26,7 +26,7 @@ const {
 } = require('./utils/database.cjs');
 const getServer = require('./utils/net/server.cjs');
 const { startServer, handleTestServer } = require('./utils/server.cjs');
-const { getCurrentBranch } = require('./utils/git.cjs');
+const { extractStudentFolder } = require('./utils/file.cjs');
 /**
  * Configuration
  */
@@ -34,7 +34,7 @@ const {
   ROOT_PATH, PORT, TIMEOUT_SERVER, PID_FILE,
 } = require('./config.cjs');
 
-const STUDENT_PATH = join(ROOT_PATH, getCurrentBranch());
+const STUDENT_PATH = join(ROOT_PATH, extractStudentFolder());
 const PROJECT_PATH = join(STUDENT_PATH, 'project');
 const SERVER_PATH = join(PROJECT_PATH, 'server');
 

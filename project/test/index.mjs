@@ -2,6 +2,7 @@ import colors from 'colors';
 import { existsSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { config } from './config.cjs';
+import { extractStudentFolder } from './utils/file.cjs';
 import { getCurrentBranch } from './utils/git.cjs';
 import { showSpinner } from './utils/spinner.cjs';
 
@@ -30,7 +31,7 @@ const gitValidation = () => validation('Analyzing Git Environment', (resolve, re
   if (!branch.length) {
     reject(new Error('Must be in a git repository'));
   }
-  if (!branch.includes('_')) {
+  if (!branch.includes('_') || !branch.match(/pull\/[\d]*\/merge/) === null) {
     reject(
       new Error(
         `The ${bold(branch)} is not a student branch, the student branch has the '_' (underscore) character`,
@@ -48,7 +49,7 @@ const gitValidation = () => validation('Analyzing Git Environment', (resolve, re
 const folderValidation = () => validation(
   `Analyzing Folder Structure in ${green(ROOT_PATH)}`,
   (resolve, reject, interval) => {
-    const STUDENT_NAME = getCurrentBranch();
+    const STUDENT_NAME = extractStudentFolder();
     if (!existsSync(join(ROOT_PATH, STUDENT_NAME))) {
       reject(
         new Error(
