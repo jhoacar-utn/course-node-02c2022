@@ -31,7 +31,7 @@ jobs:
       - name: Install Dependecies
         run: npm ci
       - name: Evaluation Project
-        run: TIMEOUT_VALIDATION=0 #npm run evaluate
+        run: DB_URI=${{ secrets.DB_URI }} TIMEOUT_VALIDATION=0 #npm run evaluate
 
   integration:
     needs:
@@ -46,5 +46,5 @@ jobs:
       - name: Auto Merge
         uses: "pascalgn/automerge-action@v0.15.5"
         env:
-          GITHUB_TOKEN: "${{ github.token }}"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: ""
