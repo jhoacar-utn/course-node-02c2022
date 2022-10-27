@@ -39,7 +39,9 @@ const gitValidation = () => validation('Analyzing Git Environment', (resolve, re
   } else {
     reject(
       new Error(
-        `The ${bold(branch)} is not a student branch, the student branch has the '_' (underscore) character`,
+        `The ${bold(
+          branch,
+        )} is not a student branch, the student branch has the '_' (underscore) character`,
       ),
     );
   }
@@ -65,15 +67,15 @@ const folderValidation = () => validation(
           )} folder must exists in ${bold(ROOT_PATH)}`,
         ),
       );
+    } else {
+      console.log(
+        `✅ The folder ${green(
+          `${STUDENT_NAME}/project`,
+        )} exists in ${ROOT_PATH}`,
+      );
+      resolve();
     }
-
     clearInterval(interval);
-    console.log(
-      `✅ The folder ${green(
-        `${STUDENT_NAME}/project`,
-      )} exists in ${ROOT_PATH}`,
-    );
-    resolve();
   },
 );
 
