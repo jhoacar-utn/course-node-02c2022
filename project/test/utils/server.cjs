@@ -2,12 +2,12 @@ const {
   readFileSync, writeFileSync, unlinkSync, existsSync,
 } = require('fs');
 const { join } = require('path');
-const { getCurrentBranch } = require('./git.cjs');
+const { extractStudentFolder } = require('./file.cjs');
 const { ROOT_PATH, TIMEOUT_SERVER, PID_FILE } = require('../config.cjs');
 const { execBackground, killProcess } = require('./shell/index.cjs');
 const sleep = require('./sleep.cjs');
 
-const STUDENT_PATH = join(ROOT_PATH, getCurrentBranch());
+const STUDENT_PATH = join(ROOT_PATH, extractStudentFolder());
 const PROJECT_PATH = join(STUDENT_PATH, 'project');
 const SERVER_PATH = join(PROJECT_PATH, 'server');
 const JSON_FILE = 'package.json';
