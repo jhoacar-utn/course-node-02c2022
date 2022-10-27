@@ -15,7 +15,7 @@ const {
  * @returns
  */
 const validation = (loading, callback) => {
-  const timeout = 3000;
+  const timeout = process.env.TIMEOUT_VALIDATION || 3000;
   const interval = showSpinner(loading);
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -25,29 +25,25 @@ const validation = (loading, callback) => {
   });
 };
 
-const gitValidation = () => validation(
-  'Analyzing Git Environment',
-  (resolve, reject, interval) => {
-    const branch = getCurrentBranch();
-    if (!branch.length) {
-      reject(new Error(red('Must be in a git repository')));
-    }
-    if (!branch.includes('_')) {
-      reject(
-        new Error(
-          red(
-            `The ${branch} is not a student branch, the student branch has the '_' (underscore) character`,
-          ),
-        ),
-      );
-    }
-    clearInterval(interval);
+const gitValidation = () => validation('Analyzing Git Environment', (resolve, reject, interval) => {
+  const branch = getCurrentBranch();
+  if (!branch.length) {
+    reject(new Error('Must be in a git repository'));
+  }
+  if (!branch.includes('_')) {
+    reject(
+      new Error(
+        `The ${bold(branch)} is not a student branch, the student branch has the '_' (underscore) character`,
+      ),
+    );
+  } else {
     console.log(
       `✅ The current branch ${green(branch)} is a branch of student!`,
     );
     resolve();
-  },
-);
+  }
+  clearInterval(interval);
+});
 
 const folderValidation = () => validation(
   `Analyzing Folder Structure in ${green(ROOT_PATH)}`,
