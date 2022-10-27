@@ -17,6 +17,8 @@
     "import/no-dynamic-require": "off",
     "global-require": "off",
     "import/no-extraneous-dependencies": "off",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "func-names": "off",
+    "array-callback-return":"off"
   }
 }

@@ -1,14 +1,16 @@
-const { readFileSync, writeFileSync, unlinkSync, existsSync } = require("fs");
-const { join } = require("path");
-const { getCurrentBranch } = require("./git.cjs");
-const { ROOT_PATH, TIMEOUT_SERVER, PID_FILE } = require("../config.cjs");
-const { execBackground, killProcess } = require("./shell/index.cjs");
-const sleep = require("./sleep.cjs");
+const {
+  readFileSync, writeFileSync, unlinkSync, existsSync,
+} = require('fs');
+const { join } = require('path');
+const { getCurrentBranch } = require('./git.cjs');
+const { ROOT_PATH, TIMEOUT_SERVER, PID_FILE } = require('../config.cjs');
+const { execBackground, killProcess } = require('./shell/index.cjs');
+const sleep = require('./sleep.cjs');
 
 const STUDENT_PATH = join(ROOT_PATH, getCurrentBranch());
-const PROJECT_PATH = join(STUDENT_PATH, "project");
-const SERVER_PATH = join(PROJECT_PATH, "server");
-const JSON_FILE = "package.json";
+const PROJECT_PATH = join(STUDENT_PATH, 'project');
+const SERVER_PATH = join(PROJECT_PATH, 'server');
+const JSON_FILE = 'package.json';
 const COMMAND_PID = `echo $$ > ${PID_FILE}`;
 const TIMEOUT_SCRIPT = 0.5;
 /**
@@ -30,7 +32,7 @@ const adaptPackageJSON = (path) => {
         ...parsed.scripts,
         start: `${COMMAND_PID};${parsed.scripts.start}`,
       },
-    })
+    }),
   );
   return content;
 };
@@ -101,6 +103,7 @@ const handleTestServer = async (onBeforeStart, onStarted, onTest) => {
       }
     }
     if (error) {
+      // eslint-disable-next-line no-undef
       expect(error).toBe(null);
     }
     if (onTest) {

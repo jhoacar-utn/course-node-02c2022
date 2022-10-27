@@ -1,5 +1,5 @@
-const { execSync, exec } = require("child_process");
-const { LOG_FILE } = require("../../config.cjs");
+const { execSync, exec } = require('child_process');
+const { LOG_FILE } = require('../../config.cjs');
 
 /**
  * This function execute a command in background and return

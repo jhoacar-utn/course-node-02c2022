@@ -1,4 +1,4 @@
-const { createServer } = require("net");
+const { createServer } = require('net');
 
 /**
  * This function create a new server
@@ -9,21 +9,19 @@ const { createServer } = require("net");
  * @param {() => void} onConnection
  * @return {Promise<Server>}
  */
-const getServer = (port, onStart, onConnection) => {
-  return new Promise((resolve, reject) => {
-    const server = createServer(function (socket) {
-      onConnection();
-      socket.write("\r\nHello from server\r\n");
-      socket.end();
-      socket.destroy();
-      this.close(() => this.unref());
-    });
-    server.on("error", reject);
-    server.listen(port, async () => {
-      await onStart(server);
-      resolve();
-    });
+const getServer = (port, onStart, onConnection) => new Promise((resolve, reject) => {
+  const server = createServer(function (socket) {
+    onConnection();
+    socket.write('\r\nHello from server\r\n');
+    socket.end();
+    socket.destroy();
+    this.close(() => this.unref());
   });
-};
+  server.on('error', reject);
+  server.listen(port, async () => {
+    await onStart(server);
+    resolve();
+  });
+});
 
 module.exports = getServer;

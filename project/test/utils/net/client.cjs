@@ -1,4 +1,4 @@
-const { createConnection } = require("net");
+const { createConnection } = require('net');
 
 /**
  * This function create a new connection on port specific
@@ -7,15 +7,13 @@ const { createConnection } = require("net");
  * @param {number} port
  * @return {Promise<string | Error>}
  */
-const startConnection = (port) => {
-  return new Promise((resolve, reject) => {
-    const client = createConnection(port, "127.0.0.1");
-    client.on("connect", () => {
-      client.destroy();
-      resolve("connection success");
-    });
-    client.on("error", reject);
+const startConnection = (port) => new Promise((resolve, reject) => {
+  const client = createConnection(port, '127.0.0.1');
+  client.on('connect', () => {
+    client.destroy();
+    resolve('connection success');
   });
-};
+  client.on('error', reject);
+});
 
 module.exports = startConnection;
