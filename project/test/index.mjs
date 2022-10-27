@@ -15,7 +15,7 @@ const {
  * @returns
  */
 const validation = (loading, callback) => {
-  const timeout = 3000;
+  const timeout = process.env.TIMEOUT_VALIDATION || 3000;
   const interval = showSpinner(loading);
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -40,12 +40,13 @@ const gitValidation = () => validation(
           ),
         ),
       );
+    }else{
+      console.log(
+        `✅ The current branch ${green(branch)} is a branch of student!`,
+      );
+      resolve();
     }
     clearInterval(interval);
-    console.log(
-      `✅ The current branch ${green(branch)} is a branch of student!`,
-    );
-    resolve();
   },
 );
 

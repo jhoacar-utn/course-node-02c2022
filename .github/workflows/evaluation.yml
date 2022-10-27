@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 16
       - name: Install Dependecies
-        run: npm install
+        run: npm ci
       - name: Lint Fix All Files
         run: npm run lint:fix -- .
 
@@ -32,9 +32,9 @@ jobs:
         with:
           node-version: 16
       - name: Install Dependecies
-        run: npm install
+        run: npm ci
       - name: Evaluation Project
-        run: npm run evaluate
+        run: TIMEOUT_VALIDATION=0 npm run evaluate
 
   integration:
     needs:
