@@ -1,8 +1,5 @@
 name: course-evaluation
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
