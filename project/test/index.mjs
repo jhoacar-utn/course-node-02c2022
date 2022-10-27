@@ -31,17 +31,17 @@ const gitValidation = () => validation('Analyzing Git Environment', (resolve, re
   if (!branch.length) {
     reject(new Error('Must be in a git repository'));
   }
-  if (!branch.includes('_') || !branch.match(/pull\/[\d]*\/merge/) === null) {
+  if (branch.includes('_') || branch.match(/pull\/[\d]*\/merge/) !== null) {
+    console.log(
+      `✅ The current branch ${green(branch)} is a branch of student!`,
+    );
+    resolve();
+  } else {
     reject(
       new Error(
         `The ${bold(branch)} is not a student branch, the student branch has the '_' (underscore) character`,
       ),
     );
-  } else {
-    console.log(
-      `✅ The current branch ${green(branch)} is a branch of student!`,
-    );
-    resolve();
   }
   clearInterval(interval);
 });
