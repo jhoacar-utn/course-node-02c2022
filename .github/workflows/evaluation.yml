@@ -1,8 +1,11 @@
 name: course approved
 on: 
+  push:
+    branches: [master]
   pull_request:
-    branches:
-      - master
+    branches: [master]
+    types: [opened, synchronize]
+
 jobs:
 
   lint:
