@@ -1,13 +1,17 @@
 name: course-evaluation
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   pull_request:
-    branches: [master]
-    types: [opened, synchronize]
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
 jobs:
   lint:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
@@ -21,8 +25,9 @@ jobs:
         run: npm run lint:fix -- .
 
   evaluation:
-    needs: [lint]
-    runs-on: ubuntu-22.04
+    needs:
+      - lint
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
@@ -36,7 +41,9 @@ jobs:
         run: npm run evaluate
 
   integration:
-    needs: [lint, evaluation]
+    needs:
+      - lint
+      - evaluation
     runs-on: ubuntu-20.04
     steps:
       - name: Merge with master

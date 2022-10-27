@@ -1,8 +1,8 @@
 name: telegram message
-on: 
+on:
   push:
     branches:
-      - master
+      - mastered
 jobs:
   notify:
     name: notify
