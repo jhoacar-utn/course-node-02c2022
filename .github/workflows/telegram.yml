@@ -2,7 +2,7 @@ name: telegram message
 on: 
   push:
     branches:
-      - master
+      - mastered
 jobs:
   notify:
     name: notify
