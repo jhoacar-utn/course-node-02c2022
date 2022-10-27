@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
 const { Request, Response } = require('express');
 const User = require('../models/user');
