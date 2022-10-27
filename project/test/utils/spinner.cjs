@@ -1,5 +1,5 @@
-const { clock } = require("cli-spinners");
-const { bold } = require("colors");
+const { clock } = require('cli-spinners');
+const { bold } = require('colors');
 /**
  * This function show in console a message
  * using the spinner and return the ID for the interval
@@ -8,8 +8,8 @@ const { bold } = require("colors");
  */
 function showSpinner(message) {
   const spinner = clock;
-  message.replace(/(\r\n|\n|\r)/gm, "");
-  process.stdout.write("\n");
+  message.replace(/(\r\n|\n|\r)/gm, '');
+  process.stdout.write('\n');
   let index = 0;
   return setInterval(() => {
     // const resetCursor = "\x1B[0G";

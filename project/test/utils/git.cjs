@@ -1,4 +1,4 @@
-const { execSync } = require("child_process");
+const { execSync } = require('child_process');
 
 /**
  * This function returns the current branch
@@ -7,8 +7,7 @@ const { execSync } = require("child_process");
  * @return {string}
  */
 function getCurrentBranch() {
-  const GitCommandBranch =
-    "git branch 2> /dev/null | grep '*' | awk '{print $NF}'";
+  const GitCommandBranch = "git branch 2> /dev/null | grep '*' | awk '{print $NF}'";
   return execSync(GitCommandBranch).toString().trim();
 }
 

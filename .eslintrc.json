@@ -13,10 +13,12 @@
   "plugins": ["react"],
   "rules": {
     "no-console": "off",
-    "no-underscore-dangle":"off",
+    "no-underscore-dangle": "off",
     "import/no-dynamic-require": "off",
     "global-require": "off",
     "import/no-extraneous-dependencies": "off",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "func-names": "off",
+    "array-callback-return":"off"
   }
 }
