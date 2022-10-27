@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
 
-const { priority } = require("../../../controllers/priority")
+const { priority } = require('../../../controllers/priority');
 
-router.post("/:id",priority);
+router.post('/:id', priority);
 
 module.exports = router;
