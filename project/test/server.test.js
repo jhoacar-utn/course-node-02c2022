@@ -1,3 +1,4 @@
+/* globals jest */
 /**
  * This file run under jest environment
  */
@@ -24,7 +25,7 @@ const {
   removeConnection,
 } = require('./utils/database.cjs');
 const getServer = require('./utils/net/server.cjs');
-const { handleTestServer } = require('./utils/server.cjs');
+const { handleTestServer, killPidsOnPorts } = require('./utils/server.cjs');
 const { extractStudentFolder } = require('./utils/file.cjs');
 /**
  * Configuration
@@ -58,6 +59,7 @@ beforeAll(async () => {
 afterAll(async () => {
   await removeDataInDatabase();
   await removeConnection();
+  await killPidsOnPorts();
 });
 
 /**
@@ -87,19 +89,19 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
 
   describe('Testing StartUp Server', () => {
     test('Testing server that listen on PORT environment variable', async () => {
-      await handleTestServer(
-        null,
-        async (port) => {
+      await handleTestServer({
+        onBeforeStart: null,
+        onStarted: async (port) => {
           await startConnection(port);
         },
-        async (error) => {
+        onTest: async (error) => {
           if (error) {
             expect('Server is not using PORT for start up').toBe(
               'Server is using PORT for start up',
             );
           }
         },
-      );
+      });
     });
     test('Testing server that use the DB_URI environment variable to connect to the database', async () => {
       const DB_PORT = 1111;
@@ -113,12 +115,12 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           DB_URI: `mongodb://localhost:${DB_PORT}`,
         };
 
-        await handleTestServer(
-          null,
-          async (portServer, pidServer) => {
+        await handleTestServer({
+          onBeforeStart: null,
+          onStarted: async (portServer, pidServer) => {
             pid = pidServer;
           },
-          async (e) => {
+          onTest: async (e) => {
             server.close(() => server.unref());
             if (e) {
               expect(
@@ -128,7 +130,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
             }
           },
           env,
-        );
+        });
       };
       const onConnection = async () => {
         if (pid) {
@@ -142,54 +144,56 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
     describe('Testing Connection Database', () => {
       test('Testing Load of Emojis in database', async () => {
         let data = null;
-        await handleTestServer(
-          async () => {
+        await handleTestServer({
+          onBeforeStart: async () => {
             await removeDataInDatabase();
           },
-          async () => {
+          onStarted: async () => {
             data = await getAllData();
           },
-          async () => {
+          onTest: async () => {
             expect(data?.length > 0).toBe(true);
           },
-        );
+        });
       });
     });
     describe('Testing Routes in /api/v1', () => {
+      jest.setTimeout(60000);
+
       test('Testing Cors in responses', async () => {
         let response = null;
-        await handleTestServer(
-          async () => {
+        await handleTestServer({
+          onBeforeStart: async () => {
             await removeDataInDatabase();
           },
-          async (port) => {
+          onStarted: async (port) => {
             response = await get(
               `http://localhost:${port}/api/v1/emojis?start=-1&limit=25`,
             );
           },
-          async () => {
+          onTest: async () => {
             expect(response).not.toBe(null);
             expect(response.status).toBe(200);
             expect(response.headers).toHaveProperty(
               'access-control-allow-origin',
             );
           },
-        );
+        });
       });
       test('GET /api/v1/emojis?start=-1&limit=25', async () => {
         let response = null;
         let dbData = [];
-        await handleTestServer(
-          async () => {
+        await handleTestServer({
+          onBeforeStart: async () => {
             await removeDataInDatabase();
           },
-          async (port) => {
+          onStarted: async (port) => {
             dbData = (await getAllData())?.shift();
             response = await get(
               `http://localhost:${port}/api/v1/emojis?start=-1&limit=25`,
             );
           },
-          async () => {
+          onTest: async () => {
             expect(response).not.toBe(null);
             expect(response.status).toBe(200);
             const { data } = response;
@@ -201,18 +205,19 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
               dbData?.slice()?.shift()?.name,
             );
           },
-        );
+          timeoutServer: 3,
+        });
       });
       test('GET /api/v1/emojis/:id', async () => {
         let response = null;
         let dbData = [];
         let randomIndex = null;
         let emoji = null;
-        await handleTestServer(
-          async () => {
+        await handleTestServer({
+          onBeforeStart: async () => {
             await removeDataInDatabase();
           },
-          async (port) => {
+          onStarted: async (port) => {
             dbData = (await getAllData())?.shift();
             randomIndex = Number.parseInt(
               Math.random() * (+dbData.length - 1),
@@ -223,7 +228,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
               `http://localhost:${port}/api/v1/emojis/${emoji?._id}`,
             );
           },
-          async () => {
+          onTest: async () => {
             expect(response).not.toBe(null);
             expect(response.status).toBe(200);
             const { data } = response;
@@ -231,43 +236,46 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
             expect(data?.result).toHaveProperty('name');
             expect(data?.result?.name).toBe(emoji?.name);
           },
-        );
+          timeoutServer: 3,
+        });
       });
-
       test('POST /api/v1/votes', async () => {
         let response = null;
         let dbData = [];
         let randomIndex = null;
         let emoji = null;
         await handleTestServer(
-          async () => {
-            await removeDataInDatabase();
-          },
-          async (port) => {
-            dbData = (await getAllData())?.shift();
-            randomIndex = Number.parseInt(
-              Math.random() * (+dbData.length - 1),
-              10,
-            );
-            emoji = dbData[randomIndex];
-            response = await post(`http://localhost:${port}/api/v1/votes`, {
-              id: emoji?._id,
-            });
-          },
-          async () => {
-            expect(response).not.toBe(null);
-            expect(response.status).toBe(200);
-            const { data } = response;
-            expect(data).toHaveProperty('result');
-            expect(data?.result).toHaveProperty('name');
-            expect(data?.result?.votes).toBe(+emoji.votes + 1);
-            const dbDataUpdate = (await getAllData())
-              ?.shift()
-              ?.sort((a, b) => a.votes - b.votes);
-            const sameEmoji = dbDataUpdate?.pop();
-            expect({ ...emoji, votes: emoji.votes + 1 }).toStrictEqual(
-              sameEmoji,
-            );
+          {
+            onBeforeStart: async () => {
+              await removeDataInDatabase();
+            },
+            onStarted: async (port) => {
+              dbData = (await getAllData())?.shift();
+              randomIndex = Number.parseInt(
+                Math.random() * (+dbData.length - 1),
+                10,
+              );
+              emoji = dbData[randomIndex];
+              response = await post(`http://localhost:${port}/api/v1/votes`, {
+                id: emoji?._id,
+              });
+            },
+            onTest: async () => {
+              expect(response).not.toBe(null);
+              expect(response.status).toBe(200);
+              const { data } = response;
+              expect(data).toHaveProperty('result');
+              expect(data?.result).toHaveProperty('name');
+              expect(data?.result?.votes).toBe(+emoji.votes + 1);
+              const dbDataUpdate = (await getAllData())
+                ?.shift()
+                ?.sort((a, b) => a.votes - b.votes);
+              const sameEmoji = dbDataUpdate?.pop();
+              expect({ ...emoji, votes: emoji.votes + 1 }).toStrictEqual(
+                sameEmoji,
+              );
+            },
+            timeoutServer: 4,
           },
         );
       });

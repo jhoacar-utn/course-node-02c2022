@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import './project/test/index.mjs';
 
 import { exec } from 'child_process';
@@ -6,8 +7,7 @@ import { existsSync } from 'fs';
 import { defineConfig } from 'cypress';
 import config from './project/test/config.cjs';
 
-import { startServer } from './project/test/utils/server.cjs';
-import { killProcess } from './project/test/utils/shell/index.cjs';
+import { killPidOnPort, startServer } from './project/test/utils/server.cjs';
 import sleep from './project/test/utils/sleep.cjs';
 import { showSpinner } from './project/test/utils/spinner.cjs';
 import { extractStudentFolder } from './project/test/utils/file.cjs';
@@ -20,7 +20,6 @@ const STUDENT_PATH = join(ROOT_PATH, extractStudentFolder());
 const PROJECT_PATH = join(STUDENT_PATH, 'project');
 const CLIENT_PATH = join(PROJECT_PATH, 'client');
 const SERVER_PATH = join(PROJECT_PATH, 'server');
-let PID = null;
 
 const handleBeforeRun = async () => {
   if (!existsSync(CLIENT_PATH)) {
@@ -52,14 +51,12 @@ const handleBeforeRun = async () => {
       });
     });
   }
-  PID = await startServer(SERVER_PATH, { ...process.env, PORT, DB_URI });
+  await startServer(SERVER_PATH, { ...process.env, PORT, DB_URI });
   await sleep(TIMEOUT_SERVER);
 };
 
 const handleAfterRun = async () => {
-  if (PID) {
-    await killProcess(PID);
-  }
+  await killPidOnPort(PORT);
 };
 
 export default defineConfig({
