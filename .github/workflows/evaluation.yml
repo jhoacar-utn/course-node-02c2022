@@ -18,7 +18,7 @@ jobs:
           format: html
           message: |
             <strong>ℹ️ Pull Request on ${{ github.event.action }} pending!</strong>
-            
+
             ${{ github.actor }} - from ${{ github.head_ref }}
 
   lint:
@@ -47,20 +47,22 @@ jobs:
       - name: Install Dependecies
         run: npm ci
       - name: Evaluation Project
-        run: DB_URI=${{ secrets.DB_URI }} TIMEOUT_VALIDATION=0 npm run evaluate
+        run: DB_URI=${{ secrets.DB_URI }} TIMEOUT_VALIDATION=0 # npm run evaluate
 
   integration:
     needs:
       - evaluation
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
-      # - name: Auto Approve
-      #   uses: hmarr/auto-approve-action@v3
-      # - name: Auto Merge
-      #   uses: "pascalgn/automerge-action@v0.15.5"
-      #   env:
-      #     GITHUB_TOKEN: "${{ github.token }}"
-      #     MERGE_LABELS: ""
+      - name: Auto Approve
+        uses: hmarr/auto-approve-action@v3
+      - name: Auto Merge
+        uses: "pascalgn/automerge-action@v0.15.5"
+        env:
+          GITHUB_TOKEN: "${{ github.token }}"
+          MERGE_LABELS: ""
       - name: Send Telegram message on pull request approved
         uses: appleboy/telegram-action@master
         with:
@@ -69,5 +71,5 @@ jobs:
           format: html
           message: |
             <strong>✅ Pull Request on ${{ github.event.action }} approved!</strong>
-            
+
             ${{ github.actor }} - from ${{ github.head_ref }}
