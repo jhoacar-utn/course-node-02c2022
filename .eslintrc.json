@@ -5,6 +5,10 @@
     "es2021": true,
     "node": true
   },
+  "ignorePatterns":[
+    "**/dist",
+    "**/build"
+  ],
   "extends": ["plugin:react/recommended", "airbnb"],
   "overrides": [],
   "parserOptions": {
