@@ -1,0 +1,18 @@
+### 
+GET /api/v1/emojis
+Host: localhost:8888
+### 
+GET /api/v1/emojis?start=1&limit=3
+Host: localhost:8888
+### 
+GET /api/v1/emojis?start=5&limit=2
+Host: localhost:8888
+
+
+### 
+GET /api/v1/emojis/6343509b7aa138e1e98707f9
+Host: localhost:8888
+
+### 
+POST /api/v1/votes/6343509b7aa138e1e98707f9
+Host: localhost:8888
