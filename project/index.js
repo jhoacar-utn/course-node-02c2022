@@ -2,13 +2,22 @@ import './test/index.mjs';
 
 import { exec } from 'child_process';
 import colors from 'colors';
+import { existsSync, readFileSync, unlinkSync } from 'fs';
 import config from './test/config.cjs';
 import { showSpinner } from './test/utils/spinner.cjs';
 
-const { ROOT_PATH } = config;
+const { ROOT_PATH, LOG_FILE } = config;
 const {
   yellow, cyan, bold, red,
 } = colors;
+const DEBUG_SERVER = process.env.DEBUG_SERVER || false;
+
+if (DEBUG_SERVER) {
+  if (existsSync(LOG_FILE)) {
+    unlinkSync(LOG_FILE);
+  }
+}
+
 /**
  * @param {string} command
  * @returns {Promise<string>}
@@ -19,6 +28,12 @@ const execPromise = (command, loading) => {
     exec(command, (error, stdout) => {
       clearInterval(interval);
       console.log('\n');
+      if (DEBUG_SERVER) {
+        if (existsSync(LOG_FILE)) {
+          console.log(readFileSync(LOG_FILE));
+          unlinkSync(LOG_FILE);
+        }
+      }
       resolve(stdout.toString());
     });
   });
