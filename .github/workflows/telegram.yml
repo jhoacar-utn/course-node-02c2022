@@ -2,13 +2,13 @@ name: telegram message
 on:
   push:
     branches:
-      - master
+      - mastered
 jobs:
   notify:
     name: notify
     runs-on: ubuntu-latest
     steps:
-      - name: send telegram message on push
+      - name: Send Telegram message on push
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
