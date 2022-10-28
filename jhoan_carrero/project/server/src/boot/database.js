@@ -10,9 +10,11 @@ async function loadEmojis() {
 }
 
 async function connection() {
+  console.log(`Connecting to ${uri}`);
+
   await mongoose.connect(uri);
 
-  console.log('Connecion established');
+  console.log(`Connecion established to ${uri}`);
 
   const amount = await Emoji.countDocuments();
 
