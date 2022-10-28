@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import colors from 'colors';
 import { existsSync, writeFileSync } from 'fs';
 import { join } from 'path';
