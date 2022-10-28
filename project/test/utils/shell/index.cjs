@@ -17,9 +17,18 @@ const execBackground = (command, options) => {
 /**
  * This function kill a process using his pid
  * @param {number} pid
+ * @return {Promise<void>}
  */
-const killProcess = (pid) => {
-  exec(`kill ${pid}`);
-};
+const killProcess = (pid) => new Promise((resolve) => {
+  exec(`kill ${pid}`, (error, stdout, stderr) => {
+    if (error) {
+      resolve(error);
+    } else if (stdout || stderr) {
+      resolve(stdout + stderr);
+    } else {
+      resolve('done');
+    }
+  });
+});
 
 module.exports = { execBackground, killProcess };

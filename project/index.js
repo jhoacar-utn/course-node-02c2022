@@ -30,7 +30,11 @@ const execPromise = (command, loading) => {
       console.log('\n');
       if (DEBUG_SERVER) {
         if (existsSync(LOG_FILE)) {
-          console.log(readFileSync(LOG_FILE));
+          console.log('----------------------------------------------');
+          console.log(`🐛 CONTENT OF ${LOG_FILE}\n`);
+          console.log('----------------------------------------------');
+          console.log(readFileSync(LOG_FILE).toString());
+          console.log('----------------------------------------------');
           unlinkSync(LOG_FILE);
         }
       }

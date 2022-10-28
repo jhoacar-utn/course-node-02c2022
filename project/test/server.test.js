@@ -10,13 +10,12 @@ const {
 } = require('@jest/globals');
 const { get, post } = require('axios');
 const { execSync } = require('child_process');
-const { existsSync, unlinkSync } = require('fs');
+const { existsSync } = require('fs');
 const { join } = require('path');
 /**
  * Utilities
  */
 const startConnection = require('./utils/net/client.cjs');
-const sleep = require('./utils/sleep.cjs');
 const { killProcess } = require('./utils/shell/index.cjs');
 const {
   removeDataInDatabase,
@@ -25,14 +24,12 @@ const {
   removeConnection,
 } = require('./utils/database.cjs');
 const getServer = require('./utils/net/server.cjs');
-const { startServer, handleTestServer } = require('./utils/server.cjs');
+const { handleTestServer } = require('./utils/server.cjs');
 const { extractStudentFolder } = require('./utils/file.cjs');
 /**
  * Configuration
  */
-const {
-  ROOT_PATH, PORT, TIMEOUT_SERVER, PID_FILE,
-} = require('./config.cjs');
+const { ROOT_PATH } = require('./config.cjs');
 
 const STUDENT_PATH = join(ROOT_PATH, extractStudentFolder());
 const PROJECT_PATH = join(STUDENT_PATH, 'project');
@@ -92,8 +89,8 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
     test('Testing server that listen on PORT environment variable', async () => {
       await handleTestServer(
         null,
-        async () => {
-          await startConnection(PORT);
+        async (port) => {
+          await startConnection(port);
         },
         async (error) => {
           if (error) {
@@ -106,8 +103,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
     });
     test('Testing server that use the DB_URI environment variable to connect to the database', async () => {
       const DB_PORT = 1111;
-      let PID = null;
-      let error = null;
+      let pid = null;
       /**
        * @param {Server} server
        */
@@ -116,34 +112,27 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           ...process.env,
           DB_URI: `mongodb://localhost:${DB_PORT}`,
         };
-        try {
-          PID = await startServer(SERVER_PATH, env);
-          await sleep(TIMEOUT_SERVER);
-        } catch (e) {
-          error = e;
-        } finally {
-          server.close(() => server.unref());
-          if (PID) {
-            killProcess(PID);
-            if (existsSync(PID_FILE)) {
-              unlinkSync(PID_FILE);
+
+        await handleTestServer(
+          null,
+          async (portServer, pidServer) => {
+            pid = pidServer;
+          },
+          async (e) => {
+            server.close(() => server.unref());
+            if (e) {
+              expect(
+                'Server is not using DB_URI for connection with database',
+              ).toBe('Server is using DB_URI for connection with database');
+              expect(e).toBe(null);
             }
-            expect(
-              'Server is not using DB_URI for connection with database',
-            ).toBe('Server is using DB_URI for connection with database');
-          }
-          if (error) {
-            expect(error).toBe(null);
-          }
-        }
+          },
+          env,
+        );
       };
-      const onConnection = () => {
-        if (PID) {
-          killProcess(PID);
-          if (existsSync(PID_FILE)) {
-            unlinkSync(PID_FILE);
-          }
-          PID = null;
+      const onConnection = async () => {
+        if (pid) {
+          await killProcess(pid);
         }
       };
       await getServer(DB_PORT, onStart, onConnection);
@@ -173,9 +162,9 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           async () => {
             await removeDataInDatabase();
           },
-          async () => {
+          async (port) => {
             response = await get(
-              `http://localhost:${PORT}/api/v1/emojis?start=-1&limit=25`,
+              `http://localhost:${port}/api/v1/emojis?start=-1&limit=25`,
             );
           },
           async () => {
@@ -194,10 +183,10 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           async () => {
             await removeDataInDatabase();
           },
-          async () => {
+          async (port) => {
             dbData = (await getAllData())?.shift();
             response = await get(
-              `http://localhost:${PORT}/api/v1/emojis?start=-1&limit=25`,
+              `http://localhost:${port}/api/v1/emojis?start=-1&limit=25`,
             );
           },
           async () => {
@@ -223,7 +212,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           async () => {
             await removeDataInDatabase();
           },
-          async () => {
+          async (port) => {
             dbData = (await getAllData())?.shift();
             randomIndex = Number.parseInt(
               Math.random() * (+dbData.length - 1),
@@ -231,7 +220,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
             );
             emoji = dbData[randomIndex];
             response = await get(
-              `http://localhost:${PORT}/api/v1/emojis/${emoji?._id}`,
+              `http://localhost:${port}/api/v1/emojis/${emoji?._id}`,
             );
           },
           async () => {
@@ -254,14 +243,14 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           async () => {
             await removeDataInDatabase();
           },
-          async () => {
+          async (port) => {
             dbData = (await getAllData())?.shift();
             randomIndex = Number.parseInt(
               Math.random() * (+dbData.length - 1),
               10,
             );
             emoji = dbData[randomIndex];
-            response = await post(`http://localhost:${PORT}/api/v1/votes`, {
+            response = await post(`http://localhost:${port}/api/v1/votes`, {
               id: emoji?._id,
             });
           },
