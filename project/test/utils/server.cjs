@@ -1,16 +1,16 @@
 /* eslint-disable no-await-in-loop */
-const { writeFileSync } = require('fs');
+const { existsSync, writeFileSync, unlinkSync } = require('fs');
 const { join } = require('path');
 const { exec } = require('child_process');
 const { extractStudentFolder } = require('./file.cjs');
 const {
   ROOT_PATH,
-  TIMEOUT_SCRIPT,
   TIMEOUT_SERVER,
-  PID_FILE,
   MINIMAL_PORT,
+  PORTS_FILE,
+  TIMEOUT_SCRIPT,
 } = require('../config.cjs');
-const { execBackground, killProcess } = require('./shell/index.cjs');
+const { execBackground } = require('./shell/index.cjs');
 const sleep = require('./sleep.cjs');
 const startConnection = require('./net/client.cjs');
 
@@ -19,31 +19,53 @@ const PROJECT_PATH = join(STUDENT_PATH, 'project');
 const SERVER_PATH = join(PROJECT_PATH, 'server');
 
 /**
- * This function returns the PID saved in the file
- * @param {string} pidFile
- * @return {Promise<number | null>}
+ * This function load port used
+ * @param {string} port
  */
-const getPID = (port) => {
+const loadPort = (port) => {
+  if (!port) {
+    return;
+  }
+  if (!existsSync(PORTS_FILE)) {
+    writeFileSync(PORTS_FILE, '[]');
+  }
+  const content = require(PORTS_FILE);
+  content.push(port);
+  writeFileSync(PORTS_FILE, JSON.stringify(content));
+};
+/**
+ * This function kill a PID on a PORT
+ * @param {string} port
+ * @return {Promise<void>}
+ */
+const killPidOnPort = (port) => {
   const isWin = process.platform === 'win32';
-
-  const linuxCommand = `netstat -ltnp 2>/dev/null | grep :${port} | awk '{print $NF}' | awk -F '/' '{print $1}'`;
-  const windowsCommand = `netstat -ano -p tcp 2>/dev/null | grep ${port} | awk '{print $NF}'`;
+  const linuxCommand = `kill $(netstat -ltnp 2>/dev/null | grep :${port} | awk '{print $NF}' | awk -F '/' '{print $1}' )`;
+  const windowsCommand = `kill $(netstat -ano -p tcp 2>/dev/null | grep ${port} | awk '{print $NF}')`;
 
   const command = isWin ? windowsCommand : linuxCommand;
   return new Promise((resolve) => {
     if (!port) {
       resolve(null);
     }
-    exec(command, (error, stdout, stderr) => {
-      if (error) {
-        resolve(null);
-      } else if (stdout || stderr) {
-        resolve(stdout + stderr);
-      } else {
-        resolve(null);
-      }
-    });
+    exec(command, () => resolve(null));
   });
+};
+/**
+ * This function kill all PID on PORTS
+ * @return {Promise<void>}
+ */
+const killPidsOnPorts = async () => {
+  if (!existsSync(PORTS_FILE)) {
+    return null;
+  }
+  const ports = require(PORTS_FILE);
+  // eslint-disable-next-line no-restricted-syntax
+  for (const port of ports) {
+    await killPidOnPort(port);
+  }
+  unlinkSync(PORTS_FILE);
+  return null;
 };
 /**
  * This function execute the "start" command
@@ -58,17 +80,12 @@ const executeStartCommand = (path, env) => {
  * and return the PID for the process running in background
  * @param {string} path
  * @param {object} env
+ * @param {string} pidFile
  * @return {Promise<number>}
  */
 const startServer = async (path, env) => {
-  const { PORT: port } = env;
   executeStartCommand(path, env);
   await sleep(TIMEOUT_SCRIPT);
-  const pid = await getPID(port);
-  if (pid) {
-    writeFileSync(PID_FILE.replace('.txt', `-port-${port}.txt`), pid);
-  }
-  return pid;
 };
 /**
  * Util function for start the server using
@@ -76,14 +93,15 @@ const startServer = async (path, env) => {
  * dinamically and kill his process id
  * execute functions that use his flow
  * @param {()=>Promise<void>} onBeforeStart
- * @param {(port: number, PID: number)=>Promise<void>} onStarted
+ * @param {(port: number)=>Promise<void>} onStarted
  * @param {(error: Error)=>Promise<void>} onTest
  * @param {object} env
  */
-const handleTestServer = async (onBeforeStart, onStarted, onTest, env = {}) => {
-  let PID = null;
-  let error = null;
+const handleTestServer = async ({
+  onBeforeStart, onStarted, onTest, env = {}, timeoutServer = TIMEOUT_SERVER,
+}) => {
   let port = MINIMAL_PORT;
+  let error = null;
   try {
     if (onBeforeStart) {
       await onBeforeStart();
@@ -97,22 +115,20 @@ const handleTestServer = async (onBeforeStart, onStarted, onTest, env = {}) => {
         portAvailable = true;
       }
     }
-    PID = await startServer(
+    loadPort(port);
+    await startServer(
       SERVER_PATH,
       { ...process.env, ...env, PORT: port },
     );
-    await sleep(TIMEOUT_SERVER);
+    await sleep(timeoutServer);
     if (onStarted) {
-      await onStarted(port, PID);
+      await onStarted(port);
     }
   } catch (e) {
     error = e;
   } finally {
-    if (PID) {
-      await killProcess(PID);
-    }
     if (error) {
-      console.log(error);
+      console.log(error.message);
     }
     if (onTest) {
       await onTest(error);
@@ -120,4 +136,6 @@ const handleTestServer = async (onBeforeStart, onStarted, onTest, env = {}) => {
   }
 };
 
-module.exports = { handleTestServer, startServer };
+module.exports = {
+  handleTestServer, startServer, killPidsOnPorts, killPidOnPort,
+};

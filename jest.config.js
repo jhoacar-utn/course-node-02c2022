@@ -1,5 +1,5 @@
-import './project/test/index.mjs';
 import 'dotenv/config';
+import './project/test/index.mjs';
 
 export default {
   forceExit: true,

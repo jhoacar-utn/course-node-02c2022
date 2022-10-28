@@ -1,12 +1,14 @@
 /**
  * This file run under jest environment
  */
-const { describe, test, expect } = require('@jest/globals');
+const {
+  describe, test, expect, afterAll,
+} = require('@jest/globals');
 const { existsSync, unlinkSync, rmSync } = require('fs');
 const { join } = require('path');
 const { execSync } = require('child_process');
 const { ROOT_PATH } = require('./config.cjs');
-const { handleTestServer } = require('./utils/server.cjs');
+const { handleTestServer, killPidsOnPorts } = require('./utils/server.cjs');
 const startConnection = require('./utils/net/client.cjs');
 const { extractStudentFolder } = require('./utils/file.cjs');
 
@@ -14,6 +16,10 @@ const STUDENT_PATH = join(ROOT_PATH, extractStudentFolder());
 const PROJECT_PATH = join(STUDENT_PATH, 'project');
 const CLIENT_PATH = join(PROJECT_PATH, 'client');
 const SERVER_PATH = join(PROJECT_PATH, 'server');
+
+afterAll(async () => {
+  await killPidsOnPorts();
+});
 
 describe('Folder and Files Testing', () => {
   test(`Must have "client" and "server" folder in ${PROJECT_PATH}`, () => {
@@ -51,18 +57,18 @@ describe('Folder and Files Testing', () => {
     expect(require(join(PROJECT_PATH, 'package.json')).scripts).toHaveProperty(
       'start',
     );
-    await handleTestServer(
-      null,
-      async (port) => {
+    await handleTestServer({
+      onBeforeStart: null,
+      onStarted: async (port) => {
         await startConnection(port);
       },
-      (error) => {
+      onTest: (error) => {
         if (error) {
           expect("Server is not up with 'start' script").toBe(
             "Server is up with 'start' script",
           );
         }
       },
-    );
+    });
   });
 });
