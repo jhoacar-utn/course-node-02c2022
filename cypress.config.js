@@ -2,7 +2,7 @@ import './project/test/index.mjs';
 
 import { exec } from 'child_process';
 import { join } from 'path';
-import { existsSync, unlinkSync } from 'fs';
+import { existsSync } from 'fs';
 import { defineConfig } from 'cypress';
 import config from './project/test/config.cjs';
 
@@ -13,7 +13,7 @@ import { showSpinner } from './project/test/utils/spinner.cjs';
 import { extractStudentFolder } from './project/test/utils/file.cjs';
 
 const {
-  ROOT_PATH, TIMEOUT_SERVER, PORT, DB_URI, PID_FILE,
+  ROOT_PATH, TIMEOUT_SERVER, PORT, DB_URI,
 } = config;
 
 const STUDENT_PATH = join(ROOT_PATH, extractStudentFolder());
@@ -56,12 +56,9 @@ const handleBeforeRun = async () => {
   await sleep(TIMEOUT_SERVER);
 };
 
-const handleAfterRun = () => {
+const handleAfterRun = async () => {
   if (PID) {
-    killProcess(PID);
-    if (existsSync(PID_FILE)) {
-      unlinkSync(PID_FILE);
-    }
+    await killProcess(PID);
   }
 };
 

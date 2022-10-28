@@ -5,7 +5,7 @@ const { describe, test, expect } = require('@jest/globals');
 const { existsSync, unlinkSync, rmSync } = require('fs');
 const { join } = require('path');
 const { execSync } = require('child_process');
-const { ROOT_PATH, PORT } = require('./config.cjs');
+const { ROOT_PATH } = require('./config.cjs');
 const { handleTestServer } = require('./utils/server.cjs');
 const startConnection = require('./utils/net/client.cjs');
 const { extractStudentFolder } = require('./utils/file.cjs');
@@ -53,8 +53,8 @@ describe('Folder and Files Testing', () => {
     );
     await handleTestServer(
       null,
-      async () => {
-        await startConnection(PORT);
+      async (port) => {
+        await startConnection(port);
       },
       (error) => {
         if (error) {
