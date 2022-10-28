@@ -17,62 +17,57 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: html
           message: |
-            <strong>GITHUB CONTEXT</strong>
+            <strong>ℹ️ Pull Request on ${{ github.event.action }} pending!</strong>
+            
+            ${{ github.actor }} - from ${{ github.head_ref }}
 
-            ${{ toJSON(github) }}
+  lint:
+    needs:
+      - notify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependecies
+        run: npm ci
+      - name: Lint Fix All Files
+        run: npm run lint:fix -- .
 
-  # lint:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
-  #     - name: Install Dependecies
-  #       run: npm ci
-  #     - name: Lint Fix All Files
-  #       run: npm run lint:fix -- .
+  evaluation:
+    needs:
+      - lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependecies
+        run: npm ci
+      - name: Evaluation Project
+        run: DB_URI=${{ secrets.DB_URI }} TIMEOUT_VALIDATION=0 npm run evaluate
 
-  # evaluation:
-  #   needs:
-  #     - lint
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
-  #     - name: Install Dependecies
-  #       run: npm ci
-  #     - name: Evaluation Project
-  #       run: DB_URI=${{ secrets.DB_URI }} TIMEOUT_VALIDATION=0 npm run evaluate
-
-  # integration:
-  #   needs:
-  #     - lint
-  #     - evaluation
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     pull-requests: write
-  #   steps:
-  #     - name: Auto Approve
-  #       uses: hmarr/auto-approve-action@v3
-  #     - name: Auto Merge
-  #       uses: "pascalgn/automerge-action@v0.15.5"
-  #       env:
-  #         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-  #         MERGE_LABELS: ""
-  #     - name: send telegram message on push
-  #       uses: appleboy/telegram-action@master
-  #       with:
-  #         to: ${{ secrets.TELEGRAM_TO }}
-  #         token: ${{ secrets.TELEGRAM_TOKEN }}
-  #         format: html
-  #         message: |
-  #           <strong>${{ github.actor }}</strong> HA SUBIDO UN NUEVO CAMBIO 😁!
-
-  #           <strong>MENSAJE</strong>: ${{ github.event.commits[0].message }}
-
-  #           <strong>REPOSITORIO</strong>: ${{ github.repository }}
-
-  #           - Puedes verlo acá: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+  integration:
+    needs:
+      - evaluation
+    runs-on: ubuntu-latest
+    steps:
+      # - name: Auto Approve
+      #   uses: hmarr/auto-approve-action@v3
+      # - name: Auto Merge
+      #   uses: "pascalgn/automerge-action@v0.15.5"
+      #   env:
+      #     GITHUB_TOKEN: "${{ github.token }}"
+      #     MERGE_LABELS: ""
+      - name: Send Telegram message on pull request approved
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO_PERSONAL }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: html
+          message: |
+            <strong>✅ Pull Request on ${{ github.event.action }} approved!</strong>
+            
+            ${{ github.actor }} - from ${{ github.head_ref }}
