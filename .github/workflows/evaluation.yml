@@ -7,6 +7,7 @@ on:
       - opened
       - synchronize
 jobs:
+
   notify:
     runs-on: ubuntu-latest
     steps:
@@ -33,8 +34,9 @@ jobs:
       - name: Install Dependecies
         run: npm ci
       - name: Lint Fix All Files
-        run: npm run lint:fix -- .
-
+        run: |
+          npm run lint:fix -- . --rule 'import/no-unresolved: off'
+        
   evaluation:
     needs:
       - lint
@@ -47,22 +49,13 @@ jobs:
       - name: Install Dependecies
         run: npm ci
       - name: Evaluation Project
-        run: DB_URI=${{ secrets.DB_URI }} TIMEOUT_VALIDATION=0 # npm run evaluate
+        run: DB_URI="${{ secrets.DB_URI }}" DEBUG_SERVER=true TIMEOUT_VALIDATION=0 npm run evaluate
 
   integration:
     needs:
       - evaluation
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     steps:
-      - name: Auto Approve
-        uses: hmarr/auto-approve-action@v3
-      - name: Auto Merge
-        uses: "pascalgn/automerge-action@v0.15.5"
-        env:
-          GITHUB_TOKEN: "${{ github.token }}"
-          MERGE_LABELS: ""
       - name: Send Telegram message on pull request approved
         uses: appleboy/telegram-action@master
         with:

@@ -5,6 +5,10 @@
     "es2021": true,
     "node": true
   },
+  "ignorePatterns":[
+    "**/dist",
+    "**/build"
+  ],
   "extends": ["plugin:react/recommended", "airbnb"],
   "overrides": [],
   "parserOptions": {
@@ -19,6 +23,10 @@
     "import/no-extraneous-dependencies": "off",
     "no-plusplus": "off",
     "func-names": "off",
-    "array-callback-return":"off"
+    "array-callback-return":"off",
+    "import/prefer-default-export": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off"
   }
 }

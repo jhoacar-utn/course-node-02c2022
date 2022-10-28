@@ -6,12 +6,12 @@ const { createServer } = require('net');
  * a message is sent and closed the connection
  * @param {number} port
  * @param {(server: Server) => Promise<void>} onStart
- * @param {() => void} onConnection
+ * @param {() => Promise<void>} onConnection
  * @return {Promise<Server>}
  */
 const getServer = (port, onStart, onConnection) => new Promise((resolve, reject) => {
-  const server = createServer(function (socket) {
-    onConnection();
+  const server = createServer(async function (socket) {
+    await onConnection();
     socket.write('\r\nHello from server\r\n');
     socket.end();
     socket.destroy();
