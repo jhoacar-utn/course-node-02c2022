@@ -1,1 +1,2 @@
-alert("Aca realizare las peticiones");
+/* eslint-disable no-alert */
+alert('Aca realizare las peticiones');

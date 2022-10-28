@@ -1,13 +1,15 @@
-const axios = require("axios")
+/* eslint-disable no-console */
+/* eslint-disable import/no-unresolved */
+const axios = require('axios');
 
-const url = "https://google.com"
+const url = 'https://google.com';
 
-const response = axios.get(url)
+const response = axios.get(url);
 
 response
-    .then((result) => {
-        console.log("Se ha realizado la peticion y tambien procesado la data")
-        const text = result.data
-        console.log(text)
-    })
-    .catch((error) => { console.log(error) })
+  .then((result) => {
+    console.log('Se ha realizado la peticion y tambien procesado la data');
+    const text = result.data;
+    console.log(text);
+  })
+  .catch((error) => { console.log(error); });
