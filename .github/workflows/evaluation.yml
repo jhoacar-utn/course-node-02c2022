@@ -7,23 +7,8 @@ on:
       - opened
       - synchronize
 jobs:
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send Telegram message on pull request
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO_PERSONAL }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          format: html
-          message: |
-            <strong>ℹ️ Pull Request on ${{ github.event.action }} pending!</strong>
 
-            ${{ github.actor }} - from ${{ github.head_ref }}
-
-  lint:
-    needs:
-      - notify
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -32,36 +17,64 @@ jobs:
           node-version: 16
       - name: Install Dependecies
         run: npm ci
-      - name: Lint Fix All Files
+      - name: Testing in Server
         run: |
-          npm run lint:fix -- . --rule 'import/no-unresolved: off'
+          npm run test:server
+  # notify:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Send Telegram message on pull request
+  #       uses: appleboy/telegram-action@master
+  #       with:
+  #         to: ${{ secrets.TELEGRAM_TO_PERSONAL }}
+  #         token: ${{ secrets.TELEGRAM_TOKEN }}
+  #         format: html
+  #         message: |
+  #           <strong>ℹ️ Pull Request on ${{ github.event.action }} pending!</strong>
+
+  #           ${{ github.actor }} - from ${{ github.head_ref }}
+
+  # lint:
+  #   needs:
+  #     - notify
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #     - name: Install Dependecies
+  #       run: npm ci
+  #     - name: Lint Fix All Files
+  #       run: |
+  #         npm run lint:fix -- . --rule 'import/no-unresolved: off'
         
-  evaluation:
-    needs:
-      - lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Install Dependecies
-        run: npm ci
-      - name: Evaluation Project
-        run: DB_URI=${{ secrets.DB_URI }} DEBUG_SERVER=true TIMEOUT_VALIDATION=0 npm run evaluate
+  # evaluation:
+  #   needs:
+  #     - lint
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #     - name: Install Dependecies
+  #       run: npm ci
+  #     - name: Evaluation Project
+  #       run: DB_URI=${{ secrets.DB_URI }} DEBUG_SERVER=true TIMEOUT_VALIDATION=0 npm run evaluate
 
-  integration:
-    needs:
-      - evaluation
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send Telegram message on pull request approved
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO_PERSONAL }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          format: html
-          message: |
-            <strong>✅ Pull Request on ${{ github.event.action }} approved!</strong>
+  # integration:
+  #   needs:
+  #     - evaluation
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Send Telegram message on pull request approved
+  #       uses: appleboy/telegram-action@master
+  #       with:
+  #         to: ${{ secrets.TELEGRAM_TO_PERSONAL }}
+  #         token: ${{ secrets.TELEGRAM_TOKEN }}
+  #         format: html
+  #         message: |
+  #           <strong>✅ Pull Request on ${{ github.event.action }} approved!</strong>
 
-            ${{ github.actor }} - from ${{ github.head_ref }}
+  #           ${{ github.actor }} - from ${{ github.head_ref }}
