@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import './project/test/index.mjs';
 
 import { exec } from 'child_process';

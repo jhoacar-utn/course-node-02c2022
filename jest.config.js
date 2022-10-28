@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import './project/test/index.mjs';
 
 export default {
