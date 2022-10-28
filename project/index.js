@@ -31,7 +31,7 @@ const execPromise = (command, loading) => {
   }
   return new Promise((resolve) => {
     exec(command, (error, stdout) => {
-      if (!interval) {
+      if (interval) {
         clearInterval(interval);
       }
       console.log('\n');
