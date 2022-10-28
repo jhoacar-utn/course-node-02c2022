@@ -141,6 +141,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
     });
   });
   describe('Testing Started Server', () => {
+    jest.setTimeout(60000);
     describe('Testing Connection Database', () => {
       test('Testing Load of Emojis in database', async () => {
         let data = null;
@@ -154,12 +155,11 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           onTest: async () => {
             expect(data?.length > 0).toBe(true);
           },
+          timeoutServer: 3,
         });
       });
     });
     describe('Testing Routes in /api/v1', () => {
-      jest.setTimeout(60000);
-
       test('Testing Cors in responses', async () => {
         let response = null;
         await handleTestServer({
