@@ -33,8 +33,9 @@ jobs:
       - name: Install Dependecies
         run: npm ci
       - name: Lint Fix All Files
-        run: npm run lint:fix -- .
-
+        run: |
+          npm run lint:fix -- . --rule 'import/no-unresolved: off'
+        
   evaluation:
     needs:
       - lint
