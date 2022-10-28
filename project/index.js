@@ -23,10 +23,17 @@ if (DEBUG_SERVER) {
  * @returns {Promise<string>}
  */
 const execPromise = (command, loading) => {
-  const interval = showSpinner(loading);
+  let interval = null;
+  if (DEBUG_SERVER) {
+    console.log(loading);
+  } else {
+    interval = showSpinner(loading);
+  }
   return new Promise((resolve) => {
     exec(command, (error, stdout) => {
-      clearInterval(interval);
+      if (!interval) {
+        clearInterval(interval);
+      }
       console.log('\n');
       if (DEBUG_SERVER) {
         if (existsSync(LOG_FILE)) {
