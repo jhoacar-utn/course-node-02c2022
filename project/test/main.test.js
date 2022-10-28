@@ -69,6 +69,7 @@ describe('Folder and Files Testing', () => {
           );
         }
       },
+      timeoutServer: 0,
     });
   });
 });

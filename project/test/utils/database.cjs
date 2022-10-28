@@ -3,8 +3,6 @@
 const mongoose = require('mongoose');
 const { DB_URI } = require('../config.cjs');
 
-console.log(`Using ${DB_URI} to make connections`);
-
 const makeConnection = async () => {
   await mongoose.connect(DB_URI);
 };
