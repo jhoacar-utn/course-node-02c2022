@@ -38,6 +38,19 @@ const handleBeforeRun = async () => {
       });
     });
   }
+  if (!existsSync(join(SERVER_PATH, 'node_modules'))) {
+    await new Promise((resolve, reject) => {
+      const interval = showSpinner('Installing Server Dependecies');
+      exec(`cd ${SERVER_PATH} && npm i .`, (error, stdout) => {
+        clearInterval(interval);
+        console.log('\n');
+        if (error) {
+          reject(error);
+        }
+        resolve(stdout);
+      });
+    });
+  }
   if (!existsSync(join(CLIENT_PATH, 'dist'))) {
     await new Promise((resolve, reject) => {
       const interval = showSpinner('Building Client');
