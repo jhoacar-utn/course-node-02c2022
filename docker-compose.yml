@@ -3,15 +3,19 @@ version: '3'
 services:
 
   utn:
-    image: timbru31/node-alpine-git:16
+    build:
+      context: '.'
+    image: utn
     container_name: utn
     restart: always
     command: tail -f /dev/null
     working_dir: /container
     volumes:
       - ./:/container
+      - ./docker/root:/root
     environment:
       DB_URI: mongodb://root:root@mongo:27017
+      TIMEOUT_SCRIPT: 30
 
   mysql:
     image: mysql:5.7.39

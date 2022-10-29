@@ -12,6 +12,7 @@
     "test:server": "jest server.test.js",
     "test:client": "cypress run --spec **/client.test.js",
     "cypress": "cypress",
+    "cypress:reinstall": "cypress cache clear && cypress install --force",
     "cypress:open": "cypress open",
     "jest": "jest",
     "evaluation": "node project",
@@ -20,7 +21,9 @@
     "docker:down": "docker-compose down",
     "docker:kill": "docker ps -aq | xargs docker kill",
     "docker:rm": "docker ps -aq | xargs docker rm",
-    "docker:in": "docker exec -it utn sh"
+    "docker:in": "docker exec -it utn bash",
+    "clear:node_modules": "find . -name node_modules | xargs rm -r 2>/dev/null",
+    "clear:package-lock.json" : "find . -name package-lock.json | xargs rm 2>/dev/null"
   },
   "devDependencies": {
     "axios": "^1.1.3",

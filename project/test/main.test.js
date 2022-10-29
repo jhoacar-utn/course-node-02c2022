@@ -1,3 +1,4 @@
+/* globals jest */
 /**
  * This file run under jest environment
  */
@@ -22,6 +23,7 @@ afterAll(async () => {
 });
 
 describe('Folder and Files Testing', () => {
+  jest.setTimeout(120000);
   test(`Must have "client" and "server" folder in ${PROJECT_PATH}`, () => {
     expect(existsSync(join(PROJECT_PATH, 'server'))).toBe(true);
     expect(existsSync(join(PROJECT_PATH, 'client'))).toBe(true);

@@ -66,6 +66,7 @@ afterAll(async () => {
  * Suits for testing
  */
 describe(`Server Testing in ${SERVER_PATH}`, () => {
+  jest.setTimeout(120000);
   describe('Testing structure and files', () => {
     test('Must have a package.json and a property called "dependencies"', () => {
       expect(require(`${SERVER_PATH}/package.json`)).toHaveProperty(
@@ -81,8 +82,8 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
     test('Must have a property "main" with the main file in package.json or contain an index.js file', () => {
       expect(
         existsSync(join(SERVER_PATH, 'index.js'))
-          || existsSync(join(SERVER_PATH, 'src', 'index.js'))
-          || require(`${SERVER_PATH}/package.json`)?.main?.length > 0,
+        || existsSync(join(SERVER_PATH, 'src', 'index.js'))
+        || require(`${SERVER_PATH}/package.json`)?.main?.length > 0,
       ).toBe(true);
     });
   });
@@ -141,7 +142,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
     });
   });
   describe('Testing Started Server', () => {
-    jest.setTimeout(60000);
     describe('Testing Connection Database', () => {
       test('Testing Load of Emojis in database', async () => {
         let data = null;
