@@ -2,6 +2,16 @@ version: '3'
 
 services:
 
+  utn:
+    image: timbru31/node-alpine-git:16
+    container_name: utn
+    restart: always
+    command: tail -f /dev/null
+    working_dir: /container
+    network_mode: host
+    volumes:
+      - ./:/container
+
   mysql:
     image: mysql:5.7.39
     container_name: mysql
