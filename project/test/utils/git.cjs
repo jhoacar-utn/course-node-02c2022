@@ -7,8 +7,19 @@ const { execSync } = require('child_process');
  * @return {string}
  */
 function getCurrentBranch() {
-  const GitCommandBranch = "git branch 2> /dev/null | grep '*' | awk '{print $NF}'";
-  return execSync(GitCommandBranch).toString().trim();
+  const GitCommandBranch = "git branch";
+  let actualBranch = null;
+  try {
+    const branches = execSync(GitCommandBranch).toString().split('\n');
+    branches.map((branch) => {
+      if (branch.includes("*")) {
+        actualBranch = branch.split('*').pop().trim();
+      }
+    })
+    return actualBranch;
+  } catch (e) {
+    return actualBranch;
+  }
 }
 
 module.exports = {
