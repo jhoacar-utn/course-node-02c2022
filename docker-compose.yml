@@ -8,9 +8,10 @@ services:
     restart: always
     command: tail -f /dev/null
     working_dir: /container
-    network_mode: host
     volumes:
       - ./:/container
+    environment:
+      DB_URI: mongodb://root:root@mongo:27017
 
   mysql:
     image: mysql:5.7.39
