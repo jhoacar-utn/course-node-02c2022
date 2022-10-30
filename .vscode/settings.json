@@ -1,10 +1,9 @@
 {
     "terminal.integrated.profiles.windows": {
-        "UTN Container": {
-            "path": [
-                "${env:windir}\\Sysnative\\WindowsPowerShell\\v1.0\\powershell.exe",
-                "${env:windir}\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
-            ],
+        "utn": {
+            "source": "PowerShell",
+            "overrideName": true,
+            "color": "terminal.ansiCyan",
             "args": [
                 "npm",
                 "run",
@@ -13,6 +12,7 @@
                 "${workspaceFolder}"
             ],
             "icon": "github"
-        }
+        },
+        "Ubuntu-20.04 (WSL)": null
     }
 }
