@@ -1,5 +1,5 @@
 const { execSync, exec } = require('child_process');
-const { LOG_FILE } = require('../../config.cjs');
+const { LOG_FILE, DEBUG_FILE } = require('../../config.cjs');
 
 /**
  * This function execute a command in background and return
@@ -11,7 +11,7 @@ const { LOG_FILE } = require('../../config.cjs');
  * @return {string}
  */
 const execBackground = (command, options) => {
-  const bgCommand = `${__dirname}/background.sh -c '${command}' -o ${LOG_FILE}`;
+  const bgCommand = `${__dirname}/background.sh -c '${command}' ${DEBUG_FILE ? `-o ${LOG_FILE}` : ''}`;
   return execSync(bgCommand, options).toString();
 };
 /**

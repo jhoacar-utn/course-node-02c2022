@@ -16,6 +16,7 @@ const TIMEOUT_SERVER = process.env.TIMEOUT_SERVER || 2;
 const TIMEOUT_CLIENT = process.env.TIMEOUT_CLIENT || 1;
 
 const DEBUG_TEST = process.env.DEBUG_TEST || false;
+const DEBUG_FILE = process.env.DEBUG_TEST || true;
 const MINIMAL_PORT = process.env.MINIMAL_PORT || 3000;
 
 const LOG_FILE = resolve(join(__dirname, '/logs/debug.txt'));
@@ -36,6 +37,7 @@ const OBJECT = {
   PORTS_FILE,
   ENVIRONMENT_FILE,
   DEBUG_TEST,
+  DEBUG_FILE,
 };
 module.exports = OBJECT;
 module.exports.config = OBJECT;

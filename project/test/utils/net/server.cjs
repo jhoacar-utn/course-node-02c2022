@@ -1,7 +1,8 @@
 /* eslint-disable no-restricted-syntax */
 const { createServer } = require('net');
-const { DEBUG_TEST } = require('../../config.cjs');
+const { DEBUG_TEST, DEBUG_FILE } = require('../../config.cjs');
 const EventEmitter = require('../event.cjs');
+const { logInFile } = require('../file.cjs');
 
 class FakeServerEventEmitter extends EventEmitter {
   /**
@@ -23,8 +24,13 @@ class FakeServerEventEmitter extends EventEmitter {
   async emit(type, ...args) {
     const contents = super.emit(type, ...args);
     for await (const content of contents) {
-      if (DEBUG_TEST && typeof content === 'string') {
-        process.stdout.write(content);
+      if (typeof content === 'string') {
+        if (DEBUG_TEST) {
+          process.stdout.write(content);
+        }
+        if (DEBUG_FILE) {
+          logInFile(`DEBUGGER: ${content}`);
+        }
       }
     }
   }

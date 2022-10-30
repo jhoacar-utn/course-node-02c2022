@@ -12,6 +12,7 @@ const {
   MINIMAL_PORT,
   PORTS_FILE,
   DEBUG_TEST,
+  DEBUG_FILE,
 } = require('../config.cjs');
 const { execBackground } = require('./shell/index.cjs');
 const sleep = require('./sleep.cjs');
@@ -116,9 +117,13 @@ class ServerEventEmitter extends EventEmitter {
   async emit(type, ...args) {
     const contents = super.emit(type, ...args);
     for await (const content of contents) {
-      if (DEBUG_TEST && typeof content === 'string') {
-        logInFile(`DEBUGGER: ${content}`);
-        process.stdout.write(content);
+      if (typeof content === 'string') {
+        if (DEBUG_TEST) {
+          process.stdout.write(content);
+        }
+        if (DEBUG_FILE) {
+          logInFile(`DEBUGGER: ${content}`);
+        }
       }
     }
   }
