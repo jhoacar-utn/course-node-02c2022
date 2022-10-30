@@ -4,10 +4,11 @@ import { existsSync } from 'fs';
 import colors from 'colors';
 import config from '../config.cjs';
 
-import { killPidsOnPorts, ServerEventEmitter } from './server.cjs';
+import { ServerEventEmitter } from './server.cjs';
 import { showSpinner } from './spinner.cjs';
 import { extractStudentFolder, logInFile } from './file.cjs';
 import startConnection from './net/client.cjs';
+import { killPidsOnPorts } from './shell/index.cjs';
 
 const {
   bold, red, yellow, green, cyan,

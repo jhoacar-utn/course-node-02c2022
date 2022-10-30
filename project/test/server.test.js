@@ -26,7 +26,7 @@ const {
   removeConnection,
 } = require('./utils/database.cjs');
 const FakeServerEventEmitter = require('./utils/net/server.cjs');
-const { killPidsOnPorts, ServerEventEmitter } = require('./utils/server.cjs');
+const { ServerEventEmitter } = require('./utils/server.cjs');
 const { extractStudentFolder } = require('./utils/file.cjs');
 /**
  * Configuration
@@ -34,6 +34,7 @@ const { extractStudentFolder } = require('./utils/file.cjs');
 const {
   ROOT_PATH, TIMEOUT_SERVER, DB_URI, DEBUG_TEST,
 } = require('./config.cjs');
+const { killPidsOnPorts } = require('./utils/shell/index.cjs');
 
 const STUDENT_FOLDER = extractStudentFolder();
 
