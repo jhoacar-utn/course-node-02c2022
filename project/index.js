@@ -55,15 +55,13 @@ const execPromise = (command, loading) => {
  * @return {number}
  */
 const countTestPassedByJest = (output) => {
-  const REGEX_LINE = /Tests:[\s\w\d,]*total/;
+  const REGEX_LINE = /Tests:[\s\S]*total/;
   const line = output.match(REGEX_LINE);
-  console.log('Jest (line):', line);
   if (!line || line.length === 0) {
     return 0;
   }
-  const REGEX_PASSED = /\s([\d]*)\spassed/;
+  const REGEX_PASSED = /[\s|\w]([\d]*)\spassed/;
   const passed = line.shift().match(REGEX_PASSED);
-  console.log('Jest (test): ', passed);
   return !passed || passed.length === 0 ? 0 : passed.pop();
 };
 /**
@@ -73,7 +71,6 @@ const countTestPassedByJest = (output) => {
 const countTestPassedByCypress = (output) => {
   const REGEX_PASSED = /\s([\d]*)\spassing/;
   const passed = output.match(REGEX_PASSED);
-  console.log('Cypress', passed);
   return !passed || passed.length === 0 ? 0 : passed.pop();
 };
 

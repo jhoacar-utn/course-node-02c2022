@@ -6,7 +6,7 @@ import config from '../config.cjs';
 
 import { killPidsOnPorts, ServerEventEmitter } from './server.cjs';
 import { showSpinner } from './spinner.cjs';
-import { extractStudentFolder } from './file.cjs';
+import { extractStudentFolder, logInFile } from './file.cjs';
 import startConnection from './net/client.cjs';
 
 const {
@@ -70,7 +70,7 @@ const handleBeforeRun = async () => {
   let serverPort = null;
   const server = new ServerEventEmitter();
 
-  server.on('beforeStart', async () => `${bold(`${cyan('Initializating Server for testing of the Client')}\n\n`)}`);
+  server.on('beforeStart', async () => `${bold(`${cyan(logInFile('Initializating Server for testing of the Client'))}\n\n`)}`);
   server.on('beforeStart', async () => `- Waiting ${yellow(TIMEOUT_SERVER)} seconds to start connection with the server\n\n`);
 
   server.on('start', async (port) => `Making connection on port ${yellow(port)}: `);
