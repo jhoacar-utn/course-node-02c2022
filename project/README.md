@@ -88,6 +88,8 @@
     
     * Para realizar push, se pedira un inicio de sesion con el usuario y la contraseña, pero OJO porque la contraseña que acepta no es la que se usa para iniciar sesion en el navegador, sino un token que se debe generar por aca [https://github.com/settings/tokens](https://github.com/settings/tokens)
 
+    * Estas credenciales seran pedidas cada vez que se desee realizar un push, por lo tanto lo recomendable sera crear una conexion por credenciales de SSH ingresando nuestra clave publica guardada en [/docker/root/.ssh/id_rsa.pub](/docker/root/.ssh/id_rsa.pub) en la siguiente pagina de configuracion de github [https://github.com/settings/ssh/new](https://github.com/settings/ssh/new)
+
 * ### Para eliminar todas las carpetas `node_modules` y archivos `package-lock.json` del repositorio, hay dos comandos utiles:
 
     ```

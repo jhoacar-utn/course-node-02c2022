@@ -5,19 +5,20 @@ services:
   utn:
     build:
       context: '.'
-      args:
-        GIT_EMAIL: ${GIT_EMAIL:-ejemplo@gmail.com}
-        GIT_USERNAME: ${GIT_USERNAME:-ejemplo}
     image: utn
     container_name: utn
     restart: always
-    entrypoint: tail -f /dev/null
-    working_dir: /container
+    entrypoint: /container/docker/start-container.sh
+    working_dir: ${WORKING_DIR:-/container}
     volumes:
-      - ./:/container
+      - ./:${WORKING_DIR:-/container}
       - ./docker/root/.bashrc:/root/.bashrc
+      - ./docker/root/.ssh:/root/.ssh
     environment:
       DB_URI: mongodb://root:root@mongo_test:27017
+      GIT_EMAIL: ${GIT_EMAIL:-ejemplo@gmail.com}
+      GIT_USERNAME: ${GIT_USERNAME:-ejemplo}
+      GITHUB_SSH_URL: ${GITHUB_SSH_URL:-git@github.com:jhoacar-utn/course-node-02c2022.git}
       TIMEOUT_SERVER: 30
       DEBUG_TEST: 1
 
