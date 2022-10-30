@@ -1,0 +1,18 @@
+{
+    "terminal.integrated.profiles.windows": {
+        "UTN Container": {
+            "path": [
+                "${env:windir}\\Sysnative\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "${env:windir}\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+            ],
+            "args": [
+                "npm",
+                "run",
+                "docker:in",
+                "--prefix",
+                "${workspaceFolder}"
+            ],
+            "icon": "beaker"
+        }
+    }
+}
