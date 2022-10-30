@@ -13,6 +13,7 @@ services:
     volumes:
       - ./:${WORKING_DIR:-/container}
       - ./docker/root/.bashrc:/root/.bashrc
+      - ./docker/root/.bash_history:/root/.bash_history
       - ./docker/root/.ssh:/root/.ssh
     environment:
       DB_URI: mongodb://root:root@mongo_test:27017

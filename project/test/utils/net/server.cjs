@@ -29,7 +29,7 @@ class FakeServerEventEmitter extends EventEmitter {
           process.stdout.write(content);
         }
         if (DEBUG_FILE) {
-          logInFile(`DEBUGGER: ${content}`);
+          logInFile(content);
         }
       }
     }
