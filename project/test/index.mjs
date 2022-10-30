@@ -7,9 +7,11 @@ import { extractStudentFolder } from './utils/file.cjs';
 import { getCurrentBranch } from './utils/git.cjs';
 import { showSpinner } from './utils/spinner.cjs';
 
-const { ENVIRONMENT_FILE, ROOT_PATH, TIMEOUT_VALIDATION } = config;
 const {
-  red, green, cyan, bold,
+  ENVIRONMENT_FILE, ROOT_PATH, TIMEOUT_VALIDATION, LOG_FILE,
+} = config;
+const {
+  red, green, cyan, bold, yellow,
 } = colors;
 /**
  * @param {string} loading
@@ -94,3 +96,4 @@ if (!existsSync(ENVIRONMENT_FILE)) {
 }
 
 console.log(cyan('\n🧪 Initializating testing\n'));
+console.log(bold(yellow((` ( You can see the logs from the server on ${LOG_FILE.replace(`${ROOT_PATH}/`, '')} )\n\n`))));

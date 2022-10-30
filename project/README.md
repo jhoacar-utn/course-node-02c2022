@@ -75,7 +75,7 @@
 
 # Notas Generales
 
-* ### Para depuracion del servidor ver el archivo [test/debug.txt](test/debug.txt)
+* ### Para depuracion del servidor ver el archivo [test/logs/debug.txt](test/logs/debug.txt)
 
 * ### Para manipulacion con Git en el contenedor, es necesario crear un archivo `.env` con el correo y el usuario para que se puedan registrar los commits
     
