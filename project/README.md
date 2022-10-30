@@ -77,6 +77,17 @@
 
 * ### Para depuracion del servidor ver el archivo [test/debug.txt](test/debug.txt)
 
+* ### Para manipulacion con Git en el contenedor, es necesario crear un archivo `.env` con el correo y el usuario para que se puedan registrar los commits
+    
+    * Ejemplo: 
+    
+        ```
+        GIT_EMAIL=jhoacar.utn@gmail.com
+        GIT_USERNAME=jhoacar-utn
+        ```
+    
+    * Para realizar push, se pedira un inicio de sesion con el usuario y la contraseña, pero OJO porque la contraseña que acepta no es la que se usa para iniciar sesion en el navegador, sino un token que se debe generar por aca [https://github.com/settings/tokens](https://github.com/settings/tokens)
+
 * ### Para eliminar todas las carpetas `node_modules` y archivos `package-lock.json` del repositorio, hay dos comandos utiles:
 
     ```

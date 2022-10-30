@@ -5,6 +5,9 @@ services:
   utn:
     build:
       context: '.'
+      args:
+        GIT_EMAIL: ${GIT_EMAIL:-ejemplo@gmail.com}
+        GIT_USERNAME: ${GIT_USERNAME:-ejemplo}
     image: utn
     container_name: utn
     restart: always
