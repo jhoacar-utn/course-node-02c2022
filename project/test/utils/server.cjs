@@ -5,7 +5,7 @@ const { join } = require('path');
 const { exec } = require('child_process');
 // const { bold, yellow } = require('colors');
 const EventEmitter = require('./event.cjs');
-const { extractStudentFolder } = require('./file.cjs');
+const { extractStudentFolder, logInFile } = require('./file.cjs');
 const {
   ROOT_PATH,
   TIMEOUT_SERVER,
@@ -117,6 +117,7 @@ class ServerEventEmitter extends EventEmitter {
     const contents = super.emit(type, ...args);
     for await (const content of contents) {
       if (DEBUG_TEST && typeof content === 'string') {
+        logInFile(`DEBUGGER: ${content}`);
         process.stdout.write(content);
       }
     }

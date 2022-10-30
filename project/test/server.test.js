@@ -27,7 +27,7 @@ const {
 } = require('./utils/database.cjs');
 const FakeServerEventEmitter = require('./utils/net/server.cjs');
 const { killPidsOnPorts, ServerEventEmitter } = require('./utils/server.cjs');
-const { extractStudentFolder, logInFile } = require('./utils/file.cjs');
+const { extractStudentFolder } = require('./utils/file.cjs');
 /**
  * Configuration
  */
@@ -120,7 +120,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
     test('Testing server that listen on PORT environment variable', async () => {
       const server = new ServerEventEmitter();
 
-      server.on('beforeStart', async () => `${bold(`${cyan(logInFile('Testing server that listen on PORT environment variable'))}\n\n`)}`);
+      server.on('beforeStart', async () => `${bold(`${cyan('Testing server that listen on PORT environment variable')}\n\n`)}`);
       server.on('beforeStart', async () => `- Executing ${yellow('npm start')} on ${bold(SERVER_PATH)}\n\n`);
       server.on('beforeStart', async () => `- Waiting ${yellow(TIMEOUT_SERVER)} seconds to start connection with the server\n\n`);
 
@@ -149,7 +149,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
 
       const fakeServer = new FakeServerEventEmitter();
 
-      fakeServer.on('beforeStart', async () => `${bold(`${cyan(logInFile('Testing server that use the DB_URI environment variable to connect to the database'))}\n\n`)}`);
+      fakeServer.on('beforeStart', async () => `${bold(`${cyan('Testing server that use the DB_URI environment variable to connect to the database')}\n\n`)}`);
       fakeServer.on('beforeStart', async () => `- Initializing ${yellow('fake')} database server on port ${yellow(DB_PORT)}: `);
 
       fakeServer.on('start', async () => green('fake server initialized successfully\n\n'));
@@ -187,7 +187,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         let data = null;
         const server = new ServerEventEmitter();
 
-        server.on('beforeStart', async () => `${bold(`${cyan(logInFile('Testing Load of Emojis in database'))}\n\n`)}`);
+        server.on('beforeStart', async () => `${bold(`${cyan('Testing Load of Emojis in database')}\n\n`)}`);
         server.on('beforeStart', async () => `- Erasing all the data from the database on ${yellow(bold(DB_URI))} - `);
         server.on('beforeStart', async () => { await removeDataInDatabase(); });
         server.on('beforeStart', async () => green('erased\n\n'));
@@ -215,7 +215,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         const endpoint = (port) => `http://localhost:${port}/api/v1/emojis`;
         const server = new ServerEventEmitter();
 
-        server.on('beforeStart', async () => `${bold(`${cyan(logInFile('Testing Cors in responses - Must send the "access-control-allow-origin" header'))}\n\n`)}`);
+        server.on('beforeStart', async () => `${bold(`${cyan('Testing Cors in responses - Must send the "access-control-allow-origin" header')}\n\n`)}`);
         server.on('beforeStart', async () => `- Waiting ${yellow(TIMEOUT_SERVER)} seconds for the server is up\n\n`);
 
         server.on('start', async (port) => `- Sending GET request to ${yellow(endpoint(port))} - `);
@@ -244,7 +244,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         const endpoint = (port) => `http://localhost:${port}/api/v1/emojis?start=-1&limit=25`;
         const server = new ServerEventEmitter();
 
-        server.on('beforeStart', async () => `${bold(`${cyan(logInFile('GET /api/v1/emojis?start=-1&limit=25 - Must return 10 emojis'))}\n\n`)}`);
+        server.on('beforeStart', async () => `${bold(`${cyan('GET /api/v1/emojis?start=-1&limit=25 - Must return 10 emojis')}\n\n`)}`);
         server.on('beforeStart', async () => `- Erasing all the data from the database on ${yellow(bold(DB_URI))} - `);
         server.on('beforeStart', async () => { await removeDataInDatabase(); });
         server.on('beforeStart', async () => green('erased\n\n'));
@@ -291,7 +291,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         const endpoint = (port, id) => `http://localhost:${port}/api/v1/emojis/${id}`;
         const server = new ServerEventEmitter();
 
-        server.on('beforeStart', async () => `${bold(`${cyan(logInFile('GET /api/v1/emojis/:id - Must return the emoji by id'))}\n\n`)}`);
+        server.on('beforeStart', async () => `${bold(`${cyan('GET /api/v1/emojis/:id - Must return the emoji by id')}\n\n`)}`);
         server.on('beforeStart', async () => `- Erasing all the data from the database on ${yellow(bold(DB_URI))} - `);
         server.on('beforeStart', async () => { await removeDataInDatabase(); });
         server.on('beforeStart', async () => green('erased\n\n'));
@@ -337,7 +337,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         const endpoint = (port) => `http://localhost:${port}/api/v1/votes`;
         const server = new ServerEventEmitter();
 
-        server.on('beforeStart', async () => `${bold(`${cyan(logInFile('POST /api/v1/votes - Must increment in one the vote of the emoji sent in the body of the request using his id'))}\n\n`)}`);
+        server.on('beforeStart', async () => `${bold(`${cyan('POST /api/v1/votes - Must increment in one the vote of the emoji sent in the body of the request using his id')}\n\n`)}`);
         server.on('beforeStart', async () => `- Erasing all the data from the database on ${yellow(bold(DB_URI))} - `);
         server.on('beforeStart', async () => { await removeDataInDatabase(); });
         server.on('beforeStart', async () => green('erased\n\n'));
