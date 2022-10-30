@@ -1,6 +1,8 @@
-const { readdirSync, statSync } = require('fs');
+const {
+  readdirSync, statSync, appendFileSync,
+} = require('fs');
 const { join } = require('path');
-const { ROOT_PATH } = require('../config.cjs');
+const { ROOT_PATH, LOG_FILE } = require('../config.cjs');
 /**
  * @return {string | undefined}
  */
@@ -11,7 +13,17 @@ function extractStudentFolder() {
       && filename.includes('_'),
   ).shift();
 }
+/**
+ * This function save the content in debug file
+ * @param {string} content
+ * @return {string}
+ */
+function logInFile(content) {
+  appendFileSync(LOG_FILE, `\n${content}\n`);
+  return content;
+}
 
 module.exports = {
   extractStudentFolder,
+  logInFile,
 };

@@ -8,14 +8,15 @@ services:
     image: utn
     container_name: utn
     restart: always
-    command: tail -f /dev/null
+    entrypoint: tail -f /dev/null
     working_dir: /container
     volumes:
       - ./:/container
-      - ./docker/root:/root
+      - ./docker/root/.bashrc:/root/.bashrc
     environment:
-      DB_URI: mongodb://root:root@mongo:27017
-      TIMEOUT_SCRIPT: 30
+      DB_URI: mongodb://root:root@mongo_test:27017
+      TIMEOUT_SERVER: 30
+      DEBUG_TEST: 1
 
   mysql:
     image: mysql:5.7.39
@@ -55,7 +56,17 @@ services:
     volumes:
       - mongo_utn:/data/db
       # Este volumen es para darle un archivo a ejecutar al iniciar este servicio
-      - ./docker/mongo:/docker-entrypoint-initdb.d:ro 
+      - ./docker/mongo:/docker-entrypoint-initdb.d:ro
+    
+  mongo_test:
+    image: mongo:4.4-focal
+    container_name: mongo_test
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - mongo_utn_test:/data/db
 
   mongo_express:
     image: mongo-express:1.0.0-alpha.4
@@ -70,6 +81,8 @@ services:
 
 volumes:
   mongo_utn:
+    external: false 
+  mongo_utn_test:
     external: false 
   mysql_utn:
     external: false 

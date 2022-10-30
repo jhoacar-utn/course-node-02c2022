@@ -1,4 +1,7 @@
-FROM cypress/base:16
-RUN apt update && apt install -y git
+FROM cypress/included:10.11.0
+RUN apt update || \
+    apt install -y \
+        git \
+        net-tools
 
 CMD ['tail','-f','/dev/null']

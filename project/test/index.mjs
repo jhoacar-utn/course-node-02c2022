@@ -7,7 +7,7 @@ import { extractStudentFolder } from './utils/file.cjs';
 import { getCurrentBranch } from './utils/git.cjs';
 import { showSpinner } from './utils/spinner.cjs';
 
-const { ENVIRONMENT_FILE, ROOT_PATH } = config;
+const { ENVIRONMENT_FILE, ROOT_PATH, TIMEOUT_VALIDATION } = config;
 const {
   red, green, cyan, bold,
 } = colors;
@@ -17,13 +17,12 @@ const {
  * @returns
  */
 const validation = (loading, callback) => {
-  const timeout = process.env.TIMEOUT_VALIDATION || 3000;
   const interval = showSpinner(loading);
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log('\n');
       callback(resolve, reject, interval);
-    }, timeout);
+    }, TIMEOUT_VALIDATION);
   });
 };
 

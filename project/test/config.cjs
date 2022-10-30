@@ -1,8 +1,5 @@
 const { resolve, join } = require('path');
 
-// const { fileURLToPath } = require("url");
-// const __dirname = fileURLToPath(new URL(".", import.meta?.url));
-
 if (!process.env.PORT) {
   process.env.PORT = 5050;
 }
@@ -14,10 +11,11 @@ const ROOT_PATH = resolve(join(__dirname, '/../../'));
 const { PORT } = process.env;
 const { DB_URI } = process.env;
 
-const TIMEOUT_SCRIPT = process.env.TIMEOUT_SCRIPT || 1;
+const TIMEOUT_VALIDATION = process.env.TIMEOUT_VALIDATION || 3000;
 const TIMEOUT_SERVER = process.env.TIMEOUT_SERVER || 2;
 const TIMEOUT_CLIENT = process.env.TIMEOUT_CLIENT || 1;
 
+const DEBUG_TEST = process.env.DEBUG_TEST || false;
 const MINIMAL_PORT = process.env.MINIMAL_PORT || 3000;
 
 const LOG_FILE = resolve(join(__dirname, '/logs/debug.txt'));
@@ -29,7 +27,7 @@ const OBJECT = {
   ROOT_PATH,
   PORT,
   DB_URI,
-  TIMEOUT_SCRIPT,
+  TIMEOUT_VALIDATION,
   TIMEOUT_SERVER,
   TIMEOUT_CLIENT,
   MINIMAL_PORT,
@@ -37,6 +35,7 @@ const OBJECT = {
   PID_FILE,
   PORTS_FILE,
   ENVIRONMENT_FILE,
+  DEBUG_TEST,
 };
 module.exports = OBJECT;
 module.exports.config = OBJECT;
