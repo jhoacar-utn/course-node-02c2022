@@ -12,7 +12,7 @@
                 "--prefix",
                 "${workspaceFolder}"
             ],
-            "icon": "beaker"
+            "icon": "github"
         }
     }
 }
