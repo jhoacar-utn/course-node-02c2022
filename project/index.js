@@ -80,11 +80,11 @@ const countTestPassedByCypress = (output) => {
   return !passed || passed.length === 0 ? 0 : passed.pop();
 };
 
-const resultMain = 1 || await execPromise(
+const resultMain = await execPromise(
   `DEBUG_TEST="" npm run test:main --prefix=${ROOT_PATH} -- --silent 2>&1`,
   `Executing: ${yellow('Main Testing')}`,
 );
-const resultServer = 1 || await execPromise(
+const resultServer = await execPromise(
   `DEBUG_TEST="" npm run test:server --prefix=${ROOT_PATH} -- --silent 2>&1`,
   `Executing: ${yellow('Server Testing')}`,
 );
