@@ -4,6 +4,66 @@ const { LOG_FILE, DEBUG_FILE, PORTS_FILE } = require('../../config.cjs');
 const { logInFile } = require('../file.cjs');
 
 /**
+ * @returns {RegExp}
+ */
+const getWindowsNetstatParser = () => /TCP[\s]+[\d.]+:([\d]*)[\s]+[\d.:]*[\s]+LISTENING[\s]+([\d]+)/g;
+
+/**
+ * @returns {RegExp}
+ */
+const getLinuxNetstatParser = () => /tcp[\s]+[\d]+[\s]+[\d]+[\s]+[\d.]+:([\d]*)[\s]+[\d.*:]+[\s]+LISTEN[\s]+([\d]+)\/([\S]+)/g;
+
+/**
+ * @param {string} command
+ */
+const execPromise = (command) => new Promise((resolve, reject) => {
+  exec(command, (err, stdout, stderr) => {
+    if (err) {
+      reject(err);
+    } else if (stderr) {
+      reject(stderr);
+    } else if (stdout) {
+      resolve(stdout);
+    }
+  });
+});
+
+/**
+ * This function returns all the open ports
+ * @return {Promise<object>}
+ */
+const portScanner = async () => {
+  const netstat = 'netstat -ano -p tcp';
+  const isWin = process.platform === 'win32';
+  const stdout = await execPromise(netstat);
+  const regex = isWin ? getWindowsNetstatParser() : getLinuxNetstatParser();
+  const lines = stdout.matchAll(regex);
+  const result = [];
+  // eslint-disable-next-line no-restricted-syntax
+  for (const line of lines) {
+    // eslint-disable-next-line no-unused-vars, prefer-const
+    let [_, port, pid, name] = line;
+    if (!result.some((info) => info.pid === pid && info.port === port)) {
+      if (!name && pid && isWin) {
+        name = '';
+        const processNameCommand = 'tasklist';
+        const processNameRegex = new RegExp(`(^[\\S]+.exe)[\\s]+${pid}`, 'gm');
+        // eslint-disable-next-line no-await-in-loop
+        const matches = (await execPromise(processNameCommand)).matchAll(processNameRegex);
+        // eslint-disable-next-line no-undef, no-restricted-syntax
+        for (const match of matches) {
+          // eslint-disable-next-line no-unused-vars
+          const [_, processName] = match;
+          name += `${processName},`;
+        }
+        name = name.slice(0, -1);
+      }
+      result.push({ port, pid, name });
+    }
+  }
+  return result;
+};
+/**
  * This function execute a command in background and return
  * his process id.
  * It is important to kill the process
@@ -112,5 +172,5 @@ const killPidsOnPorts = async () => {
 };
 
 module.exports = {
-  execBackground, loadPort, killPidOnPort, killPidsOnPorts,
+  execBackground, loadPort, killPidOnPort, killPidsOnPorts, portScanner,
 };

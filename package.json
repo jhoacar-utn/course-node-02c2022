@@ -27,7 +27,7 @@
     "docker:in": "docker exec -it utn bash",
     "clear:node_modules": "find . -name node_modules | xargs rm -r",
     "clear:package-lock.json": "find . -name package-lock.json | xargs rm",
-    "clear:ports": "netstat -plnt | awk '{print $NF}' | grep -oP '\\d{1,5}' | xargs kill 2>/dev/null"
+    "port:scanner": "node project/scanner.mjs"
   },
   "devDependencies": {
     "axios": "^1.1.3",
