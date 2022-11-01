@@ -2,6 +2,27 @@ version: '3'
 
 services:
 
+  utn:
+    build:
+      context: '.'
+    image: utn
+    container_name: utn
+    restart: always
+    entrypoint: /container/docker/start-container.sh
+    working_dir: ${WORKING_DIR:-/container}
+    volumes:
+      - ./:${WORKING_DIR:-/container}
+      - ./docker/root/.bashrc:/root/.bashrc
+      - ./docker/root/.bash_history:/root/.bash_history
+      - ./docker/root/.ssh:/root/.ssh
+    environment:
+      DB_URI: mongodb://root:root@mongo_test:27017
+      GIT_EMAIL: ${GIT_EMAIL:-ejemplo@gmail.com}
+      GIT_USERNAME: ${GIT_USERNAME:-ejemplo}
+      GITHUB_SSH_URL: ${GITHUB_SSH_URL:-git@github.com:jhoacar-utn/course-node-02c2022.git}
+      TIMEOUT_SERVER: 30
+      DEBUG_TEST: 1
+
   mysql:
     image: mysql:5.7.39
     container_name: mysql
@@ -40,7 +61,17 @@ services:
     volumes:
       - mongo_utn:/data/db
       # Este volumen es para darle un archivo a ejecutar al iniciar este servicio
-      - ./docker/mongo:/docker-entrypoint-initdb.d:ro 
+      - ./docker/mongo:/docker-entrypoint-initdb.d:ro
+    
+  mongo_test:
+    image: mongo:4.4-focal
+    container_name: mongo_test
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - mongo_utn_test:/data/db
 
   mongo_express:
     image: mongo-express:1.0.0-alpha.4
@@ -55,6 +86,8 @@ services:
 
 volumes:
   mongo_utn:
+    external: false 
+  mongo_utn_test:
     external: false 
   mysql_utn:
     external: false 

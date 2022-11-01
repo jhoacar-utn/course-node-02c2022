@@ -7,9 +7,11 @@ import { extractStudentFolder } from './utils/file.cjs';
 import { getCurrentBranch } from './utils/git.cjs';
 import { showSpinner } from './utils/spinner.cjs';
 
-const { ENVIRONMENT_FILE, ROOT_PATH } = config;
 const {
-  red, green, cyan, bold,
+  ENVIRONMENT_FILE, ROOT_PATH, TIMEOUT_VALIDATION, LOG_FILE, DEBUG_FILE,
+} = config;
+const {
+  red, green, cyan, bold, yellow,
 } = colors;
 /**
  * @param {string} loading
@@ -17,13 +19,12 @@ const {
  * @returns
  */
 const validation = (loading, callback) => {
-  const timeout = process.env.TIMEOUT_VALIDATION || 3000;
   const interval = showSpinner(loading);
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log('\n');
       callback(resolve, reject, interval);
-    }, timeout);
+    }, TIMEOUT_VALIDATION);
   });
 };
 
@@ -95,3 +96,7 @@ if (!existsSync(ENVIRONMENT_FILE)) {
 }
 
 console.log(cyan('\n🧪 Initializating testing\n'));
+
+if (DEBUG_FILE) {
+  console.log(bold(yellow((` ( You can see the logs from the server on ${LOG_FILE.replace(`${ROOT_PATH}/`, '')} )\n\n`))));
+}

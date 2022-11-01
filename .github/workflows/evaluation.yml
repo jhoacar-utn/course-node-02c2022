@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: 16
       - name: Install Dependecies
-        run: npm ci
+        run: npm install
       - name: Lint Fix All Files
         run: |
           npm run lint:fix -- . --rule 'import/no-unresolved: off'
@@ -47,7 +47,7 @@ jobs:
         with:
           node-version: 16
       - name: Install Dependecies
-        run: npm ci
+        run: npm install
       - name: Evaluation Project
         run: DB_URI="${{ secrets.DB_URI }}" DEBUG_SERVER=true TIMEOUT_VALIDATION=0 npm run evaluate
 

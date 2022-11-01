@@ -55,14 +55,16 @@ const execPromise = (command, loading) => {
  * @return {number}
  */
 const countTestPassedByJest = (output) => {
-  const REGEX_LINE = /Tests:[\s\w\d,]*total/;
-  const line = output.match(REGEX_LINE);
-  if (line.length === 0) {
+  if (!output || typeof output !== 'string') {
     return 0;
   }
-  const REGEX_PASSED = /\s([\d]*)\spassed/;
+  const REGEX_LINE = /Tests:[\s\S]*total/;
+  const line = output.match(REGEX_LINE);
+  if (!line || line.length === 0) {
+    return 0;
+  }
+  const REGEX_PASSED = /[\s|\w]([\d]*)\spassed/;
   const passed = line.shift().match(REGEX_PASSED);
-
   return !passed || passed.length === 0 ? 0 : passed.pop();
 };
 /**
@@ -70,22 +72,24 @@ const countTestPassedByJest = (output) => {
  * @return {number}
  */
 const countTestPassedByCypress = (output) => {
+  if (!output || typeof output !== 'string') {
+    return 0;
+  }
   const REGEX_PASSED = /\s([\d]*)\spassing/;
   const passed = output.match(REGEX_PASSED);
-
   return !passed || passed.length === 0 ? 0 : passed.pop();
 };
 
 const resultMain = await execPromise(
-  `cd ${ROOT_PATH} && npm run test:main -- --silent 2>&1`,
+  `DEBUG_TEST="" npm run test:main --prefix=${ROOT_PATH} -- --silent 2>&1`,
   `Executing: ${yellow('Main Testing')}`,
 );
 const resultServer = await execPromise(
-  `cd ${ROOT_PATH} && npm run test:server -- --silent 2>&1`,
+  `DEBUG_TEST="" npm run test:server --prefix=${ROOT_PATH} -- --silent 2>&1`,
   `Executing: ${yellow('Server Testing')}`,
 );
 const resultClient = await execPromise(
-  `cd ${ROOT_PATH} && npm run test:client -- -q --config video=false,screenshotOnRunFailure=false 2>&1`,
+  `DEBUG_TEST="" npm run test:client --prefix=${ROOT_PATH} -- -q --config video=false,screenshotOnRunFailure=false 2>&1`,
   `Executing: ${yellow('Client Testing')}`,
 );
 
