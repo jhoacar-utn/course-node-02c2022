@@ -2,6 +2,13 @@
 
 ## Pasos para la configuracion local de testing del proyecto
 
+### Crear un archivo `.env` en la raiz del proyecto con las siguientes variables de entorno
+
+```
+TIMEOUT_SERVER=10
+DEBUG_TEST=1
+```
+
 * ### 1) Habilitar la herramienta de docker para los contenedores
 * ### 2) Ubicarse con la consola en la carpeta raiz del proyecto e instalar las dependencias
 
