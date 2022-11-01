@@ -1,9 +1,10 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-undef */
 const request = require('supertest');
 
-const { params, query, body } = require("./requests");
+const { params, query, body } = require('./requests');
 
 describe('Testing sobre la request', () => {
-  
   describe('Deberia controlar los parametros de la URL', () => {
     test('Deberia mostrar un codigo de estado 404', async () => {
       await request(params)
@@ -139,7 +140,7 @@ describe('Testing sobre la request', () => {
     test('Deberia mostrar un nombre', async () => {
       await request(body)
         .post('/usuario')
-        .field('nombre','pedro')
+        .field('nombre', 'pedro')
         .expect(200)
         .expect((response) => {
           expect(response.text).toContain('pedro');
@@ -149,8 +150,8 @@ describe('Testing sobre la request', () => {
     test('Deberia mostrar un nombre y el apellido', async () => {
       await request(body)
         .post('/usuario')
-        .field('nombre','pedro')
-        .field('apellido','perez')
+        .field('nombre', 'pedro')
+        .field('apellido', 'perez')
         .expect(200)
         .expect((response) => {
           expect(response.text).toContain('pedro');

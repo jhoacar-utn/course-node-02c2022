@@ -1,0 +1,19 @@
+{
+    "terminal.integrated.profiles.windows": {
+        "utn": {
+            "source": "PowerShell",
+            "overrideName": true,
+            "color": "terminal.ansiCyan",
+            "args": [
+                "npm",
+                "run",
+                "docker:in",
+                "--prefix",
+                "${workspaceFolder}"
+            ],
+            "icon": "github"
+        },
+        "Ubuntu-20.04 (WSL)": null
+    },
+    "files.eol": "\n"
+}

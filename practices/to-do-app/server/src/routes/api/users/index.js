@@ -1,12 +1,14 @@
-const express = require("express");
+/* eslint-disable import/no-unresolved */
+const express = require('express');
 
 const router = express.Router();
 
-const { create, index, destroy } = require("../../../controllers/user");
-const { validateRegister } = require("../../../middlewares/user");
+const { create, index, destroy } = require('../../../controllers/user');
+const { validateToken } = require('../../../middlewares/auth');
+const { validateRegister, encryptPassword } = require('../../../middlewares/user');
 
-router.post("/", validateRegister ,create)
-router.get("/", index);
-router.delete("/",destroy);
+router.post('/', validateRegister, encryptPassword, create);
+router.get('/', validateToken, index);
+router.delete('/', destroy);
 
 module.exports = router;
