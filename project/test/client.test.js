@@ -2,7 +2,7 @@
 /**
  * This file run under cypress environment
  */
-const { PORT, TIMEOUT_CLIENT } = require('./config.cjs');
+const { TIMEOUT_CLIENT } = require('./config.cjs');
 const { getEmoji, getEmojis, voteEmoji } = require('./utils/client.cjs');
 
 beforeEach(() => {
@@ -31,17 +31,17 @@ beforeEach(() => {
 
 describe('Client Testing', () => {
   it('Must show main page', () => {
-    cy.visit(`http://localhost:${PORT}`);
+    cy.visit('/');
   });
   it("Must redirect to '/emojis' when the path is '/'", () => {
-    cy.visit(`http://localhost:${PORT}`);
+    cy.visit('/');
     cy.wait(TIMEOUT_CLIENT * 1000);
     cy.location().should((location) => {
       expect(location.pathname).to.eq('/emojis');
     });
   });
   it('Must show at least 10 emojis with his character and name', () => {
-    cy.visit(`http://localhost:${PORT}/emojis`);
+    cy.visit('/emojis');
     cy.wait('@getEmojis');
     const emojis = getEmojis();
     for (let index = 0; index < 10; index++) {
@@ -49,7 +49,7 @@ describe('Client Testing', () => {
     }
   });
   it('Must contain the votes of the emojis', () => {
-    cy.visit(`http://localhost:${PORT}/emojis`);
+    cy.visit('/emojis');
     cy.wait('@getEmojis');
     const emojis = getEmojis();
     for (let index = 0; index < 10; index++) {
@@ -57,17 +57,17 @@ describe('Client Testing', () => {
     }
   });
   it('Must contain a button to display the emoji and must be an anchor tag <a></a>', () => {
-    cy.visit(`http://localhost:${PORT}/emojis`);
+    cy.visit('/emojis');
     cy.wait('@getEmojis');
     cy.get("a[href^='/emojis']").first().contains('show');
   });
   it('Must contain a button to vote the emoji and must be a button tag <button></button>', () => {
-    cy.visit(`http://localhost:${PORT}/emojis`);
+    cy.visit('/emojis');
     cy.wait('@getEmojis');
     cy.get('button').first().contains('vote');
   });
   it('Must show the emoji page and show all the information about the emoji when the show button is pressed', () => {
-    cy.visit(`http://localhost:${PORT}/emojis`);
+    cy.visit('/emojis');
     cy.wait('@getEmojis');
     cy.get("a[href^='/emojis']").first().click();
     cy.wait('@getEmoji');
@@ -80,18 +80,18 @@ describe('Client Testing', () => {
   });
   it('Must have a button for go to leaderboard and must be an anchor tag <a></a>', () => {
     const emoji = getEmoji();
-    cy.visit(`http://localhost:${PORT}/emojis/${emoji._id}`);
+    cy.visit(`/emojis/${emoji._id}`);
     cy.wait('@getEmoji');
     cy.get("a[href='/emojis']");
   });
   it('Must vote the emoji page when the vote button is pressed', () => {
-    cy.visit(`http://localhost:${PORT}/emojis`);
+    cy.visit('/emojis');
     cy.wait('@getEmojis');
     cy.get('button').first().contains('vote').click();
     cy.wait('@voteEmoji');
   });
   it('Must have a pagination', () => {
-    cy.visit(`http://localhost:${PORT}/emojis`);
+    cy.visit('/emojis');
     cy.wait('@getEmojis');
     const LIMIT = 10;
     const MAX_PAGINATION = Math.ceil(getEmojis().length / LIMIT);
