@@ -8,7 +8,7 @@ function App() {
     <div>
       <Header />
       Hello World!
-      <ComponenteComoClase />
+      <ComponenteComoClase nombre="pedro" />
       <ComponenteComoFuncion />
     </div>
   );

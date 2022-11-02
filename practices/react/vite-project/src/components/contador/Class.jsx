@@ -15,8 +15,8 @@ class Contador extends Component {
    * Esta function es la primera que se ejecuta
    * cuando recien se construye este componente
    */
-  constructor() {
-    super(); // Construimos el padre primero
+  constructor(props) {
+    super(props); // Construimos el padre primero
     /**
      * Declaramos un estado para nuestro componente
      * el cual tendra un contador con un valor inicial en 0
@@ -53,6 +53,8 @@ class Contador extends Component {
         }}
       >
         Cantidad (Clase) - {this.state.contador}
+        {' '}
+        {this.props.nombre}
       </div>
     );
   }
