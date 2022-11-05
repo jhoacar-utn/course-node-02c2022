@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -5,7 +6,7 @@
 import { useState, useEffect } from 'react';
 
 /* eslint-disable react/jsx-one-expression-per-line */
-function Contador() {
+function Contador(props) {
   /**
    * useState es un hook usado para crear un estado
    * en el componente y es devuelto como un array,
@@ -58,6 +59,8 @@ function Contador() {
       Cantidad (Funcion) - {state.contador}
       {' '}
       {active.toString()}
+      {' '}
+      {props.nombre}
     </div>
   );
 }
