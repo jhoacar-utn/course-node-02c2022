@@ -1,33 +1,9 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './pages/home';
-import NotFound from './pages/notfound';
-import ToDo from './pages/todo';
-import ToDos from './pages/todos';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes';
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <Home />,
-    },
-    {
-      path: 'todos',
-      element: <ToDos />,
-    },
-    {
-      path: 'todos/:id',
-      element: <ToDo />,
-    },
-    {
-      path: '*',
-      element: <NotFound />,
-    },
-  ]);
-
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
