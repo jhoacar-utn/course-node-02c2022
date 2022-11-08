@@ -1,3 +1,8 @@
+import {
+  Button,
+  Card, CardActions, CardContent, List, ListItem,
+} from '@mui/material';
+import Spinner from '../../atoms/Spinner';
 import ToDo from '../../atoms/ToDo';
 import useFetchToDos from './useFetchToDos';
 
@@ -6,27 +11,26 @@ function ToDos() {
 
   if (loading) {
     return (
-      <div>
-        Cargando lista de tareas
-      </div>
+      <Spinner />
     );
   }
 
   return (
-    <ul>
+    <List>
       {listToDos?.map((todo) => (
-        <li style={{ margin: '1rem', padding: '1rem', border: 'solid 1px black' }}>
-          <ToDo title={todo.title} text={todo.text} priority={todo.priority} />
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem',
-          }}
-          >
-            <a href={`/todos/${todo._id}`}>Show ToDo</a>
-            <button>Increment Priority</button>
-          </div>
-        </li>
+        <ListItem>
+          <Card sx={{ width: 500 }}>
+            <CardContent>
+              <ToDo title={todo.title} text={todo.text} priority={todo.priority} />
+            </CardContent>
+            <CardActions>
+              <Button href={`/todos/${todo._id}`}>Show ToDo</Button>
+              <Button color="success">Increment Priority</Button>
+            </CardActions>
+          </Card>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 }
 
