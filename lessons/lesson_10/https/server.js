@@ -1,9 +1,11 @@
-const express = require("express");
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-unused-vars */
+const express = require('express');
 
 const app = express();
 
-app.get("/", (req, res, next) => {
-    res.send("<h1>Hello from Server</h1>");
-})
+app.get('/', (req, res, next) => {
+  res.send('<h1>Hello from Server</h1>');
+});
 
 module.exports = app;

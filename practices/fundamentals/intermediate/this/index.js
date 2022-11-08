@@ -1,13 +1,13 @@
-const fs = require("fs");
-const Emoji = require("./modelo");
+const fs = require('fs');
+const Emoji = require('./modelo');
 
 function remove() {
-    console.log("Estoy borrando todo");
-    fs.unlinkSync(this.file);
+  console.log('Estoy borrando todo');
+  fs.unlinkSync(this.file);
 }
 /**
  * Para añadir una nueva propiedad
- * a una clase que sera instanciada 
+ * a una clase que sera instanciada
  * o creada con el operador 'new'
  * se le debera añadir al .prototype
  */

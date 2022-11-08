@@ -1,4 +1,5 @@
-const express = require("express");
+/* eslint-disable import/no-unresolved */
+const express = require('express');
 
 const app = express();
 
