@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getToDos } from '../../../services/toDos';
 
 /**
- * This function returns an array when
+ * This function returns an array with
  * the variable if its loading
  * as first position and returns a list of todos
  * as second position

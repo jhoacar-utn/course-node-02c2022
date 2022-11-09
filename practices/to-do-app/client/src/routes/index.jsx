@@ -42,7 +42,7 @@ const router = createBrowserRouter([
     element: <ToDos />,
   },
   {
-    path: 'todos/:id',
+    path: 'todos/:toDoId',
     element: <ToDo />,
   },
   {
