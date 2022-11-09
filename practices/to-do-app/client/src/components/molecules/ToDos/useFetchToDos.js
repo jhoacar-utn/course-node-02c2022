@@ -11,16 +11,17 @@ import { getToDos } from '../../../services/toDos';
  */
 function useFetchToDos() {
   const [listToDos, setListToDos] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getToDos().then((data) => {
       setListToDos(data);
-    }).catch((error) => {
-      console.log(error);
+    }).catch(() => {
+      setError(true);
     });
   }, []);
 
-  return [listToDos === null, listToDos];
+  return [listToDos === null, listToDos, error];
 }
 
 export default useFetchToDos;

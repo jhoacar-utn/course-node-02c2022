@@ -1,5 +1,5 @@
 import {
-  Button, Card, CardActions, CardContent,
+  Button, Card, CardActions, CardContent, Typography,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import Spinner from '../../atoms/Spinner';
@@ -8,10 +8,18 @@ import useFetchToDo from './useFetchToDo';
 
 function ToDo() {
   const { toDoId } = useParams();
-  const [loading, toDo] = useFetchToDo(toDoId);
+  const [loading, toDo, error] = useFetchToDo(toDoId);
 
-  if (loading) {
+  if (loading && !error) {
     return <Spinner />;
+  }
+
+  if (error) {
+    return (
+      <Typography variant="h5">
+        An error has ocurred
+      </Typography>
+    );
   }
 
   return (

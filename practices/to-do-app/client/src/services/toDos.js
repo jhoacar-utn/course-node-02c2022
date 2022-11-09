@@ -18,11 +18,11 @@ export async function getToDos(start, limit) {
 /**
  * This function make a request to extract
  * an specific ToDo in the backend
- * @param {string} id
+ * @param {string} toDoId
  * @return {Promise<Array>}
  */
-export async function getToDo(id) {
-  const url = `http://localhost:4040/api/v1/to-do/${id}`;
+export async function getToDo(toDoId) {
+  const url = `http://localhost:4040/api/v1/to-do/${toDoId}`;
 
   const response = await fetch(url);
 

@@ -1,10 +1,11 @@
 import { Suspense } from 'react';
 import { RouterProvider } from 'react-router-dom';
+import Spinner from './components/atoms/Spinner';
 import router from './routes';
 
 function App() {
   return (
-    <Suspense fallback={<h1>Cargando</h1>}>
+    <Suspense fallback={<Spinner />}>
       <RouterProvider router={router} />
     </Suspense>
   );

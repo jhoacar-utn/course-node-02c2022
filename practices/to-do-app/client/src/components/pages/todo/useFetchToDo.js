@@ -7,20 +7,24 @@ import { getToDo } from '../../../services/toDos';
  * the variable if its loading
  * as first position and returns a To Do
  * as second position
+ * @param {string} toDoId
  * @return {[loading: boolean, listToDos: array]}
  */
-function useFetchToDo(id) {
+function useFetchToDo(toDoId) {
   const [toDo, setToDo] = useState(null);
+  const [error, setError] = useState(false);
+
+  const isLoading = toDo === null;
 
   useEffect(() => {
-    getToDo(id).then((data) => {
+    getToDo(toDoId).then((data) => {
       setToDo(data);
-    }).catch((error) => {
-      console.log(error);
+    }).catch(() => {
+      setError(true);
     });
   }, []);
 
-  return [toDo === null, toDo];
+  return [isLoading, toDo, error];
 }
 
 export default useFetchToDo;
