@@ -1,50 +1,53 @@
-import { useEffect, useState } from 'react';
+import {
+  Button,
+  Card, CardActions, CardContent, List, ListItem, Typography,
+} from '@mui/material';
+import Spinner from '../../atoms/Spinner';
 import ToDo from '../../atoms/ToDo';
-
-async function getToDos(start, limit) {
-  const url = `http://localhost:4040/api/v1/to-do?start=${start || 0}&limit=${limit || 10}`;
-
-  const response = await fetch(url);
-
-  const json = await response.json();
-
-  return json.result;
-}
+import useFetchToDos from './useFetchToDos';
 
 function ToDos() {
-  const [todos, setTodos] = useState(null);
+  const [loading, listToDos, error] = useFetchToDos();
 
-  useEffect(() => {
-    getToDos().then((data) => {
-      setTodos(data);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }, []);
-
-  if (todos === null) {
+  if (loading && !error) {
     return (
-      <div>
-        Cargando lista de tareas
-      </div>
+      <Spinner />
+    );
+  }
+
+  if (error) {
+    return (
+      <Typography>An error has ocurred on the server</Typography>
     );
   }
 
   return (
-    <ul>
-      {todos?.map((todo) => (
-        <li style={{ margin: '1rem', padding: '1rem', border: 'solid 1px black' }}>
-          <ToDo title={todo.title} text={todo.text} priority={todo.priority} />
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem',
+    <List sx={{
+      width: '100%',
+    }}
+    >
+      {listToDos?.map((todo) => (
+        <ListItem>
+          <Card sx={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center',
           }}
           >
-            <a href={`/todos/${todo._id}`}>Show ToDo</a>
-            <button>Increment Priority</button>
-          </div>
-        </li>
+            <CardContent>
+              <ToDo title={todo.title} text={todo.text} priority={todo.priority} />
+            </CardContent>
+            <CardActions>
+              <Button href={`/todos/${todo._id}`}>Show ToDo</Button>
+              <Button color="success">Increment Priority</Button>
+            </CardActions>
+          </Card>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 }
 

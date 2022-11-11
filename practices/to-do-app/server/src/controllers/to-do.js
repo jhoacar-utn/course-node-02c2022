@@ -70,7 +70,7 @@ module.exports.show = async (req, res) => {
       result: toDo,
     });
   } catch (error) {
-    res.json({
+    res.status(500).json({
       errors: [
         {
           message: error.message,
