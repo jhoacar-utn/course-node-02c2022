@@ -1,6 +1,8 @@
+/* eslint-disable react/no-array-index-key */
 import {
   Card, CardActions, CardContent, List, ListItem, Typography,
 } from '@mui/material';
+import { useState } from 'react';
 import IncrementPriorityButton from '../../atoms/IncrementPriorityButton';
 import ShowToDoButton from '../../atoms/ShowToDoButton';
 import Spinner from '../../atoms/Spinner';
@@ -8,7 +10,8 @@ import ToDo from '../../atoms/ToDo';
 import useFetchToDos from './useFetchToDos';
 
 function ToDos() {
-  const [loading, listToDos, error] = useFetchToDos();
+  const [changePriority, setChangePriority] = useState(0);
+  const [loading, listToDos, error] = useFetchToDos(changePriority);
 
   if (loading && !error) {
     return (
@@ -27,8 +30,8 @@ function ToDos() {
       width: '100%',
     }}
     >
-      {listToDos?.map((todo) => (
-        <ListItem>
+      {listToDos?.map((todo, index) => (
+        <ListItem key={index}>
           <Card sx={{
             width: '100%',
             display: 'flex',
@@ -43,7 +46,10 @@ function ToDos() {
             </CardContent>
             <CardActions>
               <ShowToDoButton toDoId={todo._id} />
-              <IncrementPriorityButton toDoId={todo._id} />
+              <IncrementPriorityButton
+                toDoId={todo._id}
+                onChangePriority={() => { setChangePriority(changePriority + 1); }}
+              />
             </CardActions>
           </Card>
         </ListItem>

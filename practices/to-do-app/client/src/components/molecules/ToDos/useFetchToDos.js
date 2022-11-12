@@ -7,9 +7,10 @@ import { getToDos } from '../../../services/toDos';
  * the variable if its loading
  * as first position and returns a list of todos
  * as second position
+ * @param {number} changePriority
  * @return {[loading: boolean, listToDos: array]}
  */
-function useFetchToDos() {
+function useFetchToDos(changePriority) {
   const [listToDos, setListToDos] = useState(null);
   const [error, setError] = useState(false);
 
@@ -19,7 +20,7 @@ function useFetchToDos() {
     }).catch(() => {
       setError(true);
     });
-  }, []);
+  }, [changePriority]);
 
   return [listToDos === null, listToDos, error];
 }
