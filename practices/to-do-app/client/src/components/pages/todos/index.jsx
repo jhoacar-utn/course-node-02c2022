@@ -1,10 +1,21 @@
+import {
+  Card, CardContent, Typography,
+} from '@mui/material';
 import ToDosComponent from '../../molecules/ToDos';
+import NavBar from '../../organisms/NavBar';
 
 function ToDos() {
   return (
     <div>
-      Lista De Tareas:
-      <ToDosComponent />
+      <NavBar />
+      <Card>
+        <CardContent>
+          <Typography variant="h5">
+            Lista de Tareas
+          </Typography>
+          <ToDosComponent />
+        </CardContent>
+      </Card>
     </div>
   );
 }

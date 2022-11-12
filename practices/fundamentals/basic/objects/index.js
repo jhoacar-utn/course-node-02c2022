@@ -16,6 +16,7 @@ const estudiante = {
     console.log('Un estudiante estudia');
   },
 };
+
 /**
  * Luego de la declaracion podemos
  * cambiar los atributos usando el '='
