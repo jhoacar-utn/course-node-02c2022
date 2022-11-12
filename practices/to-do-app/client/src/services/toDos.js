@@ -33,3 +33,25 @@ export async function getToDo(toDoId) {
 
   return json.result;
 }
+
+/**
+ * This function make a request to increment
+ * priority using an id
+ * @param {string} id
+ * @return {Promise<Object>}
+ */
+export async function incrementPriority(ToDoId) {
+  const url = `${SERVER_API}/priority`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id: ToDoId }), // `{ id : ${ToDoId} }`,
+  });
+
+  const json = await response.json();
+
+  return json.result;
+}

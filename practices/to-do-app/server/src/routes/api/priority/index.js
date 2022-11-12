@@ -5,6 +5,6 @@ const router = express.Router();
 
 const { priority } = require('../../../controllers/priority');
 
-router.post('/:id', priority);
+router.post('/', priority);
 
 module.exports = router;

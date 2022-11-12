@@ -1,7 +1,8 @@
 import {
-  Button,
   Card, CardActions, CardContent, List, ListItem, Typography,
 } from '@mui/material';
+import IncrementPriorityButton from '../../atoms/IncrementPriorityButton';
+import ShowToDoButton from '../../atoms/ShowToDoButton';
 import Spinner from '../../atoms/Spinner';
 import ToDo from '../../atoms/ToDo';
 import useFetchToDos from './useFetchToDos';
@@ -41,8 +42,8 @@ function ToDos() {
               <ToDo title={todo.title} text={todo.text} priority={todo.priority} />
             </CardContent>
             <CardActions>
-              <Button href={`/todos/${todo._id}`}>Show ToDo</Button>
-              <Button color="success">Increment Priority</Button>
+              <ShowToDoButton toDoId={todo._id} />
+              <IncrementPriorityButton toDoId={todo._id} />
             </CardActions>
           </Card>
         </ListItem>
