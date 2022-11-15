@@ -2,7 +2,6 @@
 import {
   Card, CardActions, CardContent, List, ListItem, Typography,
 } from '@mui/material';
-import { useState } from 'react';
 import IncrementPriorityButton from '../../atoms/IncrementPriorityButton';
 import ShowToDoButton from '../../atoms/ShowToDoButton';
 import Spinner from '../../atoms/Spinner';
@@ -10,8 +9,7 @@ import ToDo from '../../atoms/ToDo';
 import useFetchToDos from './useFetchToDos';
 
 function ToDos() {
-  const [changePriority, setChangePriority] = useState(0);
-  const [loading, listToDos, error] = useFetchToDos(changePriority);
+  const [loading, listToDos, reloadListToDo, error] = useFetchToDos();
 
   if (loading && !error) {
     return (
@@ -48,7 +46,7 @@ function ToDos() {
               <ShowToDoButton toDoId={todo._id} />
               <IncrementPriorityButton
                 toDoId={todo._id}
-                onChangePriority={() => { setChangePriority(changePriority + 1); }}
+                onChangePriority={reloadListToDo}
               />
             </CardActions>
           </Card>
