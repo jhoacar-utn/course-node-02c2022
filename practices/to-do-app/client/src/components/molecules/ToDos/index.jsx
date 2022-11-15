@@ -3,13 +3,22 @@ import {
   Card, CardActions, CardContent, List, ListItem, Typography,
 } from '@mui/material';
 import IncrementPriorityButton from '../../atoms/IncrementPriorityButton';
+import PaginationListToDo from '../../atoms/PaginationListToDo';
 import ShowToDoButton from '../../atoms/ShowToDoButton';
 import Spinner from '../../atoms/Spinner';
 import ToDo from '../../atoms/ToDo';
 import useFetchToDos from './useFetchToDos';
 
+const LIMIT_TODOS = 5;
+
 function ToDos() {
-  const [loading, listToDos, reloadListToDo, error] = useFetchToDos();
+  const {
+    loading,
+    listToDos,
+    totalListToDos,
+    reloadListToDo,
+    error,
+  } = useFetchToDos();
 
   if (loading && !error) {
     return (
@@ -24,35 +33,42 @@ function ToDos() {
   }
 
   return (
-    <List sx={{
-      width: '100%',
-    }}
-    >
-      {listToDos?.map((todo, index) => (
-        <ListItem key={index}>
-          <Card sx={{
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}
-          >
-            <CardContent>
-              <ToDo title={todo.title} text={todo.text} priority={todo.priority} />
-            </CardContent>
-            <CardActions>
-              <ShowToDoButton toDoId={todo._id} />
-              <IncrementPriorityButton
-                toDoId={todo._id}
-                onChangePriority={reloadListToDo}
-              />
-            </CardActions>
-          </Card>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <List sx={{
+        width: '100%',
+      }}
+      >
+        {listToDos?.map((todo, index) => (
+          <ListItem key={index}>
+            <Card sx={{
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+            }}
+            >
+              <CardContent>
+                <ToDo title={todo.title} text={todo.text} priority={todo.priority} />
+              </CardContent>
+              <CardActions>
+                <ShowToDoButton toDoId={todo._id} />
+                <IncrementPriorityButton
+                  toDoId={todo._id}
+                  onChangePriority={reloadListToDo}
+                />
+              </CardActions>
+            </Card>
+          </ListItem>
+        ))}
+      </List>
+      <PaginationListToDo
+        limitListToDos={LIMIT_TODOS}
+        totalListToDos={totalListToDos}
+        reloadListToDo={reloadListToDo}
+      />
+    </>
   );
 }
 
