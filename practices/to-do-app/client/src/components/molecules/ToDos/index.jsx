@@ -3,6 +3,7 @@ import {
   Box,
   Card, CardActions, CardContent, List, ListItem, Typography,
 } from '@mui/material';
+import { useSearchParams } from 'react-router-dom';
 import IncrementPriorityButton from '../../atoms/IncrementPriorityButton';
 import PaginationListToDo from '../../atoms/PaginationListToDo';
 import ShowToDoButton from '../../atoms/ShowToDoButton';
@@ -10,16 +11,19 @@ import Spinner from '../../atoms/Spinner';
 import ToDo from '../../atoms/ToDo';
 import useFetchToDos from './useFetchToDos';
 
-const LIMIT_TODOS = 5;
-
 function ToDos() {
+  const [searchParams] = useSearchParams();
+
+  const start = searchParams.get('start') || 0;
+  const limit = searchParams.get('limit') || 5;
+
   const {
     loading,
     listToDos,
     totalListToDos,
     reloadListToDo,
     error,
-  } = useFetchToDos();
+  } = useFetchToDos(start, limit);
 
   if (loading && !error) {
     return (
@@ -74,7 +78,8 @@ function ToDos() {
       }}
       >
         <PaginationListToDo
-          limitListToDos={LIMIT_TODOS}
+          startListToDos={start}
+          limitListToDos={limit}
           totalListToDos={totalListToDos}
           reloadListToDo={reloadListToDo}
         />

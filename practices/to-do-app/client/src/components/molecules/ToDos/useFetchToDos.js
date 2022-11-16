@@ -9,6 +9,8 @@ import { getToDos } from '../../../services/toDos';
  * - total of todos
  * - reloadListToDo as callback
  * - error
+ * @param {Number} startDefault
+ * @param {Number} limitDefault
  * @return {{
  * loading: boolean,
  * listToDos: array,
@@ -17,13 +19,13 @@ import { getToDos } from '../../../services/toDos';
  * error: Error
  * }}
  */
-function useFetchToDos() {
+function useFetchToDos(startDefault, limitDefault) {
   const [listToDos, setListToDos] = useState(null);
   const [totalListToDos, setTotalListToDos] = useState(0);
   const [error, setError] = useState(false);
 
-  const [start, setStart] = useState(0);
-  const [limit, setLimit] = useState(5);
+  const [start, setStart] = useState(startDefault || 0);
+  const [limit, setLimit] = useState(limitDefault || 5);
 
   const [reloadEffect, setReloadEffect] = useState(0);
 
