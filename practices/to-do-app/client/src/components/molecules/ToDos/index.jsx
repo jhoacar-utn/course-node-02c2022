@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import {
+  Box,
   Card, CardActions, CardContent, List, ListItem, Typography,
 } from '@mui/material';
 import IncrementPriorityButton from '../../atoms/IncrementPriorityButton';
@@ -63,11 +64,21 @@ function ToDos() {
           </ListItem>
         ))}
       </List>
-      <PaginationListToDo
-        limitListToDos={LIMIT_TODOS}
-        totalListToDos={totalListToDos}
-        reloadListToDo={reloadListToDo}
-      />
+      <Box sx={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+      }}
+      >
+        <PaginationListToDo
+          limitListToDos={LIMIT_TODOS}
+          totalListToDos={totalListToDos}
+          reloadListToDo={reloadListToDo}
+        />
+      </Box>
     </>
   );
 }

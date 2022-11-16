@@ -34,10 +34,19 @@ function useFetchToDos() {
    * @param {Number} limit
    */
   const reloadListToDo = (start, limit) => {
-    if (start) {
+    /**
+     * Si la condicion es una variable, evaluara
+     * los siguientes casos,
+     * - undefined
+     * - null
+     * - ""
+     * - []
+     * - 0
+     */
+    if (!Number.isNaN(Number.parseInt(start, 10))) {
       setStart(start);
     }
-    if (limit) {
+    if (!Number.isNaN(Number.parseInt(limit, 10))) {
       setLimit(limit);
     }
     // reloadEffect++;
