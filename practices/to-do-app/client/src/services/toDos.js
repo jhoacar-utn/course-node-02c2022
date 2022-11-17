@@ -6,16 +6,19 @@ const SERVER_API = `${SERVER_HOST}/api/v1`;
  * all the to do's in the backend
  * @param {number} start
  * @param {number} limit
- * @return {Promise<Array>}
+ * @return {Promise<{result: Array, total: Number}>}
  */
 export async function getToDos(start, limit) {
-  const url = `${SERVER_API}/to-do?start=${start || 0}&limit=${limit || 10}`;
+  const url = `${SERVER_API}/to-do?start=${start || 0}&limit=${limit || 5}`;
 
   const response = await fetch(url);
 
   const json = await response.json();
 
-  return json.result;
+  return {
+    result: json.result,
+    total: json.total,
+  };
 }
 
 /**
