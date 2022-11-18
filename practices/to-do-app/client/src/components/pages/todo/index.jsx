@@ -1,7 +1,8 @@
 import {
-  Button, Card, CardActions, CardContent, Typography,
+  Button,
+  Card, CardActions, CardContent, Typography,
 } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Spinner from '../../atoms/Spinner';
 import ToDoComponent from '../../atoms/ToDo';
 import useFetchToDo from './useFetchToDo';
@@ -25,7 +26,11 @@ function ToDo() {
   return (
     <Card>
       <CardActions>
-        <Button href="/todos">Regresar a la lista de tareas</Button>
+        <Link to="/todos">
+          <Button>
+            Regresar a la lista de tareas
+          </Button>
+        </Link>
       </CardActions>
       <CardContent>
         <Card>

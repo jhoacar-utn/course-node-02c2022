@@ -1,3 +1,6 @@
+# Windows -> \r\n -> Salto de linea
+# Linux o Mac -> \n -> Salto de linea
+
 #!/bin/bash
 
 set -x
