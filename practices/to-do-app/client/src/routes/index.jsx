@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import Layout from '../components/templates/mainLayout';
 /**
  * Uso de lazy loading (carga perezosa)
  *
@@ -31,19 +32,28 @@ const Home = lazy(() => import('../components/pages/home'));
 const NotFound = lazy(() => import('../components/pages/notfound'));
 const ToDo = lazy(() => import('../components/pages/todo'));
 const ToDos = lazy(() => import('../components/pages/todos'));
-
+const Register = lazy(() => import('../components/pages/register'));
+const Login = lazy(() => import('../components/pages/login'));
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <Layout><Home /></Layout>,
   },
   {
     path: 'todos',
-    element: <ToDos />,
+    element: <Layout><ToDos /></Layout>,
   },
   {
     path: 'todos/:toDoId',
-    element: <ToDo />,
+    element: <Layout><ToDo /></Layout>,
+  },
+  {
+    path: 'register',
+    element: <Layout><Register /></Layout>,
+  },
+  {
+    path: 'login',
+    element: <Layout><Login /></Layout>,
   },
   {
     path: '*',
