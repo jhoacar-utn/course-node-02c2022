@@ -4,6 +4,7 @@ import {
   Card, CardActions, CardContent, List, ListItem, Typography,
 } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import IncrementPriorityButton from '../../atoms/IncrementPriorityButton';
 import PaginationListToDo from '../../atoms/PaginationListToDo';
 import ShowToDoButton from '../../atoms/ShowToDoButton';
@@ -30,10 +31,12 @@ function ToDos() {
       <Spinner />
     );
   }
-
   if (error) {
+    toast.error('An error has ocurred on the server');
     return (
-      <Typography>An error has ocurred on the server</Typography>
+      <Typography>
+        Error on the request
+      </Typography>
     );
   }
 
@@ -68,22 +71,28 @@ function ToDos() {
           </ListItem>
         ))}
       </List>
-      <Box sx={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-      }}
-      >
-        <PaginationListToDo
-          startListToDos={start}
-          limitListToDos={limit}
-          totalListToDos={totalListToDos}
-          reloadListToDo={reloadListToDo}
-        />
-      </Box>
+      {
+        totalListToDos > 0
+        && (
+        <Box sx={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
+        >
+          <PaginationListToDo
+            startListToDos={start}
+            limitListToDos={limit}
+            totalListToDos={totalListToDos}
+            reloadListToDo={reloadListToDo}
+          />
+        </Box>
+        )
+      }
+
     </>
   );
 }

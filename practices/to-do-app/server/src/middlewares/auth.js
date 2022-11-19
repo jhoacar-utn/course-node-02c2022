@@ -49,23 +49,31 @@ module.exports.validateLogin = async (req, res, next) => {
  */
 module.exports.validateToken = async (req, res, next) => {
   try {
-    if (!req.headers.cookie) {
+    const { authorization } = req.headers;
+    const { cookie } = req.headers;
+
+    if (!authorization && !cookie) {
       return res.status(401).json({
         errors: [
           {
-            message: 'Cookie header must be sent',
+            message: 'Cookie or Authorization header must be sent',
           },
         ],
       });
     }
     /**
-         * Para extraer el token, realizamos un .split()
-         * con el separador de '=' y obtenemos la ultima posicion
-         * de este array con el metodo .pop()
-         *
-         * Si quisiera obtener el primero, usariamos el .shift()
-         */
-    const token = req.headers.cookie?.split('=')?.pop();
+     * Para extraer el token, realizamos un .split()
+     * con el separador de '=' y obtenemos la ultima posicion
+     * de este array con el metodo .pop()
+     *
+     * Si quisiera obtener el primero, usariamos el .shift()
+     */
+    let token = '';
+    if (cookie) {
+      token = cookie?.split('=')?.pop();
+    } else if (authorization) {
+      token = authorization;
+    }
 
     const user = getData(token);
 
