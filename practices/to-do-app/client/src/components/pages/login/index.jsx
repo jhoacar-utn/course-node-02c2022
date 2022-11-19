@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { loginUser } from '../../../services/auth';
+import { setToken } from '../../../utils/token';
 
 const theme = createTheme();
 
@@ -29,7 +30,7 @@ export default function LoginIn() {
     loginUser({ email, password })
       .then((token) => {
         toast.success('Se ha loggueado exitosamente');
-        console.log(token);
+        setToken(token);
         navigate('/todos');
       }).catch((error) => {
         console.log(error);

@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { removeToken } from '../../../utils/token';
 
 export default function NavBar() {
   return (
@@ -54,6 +55,9 @@ export default function NavBar() {
                 Register
               </Button>
             </Link>
+            <Button onClick={removeToken} variant="contained">
+              Logout
+            </Button>
             <Link to="/todos">
               <Button variant="contained">
                 ToDo&apos;s

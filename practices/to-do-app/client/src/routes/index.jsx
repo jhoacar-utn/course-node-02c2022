@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import AuthorizeToken from '../components/atoms/AuthorizeToken';
 import Layout from '../components/templates/mainLayout';
 /**
  * Uso de lazy loading (carga perezosa)
@@ -41,11 +42,23 @@ const router = createBrowserRouter([
   },
   {
     path: 'todos',
-    element: <Layout><ToDos /></Layout>,
+    element: (
+      <Layout>
+        <AuthorizeToken>
+          <ToDos />
+        </AuthorizeToken>
+      </Layout>
+    ),
   },
   {
     path: 'todos/:toDoId',
-    element: <Layout><ToDo /></Layout>,
+    element: (
+      <Layout>
+        <AuthorizeToken>
+          <ToDo />
+        </AuthorizeToken>
+      </Layout>
+    ),
   },
   {
     path: 'register',
