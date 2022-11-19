@@ -76,7 +76,8 @@ function useFetchToDos(startDefault, limitDefault) {
     getToDos(start, limit).then((data) => {
       setListToDos(data.result);
       setTotalListToDos(data.total);
-    }).catch(() => {
+    }).catch((error) => {
+      console.log('Error de peticion', error);
       setError(true);
     });
   }, [reloadEffect]);
