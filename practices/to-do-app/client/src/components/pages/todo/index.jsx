@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import {
   Button,
   Card, CardActions, CardContent, Typography,
@@ -16,9 +17,10 @@ function ToDo() {
   }
 
   if (error) {
+    toast.error('An error has ocurred on the server');
     return (
-      <Typography variant="h5">
-        An error has ocurred
+      <Typography>
+        Error on the request
       </Typography>
     );
   }

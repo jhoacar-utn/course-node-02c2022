@@ -4,8 +4,9 @@ const express = require('express');
 const router = express.Router();
 
 const { index, show } = require('../../../controllers/to-do');
+const { validateToken } = require('../../../middlewares/auth');
 
-router.get('/', index);
-router.get('/:id', show);
+router.get('/', validateToken, index);
+router.get('/:id', validateToken, show);
 
 module.exports = router;

@@ -1,3 +1,5 @@
+import { getToken } from '../utils/token';
+
 const SERVER_HOST = import.meta.env.VITE_BASE_URL || '';
 
 const SERVER_API = `${SERVER_HOST}/api/v1`;
@@ -11,13 +13,29 @@ const SERVER_API = `${SERVER_HOST}/api/v1`;
 export async function getToDos(start, limit) {
   const url = `${SERVER_API}/to-do?start=${start || 0}&limit=${limit || 5}`;
 
-  const response = await fetch(url);
+  const token = getToken();
+
+  if (!token) {
+    throw new Error('El token es requerido');
+  }
+
+  const response = await fetch(url, {
+    headers: {
+      Authorization: token,
+    },
+  });
 
   const json = await response.json();
 
+  const { result, total } = json;
+
+  if (!result && !total) {
+    throw new Error('No hay resultado, por lo tanto hay lista de tareas');
+  }
+
   return {
-    result: json.result,
-    total: json.total,
+    result,
+    total,
   };
 }
 
@@ -30,11 +48,27 @@ export async function getToDos(start, limit) {
 export async function getToDo(toDoId) {
   const url = `${SERVER_API}/to-do/${toDoId}`;
 
-  const response = await fetch(url);
+  const token = getToken();
+
+  if (!token) {
+    throw new Error('El token es requerido');
+  }
+
+  const response = await fetch(url, {
+    headers: {
+      Authorization: token,
+    },
+  });
 
   const json = await response.json();
 
-  return json.result;
+  const { result } = json;
+
+  if (!result) {
+    throw new Error('No hay resultado, por lo tanto no hay tarea');
+  }
+
+  return result;
 }
 
 /**
@@ -56,5 +90,11 @@ export async function incrementPriority(ToDoId) {
 
   const json = await response.json();
 
-  return json.result;
+  const { result } = json;
+
+  if (!result) {
+    throw new Error('No hay resultado, por lo tanto hay tarea');
+  }
+
+  return result;
 }
