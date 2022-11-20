@@ -1,9 +1,7 @@
 const ToDo = require('../models/to-do');
 
 module.exports.priority = async (req, res) => {
-  console.log('Priority Function');
-
-  const { id } = req.params;
+  const { id } = req.body;
 
   try {
     const toDo = await ToDo.findByIdAndUpdate(id, {

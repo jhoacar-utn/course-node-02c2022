@@ -14,8 +14,6 @@ const ToDo = require('../models/to-do');
  * - Si el campo 'limit' es un numero negativo, sera un 0
  */
 module.exports.index = async (req, res) => {
-  console.log('Index Function');
-
   let { start, limit } = req.query;
 
   if (!start || Number.isNaN(parseInt(start, 10)) || start < 0) {
@@ -59,8 +57,6 @@ module.exports.index = async (req, res) => {
  * de la url
  */
 module.exports.show = async (req, res) => {
-  console.log('Show Function');
-
   const { id } = req.params;
 
   try {
@@ -70,7 +66,7 @@ module.exports.show = async (req, res) => {
       result: toDo,
     });
   } catch (error) {
-    res.json({
+    res.status(500).json({
       errors: [
         {
           message: error.message,
