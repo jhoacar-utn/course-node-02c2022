@@ -8,13 +8,10 @@ app.get("/", (request, response, next) => {
 })
 
 /**
- * Con express podemos enviar cualquier tipo de informacion
- * como por ejemplo, el contenido de los archivos que 
- * se encuentren en alguna carpeta, estos archivos comumente
- * son conocidos como archivos estaticos
+ * Con express podemos enviar cualquier tipo de informacion como por ejemplo, el contenido de los archivos que 
+ * se encuentren en alguna carpeta, estos archivos comumente son conocidos como archivos estaticos
  * 
- * Para compartir estos archivos hacemos uso de la funcion
- * - express.static():
+ * Para compartir estos archivos hacemos uso de la funcion: - express.static():
  *          recibe por primer parametro la ubicacion 
  *          de la carpeta que se va a servir, pero debe ser
  *          como una ruta absoluta en el directorio
@@ -22,12 +19,11 @@ app.get("/", (request, response, next) => {
  * - La variable __dirname nos ayudara a utilizar una ruta absoluta
  * 
  * Por otro lado para integrarlo en una aplicacion de express
- * debemos hacer uso de .use(), no funcionara con verbos, como .get()
- * .post(), ...
+ * debemos hacer uso de .use(), no funcionara con verbos, como .get() , .post(), ...
  */
 const folderLesson1 = __dirname + "/lesson_1"
 
-app.use("/tasks/lesson_1", express.static(folderLesson1))
+app.use("/tasks/lesson_1", express.static(folderLesson1)) //cuando alguien venga a task/lesson 1 (ruta), se va a acompartir la carpeta//
 
 /**
  * De esta manera estaria usando 

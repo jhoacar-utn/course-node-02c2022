@@ -1,6 +1,5 @@
 /**
- * Test de ejemplo para verificar que el socket por el puerto 8888
- * se encuentre habilitado
+ * Test de ejemplo para verificar que el socket por el puerto 8888 se encuentre habilitado
  */
 const axios = require("axios")
 

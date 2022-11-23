@@ -15,6 +15,11 @@ add -> agrega archivos
 commit -> los registra (la pegatina!), parche, mensaje, etc. 
 init -> para iniciar un proyecto (no lo usamos aca porque el proyecto ya estaba creado)
 
+Color code:
+GRIS: si una carpeta aparece en gris, es porque no vale la pena subir al git xq es muy pesada, ej. package-lock.json, ademas se bajan de 
+toque tonces no vale la pena subirla. 
+VERDE: las carpetas verdes son las nuevas.
+
 Lenguajes:
          Compilados:    pasa por una etapa de empaquetado para que la compu lo pueda interpretar. mas rapido y eficientes.
          interpretados: no tienen la etapa de compilado. Se lee el codigo en tiempo real, linea por linea. son mas lentos 
@@ -186,9 +191,25 @@ PROMESAS: Son procesos asincronos que puede salir bien o mal.
         la diferencia entre Then_Catch y Async_Await: 
                                                       la primera, nadie la controla, el codigo se ejecuta nomas. 
                                                       la otra no puede seguir sino se resuelve la promesa. 
+       
+        AXIOS: es una librería de JS q permite llamada o extraer datos de una URL o HTTP de forma eficiente, 
+               por lo que podremos configurar y realizar solicitudes a un servidor y recibiremos respuestas fáciles de procesar.
+               - node-modules: aca se alojan las librerias (express, ) 
+               - package.json: define la configuracion del proyecto, ej: las dependencias (librerias) 
+               - package-lock.json: la libreria en si. En este caso: axios. 
+
+recordamos que los json son una forma de empacar data para extraer de una API o de internet.
+       
+       Axios está optimizado para facilitar el consumo de servicios web, API REST y que devuelvan datos JSON.
 
 
 ======================================CLASE 7 ========================================
+
+EXPRESS: es un framework backend de js. Controla verbos y rutas. 
+
+        Librerias de produccion: se alojan en servidores reales
+        Librerias de entorno: o sea que la libreria esta en mi compu
+
 
 
 
