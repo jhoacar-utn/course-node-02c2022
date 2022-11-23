@@ -1,4 +1,4 @@
-================================CLASE 1===========================================
+================================CLASE 1==============================================================
 git clone -> Este comando es usado para clonar un repo desde internet y descargarlo a la pc
 ctrl + l -> Este shortcout limpia la consola 
 ls -> Este comando es para listar en la carpeta actual los archivos o directorios presentes
@@ -6,7 +6,8 @@ code carpeta -> Este comando es para abrir esa carpeta con VSC
 La tecla TAB, autocompletara los archivos o los comandos
 para la consola de powershell: crtl+c para salir del comando y cls para limpiar pantalla
 
-Ir a la carpeta del proyecto, boton derecho, abrir con GitBash y dar al comando code . esto hace se se abra en VSC la carpeta en la que estamos
+Ir a la carpeta del proyecto, boton derecho, abrir con GitBash y dar al comando: code . 
+esto hace se se abra en VSC la carpeta en la que estamos
 
 GIT 
 push -> sube archivos
@@ -39,7 +40,7 @@ Protocolos de Comunicacion y Servicio:     esta es la base del backend!!!
 
    DNS: servicios de nombre de dominio: traduce de nombres a IPs. ej: lo de doy a la compu un nombre: github.com y el DNS ya sabe cual es su IP 
 
-========================================CLASE 2=========================================
+========================================CLASE 2=========================================================
 
    DOCKER: sirve para crear maquinas virtuales y contenedores (el contenedor va muuucho mas rapido)
           Imagen:      el sistema operativo simulado
@@ -53,7 +54,7 @@ Protocolos de Comunicacion y Servicio:     esta es la base del backend!!!
            -p 8888:8888 es para hacer mostrar el puerto del host con el contenedor
           --network=host es para especificar que la red sea la misma que la maquina
 
-========================================CLASE 3===============================================          
+========================================CLASE 3==========================================================
 
 NODE JS: permite interpretar codigo JS, pero no en un navegador, sino en una computadora. Lo hace a traves del motor V8 de Google. 
         
@@ -73,7 +74,7 @@ Cuando se ejecuta codigo JS en el navegador tengo acceso a un documento HTML, es
 botones, y todo lo que tenga que ver con lo visual y por lo tanto manipularlas. 
 En cambio en consola no hay etiquetas HTML, solo exiten modulos para interactura con el sistema operativo y no en base a etiquetas de HTML. 
 
-=======================================CLASE 4 ====================================================
+=======================================CLASE 4 ==========================================================
 
 OBJETOS: es un tipo de dato que tiene propiedades asociadas a el.  
          Basicamente todo lo que no es un undefined , null , boolean , number o string es un objeto. 
@@ -115,7 +116,7 @@ EVENTOS: relacionan una callback a un string.
          ej: fn (req, res) 
 
 
-======================================CLASE 5 =====================================================
+======================================CLASE 5 ===========================================================
 
 Como arreglar un MERGING en git. (ver clase)
 
@@ -140,7 +141,7 @@ CONDICIONALES:
  
 loops y map-functions. (clase)
 
-====================================CLASE 6 =========================================================
+====================================CLASE 6==============================================================
 
 Asincronismo:  En algunos casos necesitamos ejecutar codigo no secuencial, este proceso puede producirse en paralelo al resto del 
                codigo. 
@@ -203,13 +204,20 @@ recordamos que los json son una forma de empacar data para extraer de una API o 
        Axios está optimizado para facilitar el consumo de servicios web, API REST y que devuelvan datos JSON.
 
 
-======================================CLASE 7 ========================================
+======================================CLASE 7 ===========================================================
 
 EXPRESS: es un framework backend de js. Controla verbos y rutas. 
 
         Librerias de produccion: se alojan en servidores reales
         Librerias de entorno: o sea que la libreria esta en mi compu
 
+        se pueden mandar archivos estaticos: - express.static():
+        .use puede ser cualquier verbo (get, add, etc.)
+
+
+cuando la cagas con merge podes: git --abort . o  git restore --staged . 
+
+jest --> .test.js (que es y pa sirve, q no entendi na de la clase)
 
 
 
