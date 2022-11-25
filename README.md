@@ -969,7 +969,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 22 (Despliegue con Heroku)</h1></summary> 
+  <summary><h1>Clase 22 (Despliegue con <a href="https://railway.app">Railway</a>)</h1></summary> 
    
  
 </details>
