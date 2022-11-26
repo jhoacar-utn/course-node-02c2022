@@ -89,7 +89,7 @@ afterAll(async () => {
   }
   await removeConnection();
   await killPidsOnPorts();
-});
+}, TIMEOUT_SERVER * 3000);
 
 /**
  * Suits for testing
@@ -132,7 +132,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
       server.on('error', async (error) => console.error(error));
       server.on('error', async (error) => expect(error).toBe(null));
 
-      server.on('end', killPidsOnPorts);
       server.on('end', async () => cyan(bold('Test finished\n\n')));
 
       await server.start();
@@ -169,7 +168,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
         server.on('end', async () => cyan(bold('Test finished\n\n')));
 
         await server.start(env);
@@ -203,7 +201,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
         server.on('end', () => { expect(data?.length > 0).toBe(true); });
         server.on('end', async () => cyan(bold('Test finished\n\n')));
 
@@ -226,7 +223,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
         server.on('end', async () => {
           expect(response).not.toBe(null);
           expect(response.status).toBe(200);
@@ -266,7 +262,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
         server.on('end', async () => {
           expect(response).not.toBe(null);
           expect(response.status).toBe(200);
@@ -317,7 +312,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
         server.on('end', async () => {
           expect(response).not.toBe(null);
           expect(response.status).toBe(200);
@@ -364,7 +358,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
         server.on('end', async () => {
           expect(response).not.toBe(null);
           expect(response.status).toBe(200);

@@ -1,8 +1,6 @@
-const { join } = require('path');
 const EventEmitter = require('./event.cjs');
 const { extractStudentFolder, logInFile } = require('./file.cjs');
 const {
-  ROOT_PATH,
   TIMEOUT_SERVER,
   MINIMAL_PORT,
   DEBUG_TEST,
@@ -12,9 +10,9 @@ const { execBackground, loadPort } = require('./shell/index.cjs');
 const sleep = require('./sleep.cjs');
 const startConnection = require('./net/client.cjs');
 
-const STUDENT_PATH = join(ROOT_PATH, extractStudentFolder());
-const PROJECT_PATH = join(STUDENT_PATH, 'project');
-const SERVER_PATH = join(PROJECT_PATH, 'server');
+const STUDENT_PATH = extractStudentFolder();
+const PROJECT_PATH = `${STUDENT_PATH}/project`;
+const SERVER_PATH = `${PROJECT_PATH}/server`;
 
 /**
  * This function execute the "start" command

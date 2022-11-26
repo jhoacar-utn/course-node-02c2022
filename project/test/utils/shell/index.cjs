@@ -1,6 +1,9 @@
 const { execSync, exec } = require('child_process');
 const { unlinkSync, existsSync, writeFileSync } = require('fs');
-const { LOG_FILE, DEBUG_FILE, PORTS_FILE } = require('../../config.cjs');
+const { join } = require('path');
+const {
+  LOG_FILE, DEBUG_FILE, PORTS_FILE, CONFIG_PATH,
+} = require('../../config.cjs');
 const { logInFile } = require('../file.cjs');
 
 /**
@@ -30,7 +33,7 @@ const execPromise = (command) => new Promise((resolve, reject) => {
 
 /**
  * This function returns all the open ports
- * @return {Promise<object>}
+ * @return {Promise<Array>}
  */
 const portScanner = async () => {
   const netstat = 'netstat -ano -p tcp';
@@ -73,7 +76,26 @@ const portScanner = async () => {
  * @return {string}
  */
 const execBackground = (command, options) => {
-  const bgCommand = `${__dirname}/background.sh -c '${command}' ${DEBUG_FILE ? `-o ${LOG_FILE}` : ''}`;
+  const isWin = process.platform === 'win32';
+  const gitBashCommand = (command) => `start /B "" "%PROGRAMFILES%\\Git\\bin\\sh.exe" --login -i -c "${command}" "%~1"`;
+  const parsePathGitBash = (command) => command
+    .replaceAll('C:', '/c')
+    .replaceAll('\\', '/')
+    .replaceAll(' ', '\\ ');
+
+  const windowsBackgroundCommand = (command) => {
+    const preCommand = `${parsePathGitBash(join(__dirname, 'background.sh'))} -c`;
+    const postCommand = `${DEBUG_FILE ? `-o 'project/test/${
+      parsePathGitBash(LOG_FILE.replace(CONFIG_PATH, '').replace('\\', ''))}'` : ''
+    }`;
+    return gitBashCommand(`${preCommand} '${command}' ${postCommand}`);
+  };
+  const winCommand = windowsBackgroundCommand(command);
+
+  const linuxCommand = `${join(__dirname, 'background.sh')} -c '${command}' ${DEBUG_FILE ? `-o '${LOG_FILE}'` : ''}`;
+
+  const bgCommand = isWin ? winCommand : linuxCommand;
+
   return execSync(bgCommand, options).toString();
 };
 
@@ -94,60 +116,6 @@ const loadPort = (port) => {
 };
 
 /**
- * This function return the command to execute in windows console
- * @param {number} port
- * @return {string}
- */
-const getWindowsKillPortCommand = (port) => {
-  const isGitBash = process.title === ' ' || (process.env.SHELL && process.env.SHELL.includes('bash'));
-
-  if (isGitBash) {
-    return `taskkill //PID $('netstat -ano -p tcp | findstr "${port}" | awk '{printf $NF}'') //F`;
-  }
-
-  const isPowershell = !execSync('echo $env:Path').toString().includes('$env:Path');
-  const isCMD = !isPowershell;
-
-  if (isPowershell) {
-    return `netstat -ano -p tcp | Select-String "${port}" |  %{($_ -split "\\s+")[-1]} | kill`;
-  }
-  if (isCMD) {
-    return `for /f "tokens=3 delims=LISTENING" %F in ('netstat -ano -p tcp ^| findstr "${port}"') do taskkill /PID %~F /F`;
-  }
-
-  return '';
-};
-/**
- * This function kill a PID on a PORT
- * @param {string} port
- * @return {Promise<void>}
- */
-const killPidOnPort = (port) => {
-  const isWin = process.platform === 'win32';
-  const linuxCommand = `kill $(netstat -ltnp 2>/dev/null | grep :${port} | awk '{print $NF}' | awk -F '/' '{print $1}' )`;
-  const command = isWin ? getWindowsKillPortCommand(port) : linuxCommand;
-  return new Promise((resolve) => {
-    if (!port || !command) {
-      resolve(null);
-    }
-    exec(command, (error, stdout, stderr) => {
-      if (DEBUG_FILE) {
-        logInFile(command);
-        if (error) {
-          logInFile(error.message);
-        }
-        if (stdout) {
-          logInFile(stdout);
-        }
-        if (stderr) {
-          logInFile(stderr);
-        }
-      }
-      resolve(null);
-    });
-  });
-};
-/**
  * This function kill all PID on PORTS
  * @return {Promise<void>}
  */
@@ -158,19 +126,38 @@ const killPidsOnPorts = async () => {
   const ports = require(PORTS_FILE);
   if (DEBUG_FILE) {
     logInFile(`Killing all these ports: ${ports.join(',')}`);
+    logInFile('Scanning all ports:');
   }
+
+  const scanner = await portScanner();
   // eslint-disable-next-line no-restricted-syntax
-  for (const port of ports) {
-    // eslint-disable-next-line no-await-in-loop
-    await killPidOnPort(port);
+  if (DEBUG_FILE) {
+    logInFile('Port Scanner:');
+    logInFile('\t\tport\t\tpid\t\tname');
+    scanner?.map((object) => logInFile(`\t\t${object.port}\t\t${object.pid}\t\t${object.name}`));
   }
+
+  ports?.map((port) => {
+    // eslint-disable-next-line eqeqeq
+    const scanned = scanner.find((object) => object.port == port);
+    if (!scanned) return;
+    if (DEBUG_FILE) {
+      logInFile(`Killing PID=${scanned.pid} with PORT=${scanned.port}`);
+    }
+    try {
+      process.kill(scanned.pid);
+    } catch (error) {
+      logInFile(`Error Killing PID=${scanned.pid} with PORT=${scanned.port}: ${error.message}`);
+    }
+  });
+
   unlinkSync(PORTS_FILE);
   if (DEBUG_FILE) {
-    logInFile('Killed');
+    logInFile('Finished Process Killer');
   }
   return null;
 };
 
 module.exports = {
-  execBackground, loadPort, killPidOnPort, killPidsOnPorts, portScanner,
+  execBackground, loadPort, killPidsOnPorts, portScanner,
 };
