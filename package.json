@@ -51,12 +51,6 @@
     "lint-staged": "^13.0.3",
     "mongoose": "^6.7.2",
     "react": "^18.2.0",
-    "uuidv4": "^6.2.13"
-<<<<<<< HEAD
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-=======
->>>>>>> 6cef1ea39ec8a07f47b1286e4eeed733a8434664
+    "uuidv4": "^6.2.13",
   }
 }
