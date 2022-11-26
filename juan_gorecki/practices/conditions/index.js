@@ -40,3 +40,30 @@ switch(persona.cash){
     default:
         console.log("puedes comprar mandarinas y tomates")
 }
+
+/* el operador ternario
+uso de condicionales de manera mas corta, menos lineas de codigo 
+condicion ? true_logic : false_logic*/
+/* if(persona.age >= MAX_AGE_DISCO){
+    goToDisco()
+}else{
+    console.log("no tienes la edad permitida")
+} */
+
+
+persona.age >= MAX_AGE_DISCO ? goToDisco() : console.log("no tienes la edad permitida")
+
+/* operadores de union
+&&(and) ||(or) */
+
+if(persona.age >= MAX_AGE_DISCO && persona.access){
+    console.log("esta persona tiene mas condiciones")
+}
+else if(persona.age >= MAX_AGE_DISCO || persona.access){
+    console.log("esta persona al menos puede pasar")
+}
+
+const name = persona.name || "Pedro" // uso del or
+const hasCash = persona.cash && "la persona tiene cash"
+console.log(name)
+console.log(hasCash)
