@@ -6,7 +6,7 @@ const {
   DEBUG_TEST,
   DEBUG_FILE,
 } = require('../config.cjs');
-const { execBackground, loadPort } = require('./shell/index.cjs');
+const { execBackground } = require('./shell/index.cjs');
 const sleep = require('./sleep.cjs');
 const startConnection = require('./net/client.cjs');
 
@@ -83,7 +83,6 @@ class ServerEventEmitter extends EventEmitter {
         portAvailable = true;
       }
     }
-    loadPort(this.port);
   }
 
   /**
@@ -102,7 +101,7 @@ class ServerEventEmitter extends EventEmitter {
     } catch (error) {
       await this.emit('error', error);
     } finally {
-      await this.emit('end');
+      await this.emit('end', this.port);
     }
   }
 }

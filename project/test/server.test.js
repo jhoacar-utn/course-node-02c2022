@@ -34,7 +34,7 @@ const { extractStudentFolder } = require('./utils/file.cjs');
 const {
   ROOT_PATH, TIMEOUT_SERVER, DB_URI, DEBUG_TEST,
 } = require('./config.cjs');
-const { killPidsOnPorts } = require('./utils/shell/index.cjs');
+const { killPidOnPort } = require('./utils/shell/index.cjs');
 
 const STUDENT_FOLDER = extractStudentFolder();
 
@@ -88,8 +88,7 @@ afterAll(async () => {
     process.stdout.write(green('erased\n\n'));
   }
   await removeConnection();
-  await killPidsOnPorts();
-}, TIMEOUT_SERVER * 3000);
+});
 
 /**
  * Suits for testing
@@ -133,6 +132,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
       server.on('error', async (error) => expect(error).toBe(null));
 
       server.on('end', async () => cyan(bold('Test finished\n\n')));
+      server.on('end', async (port) => { await killPidOnPort(port); });
 
       await server.start();
     }, TIMEOUT_SERVER * 2 * 1000);
@@ -169,6 +169,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => expect(error).toBe(null));
 
         server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
 
         await server.start(env);
       });
@@ -203,6 +204,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
 
         server.on('end', () => { expect(data?.length > 0).toBe(true); });
         server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
 
         await server.start();
       }, TIMEOUT_SERVER * 2 * 1000);
@@ -231,6 +233,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           );
         });
         server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
 
         await server.start();
       }, TIMEOUT_SERVER * 2 * 10000);
@@ -275,6 +278,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           );
         });
         server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
 
         await server.start();
       }, TIMEOUT_SERVER * 2 * 1000);
@@ -321,6 +325,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           expect(data?.result?.name).toBe(emoji?.name);
         });
         server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
 
         await server.start();
       }, TIMEOUT_SERVER * 2 * 1000);
@@ -381,6 +386,7 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           );
         });
         server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
 
         await server.start();
       }, TIMEOUT_SERVER * 2 * 1000);
