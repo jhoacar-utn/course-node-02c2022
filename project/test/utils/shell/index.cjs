@@ -90,8 +90,8 @@ const execBackground = (command, options) => {
 
   const windowsBackgroundCommand = (command) => {
     const preCommand = `${parsePathGitBash(join(__dirname, 'background.sh'))} -c`;
-    const postCommand = `${DEBUG_FILE ? `-o 'project/test/${
-      parsePathGitBash(LOG_FILE.replace(`${ROOT_PATH}/`, ''))}'` : ''
+    const postCommand = `${DEBUG_FILE ? `-o '${
+      parsePathGitBash(LOG_FILE.replace(`${ROOT_PATH}\\`, ''))}'` : ''
     }`;
     return gitBashCommand(`${preCommand} '${command}' ${postCommand}`);
   };
