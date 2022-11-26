@@ -73,7 +73,8 @@ const portScanner = async () => {
  * @return {string}
  */
 const execBackground = (command, options) => {
-  const bgCommand = `${__dirname}/background.sh -c '${command}' ${DEBUG_FILE ? `-o ${LOG_FILE}` : ''}`;
+  const resolveBlankSpaces = (folder) => folder.replaceAll(' ', '\\ ');
+  const bgCommand = `${resolveBlankSpaces(__dirname)}/background.sh -c '${command}' ${DEBUG_FILE ? `-o ${LOG_FILE}` : ''}`;
   return execSync(bgCommand, options).toString();
 };
 
