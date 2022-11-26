@@ -16,6 +16,7 @@ export default defineConfig({
     setupNodeEvents(on) {
       on('after:run', handleAfterRun);
     },
+    responseTimeout: process.env.CYPRESS_TIMEOUT || 30000,
   },
   experimentalInteractiveRunEvents: true,
 });
