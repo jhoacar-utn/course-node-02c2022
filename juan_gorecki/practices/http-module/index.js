@@ -1,4 +1,4 @@
-const http = require("http")
+import { createServer } from "http";
 
 /**
  * En el modulo http, la callback para manejar
@@ -11,14 +11,12 @@ const http = require("http")
 
 function handleConnection(request, response){
     console.log("conexion establecida")
-
-    response.write("hola desde el server")
-    response.end()
+    response.end("<h1>hola desde le servidor</h1>")
 }
 
 
 
- const server = http.createServer(handleConnection);
+ const server = createServer(handleConnection);
 
 function handleStarServer(){
     console.log("servidor funcionando correctamente")
