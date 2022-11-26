@@ -1,0 +1,12 @@
+{
+    "scripts": {
+        "prepare": "npm run install:server && npm run install:client",
+        "build": "cd client && npm run build",
+        "start": "cd server && npm start",
+        "dev": "npm run dev:server",
+        "dev:server": "cd server && npm run dev",
+        "dev:client": "cd client && npm run dev",
+        "install:server": "cd server && npm install",
+        "install:client": "cd client && npm install"
+    }
+}

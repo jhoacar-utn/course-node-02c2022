@@ -1,0 +1,24 @@
+name: telegram message
+on:
+  push:
+    branches:
+      - master
+jobs:
+  notify:
+    name: notify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: html
+          message: |
+            <strong>${{ github.actor }}</strong> HA SUBIDO UN NUEVO CAMBIO 😁!
+
+            <strong>MENSAJE</strong>: ${{ github.event.commits[0].message }}
+
+            <strong>REPOSITORIO</strong>: ${{ github.repository }}
+
+            - Puedes verlo acá: https://github.com/${{ github.repository }}/commit/${{github.sha}}
