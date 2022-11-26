@@ -3,7 +3,7 @@ const express = require("express")           //la configuracion//
 const app = express()
 
 
-app.get("/", (request, response, next) => {
+app.get("/", (request, response, next) => {       //verbo "ruta"  parametros:(req, res, next)      esto es una callback //
     response.send("<h1>Hola mundo</h1>")
 })
 
@@ -26,7 +26,7 @@ const folderLesson1 = __dirname + "/lesson_1"
 app.use("/tasks/lesson_1", express.static(folderLesson1)) //cuando alguien venga a task/lesson 1 (ruta), se va a acompartir la carpeta//
 
 /**
- * De esta manera estaria usando 
+ * De esta manera estaria usando: 
  *  TODOS LOS VERBOS porque es .use()
  *  TODAS LAS RUTAS  porque no se la especificando
  */
