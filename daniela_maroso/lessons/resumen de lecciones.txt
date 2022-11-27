@@ -1,4 +1,4 @@
-================================CLASE 1==============================================================
+===================================== CLASE 1 ==============================================================
 git clone -> Este comando es usado para clonar un repo desde internet y descargarlo a la pc
 ctrl + l -> Este shortcout limpia la consola 
 ls -> Este comando es para listar en la carpeta actual los archivos o directorios presentes
@@ -40,7 +40,7 @@ Protocolos de Comunicacion y Servicio:     esta es la base del backend!!!
 
    DNS: servicios de nombre de dominio: traduce de nombres a IPs. ej: lo de doy a la compu un nombre: github.com y el DNS ya sabe cual es su IP 
 
-========================================CLASE 2=========================================================
+=========================================== CLASE 2 =========================================================
 
    DOCKER: sirve para crear maquinas virtuales y contenedores (el contenedor va muuucho mas rapido)
           Imagen:      el sistema operativo simulado
@@ -54,7 +54,7 @@ Protocolos de Comunicacion y Servicio:     esta es la base del backend!!!
            -p 8888:8888 es para hacer mostrar el puerto del host con el contenedor
           --network=host es para especificar que la red sea la misma que la maquina
 
-========================================CLASE 3==========================================================
+============================================= CLASE 3 ==========================================================
 
 NODE JS: permite interpretar codigo JS, pero no en un navegador, sino en una computadora. Lo hace a traves del motor V8 de Google. 
         
@@ -74,7 +74,7 @@ Cuando se ejecuta codigo JS en el navegador tengo acceso a un documento HTML, es
 botones, y todo lo que tenga que ver con lo visual y por lo tanto manipularlas. 
 En cambio en consola no hay etiquetas HTML, solo exiten modulos para interactura con el sistema operativo y no en base a etiquetas de HTML. 
 
-=======================================CLASE 4 ==========================================================
+============================================== CLASE 4 ==========================================================
 
 OBJETOS: es un tipo de dato que tiene propiedades asociadas a el.  
          Basicamente todo lo que no es un undefined , null , boolean , number o string es un objeto. 
@@ -116,7 +116,7 @@ EVENTOS: relacionan una callback a un string.
          ej: fn (req, res) 
 
 
-======================================CLASE 5 ===========================================================
+========================================== CLASE 5 ===========================================================
 
 Como arreglar un MERGING en git. (ver clase)
 
@@ -141,7 +141,7 @@ CONDICIONALES:
  
 loops y map-functions. (clase)
 
-====================================CLASE 6==============================================================
+========================================= CLASE 6  ==============================================================
 
 Asincronismo:  En algunos casos necesitamos ejecutar codigo no secuencial, este proceso puede producirse en paralelo al resto del 
                codigo. 
@@ -204,9 +204,11 @@ recordamos que los json son una forma de empacar data para extraer de una API o 
        Axios está optimizado para facilitar el consumo de servicios web, API REST y que devuelvan datos JSON.
 
 
-======================================CLASE 7 ===========================================================
+========================================== CLASE 7 ===========================================================
 
-EXPRESS: es un framework backend de js. Controla verbos y rutas. 
+EXPRESS: es un framework backend de js. Controla verbos y rutas. Es una libreria MUY completa. 
+         express te permite prosesar info que viene de un cliente utilizando codigo js
+         depende de como el usuario la mande, es como se procesa
 
         Librerias de produccion: se alojan en servidores reales
         Librerias de entorno: o sea que la libreria esta en mi compu
@@ -217,7 +219,69 @@ EXPRESS: es un framework backend de js. Controla verbos y rutas.
 
 cuando la cagas con merge podes: git --abort . o  git restore --staged . 
 
-jest --> .test.js (que es y pa sirve, q no entendi na de la clase)
+jest --> Jest es una librería que nos permite escribir y ejecutar tests, es desarrollada por Facebook y 
+         usada por plataformas como airbnb, twitter, spotify, resuelve, etc.
+        - Casí cero configuración para comenzar a usarlo
+        - Es extremadamente rápido
+        - Los mensajes de error/feedback son muy claros
+        - Es extendible, puedes crear tus matchers personalizados o incluso correr pruebas de otros lenguajes.
+        -Se pueden hacer tests de frontend y backend, corriendo en paralelo si tiene un monorepo
+
+
+========================================== CLASE 8 ================================================================
+
+(ver carpeta)-> empezamos con un repaso de la comunicacion entre dos maquinas. 
+
+COMO FUNCIONA EXPRESS? 
+
+                recordemos las callbacks: app.verbo("ruta", (request, response, next) 
+                                                
+                                        ruta":nombre" si yo agrego los : frente a la ruta, quiere decir que esa ruta es variable, dinamica.
+                                                     ":apellido?" se se agrega el ? significa que no es obligatoria que este.
+                                                 
+                                        request: peticion, un objeto que se va a encargar de manipular la info del cliente
+                                                  resquest.body-> 
+                                                  request.params-> parametros dinamicos 
+                                                  request.query->codificacion de URL --> se usa cdo quier dar info de mas  (?info)
+                                                               recordamos-> spread operator: ...objeto, para extraer todos los datos del objeto
+                                                         
+                                                         destructuring: es sacar info de un objeto 
+
+                                                peticion: - verbo
+                                                          - URL o ruta
+                                                          - cabecera o metadata
+                                                          - Cuerpo o datos de la peticion         
+                                                 
+                                        response: desde el servidor, como se va a manejar la respuestas
+
+                                                  respuesta: - codigo de estado (200 ok, 404 not found, etc)
+                                                             - cabecera
+                                                             - cuerpo 
+                                                 
+                                         next: funcion   
+
+=========================================== CLASE 9 ================================================================
+
+Patron de diseño MVC: MODELO de VISTA CONTROLADO  
+                                                Modelo: Maneja datos y lógica de negocios
+                                                
+                                                Vista: Se encarga del diseño y presentación
+                                                
+                                                Controlador: Enruta comandos a los modelos y vistas
+
+midleware: comando que se ejecuta antes de mandar la respuesta. ej: express.json()
+
+
+Bases de datos relacionales: utilizan tabla con filas y columnas que pueden o no, depender o relacionarse unas con otras. 
+                             ej: SQL, Access, etc. (A partir del millon de registros, se vuelven inusables)
+
+Bases de datos no relacionales: cada modelo es independiente, es decir, es un conjunto de colecciones (mongoDB, NoSQL, etc)
+                                cada coleccion solo depende del modelo y tiene un indice y su documento. 
+                                (son mas rapidas, pero al no guardar relaciones es mas complejo y no es una base tan solida, mas rigida
+                                 tengo ahi mis datos todos volaos pa todos lados y puede traer problemas).
+                                
+
+
 
 
 
