@@ -281,6 +281,17 @@ Bases de datos no relacionales: cada modelo es independiente, es decir, es un co
                                  tengo ahi mis datos todos volaos pa todos lados y puede traer problemas).
                                 
 
+=========================================== CLASE 10 ================================================================
+
+STACK MERN: MongoDB, Express, React, NodeJS. -> es un full stack ya que tiene front y back end y gestos de base de datos. 
+           (hay otros como MEAN que usan angular en lugar de React, pero vamos con el otro porque si).
+
+
+hasta ahora hemos visto el protocolo HTTP, pero de cliente a servidor pasan varias cosas, computadoras, etc. Asique si el cliente manda
+info delicada hay que encriptarla => utilizamos el protocolo HTTPS 
+
+HTTPS: es un protocolo de mandado de info encriptado. 
+
 
 
 
