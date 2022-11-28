@@ -292,10 +292,22 @@ info delicada hay que encriptarla => utilizamos el protocolo HTTPS
 
 HTTPS: es un protocolo de mandado de info encriptado. 
 
+Mongoose: instalamos: npm i Mongoose. 
+          Mongoose es una librería para Node.js que nos permite escribir consultas para una base de datos de MongooDB, 
+          con características como validaciones, construcción de queries, middlewares, conversión de tipos y otras que 
+          expanden la funcionalidad de la base de datos.
 
+          dos metodos para entrar info ala base de datos
+          .net
+          .create
 
+npm start para ver en consola y la BD. 
 
+sequelizer: es una base de datos en MySQL, relacional. 
 
+CRUD: GET, POST, PUT, DELETE. 
+
+=========================================== CLASE 11 ================================================================
 
 
 

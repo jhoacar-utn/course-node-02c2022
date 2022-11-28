@@ -1,0 +1,97 @@
+[
+  {
+    "title": "Sacar la basura",
+    "text": "Sacarla antes de las 9 de la noche",
+    "priority": 1
+  },
+  {
+    "title": "Practicar javascript",
+    "text": "Practicar los fundamentos del lenguaje javascript como callbacks y promesas",
+    "priority": 2
+  },
+  {
+    "title": "Practicar express",
+    "text": "Practiar el uso de controladores y middlewares en express, usando .use() o los verbos HTTP",
+    "priority": 3
+  },
+  {
+    "title": "Practicar mongoose",
+    "text": "Practicar conexion a mongodb usando modelos para operaciones CRUD, asi como metodos para ordenar y delimitar",
+    "priority": 3
+  },
+  {
+    "title": "A",
+    "text": "Sacarla antes de las 9 de la noche",
+    "priority": 1
+  },
+  {
+    "title": "B",
+    "text": "Practicar los fundamentos del lenguaje javascript como callbacks y promesas",
+    "priority": 2
+  },
+  {
+    "title": "C",
+    "text": "Practiar el uso de controladores y middlewares en express, usando .use() o los verbos HTTP",
+    "priority": 3
+  },
+  {
+    "title": "D",
+    "text": "Practicar conexion a mongodb usando modelos para operaciones CRUD, asi como metodos para ordenar y delimitar",
+    "priority": 3
+  },
+  {
+    "title": "E",
+    "text": "Sacarla antes de las 9 de la noche",
+    "priority": 1
+  },
+  {
+    "title": "F",
+    "text": "Practicar los fundamentos del lenguaje javascript como callbacks y promesas",
+    "priority": 2
+  },
+  {
+    "title": "G",
+    "text": "Practiar el uso de controladores y middlewares en express, usando .use() o los verbos HTTP",
+    "priority": 3
+  },
+  {
+    "title": "H",
+    "text": "Practicar conexion a mongodb usando modelos para operaciones CRUD, asi como metodos para ordenar y delimitar",
+    "priority": 3
+  },
+  {
+    "title": "I",
+    "text": "Sacarla antes de las 9 de la noche",
+    "priority": 1
+  },
+  {
+    "title": "J",
+    "text": "Practicar los fundamentos del lenguaje javascript como callbacks y promesas",
+    "priority": 2
+  },
+  {
+    "title": "K",
+    "text": "Practiar el uso de controladores y middlewares en express, usando .use() o los verbos HTTP",
+    "priority": 3
+  },
+  {
+    "title": "L",
+    "text": "Practicar conexion a mongodb usando modelos para operaciones CRUD, asi como metodos para ordenar y delimitar",
+    "priority": 3
+  },
+  {
+    "title": "M",
+    "text": "Sacarla antes de las 9 de la noche",
+    "priority": 1
+  },
+  {
+    "title": "N",
+    "text": "Practicar los fundamentos del lenguaje javascript como callbacks y promesas",
+    "priority": 2
+  },
+  {
+    "title": "O",
+    "text": "Practiar el uso de controladores y middlewares en express, usando .use() o los verbos HTTP",
+    "priority": 3
+  }
+]
