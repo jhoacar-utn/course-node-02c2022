@@ -1,10 +1,12 @@
-const express = require("express")
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
+const express = require('express');
 
-const app = express()
+const app = express();
 
-app.get("/",(request,response,next)=>{
-  response.send("<h1>hola mundo</h1>")
-})
+app.get('/', (request, response, next) => {
+  response.send('<h1>Hola mundo</h1>');
+});
 
 /**
  * Con express podemos enviar cualquier tipo de informacion
@@ -24,9 +26,17 @@ app.get("/",(request,response,next)=>{
  * debemos hacer uso de .use(), no funcionara con verbos, como .get()
  * .post(), ...
  */
+const folderLesson1 = `${__dirname}/lesson_1`;
 
- const folderLesson1 = `${__dirname}/lesson_1`;
+app.use('/tasks/lesson_1', express.static(folderLesson1));
 
-app.use("/tasks/lesson_1", express.static(folderLesson1))
+/**
+ * De esta manera estaria usando
+ *  TODOS LOS VERBOS porque es .use()
+ *  TODAS LAS RUTAS  porque no se la especificando
+ */
+app.use((request, response, next) => {
+  response.send('<h1>Esto funcionara para cualquier ruta y cualquier verbo</h1>');
+});
 
-module.exports = app
+module.exports = app;
