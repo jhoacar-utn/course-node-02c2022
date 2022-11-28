@@ -1,3 +1,6 @@
+/* eslint-disable func-names */
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
 /*
     ()=>{} -> Es una funcion anonima -> Arrow Functions
 */
@@ -8,32 +11,32 @@
  * Esta declaracion es anonima, es decir, no estara vinculada
  * de ninguna manera de los atributos del objeto al que pertenece
  */
-const funcion_anonima = ()=>{
-    console.log("Soy una funcion anonima")
-    console.log(this)
-}
+const funcion_anonima = () => {
+  console.log('Soy una funcion anonima');
+  console.log(this);
+};
 /**
  * Esta declaracion acepta el entorno en el que se haya declarado
  * basicamente seria poder acceder a todo los atributos del objeto
  * al que pertenece
  */
-const funcion_normal = function(){
-    console.log("Soy una funcion normal")
-    console.log(this)
-    console.log(this.nombre)
-}
+const funcion_normal = function () {
+  console.log('Soy una funcion normal');
+  console.log(this);
+  console.log(this.nombre);
+};
 
 const estudiante = {
-    nombre: "Juan",
-    edad : 18,
-    funcion_anonima: funcion_anonima,
-    funcion_normal: funcion_normal
-}
+  nombre: 'Juan',
+  edad: 18,
+  funcion_anonima,
+  funcion_normal,
+};
 /**
  * Invocando la funcion anonima (arrow function)
  */
-estudiante.funcion_anonima()
+estudiante.funcion_anonima();
 /**
  * Invocando la funcion normal (function)
  */
-estudiante.funcion_normal()
+estudiante.funcion_normal();

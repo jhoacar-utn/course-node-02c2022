@@ -4,6 +4,7 @@
 
 ### Repositorio con el codigo del curso de cada estudiante
 
+## [Proyecto Final](project/Final_Project.pdf)
 ## [Link de Zoom](https://centrodeelearning.zoom.us/j/98298358252?pwd=YjRIaWhZbk1UaWl3aXdpd09xdmlPQT09)
 ## [Telegram](https://t.me/+-9ijDnYqGv5mMzRh)
 
@@ -479,7 +480,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 10 (Configuracion de Proyecto del Servidor)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_10">Clase 10</a> (Configuracion de Proyecto del Servidor)</h1></summary>  
 
   <details>
     <summary><h2>Organizacion de directorios</h2></summary>
@@ -588,7 +589,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 11 (Introduccion a API)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_11">Clase 11</a> (Introduccion a API)</h1></summary>  
 
   <details>
     <summary><h2>¿Que es una API?</h2></summary>
@@ -628,7 +629,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 12 (Manejo del storage en el servidor)</h1></summary>  
+  <summary><h1><a href="lessons/lesson_12">Clase 12</a> (Manejo del storage en el servidor)</h1></summary>  
 
   <details>
     <summary><h2>Formulario para subir archivos</h2></summary>
@@ -968,7 +969,7 @@
 
 <hr>
 <details>
-  <summary><h1>Clase 22 (Despliegue con Heroku)</h1></summary> 
+  <summary><h1>Clase 22 (Despliegue con <a href="https://railway.app">Railway</a>)</h1></summary> 
    
  
 </details>
