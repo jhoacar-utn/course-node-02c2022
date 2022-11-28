@@ -25,7 +25,7 @@ app.get("/",(request,response,next)=>{
  * .post(), ...
  */
 
-const folderLesson1 = __dirname+"lesson_1"
+ const folderLesson1 = `${__dirname}/lesson_1`;
 
 app.use("/tasks/lesson_1", express.static(folderLesson1))
 
