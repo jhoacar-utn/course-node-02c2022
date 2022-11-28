@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✏️📚️ Prueba</title>
+    <style>
+        body {
+            background-color: white;
+            overflow-x: hidden;
+            padding: 10px;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        textarea {
+            width: 100%;
+            resize: none;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+        }
+
+        .boxes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .container-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .box {
+            width: 80px;
+            height: 80px;
+            border: 3px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: brown;
+        }
+
+        .task {
+            margin-bottom: 100px;
+        }
+
+        .coins>*,
+        .multipliers>*,
+        .response>* {
+            width: 50px;
+            margin: 5px;
+        }
+
+        #calculate {
+            margin: 10px;
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+    <script src="script.js" defer></script>
+    <script src="solution.js" defer></script>
+</head>
+
+<body>
+    <div class="task">
+        <h1>Juego de Cajas</h1>
+        <h2>Descripcion</h2>
+        <p>
+            Carlos, se encuentra inmerso en un juego de realidad virtual, en el cual se
+            encuentra con distintos retos que ponen a prueba su ingenio. En uno de los
+            últimos retos Carlos debe mover una serie de cajas para obtener de esta forma el
+            mayor puntaje posible y superar el reto. El reto consiste en lo siguiente, se
+            tendrán filas de cajas, como se muestran en la imagen.
+        </p>
+        <div class="boxes">
+            <div class="container-box">
+                <div class="box">5</div>
+                <div class="box">3</div>
+                <div class="box">7</div>
+                <div class="box">1</div>
+            </div>
+            <div class="container-box">
+                <div class="box">1</div>
+                <div class="box">4</div>
+                <div class="box">3</div>
+                <div class="box">9</div>
+            </div>
+        </div>
+        <div>
+            <p>
+                Las cajas de la primera fila contienen cada una, cierta cantidad de monedas en
+                su interior, en el ejemplo se puede observar que la primera caja tiene 5 monedas,
+                la segunda caja 3 monedas, la tercera 7 monedas y la cuarta 1 moneda. Las
+                cajas de la segunda fila contienen cada una, un multiplicador que hará crecer las
+                monedas que tienen en la caja que esta arriba de ellas. En el ejemplo de la
+                imagen, los multiplicadores son 1, 4,3 y 9 en ese orden.
+            </p>
+            <p>
+                Finalmente en base a la posición de los multiplicadores se determina el puntaje
+                que obtiene Carlos, en el ejemplo de la imagen, el puntaje de Carlos se calcula de
+                la siguiente manera:
+            </p>
+            <div class="boxes">
+                <strong>
+                    5*1 + 3*4 + 7*3 + 1*9 = 5 + 12 + 21 + 9 = 47
+                </strong>
+            </div>
+            <p>
+            Como ya habrás notado este no es el puntaje máximo que puede alcanzar Carlos.
+            La imagen de abajo muestra como Carlos tiene que colocar las cajas de
+            multiplicadores, para que pueda obtener el máximo puntaje posible.
+            </p>
+        </div>
+        <div class="boxes">
+            <div class="container-box">
+                <div class="box">5</div>
+                <div class="box">3</div>
+                <div class="box">7</div>
+                <div class="box">1</div>
+            </div>
+            <div class="container-box">
+                <div class="box">4</div>
+                <div class="box">3</div>
+                <div class="box">9</div>
+                <div class="box">1</div>
+            </div>
+        </div>
+        <p>
+            En la figura se observa que Carlos obtiene un puntaje máximo de 93. Carlos
+            puede únicamente mover las cajas de multiplicadores y no puede cambiar las
+            cajas que contienen monedas, ayuda a Carlos a determinar cual debe ser el
+            orden en el que debe poner las cajas con multiplicadores para alcanzar el
+            máximo puntaje.
+        </p>
+        <h2>Entrada</h2>
+        <p>
+            Dos filas de entrada de numeros,
+            la primera fila para la cantidad de monedas donde se representa
+            cada moneda por columna con el id <strong>coin</strong>,
+            es decir, <strong>coin_2</strong> es la moneda numero 2
+            y la segunda fila para sus multiplicadores con
+            id <strong>multiplier</strong> al igual que las monedas
+            cada multiplicador esta referido a la columna,
+            es decir, <strong>multiplier_2</strong> es el
+            multiplicador de la moneda numero 2</strong>.
+            Nota: solo seran cuatro monedas.
+
+        </p>
+        <h2>Salida</h2>
+        <p>
+            Al momento de oprimir el boton
+            de <strong>"Calcular"</strong> que tendra por id <strong>calculate</strong> 
+            Debera extraer, procesar y
+            mostrar en
+            cada input del div por id <strong>response</strong>
+            donde cada uno tendra su correspondiente id, es decir,
+            el id <strong>response_1</strong> se refiere al primer
+            numero de la respuesta, tambien teniendo en cuenta que en el input con id <strong>response_total</strong> sera
+            mostrado el maximo valor que se obtuvo de esa operacion. 
+            Nota: solo seran cuatro multiplicadores, por lo tanto cuatro numeros en la respuesta
+        </p>
+        <table>
+            <tr>
+                <th>
+                    <h2>Entrada</h2>
+                </th>
+                <th>
+                    <h2>Salida</h2>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="coins">
+                        <span>coins:</span>
+                        <input id="coin_1" type="number">
+                        <input id="coin_2" type="number">
+                        <input id="coin_3" type="number">
+                        <input id="coin_4" type="number">
+                    </div>
+                    <div class="multipliers">
+                        <span>multipliers: </span>
+                        <input id="multiplier_1" type="number">
+                        <input id="multiplier_2" type="number">
+                        <input id="multiplier_3" type="number">
+                        <input id="multiplier_4" type="number">
+                    </div>
+                </td>
+                <td>
+                    <div class="response">
+                        <span>response: </span>
+                        <input id="response_1" type="number" disabled>
+                        <input id="response_2" type="number" disabled>
+                        <input id="response_3" type="number" disabled>
+                        <input id="response_4" type="number" disabled>
+                    </div>
+                    <div class="response">
+                        <span>result:</span>
+                        <input id="response_total" type="number" value="0" disabled>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><button id="calculate">Calcular</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
