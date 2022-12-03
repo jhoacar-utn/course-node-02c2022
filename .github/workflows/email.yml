@@ -1,0 +1,14 @@
+# Este workflow o disparador para el CI/CD
+# enviara un mensaje por correo
+# a la persona que haya hecho el push
+on: push
+
+jobs:
+  notify:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: echo "Hello World"
+
+
+
+  
