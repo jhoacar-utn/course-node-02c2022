@@ -1,0 +1,62 @@
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.emoji-card{
+    list-style: none;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: solid 1px #F2C94C;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: rgba(255, 255, 255, 0.74);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 20rem;
+    height: 30rem;
+}
+
+.emoji-card div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.emoji-card div p{
+    font-size: 4rem;
+}
+
+.emoji-card div p:first-child{
+    font-size: 6rem;
+}
+
+.buttons{
+    margin: 1rem;
+}
+
+.back-leaderboard{
+    text-decoration: none;
+    background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	outline: inherit;
+	cursor: pointer;
+    border-radius: 1rem;
+	padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    background-color: #f2c84c54;
+}
+.back-leaderboard, .back-leaderboard:hover{
+    border: solid 1px #f2c84c54;
+}
+
+.back-leaderboard:hover{
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
