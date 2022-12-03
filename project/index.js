@@ -6,7 +6,8 @@ import { existsSync, readFileSync, unlinkSync } from 'fs';
 import config from './test/config.cjs';
 import { showSpinner } from './test/utils/spinner.cjs';
 
-const { ROOT_PATH, LOG_FILE } = config;
+const { LOG_FILE } = config;
+const { ROOT_PATH } = config;
 const {
   yellow, cyan, bold, red,
 } = colors;
@@ -89,15 +90,15 @@ const countTestPassedByCypress = (output) => {
 };
 
 const resultMain = await execPromise(
-  `DEBUG_TEST="" npm run test:main --prefix=${ROOT_PATH} -- --silent 2>&1`,
+  `npm run evaluate:main --prefix="${ROOT_PATH}"`,
   `Executing: ${yellow('Main Testing')}`,
 );
 const resultServer = await execPromise(
-  `DEBUG_TEST="" npm run test:server --prefix=${ROOT_PATH} -- --silent 2>&1`,
+  `npm run evaluate:server --prefix="${ROOT_PATH}"`,
   `Executing: ${yellow('Server Testing')}`,
 );
 const resultClient = await execPromise(
-  `DEBUG_TEST="" npm run test:client --prefix=${ROOT_PATH} -- -q --config video=false,screenshotOnRunFailure=false 2>&1`,
+  `npm run evaluate:client --prefix="${ROOT_PATH}"`,
   `Executing: ${yellow('Client Testing')}`,
 );
 

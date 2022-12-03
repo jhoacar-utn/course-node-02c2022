@@ -9,7 +9,7 @@
                 "run",
                 "docker:in",
                 "--prefix",
-                "${workspaceFolder}"
+                "'${workspaceFolder}'"
             ],
             "icon": "github"
         },

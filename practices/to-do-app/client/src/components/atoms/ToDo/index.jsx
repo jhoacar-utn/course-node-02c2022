@@ -1,6 +1,4 @@
-function ToDo(props) {
-  const { title, text, priority } = props;
-
+function ToDo({ title, text, priority }) {
   return (
     <div>
       <h2>{title}</h2>

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Windows -> \r\n -> Salto de linea
+# Linux o Mac -> \n -> Salto de linea
+
 set -x
 
 # Git configuration
