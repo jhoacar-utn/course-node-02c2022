@@ -19,6 +19,8 @@ jobs:
             <strong>${{ github.actor }} ( ${{ github.event.pusher.email }} )</strong>
             ha realizado un nuevo push 😁
 
+            <strong>Rama</strong>: ${ GITHUB_REF#refs/heads/ }
+
             <strong>Mensaje del commit</strong>: ${{ github.event.commits[0].message }}
             
             <strong>Link para ir al commit</strong>: https://github.com/${{ github.repository }}/commit/${{github.sha}}
