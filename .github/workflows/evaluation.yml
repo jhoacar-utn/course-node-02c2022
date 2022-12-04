@@ -16,7 +16,7 @@ jobs:
       - name: Updating branch with master
         run: |
           git checkout ${{ github.head_ref }}
-          git pull --ff-only origin master
+          git pull origin master --rebase
           git push origin ${{ github.head_ref }}
 
   notify_opened:
