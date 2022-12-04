@@ -14,8 +14,6 @@ const ToDo = require('../models/to-do');
  * - Si el campo 'limit' es un numero negativo, sera un 0
  */
 module.exports.index = async (req, res) => {
-  console.log('Index Function');
-
   let { start, limit } = req.query;
 
   if (!start || Number.isNaN(parseInt(start, 10)) || start < 0) {
@@ -32,12 +30,53 @@ module.exports.index = async (req, res) => {
 
   try {
     const countToDos = await ToDo.countDocuments();
-    const listToDos = await ToDo.find()
+    let listToDos = await ToDo.find()
       .sort({
         priority: 'desc',
-      })
-      .skip(start)
-      .limit(limit);
+      });
+    // .skip(start)
+    // .limit(limit);
+    /**
+     * Custom 'skip' implementation
+     *
+     * La funcion .slice() devuelve una copia
+     * del array con las posicion inicial deseada
+     * y la posicion final deseada
+     *
+     * Ejemplo:
+     *     -> start = 1
+     *     -> limit = 3
+     *      0     1    2    3    4
+     *    [ "a", "b", "c", "d", "e"].slice(1,4) === [ "b" ,"c" , "d" ]
+     *
+     *    -> start = 2
+     *    -> limit = 1
+     *    [ "a", "b", "c", "d", "e"].slice(2,3) === [ "b" ,"c" , "d" ]
+     */
+    // This line is for replace .skip()
+    // -> Sera una copia del vector desde la posicion 'start' hasta el final del array
+    listToDos = listToDos.slice(start);
+    // This line is for replace .limit()
+    // -> Sera una copia del vector con una longitud especifica
+    /**
+     * Posibles soluciones:
+     *  Le decimos que longitud va a tener (No aconsejable):
+     *
+     *    - listToDos.length = limit;
+     *
+     *  Recorrer cada posicion y revisar que la posicion que tiene no sobrepase el limite:
+     *
+     *    La function .filter() de los arrays reciben una callback como parametro donde
+     *    se le pasara:
+     *        * cada elemento del array como primer argumento
+     *        * la posicion del elemento como segundo argumento
+     *
+     *    Esta funcion callback que se esta pasando, debera devolver un booleano (verdadero o falso)
+     *
+     *   - listToDos = listToDos.filter( (item, index) => { return index < limit } )
+     *
+    */
+    listToDos = listToDos.filter((item, index) => index < limit);
 
     res.json({
       result: listToDos,
@@ -59,8 +98,6 @@ module.exports.index = async (req, res) => {
  * de la url
  */
 module.exports.show = async (req, res) => {
-  console.log('Show Function');
-
   const { id } = req.params;
 
   try {
@@ -70,7 +107,7 @@ module.exports.show = async (req, res) => {
       result: toDo,
     });
   } catch (error) {
-    res.json({
+    res.status(500).json({
       errors: [
         {
           message: error.message,

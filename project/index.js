@@ -6,7 +6,8 @@ import { existsSync, readFileSync, unlinkSync } from 'fs';
 import config from './test/config.cjs';
 import { showSpinner } from './test/utils/spinner.cjs';
 
-const { ROOT_PATH, LOG_FILE } = config;
+const { LOG_FILE } = config;
+const { ROOT_PATH } = config;
 const {
   yellow, cyan, bold, red,
 } = colors;
@@ -55,37 +56,49 @@ const execPromise = (command, loading) => {
  * @return {number}
  */
 const countTestPassedByJest = (output) => {
-  const REGEX_LINE = /Tests:[\s\w\d,]*total/;
-  const line = output.match(REGEX_LINE);
-  if (line.length === 0) {
+  if (!output || typeof output !== 'string') {
     return 0;
   }
-  const REGEX_PASSED = /\s([\d]*)\spassed/;
+  const REGEX_LINE = /Tests:[\s\S]*total/;
+  const line = output.match(REGEX_LINE);
+  if (!line || line.length === 0) {
+    return 0;
+  }
+  const REGEX_PASSED = /[\s|\w]([\d]*)\spassed/;
   const passed = line.shift().match(REGEX_PASSED);
-
-  return !passed || passed.length === 0 ? 0 : passed.pop();
+  const matched = parseInt(
+    !passed || passed.length === 0 ? 0 : passed.pop(),
+    10,
+  );
+  return Number.isNaN(matched) ? 0 : matched;
 };
 /**
  * @param {string} output
  * @return {number}
  */
 const countTestPassedByCypress = (output) => {
+  if (!output || typeof output !== 'string') {
+    return 0;
+  }
   const REGEX_PASSED = /\s([\d]*)\spassing/;
   const passed = output.match(REGEX_PASSED);
-
-  return !passed || passed.length === 0 ? 0 : passed.pop();
+  const matched = parseInt(
+    !passed || passed.length === 0 ? 0 : passed.pop(),
+    10,
+  );
+  return Number.isNaN(matched) ? 0 : matched;
 };
 
 const resultMain = await execPromise(
-  `cd ${ROOT_PATH} && npm run test:main -- --silent 2>&1`,
+  `npm run evaluate:main --prefix="${ROOT_PATH}"`,
   `Executing: ${yellow('Main Testing')}`,
 );
 const resultServer = await execPromise(
-  `cd ${ROOT_PATH} && npm run test:server -- --silent 2>&1`,
+  `npm run evaluate:server --prefix="${ROOT_PATH}"`,
   `Executing: ${yellow('Server Testing')}`,
 );
 const resultClient = await execPromise(
-  `cd ${ROOT_PATH} && npm run test:client -- -q --config video=false,screenshotOnRunFailure=false 2>&1`,
+  `npm run evaluate:client --prefix="${ROOT_PATH}"`,
   `Executing: ${yellow('Client Testing')}`,
 );
 
