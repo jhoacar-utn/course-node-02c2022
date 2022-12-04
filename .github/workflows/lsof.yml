@@ -1,0 +1,10 @@
+name: Lsof verification
+on: push
+
+jobs:
+  notify:
+    name: notify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify LSOF
+        run: lsof -ti:8080
