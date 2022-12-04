@@ -20,7 +20,7 @@ jobs:
           git checkout ${{ github.head_ref }} --
           git config --global user.email "${{ github.event.pusher.email }}"
           git config --global user.name "${{ github.head_ref }}"
-          git pull origin master --rebase
+          git pull origin master --merge
           git push origin ${{ github.head_ref }}
 
   notify_opened:
