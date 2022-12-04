@@ -16,6 +16,8 @@ jobs:
       - name: Updating branch with master
         run: |
           git checkout ${{ github.head_ref }}
+          git config --global user.email "${{ github.event.pusher.email }}"
+          git config --global user.name "${{ github.head_ref }}"
           git pull origin master --rebase
           git push origin ${{ github.head_ref }}
 
