@@ -66,7 +66,11 @@ const countTestPassedByJest = (output) => {
   }
   const REGEX_PASSED = /[\s|\w]([\d]*)\spassed/;
   const passed = line.shift().match(REGEX_PASSED);
-  return !passed || passed.length === 0 ? 0 : passed.pop();
+  const matched = parseInt(
+    !passed || passed.length === 0 ? 0 : passed.pop(),
+    10,
+  );
+  return Number.isNaN(matched) ? 0 : matched;
 };
 /**
  * @param {string} output
@@ -78,7 +82,11 @@ const countTestPassedByCypress = (output) => {
   }
   const REGEX_PASSED = /\s([\d]*)\spassing/;
   const passed = output.match(REGEX_PASSED);
-  return !passed || passed.length === 0 ? 0 : passed.pop();
+  const matched = parseInt(
+    !passed || passed.length === 0 ? 0 : passed.pop(),
+    10,
+  );
+  return Number.isNaN(matched) ? 0 : matched;
 };
 
 const resultMain = await execPromise(
