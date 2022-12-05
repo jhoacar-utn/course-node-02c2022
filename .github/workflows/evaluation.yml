@@ -74,6 +74,7 @@ jobs:
   notify_approved:
     needs:
       - evaluation
+    name: Notify Approved to Teacher
     runs-on: ubuntu-latest
     steps:
       - name: Send Telegram message on pull request approved
@@ -89,6 +90,7 @@ jobs:
   email:
     needs:
       - evaluation
+    name: Notify Approved to Student
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
