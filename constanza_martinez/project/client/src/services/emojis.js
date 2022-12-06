@@ -30,7 +30,7 @@ export async function getEmojis(start, limit) {
 /**
  * This function makes a request to extract
  * an specific emoji in the backend
- * @param {string} emojiId
+ * @param {string} _id
  * @return {Promise<Array>}
  */
 export async function getEmoji(emojiId) {
@@ -52,7 +52,7 @@ export async function getEmoji(emojiId) {
 /**
  * This function makes a request to vote
  * an emoji using an id
- * @param {string} id
+ * @param {string} _id
  * @return {Promise<Object>}
  */
 export async function voteEmoji(emojiId) {
@@ -63,7 +63,7 @@ export async function voteEmoji(emojiId) {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ id: emojiId }),
+    body: JSON.stringify({ _id: emojiId }),
   });
 
   const json = await response.json();

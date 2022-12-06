@@ -12,7 +12,7 @@ export default function VoteEmojiButton({ emojiId, onVoteChange }) {
       });
   };
   return (
-    <Button onClick={handleVoteEmoji} color="success">
+    <Button onClick={handleVoteEmoji} variant="contained" color="success">
       Votar
     </Button>
   );

@@ -3,12 +3,12 @@ GET /api/v1/emojis?start=0&limit=10
 Host: localhost:4040
 
 ### Obtener la información de un emoji por id
-GET /api/v1/emojis/63816ade04f6e1a91ed7261c
+GET /api/v1/emojis/638f9270b8ff0a87930b6b26
 Host: localhost:4040
 
 
 ### Publicar un voto a un emoji
-POST /api/v1/votes/63816ade04f6e1a91ed7261c
+POST /api/v1/votes/638f9270b8ff0a87930b6b26
 Host: localhost:4040
 
 

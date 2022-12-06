@@ -1,10 +1,10 @@
 const Emoji = require('../models/emoji');
 
 module.exports.votes = async (req, res) => {
-  const { id } = req.body;
+  const { _id } = req.body;
 
   try {
-    const voteEmoji = await Emoji.findByIdAndUpdate(id, {
+    const voteEmoji = await Emoji.findByIdAndUpdate(_id, {
       $inc: {
         votes: 1,
       },
@@ -14,7 +14,7 @@ module.exports.votes = async (req, res) => {
       result: voteEmoji,
     });
   } catch (error) {
-    if (!id) {
+    if (!_id) {
       res.status(404).json({
         errors: [
           {
