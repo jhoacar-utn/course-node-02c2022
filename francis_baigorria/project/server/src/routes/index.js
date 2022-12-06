@@ -6,6 +6,6 @@ const { index, show, vote } = require('../constrollers/emojis');
 
 router.get('/api/v1/emojis/:id', show);
 router.post('/api/v1/votes', vote);
-router.get('/', index);
+router.get('/api/v1/emojis', index);
 
 module.exports = router;
