@@ -10,6 +10,7 @@ import { Link, useParams } from 'react-router-dom';
 import Spinner from '../../atoms/Spinner';
 import EmojiComponent from '../../atoms/Emoji';
 import useFetchEmoji from './useFetchEmoji';
+import Jaipur from '../../../img/Jaipur.jpg';
 
 function Emoji() {
   const { id } = useParams();
@@ -29,21 +30,30 @@ function Emoji() {
       <CardActions>
         <Link to="/emojis" style={{ textDecoration: 'none' }}>
           <Button size="small" color="primary" variant="contained">
-            Regresar a Emojis
+            Volver
           </Button>
         </Link>
       </CardActions>
-      <CardContent>
-        <Card>
-          <CardContent>
-            <EmojiComponent
-              title={emoji?.name}
-              text={emoji?.emoji}
-              votes={emoji?.votes}
-            />
-          </CardContent>
-        </Card>
-      </CardContent>
+
+      <Card
+        style={{
+          display: 'flex',
+          backgroundImage: `url(${Jaipur})`,
+          opacity: '0.9',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 'auto',
+        }}
+        elevation={10}
+      >
+        <CardContent>
+          <EmojiComponent
+            title={emoji?.name}
+            text={emoji?.emoji}
+            votes={emoji?.votes}
+          />
+        </CardContent>
+      </Card>
     </Card>
   );
 }

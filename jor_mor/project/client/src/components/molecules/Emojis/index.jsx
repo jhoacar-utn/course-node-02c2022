@@ -11,6 +11,7 @@ import ShowEmojiButton from '../../atoms/ShowEmojiButton';
 import Spinner from '../../atoms/Spinner';
 import Emoji from '../../atoms/Emoji';
 import useFetchEmojis from './useFetchEmojis';
+import Jaipur from '../../../img/Jaipur.jpg';
 
 function Emojis() {
   const [searchParams] = useSearchParams();
@@ -43,6 +44,7 @@ function Emojis() {
           <Grid key={index} item xs={12} sm={12} md={6} lg={3}>
             <Card
               sx={{
+                backgroundImage: `url(${Jaipur})`,
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
@@ -79,6 +81,7 @@ function Emojis() {
             justifyContent: 'center',
             alignItems: 'center',
             textAlign: 'center',
+            marginTop: '30px',
           }}
         >
           <PaginationListEmoji
