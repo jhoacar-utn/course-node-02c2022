@@ -69,7 +69,7 @@ jobs:
       - name: Install Dependecies
         run: npm install
       - name: Evaluation Project
-        run: DB_URI="${{ secrets.DB_URI }}" TIMEOUT_VALIDATION=5 DEBUG_SERVER=true TIMEOUT_VALIDATION=0 npm run evaluate
+        run: DB_URI="${{ secrets.DB_URI }}" TIMEOUT_VALIDATION=7 DEBUG_SERVER=true TIMEOUT_VALIDATION=0 npm run evaluate
 
   notify_approved:
     needs:
