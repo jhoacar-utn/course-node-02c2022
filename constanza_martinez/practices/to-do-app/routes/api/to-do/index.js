@@ -1,10 +1,11 @@
-const express = require("express");
+/* eslint-disable import/no-unresolved */
+const express = require('express');
 
 const router = express.Router();
 
-const { index , show } = require("../../../controllers/to-do");
+const { index, show } = require('../../../controllers/to-do');
 
-router.get("/", index)
-router.get("/:id",show);
+router.get('/', index);
+router.get('/:id', show);
 
 module.exports = router;

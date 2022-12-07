@@ -1,7 +1,6 @@
+const variableA = require('./modulo_a');
 
-let variableA = require('./modulo_a');
-
-let variableB = require('./modulo_b');
+const variableB = require('./modulo_b');
 
 console.log(variableA);
 

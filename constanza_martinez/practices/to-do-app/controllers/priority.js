@@ -1,30 +1,27 @@
-const ToDo = require("../models/to-do");
+const ToDo = require('../models/to-do');
 
 module.exports.priority = async function (req, res) {
+  console.log('Priority Function');
 
-    console.log("Priority Function");
+  const { id } = req.params;
 
-    const { id } = req.params;
+  try {
+    const toDo = await ToDo.findByIdAndUpdate(id, {
+      $inc: {
+        priority: 1,
+      },
+    });
 
-    try {
-
-        const toDo = await ToDo.findByIdAndUpdate(id, {
-            $inc:{
-                priority:1
-            }
-        })
-
-        res.json({
-            result: toDo
-        })
-
-    } catch (error) {
-        res.json({
-            errors: [
-                {
-                    message: error.message
-                }
-            ]
-        })
-    }
-}
+    res.json({
+      result: toDo,
+    });
+  } catch (error) {
+    res.json({
+      errors: [
+        {
+          message: error.message,
+        },
+      ],
+    });
+  }
+};

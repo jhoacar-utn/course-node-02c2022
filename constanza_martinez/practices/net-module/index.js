@@ -1,32 +1,31 @@
 const net = require('net');
 
-function handleIncomingData(data){
-    console.log(data.toString());
-    
-    let response = 'HTTP/1.1 200 OK\n' // Para hacer saltos de línea en un string es \n
-    response = response + 'Content-type: text/html\n\n'
-    response += '<h1>Saludos desde el servidor</h1>';
-    /**
+function handleIncomingData(data) {
+  console.log(data.toString());
+
+  let response = 'HTTP/1.1 200 OK\n'; // Para hacer saltos de línea en un string es \n
+  response = `${response}Content-type: text/html\n\n`;
+  response += '<h1>Saludos desde el servidor</h1>';
+  /**
      * HTTP/1.1 200 OK
      * Content-type: text/html
-     * 
+     *
      * Hola desde el servidor
      */
-    this.write(response);
-    this.end(); // Dejamos de escribir, o mandarle la información al cliente
-    this.destroy(); // Cerramos la conexión y mandamos la data que se haya escrito
+  this.write(response);
+  this.end(); // Dejamos de escribir, o mandarle la información al cliente
+  this.destroy(); // Cerramos la conexión y mandamos la data que se haya escrito
 }
 
 function handleConnection(socket) {
-    console.log('conexión recibida');
-    socket.on('data', handleIncomingData);
-    
-};
+  console.log('conexión recibida');
+  socket.on('data', handleIncomingData);
+}
 
 const server = net.createServer(handleConnection);
 
 function handleStartServer() {
-    console.log('El servidor ya se encuentra en funcionamiento');
+  console.log('El servidor ya se encuentra en funcionamiento');
 }
 
 /**

@@ -1,10 +1,11 @@
-const express = require ('express');
+/* eslint-disable import/no-unresolved */
+const express = require('express');
 
 const router = express.Router();
 
-const { create } = require ('../../../controllers/login')
+const { create } = require('../../../controllers/login');
 
-const { validateRegistration } = require ('../../../middlewares/login');
+const { validateRegistration } = require('../../../middlewares/login');
 
 router.post('/login', validateRegistration, create);
 

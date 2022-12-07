@@ -1,7 +1,10 @@
+/* eslint-disable prefer-const */
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
 /**
  * Esta variable es global en toda la aplicación
  */
-var miVariable;
+let miVariable;
 
 /**
  * Esta variable es declarada solamente en un bloque de código

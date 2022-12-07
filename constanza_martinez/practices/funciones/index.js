@@ -11,12 +11,12 @@
  * - Una funcion puede devolver datos de salida que son conocidos como resultado
  */
 
-const suma = function(a, b) {
-    return a+b
-}
+const suma = function (a, b) {
+  return a + b;
+};
 // son equivalentes
 // function suma(a, b){
 
 //  }
 
-console.log(suma(1,2));
+console.log(suma(1, 2));
