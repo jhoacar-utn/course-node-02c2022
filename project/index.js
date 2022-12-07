@@ -37,6 +37,11 @@ const execPromise = (command, loading) => {
       }
       console.log('\n');
       if (DEBUG_SERVER) {
+        console.log('----------------------------------------------');
+        console.log(`🧪 OUTPUT OF ${command}\n`);
+        console.log('----------------------------------------------');
+        console.log(stdout.toString());
+        console.log('----------------------------------------------');
         if (existsSync(LOG_FILE)) {
           console.log('----------------------------------------------');
           console.log(`🐛 CONTENT OF ${LOG_FILE}\n`);
