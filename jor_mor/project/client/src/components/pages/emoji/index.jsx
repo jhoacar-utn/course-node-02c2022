@@ -27,8 +27,10 @@ function Emoji() {
   return (
     <Card>
       <CardActions>
-        <Link to="/emojis">
-          <Button>Regresar a la lista de tareas</Button>
+        <Link to="/emojis" style={{ textDecoration: 'none' }}>
+          <Button size="small" color="primary" variant="contained">
+            Regresar a Emojis
+          </Button>
         </Link>
       </CardActions>
       <CardContent>

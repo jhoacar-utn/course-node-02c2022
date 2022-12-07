@@ -6,7 +6,7 @@ function Emojis() {
     <div>
       <Card>
         <CardContent>
-          <Typography variant="h5">Emojis</Typography>
+          <Typography variant="h5">Lista de Emojis</Typography>
           <EmojisComponent />
         </CardContent>
       </Card>

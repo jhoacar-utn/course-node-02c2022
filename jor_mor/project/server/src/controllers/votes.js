@@ -11,7 +11,10 @@ module.exports.votes = async (req, res) => {
     });
 
     res.json({
-      result: emoji,
+      result: {
+        ...emoji.toObject(),
+        votes: emoji.votes + 1,
+      },
     });
   } catch (error) {
     res.status(500).json({

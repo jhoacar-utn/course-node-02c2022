@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import { incrementVotes } from '../../../services/emojis';
 
 export default function IncrementVotesButton({ id, onChangeVotes }) {
@@ -12,8 +13,18 @@ export default function IncrementVotesButton({ id, onChangeVotes }) {
   };
 
   return (
-    <button onClick={handleIncrementVotes} color="success">
+    <Button
+      size="small"
+      color="secondary"
+      variant="contained"
+      style={{ color: 'white ', margin: '10px' }}
+      onClick={handleIncrementVotes}
+    >
       Vote
-    </button>
+    </Button>
+
+  // <button onClick={handleIncrementVotes} color="success">
+  //   Vote
+  // </button>
   );
 }

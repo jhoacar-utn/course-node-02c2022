@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar } from '@material-ui/core';
+import { AppBar } from '@mui/material';
 
 import useStyles from './navbar_style';
 

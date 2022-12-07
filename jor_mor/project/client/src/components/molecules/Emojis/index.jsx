@@ -60,6 +60,7 @@ function Emojis() {
               </CardContent>
               <CardActions>
                 <ShowEmojiButton id={emoji._id} />
+
                 <IncrementVotesButton
                   id={emoji._id}
                   onChangeVotes={reloadListEmoji}
