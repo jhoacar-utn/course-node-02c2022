@@ -71,8 +71,10 @@ const vote = async (req, res) => {
     });
 
     res.status(200).json({
-      ...Emoji.toObject(),
-      votes: Emoji.votes + 1,
+      result: {
+        ...Emoji.toObject(),
+        votes: Emoji.votes + 1,
+      },
     });
   } catch (error) {
     res.status(500).json({
