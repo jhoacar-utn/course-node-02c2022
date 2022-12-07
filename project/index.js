@@ -39,12 +39,16 @@ const execPromise = (command, loading) => {
       if (DEBUG_SERVER) {
         console.log('----------------------------------------------');
         console.log(`🧪 OUTPUT OF ${command}\n`);
-        console.log('----------------------------------------------');
-        console.log('error: ', error.message);
-        console.log('----------------------------------------------');
-        console.log('stdout: ', stdout);
-        console.log('----------------------------------------------');
-        console.log('stderr: ', stderr);
+        if (error) {
+          console.log('----------------------------------------------');
+          console.log('error: ', error.message);
+        } if (stdout) {
+          console.log('----------------------------------------------');
+          console.log('stdout: ', stdout);
+        } if (stderr) {
+          console.log('----------------------------------------------');
+          console.log('stderr: ', stderr);
+        }
         console.log('----------------------------------------------');
         if (existsSync(LOG_FILE)) {
           console.log('----------------------------------------------');
