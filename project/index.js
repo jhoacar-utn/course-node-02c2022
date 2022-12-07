@@ -31,12 +31,25 @@ const execPromise = (command, loading) => {
     interval = showSpinner(loading);
   }
   return new Promise((resolve) => {
-    exec(command, (error, stdout) => {
+    exec(command, (error, stdout, stderr) => {
       if (interval) {
         clearInterval(interval);
       }
       console.log('\n');
       if (DEBUG_SERVER) {
+        console.log('----------------------------------------------');
+        console.log(`🧪 OUTPUT OF ${command}\n`);
+        if (error) {
+          console.log('----------------------------------------------');
+          console.log('error: ', error.message);
+        } if (stdout) {
+          console.log('----------------------------------------------');
+          console.log('stdout: ', stdout);
+        } if (stderr) {
+          console.log('----------------------------------------------');
+          console.log('stderr: ', stderr);
+        }
+        console.log('----------------------------------------------');
         if (existsSync(LOG_FILE)) {
           console.log('----------------------------------------------');
           console.log(`🐛 CONTENT OF ${LOG_FILE}\n`);
@@ -46,7 +59,7 @@ const execPromise = (command, loading) => {
           unlinkSync(LOG_FILE);
         }
       }
-      resolve(stdout.toString());
+      resolve(stdout);
     });
   });
 };
@@ -66,7 +79,11 @@ const countTestPassedByJest = (output) => {
   }
   const REGEX_PASSED = /[\s|\w]([\d]*)\spassed/;
   const passed = line.shift().match(REGEX_PASSED);
-  return !passed || passed.length === 0 ? 0 : passed.pop();
+  const matched = parseInt(
+    !passed || passed.length === 0 ? 0 : passed.pop(),
+    10,
+  );
+  return Number.isNaN(matched) ? 0 : matched;
 };
 /**
  * @param {string} output
@@ -78,7 +95,11 @@ const countTestPassedByCypress = (output) => {
   }
   const REGEX_PASSED = /\s([\d]*)\spassing/;
   const passed = output.match(REGEX_PASSED);
-  return !passed || passed.length === 0 ? 0 : passed.pop();
+  const matched = parseInt(
+    !passed || passed.length === 0 ? 0 : passed.pop(),
+    10,
+  );
+  return Number.isNaN(matched) ? 0 : matched;
 };
 
 const resultMain = await execPromise(

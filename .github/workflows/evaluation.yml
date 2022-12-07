@@ -8,7 +8,25 @@ on:
       - synchronize
 jobs:
 
-  notify:
+  update_branch:
+    name: Update branch with master
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Updating branch with master
+        run: |
+          git checkout ${{ github.head_ref }} --
+          git config --global user.email "${{ github.event.pusher.email }}"
+          git config --global user.name "${{ github.head_ref }}"
+          git pull origin master
+          git push origin ${{ github.head_ref }}
+
+  notify_opened:
+    needs:
+      - update_branch
+    name: Notify new change
     runs-on: ubuntu-latest
     steps:
       - name: Send Telegram message on pull request
@@ -24,7 +42,8 @@ jobs:
 
   lint:
     needs:
-      - notify
+      - notify_opened
+    name: Clean all repository code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -40,6 +59,7 @@ jobs:
   evaluation:
     needs:
       - lint
+    name: Do evaluation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -51,9 +71,10 @@ jobs:
       - name: Evaluation Project
         run: DB_URI="${{ secrets.DB_URI }}" DEBUG_SERVER=true TIMEOUT_VALIDATION=0 npm run evaluate
 
-  integration:
+  notify_approved:
     needs:
       - evaluation
+    name: Notify Approved to Teacher
     runs-on: ubuntu-latest
     steps:
       - name: Send Telegram message on pull request approved
@@ -66,3 +87,17 @@ jobs:
             <strong>✅ Pull Request on ${{ github.event.action }} approved!</strong>
 
             ${{ github.actor }} - from ${{ github.head_ref }}
+  email:
+    needs:
+      - evaluation
+    name: Notify Approved to Student
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependecies
+        run: npm install
+      - name: Send Email
+        run: GMAIL_USERNAME='${{ secrets.GMAIL_USERNAME }}' GMAIL_PASSWORD='${{ secrets.GMAIL_PASSWORD }}' STUDENTS='${{ secrets.STUDENTS }}' npm run send:mail ${{ github.head_ref }}
