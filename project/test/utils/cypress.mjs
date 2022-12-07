@@ -8,7 +8,7 @@ import { ServerEventEmitter } from './server.cjs';
 import { showSpinner } from './spinner.cjs';
 import { extractStudentFolder, logInFile } from './file.cjs';
 import startConnection from './net/client.cjs';
-import { killPidsOnPorts } from './shell/index.cjs';
+import { killPidOnPort } from './shell/index.cjs';
 
 const {
   bold, red, yellow, green, cyan,
@@ -30,6 +30,7 @@ const STUDENT_PATH = join(ROOT_PATH, STUDENT_FOLDER);
 const PROJECT_PATH = join(STUDENT_PATH, 'project');
 const SERVER_PATH = join(PROJECT_PATH, 'server');
 const CLIENT_PATH = join(PROJECT_PATH, 'client');
+let serverPort = null;
 
 if (!existsSync(CLIENT_PATH)) {
   throw new Error(red(`${bold('client')} folder in ${PROJECT_PATH} is required`));
@@ -68,7 +69,6 @@ const handleBeforeRun = async () => {
   if (!existsSync(join(CLIENT_PATH, 'dist'))) {
     await commandSpinner(`cd ${CLIENT_PATH} && npm run build`, 'Building Client');
   }
-  let serverPort = null;
   const server = new ServerEventEmitter();
 
   server.on('beforeStart', async () => `${bold(`${cyan(logInFile('Initializating Server for testing of the Client'))}\n\n`)}`);
@@ -89,7 +89,9 @@ const handleBeforeRun = async () => {
 };
 
 const handleAfterRun = async () => {
-  await killPidsOnPorts();
+  if (serverPort) {
+    await killPidOnPort(serverPort);
+  }
 };
 
 export { handleBeforeRun, handleAfterRun };

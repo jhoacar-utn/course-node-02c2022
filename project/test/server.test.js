@@ -34,7 +34,7 @@ const { extractStudentFolder } = require('./utils/file.cjs');
 const {
   ROOT_PATH, TIMEOUT_SERVER, DB_URI, DEBUG_TEST,
 } = require('./config.cjs');
-const { killPidsOnPorts } = require('./utils/shell/index.cjs');
+const { killPidOnPort } = require('./utils/shell/index.cjs');
 
 const STUDENT_FOLDER = extractStudentFolder();
 
@@ -88,7 +88,6 @@ afterAll(async () => {
     process.stdout.write(green('erased\n\n'));
   }
   await removeConnection();
-  await killPidsOnPorts();
 });
 
 /**
@@ -132,8 +131,8 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
       server.on('error', async (error) => console.error(error));
       server.on('error', async (error) => expect(error).toBe(null));
 
-      server.on('end', killPidsOnPorts);
       server.on('end', async () => cyan(bold('Test finished\n\n')));
+      server.on('end', async (port) => { await killPidOnPort(port); });
 
       await server.start();
     }, TIMEOUT_SERVER * 2 * 1000);
@@ -169,8 +168,8 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
         server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
 
         await server.start(env);
       });
@@ -203,9 +202,9 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
-        server.on('end', () => { expect(data?.length > 0).toBe(true); });
         server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
+        server.on('end', () => { expect(data?.length > 0).toBe(true); });
 
         await server.start();
       }, TIMEOUT_SERVER * 2 * 1000);
@@ -226,7 +225,8 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
+        server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
         server.on('end', async () => {
           expect(response).not.toBe(null);
           expect(response.status).toBe(200);
@@ -234,7 +234,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
             'access-control-allow-origin',
           );
         });
-        server.on('end', async () => cyan(bold('Test finished\n\n')));
 
         await server.start();
       }, TIMEOUT_SERVER * 2 * 10000);
@@ -266,7 +265,8 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
+        server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
         server.on('end', async () => {
           expect(response).not.toBe(null);
           expect(response.status).toBe(200);
@@ -279,7 +279,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
             dbData?.slice()?.shift()?.name,
           );
         });
-        server.on('end', async () => cyan(bold('Test finished\n\n')));
 
         await server.start();
       }, TIMEOUT_SERVER * 2 * 1000);
@@ -317,7 +316,8 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
+        server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
         server.on('end', async () => {
           expect(response).not.toBe(null);
           expect(response.status).toBe(200);
@@ -326,7 +326,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
           expect(data?.result).toHaveProperty('name');
           expect(data?.result?.name).toBe(emoji?.name);
         });
-        server.on('end', async () => cyan(bold('Test finished\n\n')));
 
         await server.start();
       }, TIMEOUT_SERVER * 2 * 1000);
@@ -364,7 +363,8 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
         server.on('error', async (error) => console.error(error));
         server.on('error', async (error) => expect(error).toBe(null));
 
-        server.on('end', killPidsOnPorts);
+        server.on('end', async () => cyan(bold('Test finished\n\n')));
+        server.on('end', async (port) => { await killPidOnPort(port); });
         server.on('end', async () => {
           expect(response).not.toBe(null);
           expect(response.status).toBe(200);
@@ -387,7 +387,6 @@ describe(`Server Testing in ${SERVER_PATH}`, () => {
             sameEmoji,
           );
         });
-        server.on('end', async () => cyan(bold('Test finished\n\n')));
 
         await server.start();
       }, TIMEOUT_SERVER * 2 * 1000);

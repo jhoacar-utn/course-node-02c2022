@@ -8,6 +8,8 @@ if (!process.env.DB_URI) {
 }
 
 const ROOT_PATH = resolve(join(__dirname, '/../../'));
+const CONFIG_PATH = __dirname;
+
 const { PORT } = process.env;
 const { DB_URI } = process.env;
 
@@ -26,6 +28,7 @@ const ENVIRONMENT_FILE = resolve(join(__dirname, '/logs/done.txt'));
 
 const OBJECT = {
   ROOT_PATH,
+  CONFIG_PATH,
   PORT,
   DB_URI,
   TIMEOUT_VALIDATION,
