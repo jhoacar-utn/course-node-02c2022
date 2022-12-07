@@ -31,7 +31,7 @@ const execPromise = (command, loading) => {
     interval = showSpinner(loading);
   }
   return new Promise((resolve) => {
-    exec(command, (error, stdout) => {
+    exec(command, (error, stdout, stderr) => {
       if (interval) {
         clearInterval(interval);
       }
@@ -40,7 +40,11 @@ const execPromise = (command, loading) => {
         console.log('----------------------------------------------');
         console.log(`🧪 OUTPUT OF ${command}\n`);
         console.log('----------------------------------------------');
-        console.log(stdout.toString());
+        console.log('error: ', error.message);
+        console.log('----------------------------------------------');
+        console.log('stdout: ', stdout);
+        console.log('----------------------------------------------');
+        console.log('stderr: ', stderr);
         console.log('----------------------------------------------');
         if (existsSync(LOG_FILE)) {
           console.log('----------------------------------------------');
@@ -51,7 +55,7 @@ const execPromise = (command, loading) => {
           unlinkSync(LOG_FILE);
         }
       }
-      resolve(stdout.toString());
+      resolve(stdout);
     });
   });
 };
