@@ -1,0 +1,13 @@
+### Obtener la lista de emojis
+GET /api/v1/emojis?start=0&limit=10
+Host: localhost:4040
+
+### Obtener Información de Emoji por ID
+
+GET /api/v1/emojis/63881aae85ec9e0a1352febc
+Host: localhost:4040
+
+### Publicar un voto a un emoji
+POST /api/v1/votes/63881aae85ec9e0a1352fec1
+Host: localhost:4040 
+Content-Type: application/json
