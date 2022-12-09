@@ -1,0 +1,7 @@
+git clone -> Este comando se encarga de Clonar un Repositorio desde internet y los descarga de forma local.
+ctrl + l -> shortcuts para limpiar con sola.
+ls -> Este comando es para listar en la carpeta actual los archivos o directorios presentes.
+code NombreDeCarpeta -> Este comando es para abrir dicha carpeta con visual studio code.
+Tab -> tecla que sirve para autocompletar nombres.
+git add -> Comando para
+Cuando escribimos "code ." nos referimos a que queremos abrir la carpeta actual.
