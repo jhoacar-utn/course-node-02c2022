@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 function Emoji(props) {
-  const { emoji, name, votes } = props;
+  const {
+    id, emoji, name, votes,
+  } = props;
 
   return (
     <div>
@@ -11,6 +13,10 @@ function Emoji(props) {
       ,
       {' '}
       <span>{votes}</span>
+      <div>
+        <a href={`/emojis/${id}`}>Show</a>
+        <button>Vote</button>
+      </div>
     </div>
   );
 }
