@@ -1,9 +1,5 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
 import { lazy } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
 const Home = lazy(() => import('../components/pages/home'));
 const Emoji = lazy(() => import('../components/pages/emoji'));
@@ -20,7 +16,7 @@ const router = createBrowserRouter([
     element: <Emojis />,
   },
   {
-    path: 'emojis/:id',
+    path: 'emojis/:emojiId',
     element: <Emoji />,
   },
   {

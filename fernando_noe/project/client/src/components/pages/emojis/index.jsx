@@ -1,13 +1,27 @@
-/* eslint-disable import/no-unresolved */
+import { Card, CardContent, Typography } from '@mui/material';
 import EmojisComponent from '../../molecules/Emojis';
-import NavBar from '../../organisms/NavBar';
+import Image from '../../../img/background.jpg';
 
 function Emojis() {
   return (
-    <>
-      <NavBar />
-      <EmojisComponent />
-    </>
+    <div>
+      <Card>
+        <CardContent
+          sx={{
+            width: '100vw',
+            height: '100vh',
+            display: 'flex',
+            flexWrap: 'wrap',
+            backgroundImage: `url(${Image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <Typography variant="h5" sx={{ display: 'flex', justifyContent: 'center', alignIntems: 'center' }}>Lista de Emojis</Typography>
+          <EmojisComponent />
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 

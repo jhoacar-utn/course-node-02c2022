@@ -8,6 +8,6 @@ GET /api/v1/emojis/63881aae85ec9e0a1352febc
 Host: localhost:4040
 
 ### Publicar un voto a un emoji
-POST /api/v1/votes/63881aae85ec9e0a1352fec1
+POST /api/v1/votes/63881aae85ec9e0a13530fa6
 Host: localhost:4040 
 Content-Type: application/json

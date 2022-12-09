@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable react/jsx-no-undef */
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -48,7 +49,7 @@ export default function NavBar() {
             }}
             // eslint-disable-next-line react/jsx-no-comment-textnodes
           >
-
+            // eslint-disable-next-line react/jsx-no-undef
             <Link to="/emojis">
               <Button variant="contained">Emojis</Button>
             </Link>
