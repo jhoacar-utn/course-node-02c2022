@@ -1,6 +1,8 @@
-/**Una Promesa es aquella lógica ejecutada paralelamente alejada a la ejecución principal que será exitosa o errónea */
-/*Ej: Decimos que vamos a estudiar el fin de semana (De momento esa promesa está pendiente hasta que se realiza) y puede hacer 2 opciones: 1= Estudia y la promesa dara verdadera --- 2= No estudia y la promesa dara errónea */
-
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+/** Una Promesa es aquella lógica ejecutada paralelamente alejada a la ejecución principal que será exitosa o errónea */
+/* Ej: Decimos que vamos a estudiar el fin de semana (De momento esa promesa está pendiente hasta que se realiza) y puede hacer 2 opciones: 1= Estudia y la promesa dara verdadera --- 2= No estudia y la promesa dara errónea */
 
 /**
  * La Promesa tiene 3 estados:
@@ -8,7 +10,6 @@
  * 2) Fullfield -> Resuelto
  * 3) Rejected -> Rechazado
  */
-
 
 /*
 console.log("Estoy ejecutando algo");
@@ -30,20 +31,18 @@ function handlePromise(resolve, reject){
 }
 */
 
+const promise = new Promise(handlePromise);
 
-const promise = new Promise(handlePromise)
-
-console.log(promise)
+console.log(promise);
 
 promise
-    .then((result) => { console.log(result) })
-    .catch(error => console.log(error))
+  .then((result) => { console.log(result); })
+  .catch((error) => console.log(error));
 
 function handlePromise(resolve, reject) {
+  setTimeout(() => {
+    resolve('Ya han transcurrido un segundo');
+  }, 1000);
 
-    setTimeout(() => {
-        resolve("Ya han transcurrido un segundo")
-    }, 1000)
-
-    //reject("Se rechaza la promesa")
+  // reject("Se rechaza la promesa")
 }

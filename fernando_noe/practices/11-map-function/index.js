@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 /**
  * Las variabels definidas como vectores, tienen métodos predefinidos
  * - .sort() -> Sirve para ordenar el vector En orden Ascendente (Menor a mayor)
@@ -5,25 +7,25 @@
  * - .map() -> Itera un array y a partir de ese, se puede generar un nuevo array duplicandolo, sin afectar el array original
  */
 
-const { maxHeaderSize } = require("http");
+const { maxHeaderSize } = require('http');
 
-const notas = [5,8,4,7,6,3,2];
+const notas = [5, 8, 4, 7, 6, 3, 2];
 
 /**
  * -Funcion para multimplicar nota por 2
  */
-function multiplynotes(note){
-    return note * 2;
+function multiplynotes(note) {
+  return note * 2;
 }
-console.log(notas.map(multiplynotes));  
+console.log(notas.map(multiplynotes));
 
 /**
  * -Funcion para encontrar el número máximo
  */
 let maxNota = notas[0];
-notas.map(function(nota){
-    if(nota > maxNota){
-        maxNota = nota;
-    }  
+notas.map((nota) => {
+  if (nota > maxNota) {
+    maxNota = nota;
+  }
 });
 console.log(maxNota);

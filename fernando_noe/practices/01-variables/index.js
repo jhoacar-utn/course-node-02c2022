@@ -1,24 +1,27 @@
-
+/* eslint-disable linebreak-style */
+/* eslint-disable no-const-assign */
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
+/* eslint-disable linebreak-style */
 // comentario de una linea
 /*
-    Esto es un comentario 
+    Esto es un comentario
     con mas lineas
 */
 
 /**
  * Esta variable es declarada globalmente en toda la aplicacion
  */
- var miVariable;
+let miVariable;
 
- /**
+/**
   * Esta variable es declarada solamente en un bloque de codigo
   */
- let otraVariable = "un nombre";
- /**
+let otraVariable = 'un nombre';
+/**
   * Esta variable es declarada solamente en un bloque de codigo pero no podra ser cambiada mas adelante
   */
- const unaConstante = "un valor";
- 
- otraVariable = "otro nombre";
- unaConstante = "otro valor";
- 
+const unaConstante = 'un valor';
+
+otraVariable = 'otro nombre';
+unaConstante = 'otro valor';

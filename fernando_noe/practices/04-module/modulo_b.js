@@ -1,5 +1,5 @@
-var variableB = "Content variable B";
+const variableB = 'Content variable B';
 
-console.log("Modulo B");
+console.log('Modulo B');
 
 module.exports = variableB;
