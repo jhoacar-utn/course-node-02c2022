@@ -3,6 +3,7 @@ RUN set -eux
 RUN [ -z "$(apt-get update 2>&1 >/dev/null)" ] && \
     apt install -y \
         net-tools \
+        lsof \
         git 
 
 CMD ['tail','-f','/dev/null']

@@ -1,8 +1,6 @@
 const { execSync, exec } = require('child_process');
 const { join } = require('path');
-const {
-  LOG_FILE, DEBUG_FILE, ROOT_PATH,
-} = require('../../config.cjs');
+const { LOG_FILE, DEBUG_FILE, ROOT_PATH } = require('../../config.cjs');
 const { logInFile } = require('../file.cjs');
 
 /**
@@ -13,7 +11,8 @@ const getWindowsNetstatParser = () => /TCP[\s]+[\d.]+:([\d]*)[\s]+[\d.:]*[\s]+LI
 /**
  * @returns {RegExp}
  */
-const getLinuxNetstatParser = () => /tcp[0-9\s]+[\d]+[\s]+[\d]+[\s]+[\d.:]+:([\d]*)[\s]+[\d.*:]+[\s]+LISTEN[\s]+([\d]+)\/([\S]+)/g;
+// eslint-disable-next-line max-len
+// const getLinuxNetstatParser = () => /tcp[0-9\s]+[\d]+[\s]+[\d]+[\s]+[\d.:]+:([\d]*)[\s]+[\d.*:]+[\s]+LISTEN[\s]+([\d]+)\/([\S]+)/g;
 
 /**
  * @param {string} command
@@ -30,18 +29,13 @@ const execPromise = (command) => new Promise((resolve, reject) => {
   });
 });
 
-/**
- * This function returns all the open ports
- * @return {Promise<Array>}
- */
-const portScanner = async (config) => {
+const portScannerWindows = async (config) => {
   const { port, showName } = config || {};
   const netstat = 'netstat -ano -p tcp';
-  const isWin = process.platform === 'win32';
-  const stdout = await execPromise(netstat);
-  const regex = isWin ? getWindowsNetstatParser() : getLinuxNetstatParser();
-  const lines = stdout.matchAll(regex);
   const result = [];
+  const stdout = await execPromise(netstat);
+  const regex = getWindowsNetstatParser();
+  const lines = stdout.matchAll(regex);
   // eslint-disable-next-line no-restricted-syntax
   for (const line of lines) {
     // eslint-disable-next-line no-unused-vars, prefer-const
@@ -49,15 +43,20 @@ const portScanner = async (config) => {
     // eslint-disable-next-line eqeqeq
     if (port && port == portScanned) {
       return {
-        port, pid, name,
+        port,
+        pid,
+        name,
       };
-    } if (!result.some((info) => info.pid === pid && info.port === portScanned)) {
-      if (showName && !name && pid && isWin) {
+    }
+    if (!result.some((info) => info.pid === pid && info.port === portScanned)) {
+      if (showName && !name && pid) {
         name = '';
         const processNameCommand = 'tasklist';
         const processNameRegex = new RegExp(`(^[\\S]+.exe)[\\s]+${pid}`, 'gm');
         // eslint-disable-next-line no-await-in-loop
-        const matches = (await execPromise(processNameCommand)).matchAll(processNameRegex);
+        const matches = (await execPromise(processNameCommand)).matchAll(
+          processNameRegex,
+        );
         // eslint-disable-next-line no-undef, no-restricted-syntax
         for (const match of matches) {
           // eslint-disable-next-line no-unused-vars
@@ -69,7 +68,37 @@ const portScanner = async (config) => {
       result.push({ port: portScanned, pid, name });
     }
   }
+
   return result;
+};
+
+const portScannerLinux = async (config) => {
+  const { port } = config || {};
+  const lsof = (port) => `lsof -ti:${port || 1}`;
+  const name = '';
+  const stdout = await execPromise(lsof(port));
+  const pid = stdout;
+  if (port) {
+    return { port, pid, name };
+  }
+  return [];
+};
+
+/**
+ * This function returns all the open ports
+ * @return {Promise<Array>}
+ */
+const portScanner = async (config) => {
+  const isWin = process.platform === 'win32';
+  const isLinux = process.platform === 'linux';
+
+  if (isWin) {
+    return portScannerWindows(config);
+  }
+  if (isLinux) {
+    return portScannerLinux(config);
+  }
+  return [];
 };
 /**
  * This function execute a command in background and return
@@ -83,21 +112,24 @@ const portScanner = async (config) => {
 const execBackground = (command, options) => {
   const isWin = process.platform === 'win32';
   const gitBashCommand = (command) => `start /B "" "%PROGRAMFILES%\\Git\\bin\\sh.exe" --login -i -c "${command}" "%~1"`;
-  const parsePathGitBash = (command) => command
-    .replaceAll('C:', '/c')
-    .replaceAll('\\', '/')
-    .replaceAll(' ', '\\ ');
+  const parsePathGitBash = (command) => command.replaceAll('C:', '/c').replaceAll('\\', '/').replaceAll(' ', '\\ ');
 
   const windowsBackgroundCommand = (command) => {
-    const preCommand = `${parsePathGitBash(join(__dirname, 'background.sh'))} -c`;
-    const postCommand = `${DEBUG_FILE ? `-o '${
-      parsePathGitBash(LOG_FILE.replace(`${ROOT_PATH}\\`, ''))}'` : ''
+    const preCommand = `${parsePathGitBash(
+      join(__dirname, 'background.sh'),
+    )} -c`;
+    const postCommand = `${
+      DEBUG_FILE
+        ? `-o '${parsePathGitBash(LOG_FILE.replace(`${ROOT_PATH}\\`, ''))}'`
+        : ''
     }`;
     return gitBashCommand(`${preCommand} '${command}' ${postCommand}`);
   };
   const winCommand = windowsBackgroundCommand(command);
 
-  const linuxCommand = `${join(__dirname, 'background.sh')} -c '${command}' ${DEBUG_FILE ? `-o '${LOG_FILE}'` : ''}`;
+  const linuxCommand = `${join(__dirname, 'background.sh')} -c '${command}' ${
+    DEBUG_FILE ? `-o '${LOG_FILE}'` : ''
+  }`;
 
   const bgCommand = isWin ? winCommand : linuxCommand;
 
@@ -135,5 +167,7 @@ const killPidOnPort = async (port) => {
 };
 
 module.exports = {
-  execBackground, killPidOnPort, portScanner,
+  execBackground,
+  killPidOnPort,
+  portScanner,
 };
